@@ -1,0 +1,20 @@
+{
+    "name"         : "pyrite",
+    "description"  : "A web-based test engine for research on visual presentation factors in online news articles.",
+    "main"         : "server.js",
+    "author"       : "marijnburger",
+    "license"      : "MIT",
+    "repository"   : {
+        "type" : "git",
+        "url" : "git://github.com/marijnburger/pyrite.git"
+    },
+    "dependencies" : {
+        "nodemon"        : "latest",
+        "body-parser"    : "latest",
+        "express"        : "latest",
+        "method-override": "latest",
+        "mongoose"       : "latest",
+        "morgan"         : "latest",
+        "mysql"          : "latest"
+    }
+}
