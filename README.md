@@ -4,7 +4,7 @@ news articles.
 
 # setup
 1. Upon downloading code, include a `package.json` file in your root directory
-2. Add these dependencies to your :
+2. Add these dependencies to your `package.json`:
 ```javascript
 "dependencies" : {
     "nodemon"        : "latest",
