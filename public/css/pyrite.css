@@ -1,0 +1,42 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #00D0BC;
+    color: #00907c;
+}
+.panel {
+    padding: 0px;
+}
+#bootstrap-override .panel-heading {
+    color: #00907c;
+    font-weight: 500;
+    font-size: 35px;
+}
+.panel-body {
+    color: black;
+}
+
+/* == animations ============================================================ */
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform: translateX(100%); }
+    to      { transform: translateX(0); }
+}
+/* slide in from the left */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-100%); }
+}
+.ng-enter, .ng-leave {
+    width: 100%;
+    position: absolute;
+}
+.ng-enter {
+    z-index: 8888;
+    animation:slideInRight 0.7s both ease-in;
+}
+.ng-leave {
+    z-index: 9999;
+    animation:slideOutLeft 0.7s both ease-in;
+}
+.page-start.ng-leave.back {}
+.page-start.ng-enter.back {}

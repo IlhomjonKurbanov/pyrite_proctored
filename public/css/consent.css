@@ -1,0 +1,48 @@
+/* == consent =============================================================== */
+/*#consent {
+    height: 90vh;
+    overflow: hidden;
+}*/
+#consent ul {
+    list-style-type: none;
+}
+#consent-form {
+    color: black;
+}
+#consent .flex-container {
+    flex-direction: column;
+}
+#consent-text {
+    max-height: 70vh;
+    overflow-y: scroll;
+}
+.signed-date {
+    color: grey;
+    font-style: italic;
+}
+#consent-form #consent-signed {
+    display: none;
+}
+#consent-print .modal-header {
+    background-image: linear-gradient(to bottom, #f5f5f5 0, #e8e8e8 100%);
+    background-repeat: repeat-x;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+#consent-print .modal-header h4 {
+    color: #00907c;
+    font-weight: 500;
+    font-size: 25px;
+}
+#consent-print .modal-body {
+    color: black;
+    max-height: 70vh;
+    overflow-y: scroll;
+}
+#consent-print .modal-footer {
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}

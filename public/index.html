@@ -2,27 +2,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Pyrite Research Survey</title>
+    <base href="/">
 
     <!-- CSS -->
-    <!-- load bootstrap (bootswatch version) -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css">
-    <link rel="stylesheet" href="pyrite.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/pyrite.css">
 
     <!-- JS -->
-    <!-- load angular, ngRoute, ngAnimate -->
-    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-    <script src="core.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/angular-scroll/angular-scroll.min.js"></script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Angular Files -->
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/appRoutes.js"></script>
+        <!-- services -->
+        <script src="js/service/dbService.js"></script>
+        <!-- controllers -->
+        <script src="js/controller/startController.js"></script>
+        <script src="js/controller/consentController.js"></script>
 
 </head>
+<!--
+    id 'bootstrap-override' added to allow dependable overriding of Bootsrap CSS,
+    thanks to a higher CSS priority: https://goo.gl/fIQvlc
+-->
+<body ng-app="pyrite" id="bootstrap-override">
 
-<!-- apply our angular app -->
-<body ng-app="pyrite">
-
-    <!-- inject our views using ng-view -->
-    <!-- each angular controller applies a different class here -->
-    <div class="page {{ pageClass }}" ng-view></div>
+    <div ng-view></div>
 
 </body>
 </html>

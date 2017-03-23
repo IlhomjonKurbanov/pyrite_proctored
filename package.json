@@ -9,12 +9,13 @@
         "url" : "git://github.com/marijnburger/pyrite.git"
     },
     "dependencies" : {
-        "nodemon"        : "latest",
-        "body-parser"    : "latest",
-        "express"        : "latest",
-        "method-override": "latest",
-        "mongoose"       : "latest",
-        "morgan"         : "latest",
-        "mysql"          : "latest"
+        "mysql"           : "latest",
+        "body-parser"     : "latest",
+        "method-override" : "latest",
+        "morgan"          : "latest",
+        "express"         : "latest"
+    },
+    "scripts": {
+        "postinstall": "bower install"
     }
 }
