@@ -1,7 +1,6 @@
 angular.module('pyrite')
-    .controller('startController', ['$scope', '$animateProvider' 'appConfig',
-    function($scope, $animateProvider, appConfig) {
+    .controller('startController', ['$scope', 'appConfig',
+    function($scope, appConfig) {
         //setup page variables
-        $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
         $scope.goToConsent = appConfig.REQUIRE_CONSENT;
     }]);
