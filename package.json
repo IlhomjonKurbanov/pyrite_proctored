@@ -13,7 +13,8 @@
         "body-parser"     : "latest",
         "method-override" : "latest",
         "morgan"          : "latest",
-        "express"         : "latest"
+        "express"         : "latest",
+        "html-pdf"        : "latest"
     },
     "scripts": {
         "postinstall": "bower install"

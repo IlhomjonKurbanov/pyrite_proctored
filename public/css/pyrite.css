@@ -1,6 +1,6 @@
+html, body, .container { max-height: 100% }
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
     background: #00D0BC;
     color: #00907c;
 }
