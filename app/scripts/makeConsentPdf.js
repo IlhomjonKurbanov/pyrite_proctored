@@ -1,3 +1,7 @@
+// makeConsentPDF.js
+// =================
+// script for converting 'downloadConsent.html' into a pdf file in /data
+
 var fs = require('fs');
 var pdf = require('html-pdf');
 var html = fs.readFileSync(__dirname + '/downloadConsent.html', 'utf8');
