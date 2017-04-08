@@ -1,28 +1,24 @@
-<!-- server.js -->
+// server.js
+// =========
+// server file for Node.JS application. Sets up application and DB connection
 
 // == set up ===================================================================
-var express    = require('express');
-var app        = express();                      // create our app w/ express
-var mysql      = require('mysql');               //
-var morgan     = require('morgan');              // log requests to the console (express4)
-var bodyParser = require('body-parser');         // pull information from HTML POST (express4)
+var express        = require('express');
+var app            = express();                  // create our app w/ express
+var morgan         = require('morgan');          // log requests to the console (express4)
+var bodyParser     = require('body-parser');     // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
-var port = process.env.PORT || 8080;
+var port           = process.env.PORT || 8080;
 
 // == configuration ============================================================
-// var database = require('./config/database');
-// var con = mysql.createConnection({
-//     host: database.DB_HOST,
-//     user: database.DB_USER,
-//     password: database.DB_PASSWORD
-// });
-// con.connect(function(err){
-//     if(err){
-//         console.log('Error connecting to Db');
-//         return;
-//     }
-//     console.log('Connection established');
-// });
+var db = require('./app/db');
+db.connect(function(err) {
+    if (err) {
+        console.log('Unable to connect to MySQL.');
+    } else {
+        console.log('Successfully connected to MySQL.');
+    }
+});
 
 app.use(express.static(__dirname + '/public'));                 // set static files location, /public/server.js is now /server.js
 app.use(express.static(__dirname + '/app'));                    // set additional static
@@ -33,7 +29,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride());
 
 // == routes ===================================================================
-require('./app/routes')(app); // pass our application into our routes
+require('./app/routes')(app, db); // pass our application and DB connection into our routes
 
 // == listen (start app with node server.js) ===================================
 var d = new Date();
