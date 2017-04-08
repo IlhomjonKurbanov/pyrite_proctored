@@ -19,6 +19,7 @@
         "angular"         : "latest",
         "angular-route"   : "latest",
         "angular-animate" : "latest",
+        "angular-cookies" : "latest",
         "angular-scroll"  : "1.0.0"
     }
 }

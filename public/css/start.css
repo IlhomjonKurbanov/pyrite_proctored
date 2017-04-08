@@ -1,6 +1,11 @@
-/* == start ================================================================= */
+/*
+    start.css
+    ============
+    CSS for 'start' view
+*/
 #start-pilot {
+    margin-top: 100px;
     font-weight: 500;
-    font-size: 35px;
+    font-size: 55px;
     color: #00907c;
 }

@@ -1,0 +1,22 @@
+/*
+    articles.css
+    ============
+    CSS for 'articles' view
+*/
+#likert {
+    display: table;
+    margin: 0 auto;
+}
+#likert table {
+    max-width: 700px;
+    background-color: #eee;
+    border: 10px solid #eee;
+    border-radius: 6px;
+    border-collapse: separate;
+}
+#likert td {
+    width: 14.28%;
+}
+#likert #radios td {
+    padding: 8px 0;
+}

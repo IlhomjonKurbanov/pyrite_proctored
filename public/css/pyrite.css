@@ -1,3 +1,8 @@
+/*
+    pyrite.css
+    ==========
+    global CSS rules for pyrite app
+*/
 html, body, .container { max-height: 100% }
 body {
     padding: 20px;
@@ -18,13 +23,20 @@ body {
 
 /* == animations ============================================================ */
 /* slide in from the right */
+@-webkit-keyframes slideInRight {
+    from    { -webkit-transform: translateX(100%); transform: translateX(100%); }
+    to      { -webkit-transform: translateX(0); transform: translateX(0); }
+}
 @keyframes slideInRight {
-    from    { transform: translateX(100%); }
-    to      { transform: translateX(0); }
+    from    { -webkit-transform: translateX(100%); transform: translateX(100%); }
+    to      { -webkit-transform: translateX(0); transform: translateX(0); }
 }
 /* slide out to the left */
+@-webkit-keyframes slideOutLeft {
+    to      { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
 @keyframes slideOutLeft {
-    to      { transform: translateX(-100%); }
+    to      { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
 }
 .ng-enter, .ng-leave {
     width: 100%;
@@ -32,11 +44,13 @@ body {
 }
 .ng-enter {
     z-index: 8888;
-    animation:slideInRight 0.7s both ease-in;
+    -webkit-animation:slideInRight 0.7s both ease-in;
+            animation:slideInRight 0.7s both ease-in;
 }
 .ng-leave {
     z-index: 9999;
-    animation:slideOutLeft 0.7s both ease-in;
+    -webkit-animation:slideOutLeft 0.7s both ease-in;
+            animation:slideOutLeft 0.7s both ease-in;
 }
 .page-start.ng-leave.back {}
 .page-start.ng-enter.back {}

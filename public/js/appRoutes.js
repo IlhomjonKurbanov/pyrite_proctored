@@ -1,3 +1,7 @@
+// appRoutes.js
+// ============
+// front-end routing, defines controllers & templates for views
+
 angular.module('pyrite')
     .config(function($routeProvider, $locationProvider) {
         $locationProvider.hashPrefix('');
@@ -8,17 +12,24 @@ angular.module('pyrite')
                 controller: 'startController'
             })
 
+            // consent page
             .when('/consent', {
                 templateUrl: 'view/consent.html',
                 controller: 'consentController'
             })
 
-            // // articles page
-            // .when('/articles', {
-            //     templateUrl: 'view/articles.html',
-            //     controller: 'articlesController'
-            // })
-            //
+            // introduction page
+            .when('/introduction', {
+                templateUrl: 'view/introduction.html',
+                controller: 'introductionController'
+            })
+
+            // articles page
+            .when('/articles', {
+                templateUrl: 'view/articles.html',
+                controller: 'articlesController'
+            })
+
             // // narrative response page
             // .when('/narrative', {
             //     templateUrl: 'view/narrative.html',
@@ -29,8 +40,16 @@ angular.module('pyrite')
             .otherwise('/');
     });
 angular.module('pyrite')
-    .run(['$rootScope', '$document', function($rootScope, $document) {
-        $rootScope.$on("$routeChangeStart", function (event, currentRoute, previousRoute) {
-            $document.scrollTopAnimated(0);
-        });
-    }]);
+    .run(['$rootScope', '$document', '$location', '$cookies', 'appConfig',
+        function($rootScope, $document, $location, $cookies, appConfig) {
+            $rootScope.$on("$routeChangeStart", function (event, next, current) {
+                if (appConfig.DO_CONSENT_REDIRECT && $cookies.get('hasConsented') == undefined) {
+                    // if hasn't consented, return to start page, unless accessing consent/start page
+                    if (next.templateUrl != 'view/start.html' && next.templateUrl != 'view/consent.html') {
+                        //if not going to start or consent page, redirect to start
+                        $location.path('/');
+                    }
+                }
+                $document.scrollTopAnimated(0);
+            });
+        }]);

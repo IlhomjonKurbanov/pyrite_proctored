@@ -1,4 +1,8 @@
-<!-- static text of consent form -->
+<!--
+    consent-text.html
+    =================
+    static text of consent form
+-->
 <h4 class="text-center">UNIVERSITY OF WASHINGTON CONSENT FORM:</h4>
 <h4 class="text-center">PERCEIVED VERACITY EXPERIMENT </h4>
 <br>
@@ -55,4 +59,16 @@
 <h4 class="text-center">SUBJECT’S STATEMENT</h4>
 <p>
     This study has been explained to me.  I volunteer to take part in this research.  I have had a chance to ask questions.  If I have questions later about the research, or if I have been harmed by participating in this study, I can contact one of the researchers listed on the first page of this consent form.  If I have questions about my rights as a research subject, I can call the Human Subjects Division at (206) 543-0098 or call collect at (206) 221-5940. I will receive a copy of this consent form.
+</p>
+<div ng-show="hasConsented">
+    <br>
+    <label class="checkbox-inline" disabled="true">
+        <input type="checkbox" disabled="true" checked="true">
+            I give my consent to participate in this study. <span class="signed-date">{{ today }}</span>
+        </input>
+    </label>
+</div>
+<br>
+<p>
+    Copies to: Researcher, Subject
 </p>

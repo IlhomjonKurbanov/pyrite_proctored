@@ -1,4 +1,8 @@
-/* == consent =============================================================== */
+/*
+    consent.css
+    ============
+    CSS for 'consent' view
+*/
 #consent ul {
     list-style-type: none;
 }
@@ -15,4 +19,10 @@
 }
 #consent-check, #consent label {
     margin-bottom: 10px;
+}
+#consent-check label {
+    float: left;
+}
+#consent-check #submit, #consent-check #buttons {
+    float: right;
 }

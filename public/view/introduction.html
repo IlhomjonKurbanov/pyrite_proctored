@@ -1,0 +1,115 @@
+<!--
+    introduction.html
+    =================
+    introduction page for the experiment; collects subject demographic information
+    and demonstrates the steps of the experiment
+-->
+
+<link rel="stylesheet" href="css/introduction.css">
+<div class="container col-sm-12">
+    <div class="panel panel-default col-sm-offset-2 col-sm-8">
+        <div class="panel-heading">
+            Before we begin...
+        </div>
+        <div class="panel-body" id="consent-form">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#demographicInfo" class="pointer">
+                                Tell us a bit about yourself:
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="demographicInfo" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5" for="age">What year were you born?</label>
+                                    <div class="col-sm-5">
+                                        <select id="age" class="form-control">
+                                            <option selected="true" disabled="disabled">Select birth year...</option>
+                                            <option ng-repeat="year in years">{{year}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5" for="field">What is your field of study?</label>
+                                    <div class="col-sm-5">
+                                        <select id="field1" class="form-control">
+                                            <option selected="true" disabled="disabled">Select a field...</option>
+                                            <option ng-repeat="field in fields">{{field}}</option>
+                                        </select>
+                                    </div>
+                                    <!--
+                                    TODO: add pointer class, make ng-click toggle visibility, add 'other' functionality
+                                    -->
+                                    <div class="col-sm-2" ng-show="!showField2">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> add field
+                                    </div>
+                                    <div ng-show="showField2">
+                                        <div class="col-sm-offset-5 col-sm-5">
+                                            <select id="field2" class="form-control">
+                                                <option selected="true" disabled="disabled">Select a field...</option>
+                                                <option ng-repeat="field in fields">{{field}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2" ng-show="!showField3">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> add field
+                                        </div>
+                                    </div>
+                                    <div ng-show="showField3">
+                                        <div class="col-sm-offset-5 col-sm-5">
+                                            <select id="field3" class="form-control">
+                                                <option selected="true" disabled="disabled">Select a field...</option>
+                                                <option ng-repeat="field in fields">{{field}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5" for="gender">Which gender do you identify with?</label>
+                                    <div class="col-sm-5">
+                                        <select id="gender" class="form-control">
+                                            <option selected="true" disabled="disabled">Select a gender...</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Non-Binary</option>
+                                            <option>Prefer not to respond</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#experimentDemo" class="pointer">
+                                Learn about the experiment
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="experimentDemo" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+<form class="form-inline">
+    <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" class="form-control">
+            <option selected="true" disabled="disabled">Select a gender...</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Non-Binary</option>
+            <option>Prefer not to respond</option>
+        </select>
+    </div>
+</form>
+-->

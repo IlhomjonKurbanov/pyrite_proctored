@@ -1,3 +1,9 @@
+<!--
+    consent.html
+    =============
+    template for consent view
+-->
+
 <link rel="stylesheet" href="css/consent.css">
 
 <div class="container col-sm-12">
@@ -9,23 +15,22 @@
             <div id="consent-text" class="panel panel-default">
                 <div class="panel-body">
                     <div ng-include="'view/partial/consent-text.html'"></div>
-                    <p>
-                        Copies to: Researcher, Subject
-                    </p>
                 </div>
             </div>
-            <form class="form-horizontal">
-                <div id="consent-check" class="col-sm-12 text-center">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" ng-model="hasConsented" name="consent-check" value="consent-check">
-                        I give my consent to participate in this study. <span class="signed-date">{{ today }}</span>
-                    </label>
-                </div>
-                <div class="col-sm-12 text-right">
-                    <button id="print-button" type="button" ng-disabled="!hasConsented" ng-click="downloadConsent()" class="btn btn-default">
+            <form id="consent-check" class="form-horizontal col-sm-12">
+                <label class="checkbox-inline">
+                    <input type="checkbox" ng-model="consentCheck"  ng-disabled="hasConsented" name="consent-check" value="consent-check">
+                        I give my consent to participate in this study. <span class="signed-date">{{today}}</span>
+                    </input>
+                </label>
+                <button id="submit" type="button" ng-disabled="!consentCheck" ng-show="!hasConsented" ng-click="submitConsent()" class="btn btn-default">
+                    Submit Consent
+                </button>
+                <div id="buttons">
+                    <button id="print-button" type="button" ng-show="hasConsented" ng-click="downloadConsent()" class="btn btn-default">
                         Download Consent Form
                     </button>
-                    <a href="#/articles" ng-disabled="!hasConsented" class="btn btn-default">
+                    <a href="#/introduction" ng-show="hasConsented" class="btn btn-default">
                         Continue <i class="fa fa-play" aria-hidden="true"></i>
                     </a>
                 </div>
