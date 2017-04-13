@@ -3,6 +3,34 @@
     ================
     CSS for 'introduction' view
 */
+#bootstrap-override .form-control {
+    max-width: 250px;
+}
 .pointer {
     cursor: pointer;
+}
+.add-field {
+    color: grey;
+    font-weight: bold;
+    padding-top: 7px;
+    padding-left: 18px;
+}
+.add-field > span:hover, .cancel-field > i:hover {
+    color: black;
+}
+#bootstrap-override .cancel-field {
+    color: grey;
+    padding-top: 7px;
+    padding-left: 5px;
+    line-height: 32px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    display: inline-block;
+}
+.fa {
+    vertical-align: middle;
+}
+#selectField2, #selectField3, #otherField1, #otherField2, #otherField3 {
+    margin-top: 7px;
+    display: inline-block;
 }

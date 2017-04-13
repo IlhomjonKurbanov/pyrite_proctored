@@ -36,34 +36,67 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5" for="field">What is your field of study?</label>
                                     <div class="col-sm-5">
-                                        <select id="field1" class="form-control">
-                                            <option selected="true" disabled="disabled">Select a field...</option>
-                                            <option ng-repeat="field in fields">{{field}}</option>
+                                        <select id="selectField1" class="form-control"
+                                            ng-model="selectField1"
+                                            ng-options="field as field.name disable when field.disabled for field in fields"
+                                            ng-change="handleOther1()">
                                         </select>
                                     </div>
+                                    <div ng-show="selectedOther1">
+                                        <div class="col-sm-offset-5 col-sm-5">
+                                            <input id="otherField1" class="form-control" type="text" placeholder="Enter other field...">
+                                            <p class="cancel-field">
+                                                <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther1(false, true)"></i>
+                                            </p>
+                                        </div>
+                                    </div>
                                     <!--
-                                    TODO: add pointer class, make ng-click toggle visibility, add 'other' functionality
+                                    TODO: add functionality to toggle to text box on 'other' (also has x)
                                     -->
-                                    <div class="col-sm-2" ng-show="!showField2">
-                                        <i class="fa fa-plus" aria-hidden="true"></i> add field
+                                    <div class="col-sm-offset-5 col-sm-5 text-left add-field" ng-show="!field2Visible">
+                                        <span class="pointer" ng-click="toggleField2(true)"><i class="fa fa-plus" aria-hidden="true"></i> add field</span>
                                     </div>
-                                    <div ng-show="showField2">
+                                    <div ng-show="field2Visible">
                                         <div class="col-sm-offset-5 col-sm-5">
-                                            <select id="field2" class="form-control">
-                                                <option selected="true" disabled="disabled">Select a field...</option>
-                                                <option ng-repeat="field in fields">{{field}}</option>
+                                            <select id="selectField2" class="form-control"
+                                                ng-model="selectField2"
+                                                ng-options="field as field.name disable when field.disabled for field in fields"
+                                                ng-change="handleOther2()">
                                             </select>
+                                            <p class="cancel-field" ng-show="!field3Visible">
+                                                <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleField2(false)"></i>
+                                            </p>
                                         </div>
-                                        <div class="col-sm-2" ng-show="!showField3">
-                                            <i class="fa fa-plus" aria-hidden="true"></i> add field
+                                        <div ng-show="selectedOther2">
+                                            <div class="col-sm-offset-5 col-sm-5">
+                                                <input id="otherField2" class="form-control" type="text" placeholder="Enter other field...">
+                                                <p class="cancel-field">
+                                                    <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther2(false, true)"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-offset-5 col-sm-5 text-left pointer add-field" ng-show="!field3Visible">
+                                            <span class="pointer" ng-click="toggleField3(true)"><i class="fa fa-plus" aria-hidden="true"></i> add field</span>
                                         </div>
                                     </div>
-                                    <div ng-show="showField3">
+                                    <div ng-show="field3Visible">
                                         <div class="col-sm-offset-5 col-sm-5">
-                                            <select id="field3" class="form-control">
-                                                <option selected="true" disabled="disabled">Select a field...</option>
-                                                <option ng-repeat="field in fields">{{field}}</option>
+                                            <select id="selectField3" class="form-control"
+                                                ng-model="selectField3"
+                                                ng-options="field as field.name disable when field.disabled for field in fields"
+                                                ng-change="handleOther3()">
                                             </select>
+                                            <p class="cancel-field">
+                                                <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleField3(false)"></i>
+                                            </p>
+                                        </div>
+                                        <div ng-show="selectedOther3">
+                                            <div class="col-sm-offset-5 col-sm-5">
+                                                <input id="otherField3" class="form-control" type="text" placeholder="Enter other field...">
+                                                <p class="cancel-field">
+                                                    <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther3(false, true)"></i>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
