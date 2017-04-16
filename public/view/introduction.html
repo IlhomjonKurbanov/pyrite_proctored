@@ -15,44 +15,38 @@
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" data-target="#demographicInfo" class="pointer">
-                                Tell us a bit about yourself:
-                            </a>
-                        </h4>
+                        <h4 class="panel-title">Tell us a bit about yourself:</h4>
                     </div>
                     <div id="demographicInfo" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <form class="form-horizontal">
+                                <!-- Birth Year -->
                                 <div class="form-group">
                                     <label class="control-label col-sm-5" for="age">What year were you born?</label>
                                     <div class="col-sm-5">
-                                        <select id="age" class="form-control">
-                                            <option selected="true" disabled="disabled">Select birth year...</option>
-                                            <option ng-repeat="year in years">{{year}}</option>
+                                        <select id="age" class="form-control" ng-model="selectBirthYear" required
+                                            ng-options="year as year.val disable when year.disabled for year in years">
                                         </select>
                                     </div>
                                 </div>
+                                <!-- Field(s) -->
                                 <div class="form-group">
                                     <label class="control-label col-sm-5" for="field">What is your field of study?</label>
                                     <div class="col-sm-5">
-                                        <select id="selectField1" class="form-control"
+                                        <select id="selectField1" class="form-control" required
                                             ng-model="selectField1"
-                                            ng-options="field as field.name disable when field.disabled for field in fields"
+                                            ng-options="field as field.val disable when field.disabled for field in fields"
                                             ng-change="handleOther1()">
                                         </select>
                                     </div>
                                     <div ng-show="selectedOther1">
                                         <div class="col-sm-offset-5 col-sm-5">
-                                            <input id="otherField1" class="form-control" type="text" placeholder="Enter other field...">
+                                            <input id="otherField1" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField1">
                                             <p class="cancel-field">
                                                 <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther1(false, true)"></i>
                                             </p>
                                         </div>
                                     </div>
-                                    <!--
-                                    TODO: add functionality to toggle to text box on 'other' (also has x)
-                                    -->
                                     <div class="col-sm-offset-5 col-sm-5 text-left add-field" ng-show="!field2Visible">
                                         <span class="pointer" ng-click="toggleField2(true)"><i class="fa fa-plus" aria-hidden="true"></i> add field</span>
                                     </div>
@@ -60,7 +54,7 @@
                                         <div class="col-sm-offset-5 col-sm-5">
                                             <select id="selectField2" class="form-control"
                                                 ng-model="selectField2"
-                                                ng-options="field as field.name disable when field.disabled for field in fields"
+                                                ng-options="field as field.val disable when field.disabled for field in fields"
                                                 ng-change="handleOther2()">
                                             </select>
                                             <p class="cancel-field" ng-show="!field3Visible">
@@ -69,7 +63,7 @@
                                         </div>
                                         <div ng-show="selectedOther2">
                                             <div class="col-sm-offset-5 col-sm-5">
-                                                <input id="otherField2" class="form-control" type="text" placeholder="Enter other field...">
+                                                <input id="otherField2" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField2">
                                                 <p class="cancel-field">
                                                     <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther2(false, true)"></i>
                                                 </p>
@@ -83,7 +77,7 @@
                                         <div class="col-sm-offset-5 col-sm-5">
                                             <select id="selectField3" class="form-control"
                                                 ng-model="selectField3"
-                                                ng-options="field as field.name disable when field.disabled for field in fields"
+                                                ng-options="field as field.val disable when field.disabled for field in fields"
                                                 ng-change="handleOther3()">
                                             </select>
                                             <p class="cancel-field">
@@ -92,7 +86,7 @@
                                         </div>
                                         <div ng-show="selectedOther3">
                                             <div class="col-sm-offset-5 col-sm-5">
-                                                <input id="otherField3" class="form-control" type="text" placeholder="Enter other field...">
+                                                <input id="otherField3" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField3">
                                                 <p class="cancel-field">
                                                     <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther3(false, true)"></i>
                                                 </p>
@@ -100,32 +94,42 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Gender -->
                                 <div class="form-group">
                                     <label class="control-label col-sm-5" for="gender">Which gender do you identify with?</label>
                                     <div class="col-sm-5">
-                                        <select id="gender" class="form-control">
-                                            <option selected="true" disabled="disabled">Select a gender...</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Non-Binary</option>
-                                            <option>Prefer not to respond</option>
+                                        <select id="gender" class="form-control" ng-model="selectGender" required
+                                            ng-options="gender as gender.val disable when gender.disabled for gender in genders">
                                         </select>
                                     </div>
                                 </div>
+                                <!-- Submit -->
+                                <button id="submitIntro" ng-click="submitDemographicInfo()" ng-disabled="!formValid()" data-toggle="collapse" data-parent="#accordion" data-target="#instructions" class="btn btn-default">
+                                    Continue <i class="fa fa-play" aria-hidden="true"></i>
+                                </button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" data-target="#experimentDemo" class="pointer">
-                                Learn about the experiment
-                            </a>
-                        </h4>
+                        <h4 class="panel-title">Learn about the experiment</h4>
                     </div>
-                    <div id="experimentDemo" class="panel-collapse collapse">
-                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                    <div id="instructions" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mauris mi, lobortis sit amet laoreet vel, sagittis at lorem. Donec semper hendrerit elementum. Donec vitae elementum purus, at commodo diam. Donec mauris est, lobortis ut elit accumsan, faucibus tristique mauris. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent at convallis nulla, non elementum diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus vehicula nulla ac bibendum volutpat. Ut convallis ultrices leo, ac hendrerit sem facilisis sit amet.
+                            </p>
+                            <p>
+                                Fusce ac nisl eget ante cursus accumsan ut vitae tortor. Praesent orci nunc, fringilla nec nisi scelerisque, tempus ullamcorper velit. Donec sed eros rutrum, eleifend nibh quis, rhoncus mauris. Maecenas ullamcorper eget est vitae malesuada. Vivamus imperdiet auctor rhoncus. Nulla id justo enim. Aliquam blandit sollicitudin ante id egestas. Donec mollis, diam at egestas feugiat, quam mauris viverra libero, a lacinia arcu lectus id elit. Praesent aliquam augue ac massa rhoncus varius quis in velit. Nulla semper massa in mauris vestibulum, quis finibus mi auctor. Phasellus sed accumsan orci. Sed blandit euismod posuere. Nam elementum turpis eget mi tincidunt, non vulputate nulla aliquam. Nam porttitor lacus et enim molestie ullamcorper. Aenean id pharetra sapien, ultrices suscipit felis. Integer dictum aliquam pharetra.
+                            </p>
+                            <p>
+                                Sed fringilla sollicitudin nisl, a tincidunt lacus vestibulum ut. Nunc commodo ligula a blandit venenatis. Praesent tempus eget metus ac placerat. Phasellus nec ipsum ex. Nulla et nisl in libero molestie interdum eu quis mauris. Morbi non nisl mauris. Nulla vulputate lacinia vehicula. Etiam mollis erat sit amet tortor vulputate, sed feugiat lacus molestie. Integer maximus orci vitae lectus volutpat porttitor. Phasellus fermentum augue lacinia ipsum varius mollis a id justo. Cras faucibus ipsum vehicula tincidunt finibus.
+                            </p>
+                            <a id="goToArticles" href="#/articles" class="btn btn-default">
+                                Continue <i class="fa fa-play" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

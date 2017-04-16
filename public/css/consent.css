@@ -17,9 +17,6 @@
     color: grey;
     font-style: italic;
 }
-#consent-check, #consent label {
-    margin-bottom: 10px;
-}
 #consent-check label {
     float: left;
 }

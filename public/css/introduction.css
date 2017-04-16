@@ -34,3 +34,6 @@
     margin-top: 7px;
     display: inline-block;
 }
+#submitIntro, #goToArticles {
+    float: right;
+}
