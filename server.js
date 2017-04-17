@@ -7,7 +7,6 @@ var express        = require('express');
 var app            = express();                  // create our app w/ express
 var morgan         = require('morgan');          // log requests to the console (express4)
 var bodyParser     = require('body-parser');     // pull information from HTML POST (express4)
-var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 var port           = process.env.PORT || 8080;
 
 // == configuration ============================================================
@@ -24,7 +23,6 @@ app.use(express.static(__dirname + '/public'));                 // set static fi
 app.use(express.static(__dirname + '/app'));                    // set additional static
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.json());                                     // parse application/json
-app.use(methodOverride());
 
 // == routes ===================================================================
 require('./app/routes')(app, db); // pass our application and DB connection into our routes
