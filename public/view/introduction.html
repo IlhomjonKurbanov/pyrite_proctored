@@ -15,7 +15,7 @@
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Tell us a bit about yourself:</h4>
+                        <h4 class="panel-title">Tell us a bit about yourself</h4>
                     </div>
                     <div id="demographicInfo" class="panel-collapse collapse in">
                         <div class="panel-body">
@@ -104,9 +104,12 @@
                                     </div>
                                 </div>
                                 <!-- Submit -->
-                                <button id="submitIntro" ng-click="submitDemographicInfo()" ng-disabled="!formValid()" data-toggle="collapse" data-parent="#accordion" data-target="#instructions" class="btn btn-default">
-                                    Continue <i class="fa fa-play" aria-hidden="true"></i>
-                                </button>
+                                <div id="submitIntro">
+                                    <span class="alert alert-warning message-fade" ng-show="!formValid()"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> form is incomplete</span>
+                                    <button ng-click="submitDemographicInfo()" ng-disabled="!formValid()" data-toggle="collapse" data-parent="#accordion" data-target="#instructions" class="btn btn-default">
+                                        Continue <i class="fa fa-play" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

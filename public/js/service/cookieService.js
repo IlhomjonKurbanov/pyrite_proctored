@@ -1,6 +1,6 @@
 angular.module('pyrite')
     .service('cookieService', ['$cookies', function($cookies) {
-        this.storeSubjectID = function(subjectID) {
+        this.setSubjectID = function(subjectID) {
             $cookies.put('subjectID', subjectID);
         }
 
@@ -8,7 +8,7 @@ angular.module('pyrite')
             return $cookies.get('subjectID');
         }
 
-        this.storeSubjectProgress = function(progress) {
+        this.setSubjectProgress = function(progress) {
             $cookies.putObject('progress', progress);
         }
 

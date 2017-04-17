@@ -12,21 +12,24 @@ module.exports = function(app, db) {
 
     //register a new subject in the DB, return subjectID
     app.post('/api/subject/register-new', function(req, res) {
-        console.log('request @ /api/subject/register-new/: ' + req.body);
-        var data = [req.body.age, req.body.major, req.body.dateConsented];
-        db.get().query('INSERT INTO Subjects (Age, Major, DateConsented) VALUES (?, ?, ?)',
-                 data, function(err, result) {
-                     if (err) throw err;
-                     console.log('Registered new subject.');
-                     db.get().query('SELECT * FROM Subjects', function(err, results) {
-                         console.log(results[0].Age);
-                         console.log(results[0].Major);
-                         console.log(results[0].DateConsented);
-                     });
-                 });
-        console.log("Register new subject.");
-        //return subjectID
-        res.send("Register new subject: [subjectID]");
+        var data = [
+            req.body.articleOrder,
+            req.body.age,
+            req.body.field1,
+            req.body.field2,
+            req.body.field3,
+            req.body.gender,
+            req.body.dateConsented
+        ];
+
+        var subjectID;
+        db.get().query('INSERT INTO Subjects (ArticleOrder, Age, Field1, Field2, Field3, Gender, DateConsented) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            data, function(err, result) {
+                if (err) throw err;
+                console.log('Registered new subject. SubjectID: ' + result.insertId);
+                subjectID = result.insertId;
+                res.json({subjectID : result.insertId});
+            });
     });
 
     //get subject details, based on subjectID
