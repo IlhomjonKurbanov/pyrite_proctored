@@ -4,7 +4,6 @@
     "authors"     : [ "marijnburger" ],
     "license"     : "MIT",
     "homepage"    : "https://github.com/marijnburger/pyrite",
-    "private"     : true,
     "ignore"      : [
         "**/.*",
         "node_modules",
