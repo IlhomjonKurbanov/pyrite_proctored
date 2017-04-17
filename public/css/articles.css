@@ -3,20 +3,33 @@
     ============
     CSS for 'articles' view
 */
+#article {
+    max-width: 100%;
+    max-height: 100%;
+}
 #likert {
     display: table;
     margin: 0 auto;
 }
+#likert-wrapper {
+    overflow: scroll;
+}
+#bootstrap-override .table-responsive {
+    border: none;
+}
 #likert table {
     max-width: 700px;
     background-color: #eee;
-    border: 10px solid #eee;
+    border: 3px solid #eee;
     border-radius: 6px;
     border-collapse: separate;
 }
 #likert td {
     width: 14.28%;
 }
-#likert #radios td {
+#labels td {
+    padding: 0 5px;
+}
+#radios td {
     padding: 8px 0;
 }

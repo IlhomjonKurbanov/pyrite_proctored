@@ -21,29 +21,31 @@
                 </div>
             </div>
             <form action="" method="post">
-                <div id="likert" class="form-group">
-                    <h4>This article seems believable.</h4>
-                    <div class="table-responsive table">
-                        <table class="text-center">
-                            <tr id="labels" class="small">
-                                <td>Strongly Disagree</td>
-                                <td>Disagree</td>
-                                <td>Somewhat Disagree</td>
-                                <td>Neither Agree nor Disagree</td>
-                                <td>Somewhat Agree</td>
-                                <td>Agree</td>
-                                <td>Strongly Agree</td>
-                            </tr>
-                            <tr id="radios">
-                                <td><label><input type="radio" name="likert" value="strongly-disagree"></label></td>
-                                <td><label><input type="radio" name="likert" value="disagree"></label></td>
-                                <td><label><input type="radio" name="likert" value="somewhat-disagree"></label></td>
-                                <td><label><input type="radio" name="likert" value="neither"></label></td>
-                                <td><label><input type="radio" name="likert" value="somewhat-agree"></label></td>
-                                <td><label><input type="radio" name="likert" value="agree"></label></td>
-                                <td><label><input type="radio" name="likert" value="strongly-agree"></label></td>
-                            </tr>
-                        </table>
+                <div id="likert-wrapper">
+                    <div id="likert" class="form-group">
+                        <h4>This article seems believable.</h4>
+                        <div class="table-responsive table">
+                            <table class="text-center">
+                                <tr id="labels" class="small">
+                                    <td>Strongly Disagree</td>
+                                    <td>Disagree</td>
+                                    <td>Somewhat Disagree</td>
+                                    <td>Neither Agree nor Disagree</td>
+                                    <td>Somewhat Agree</td>
+                                    <td>Agree</td>
+                                    <td>Strongly Agree</td>
+                                </tr>
+                                <tr id="radios">
+                                    <td><label><input type="radio" ng-model="likert" value="strongly-disagree"></label></td>
+                                    <td><label><input type="radio" ng-model="likert" value="disagree"></label></td>
+                                    <td><label><input type="radio" ng-model="likert" value="somewhat-disagree"></label></td>
+                                    <td><label><input type="radio" ng-model="likert" value="neither"></label></td>
+                                    <td><label><input type="radio" ng-model="likert" value="somewhat-agree"></label></td>
+                                    <td><label><input type="radio" ng-model="likert" value="agree"></label></td>
+                                    <td><label><input type="radio" ng-model="likert" value="strongly-agree"></label></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div id="button-row" class="text-center col-sm-12">
