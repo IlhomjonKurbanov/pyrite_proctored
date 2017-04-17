@@ -3,6 +3,9 @@
     ================
     CSS for 'introduction' view
 */
+#bootstrap-override .panel-group {
+    margin: 0;
+}
 #bootstrap-override .form-control {
     max-width: 250px;
 }
