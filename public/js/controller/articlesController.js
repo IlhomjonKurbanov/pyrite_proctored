@@ -3,10 +3,10 @@
 // controller for 'articles' view
 
 angular.module('pyrite')
-    .controller('articlesController', ['$scope', '$routeParams', 'appConfig', 'articlesConfig',
+    .controller('articlesController', ['$scope', '$routeParams', '$location', 'appConfig',
                                        'cookieService', 'dbService', 'articleService',
                                        'Subject', 'ArticleResponse', 'SpontaneousResponse',
-        function($scope, $routeParams, appConfig, articlesConfig,
+        function($scope, $routeParams, $location, appConfig,
                  cookieService, dbService, articleService,
                  Subject, ArticleResponse, SpontaneousResponse) {
             //check route against progress object
@@ -17,6 +17,7 @@ angular.module('pyrite')
             }
 
             $scope.submitResponse = function() {
+                $location.path('/review');
                 //$location.path('/articles/' + $scope.index);
             }
         }

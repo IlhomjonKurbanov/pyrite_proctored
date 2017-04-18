@@ -30,11 +30,17 @@ angular.module('pyrite')
                 controller: 'articlesController'
             })
 
-            // // narrative response page
-            // .when('/narrative', {
-            //     templateUrl: 'view/narrative.html',
-            //     controller: 'narrativeController'
-            // });
+            // review spontaneous responses page
+            .when('/review', {
+                templateUrl: 'view/review.html',
+                controller: 'reviewController'
+            })
+
+            // prize drawing page
+            .when('/prize', {
+                templateUrl: 'view/prize.html',
+                controller: 'prizeController'
+            })
 
             //otherwise redirect to start page
             .otherwise('/');
