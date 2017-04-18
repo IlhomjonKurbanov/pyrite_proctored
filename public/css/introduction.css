@@ -47,8 +47,8 @@
   opacity: 0;
 }
 .message-fade.ng-hide-remove {
-  -webkit-transition: all linear 1000ms;
-  transition: all linear 1000ms;
+  -webkit-transition: all linear 500ms;
+  transition: all linear 500ms;
 }
 .message-fade.ng-hide-add {
   -webkit-transition: all linear 500ms;

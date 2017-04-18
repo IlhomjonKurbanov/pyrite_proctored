@@ -52,5 +52,3 @@ body {
     -webkit-animation:slideOutLeft 0.7s both ease-in;
             animation:slideOutLeft 0.7s both ease-in;
 }
-.page-start.ng-leave.back {}
-.page-start.ng-enter.back {}
