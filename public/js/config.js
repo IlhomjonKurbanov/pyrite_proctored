@@ -11,11 +11,3 @@ angular.module('pyrite')
         "PROCTORED"           : false, //toggles alternate behavior on narrative response page for proctored experiments
         "PATH"                : "http://localhost:8080/"
     })
-
-// == enums ====================================================================
-.constant("EXPERIMENT_STAGE", {
-    "unstarted" : "unstarted",
-    "articles"  : "articles",
-    "review"    : "review",
-    "finished"  : "finished"
-})
