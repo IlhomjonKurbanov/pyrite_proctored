@@ -39,6 +39,7 @@ angular.module('pyrite')
             //otherwise redirect to start page
             .otherwise('/');
     });
+//handles routing behavior: scroll to top on route change, and subject consent validation
 angular.module('pyrite')
     .run(['$rootScope', '$document', '$location', '$cookies', 'appConfig',
         function($rootScope, $document, $location, $cookies, appConfig) {
