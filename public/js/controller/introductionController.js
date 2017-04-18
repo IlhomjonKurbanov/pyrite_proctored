@@ -75,7 +75,7 @@ angular.module('pyrite')
                         || (($scope.selectField2 != $scope.fields[0] && $scope.selectField2.val != 'Other:')
                             || ($scope.selectField2.val == 'Other:' && $scope.otherField2 != undefined)))
                     && $scope.selectGender != $scope.genders[0]);
-        }
+        };
 
         //processes demographic info and sends it to DB, stores returned SubjectID as a cookie
         $scope.submitDemographicInfo = function() {
@@ -96,7 +96,7 @@ angular.module('pyrite')
             subjectID_promise.then(function(subjectID) {
                 cookieService.setSubjectID(subjectID);
             });
-        }
+        };
 
         //toggle visibility of additional 'field' form elements
         $scope.toggleField2 = function(state) {
