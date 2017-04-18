@@ -20,7 +20,7 @@
                     <a id="close-response"><i class="fa fa-times" aria-hidden="true"></i></a>
                 </div>
             </div>
-            <form action="" method="post">
+            <form>
                 <div id="likert-wrapper">
                     <div id="likert" class="form-group">
                         <h4>This article seems believable.</h4>
@@ -33,7 +33,7 @@
                                     <td>Neither Agree nor Disagree</td>
                                     <td>Somewhat Agree</td>
                                     <td>Agree</td>
-                                    <td>Strongly Agree</td>
+                                    <td>Strongly<br>Agree</td>
                                 </tr>
                                 <tr id="radios">
                                     <td><label><input type="radio" ng-model="likert" value="strongly-disagree"></label></td>
@@ -49,7 +49,9 @@
                     </div>
                 </div>
                 <div id="button-row" class="text-center col-sm-12">
-                    <button type="submit" id="continue" disabled="true" class="btn btn-default">Continue <i class="fa fa-play" aria-hidden="true"></i></button>
+                    <button id="continue" ng-disabled="!likertSelected()" ng-click="submitResponse()" class="btn btn-default">
+                        Continue <i class="fa fa-play" aria-hidden="true"></i>
+                    </button>
                 </div>
             </form>
         </div>

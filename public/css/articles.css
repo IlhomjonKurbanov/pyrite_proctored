@@ -18,9 +18,9 @@
     border: none;
 }
 #likert table {
-    max-width: 700px;
+    max-width: 650px;
     background-color: #eee;
-    border: 3px solid #eee;
+    border: 7px solid #eee;
     border-radius: 6px;
     border-collapse: separate;
 }
@@ -31,5 +31,5 @@
     padding: 0 5px;
 }
 #radios td {
-    padding: 8px 0;
+    padding-top: 8px;
 }

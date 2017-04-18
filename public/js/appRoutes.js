@@ -25,7 +25,7 @@ angular.module('pyrite')
             })
 
             // articles page
-            .when('/articles', {
+            .when('/articles/:index', {
                 templateUrl: 'view/articles.html',
                 controller: 'articlesController'
             })
