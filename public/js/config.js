@@ -19,13 +19,3 @@ angular.module('pyrite')
     "review"    : "review",
     "finished"  : "finished"
 })
-
-.constant("LIKERT", {
-    "strongly-disagree" : 1,
-    "disagree"          : 2,
-    "somewhat-disagree" : 3,
-    "neither"           : 4,
-    "somewhat-agree"    : 5,
-    "agree"             : 6,
-    "strongly-agree"    : 7
-});
