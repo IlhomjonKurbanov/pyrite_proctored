@@ -8,6 +8,14 @@ angular.module('pyrite')
             return $cookies.get('subjectID');
         }
 
+        this.setArticleOrder = function(articleOrder) {
+            $cookies.putObject('articleOrder', articleOrder);
+        }
+
+        this.getArticleOrder = function() {
+            return $cookies.getObject('articleOrder');
+        }
+
         this.setSubjectProgress = function(progress) {
             $cookies.putObject('progress', progress);
         }
