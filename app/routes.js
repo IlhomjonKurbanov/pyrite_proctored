@@ -37,11 +37,6 @@ module.exports = function(app, db) {
         //TODO
     });
 
-    //register submittal of consent by subject
-    app.post('/api/subject/register-consent', function(req, res) {
-        //TODO
-    });
-
     //register an article response in the DB
     app.post('/api/article/register-response', function(req, res) {
         //TODO
@@ -58,8 +53,20 @@ module.exports = function(app, db) {
     });
 
     //register a new email address for the gift card drawing
-    app.post('/api/drawing/register-new', function(req, res) {
-        //TODO
+    app.post('/api/prize/register-new', function(req, res) {
+        var data = [
+            req.body.email
+        ];
+
+        var subjectID;
+        //'insert ignore' to avoid duplicates
+        db.get().query('INSERT IGNORE INTO PrizeDrawingParticipants (EmailAddress) VALUES (?)',
+            data, function(err, result) {
+                if (err) throw err;
+                console.log('Registered new prize drawing participant.');
+                subjectID = result.insertId;
+                res.send('Prize drawing participant registered.');
+            });
     })
 
     // frontend routes =========================================================

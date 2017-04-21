@@ -8,7 +8,18 @@ angular.module('pyrite')
                 			return response.data.subjectID;
                 		}, function failure(response) {
                             //failure
-                        	alert( "failure message: " + JSON.stringify(response));
+                        	alert("failure message: " + JSON.stringify(response));
+                        });
+        }
+        this.registerPrizeDrawingParticipant = function(email) {
+            var data = angular.toJson(email);
+            return $http.post('/api/prize/register-new', data)
+                		.then(function success(response) {
+                            //success
+                			alert("registered new (dbService)");
+                		}, function failure(response) {
+                            //failure
+                        	alert("failure message: " + JSON.stringify(response));
                         });
         }
     }]);

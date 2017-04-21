@@ -42,6 +42,10 @@ angular.module('pyrite')
                 controller: 'prizeController'
             })
 
+            .when('/end', {
+                templateUrl: 'view/end.html'
+            })
+
             //otherwise redirect to start page
             .otherwise('/');
     });
