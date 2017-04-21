@@ -23,3 +23,9 @@ CREATE TABLE ArticleResponses(
 CREATE TABLE SpontaneousResponses(
 
 ) ENGINE = INNODB
+
+-- create PrizeDrawingParticipants
+CREATE TABLE PrizeDrawingParticipants(
+    EmailAddress VARCHAR(255),
+    PRIMARY KEY (EmailAddress)
+) ENGINE = INNODB
