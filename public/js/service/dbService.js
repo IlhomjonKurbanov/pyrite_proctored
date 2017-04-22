@@ -16,7 +16,6 @@ angular.module('pyrite')
             return $http.post('/api/prize/register-new', data)
                 		.then(function success(response) {
                             //success
-                			alert("registered new (dbService)");
                 		}, function failure(response) {
                             //failure
                         	alert("failure message: " + JSON.stringify(response));
