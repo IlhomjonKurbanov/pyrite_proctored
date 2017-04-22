@@ -21,12 +21,12 @@
             </div>
             <div class="col-sm-offset-4 col-sm-4 text-center">
                 <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label" for="email">Enter your email address:</label>
-                        <input ng-model="email" type="email" class="form-control" id="email">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                        <input ng-model="email" type="email" class="form-control" id="email" placeholder="Email address">
                     </div>
                     <button id="submit" type="button" ng-click="registerPrizeDrawingParticipant()" ng-disabled="emailUndefined()" class="btn btn-default">
-                        Submit Consent
+                        Submit Email
                     </button>
                 </form>
             </div>
