@@ -3,8 +3,9 @@
 // controller for 'introduction' view
 
 angular.module('pyrite')
-    .controller('introductionController', ['$scope', 'appConfig', 'dbService', 'cookieService', 'articleService',
-    function($scope, appConfig, dbService, cookieService, articleService) {
+    .controller('introductionController', ['$scope', '$rootScope', 'appConfig', 'demographicValues',
+                                           'dbService', 'cookieService', 'articleService',
+    function($scope, $rootScope, appConfig, demographicValues, dbService, cookieService, articleService) {
         // == set up page values ===============================================
 
         //element visibility
@@ -25,39 +26,13 @@ angular.module('pyrite')
         $scope.selectBirthYear = $scope.years[0];
 
         //fields of study
-        $scope.fields = [
-            { val: 'Select a field...', disabled: true },
-            { val: 'Arts & Sciences' },
-            { val: 'Built Environments' },
-            { val: 'Business' },
-            { val: 'Dentistry' },
-            { val: 'Education' },
-            { val: 'Engineering' },
-            { val: 'Environment' },
-            { val: 'The Information School' },
-            { val: 'Law' },
-            { val: 'Medicine' },
-            { val: 'Nursing' },
-            { val: 'Ocean & Fishery Science' },
-            { val: 'Pharmacy' },
-            { val: 'Public Affairs' },
-            { val: 'Public Health' },
-            { val: 'ROTC' },
-            { val: 'Social Work' },
-            { val: 'Other:' }
-        ];
+        $scope.fields = demographicValues.fields;
         $scope.selectField1 = $scope.fields[0];
         $scope.selectField2 = $scope.fields[0];
         $scope.selectField3 = $scope.fields[0];
 
         //genders
-        $scope.genders = [
-            { val: 'Select a gender...', disabled: true },
-            { val: 'Male' },
-            { val: 'Female' },
-            { val: 'Non-Binary' },
-            { val: 'Prefer not to respond' }
-        ];
+        $scope.genders = demographicValues.genders;
         $scope.selectGender = $scope.genders[0];
 
         // == page function definitions ========================================
@@ -79,8 +54,9 @@ angular.module('pyrite')
 
         //processes demographic info and sends it to DB, stores returned SubjectID as a cookie
         $scope.submitDemographicInfo = function() {
+            var newArticleOrder = articleService.getNewArticleOrder();
             var demographicInfo = {
-                articleOrder: articleService.getNewArticleOrder().toString(),
+                articleOrder: newArticleOrder.toString(),
                 age: ($scope.thisYear - $scope.selectBirthYear.val),
                 field1: ($scope.selectedOther1 ? $scope.otherField1 : $scope.selectField1.val),
                 field2: ($scope.selectedOther2 ? $scope.otherField2 : $scope.selectField2.val),
@@ -88,6 +64,10 @@ angular.module('pyrite')
                 gender: $scope.selectGender.val,
                 dateConsented: $scope.d.toLocaleDateString()
             }
+            //store articleOrder, in rootScope for quick lookup and in cookies as backup
+            $rootScope.articleOrder = newArticleOrder;
+            cookieService.setArticleOrder(newArticleOrder);
+
             //handle when fields 2 and 3 haven't been selected
             if (demographicInfo.field2 == 'Select a field...') demographicInfo.field2 = "";
             if (demographicInfo.field3 == 'Select a field...') demographicInfo.field3 = "";
