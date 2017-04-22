@@ -3,9 +3,12 @@ angular.module('pyrite')
         //TODO build details
             //bunch of nested loops to generate all combinations
             //uses articleDetails.ARTICLE_ATTRIBUTES values as indexes for larger 'details' object
+        this.getNumArticles = function() {
+            return articlesConfig.NUMBER_OF_ARTICLES;
+        }
 
         this.shuffle = function(array) {
-            var currentIndex = array.length
+            var currentIndex = array.length;
             var temporaryValue, randomIndex;
             while (0 !== currentIndex) {
                 // Pick a remaining element...

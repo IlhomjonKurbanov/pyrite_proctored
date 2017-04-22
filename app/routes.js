@@ -39,7 +39,20 @@ module.exports = function(app, db) {
 
     //register an article response in the DB
     app.post('/api/article/register-response', function(req, res) {
-        //TODO
+        var data = [
+            req.body.subjectID,
+            req.body.trial,
+            req.body.articleID,
+            req.body.likert
+        ];
+
+        var subjectID;
+        db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert) VALUES (?, ?, ?, ?)',
+            data, function(err, result) {
+                if (err) throw err;
+                console.log('Registered new ArticleResponse.');
+                res.send('Article response registered.')
+            });
     });
 
     //register a spontaneous response in the DB
@@ -64,7 +77,6 @@ module.exports = function(app, db) {
             data, function(err, result) {
                 if (err) throw err;
                 console.log('Registered new prize drawing participant.');
-                subjectID = result.insertId;
                 res.send('Prize drawing participant registered.');
             });
     })

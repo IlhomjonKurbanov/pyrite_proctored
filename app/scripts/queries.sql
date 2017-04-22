@@ -14,9 +14,9 @@ CREATE TABLE Subjects(
 -- create ArticleResponses table
 CREATE TABLE ArticleResponses(
     SubjectID INT NOT NULL,
-    -- attributes
-    Likert VARCHAR(255),
-    PRIMARY KEY (SubjectID)
+    Trial INT,
+    ArticleID INT,
+    Likert INT
 ) ENGINE = INNODB
 
 -- create SpontaneousResponses

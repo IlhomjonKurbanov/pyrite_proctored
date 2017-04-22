@@ -16,31 +16,44 @@ angular.module('pyrite')
 angular.module('pyrite')
     .constant("demographicValues", {
         "fields" : {
-            { val: "Select a field...", disabled: true },
-            { val: "Arts & Sciences" },
-            { val: "Built Environments" },
-            { val: "Business" },
-            { val: "Dentistry" },
-            { val: "Education" },
-            { val: "Engineering" },
-            { val: "Environment" },
-            { val: "The Information School" },
-            { val: "Law" },
-            { val: "Medicine" },
-            { val: "Nursing" },
-            { val: "Ocean & Fishery Science" },
-            { val: "Pharmacy" },
-            { val: "Public Affairs" },
-            { val: "Public Health" },
-            { val: "ROTC" },
-            { val: "Social Work" },
-            { val: "Other:" }
+            0 : { "val" : "Select a field...", "disabled": true },
+            1 : { "val" : "Arts & Sciences" },
+            2 : { "val" : "Built Environments" },
+            3 : { "val" : "Business" },
+            4 : { "val" : "Dentistry" },
+            5 : { "val" : "Education" },
+            6 : { "val" : "Engineering" },
+            7 : { "val" : "Environment" },
+            8 : { "val" : "The Information School" },
+            9 : { "val" : "Law" },
+            10 : { "val" : "Medicine" },
+            11 : { "val" : "Nursing" },
+            12 : { "val" : "Ocean & Fishery Science" },
+            13 : { "val" : "Pharmacy" },
+            14 : { "val" : "Public Affairs" },
+            15 : { "val" : "Public Health" },
+            16 : { "val" : "ROTC" },
+            17 : { "val" : "Social Work" },
+            18 : { "val" : "Other:" }
         },
         "genders" : {
-            { val: 'Select a gender...', disabled: true },
-            { val: 'Male' },
-            { val: 'Female' },
-            { val: 'Non-Binary' },
-            { val: 'Prefer not to respond' }
+            0 : { "val" : "Select a gender...", "disabled": true },
+            1 : { "val" : "Male" },
+            2 : { "val" : "Female" },
+            3 : { "val" : "Non-Binary" },
+            4 : { "val" : "Prefer not to respond" }
         }
+    });
+
+// == likert values in database ================================================
+// transforms readable likert response values in html doc to usable DB values
+angular.module('pyrite')
+    .constant("likertValuesDB", {
+        "strongly-disagree" : 1,
+        "disagree"          : 2,
+        "somewhat-agree"    : 3,
+        "neither"           : 4,
+        "somewhat-agree"    : 5,
+        "agree"             : 6,
+        "strongly-agree"    : 7
     });
