@@ -3,9 +3,8 @@
 // controller for 'consent' view
 
 angular.module('pyrite')
-    .controller('consentController', ['$scope', '$window', '$cookies', 'appConfig',
-                                      'Subject', 'dbService',
-        function($scope, $window, $cookies, appConfig, Subject, dbService) {
+    .controller('consentController', ['$scope', '$window', '$cookies', 'appConfig', 'dbService',
+        function($scope, $window, $cookies, appConfig, dbService) {
             //page data setup
             var d = new Date();
             $scope.today = d.toLocaleDateString();

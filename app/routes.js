@@ -85,6 +85,11 @@ module.exports = function(app, db) {
     })
 
     // frontend routes =========================================================
+    //get files
+    app.get('/app/data/:filename', function(req, res) {
+        res.sendFile(__dirname + '/data/' + req.params.filename);
+    });
+
     // route to handle all angular requests
     app.get('*', function(req, res) {
         res.sendFile(__dirname + '/../public/index.html');

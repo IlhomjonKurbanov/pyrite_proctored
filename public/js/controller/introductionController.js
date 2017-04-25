@@ -49,6 +49,9 @@ angular.module('pyrite')
                     && (!$scope.field2Visible
                         || (($scope.selectField2 != $scope.fields[0] && $scope.selectField2.val != 'Other:')
                             || ($scope.selectField2.val == 'Other:' && $scope.otherField2 != undefined)))
+                    && (!$scope.field3Visible
+                        || (($scope.selectField3 != $scope.fields[0] && $scope.selectField3.val != 'Other:')
+                            || ($scope.selectField3.val == 'Other:' && $scope.otherField3 != undefined)))
                     && $scope.selectGender != $scope.genders[0]);
         };
 
