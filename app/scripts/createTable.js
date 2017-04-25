@@ -31,7 +31,7 @@ if (tableName == 'Subjects' || tableName == 'all') {
 
 // Article Responses Table
 if (tableName == 'ArticleResponses' || tableName == 'all') {
-    db.get().query('CREATE TABLE ArticleResponses(SubjectID INT NOT NULL, Trial INT, ArticleID INT, Likert INT) ENGINE = INNODB',
+    db.get().query('CREATE TABLE ArticleResponses(SubjectID INT NOT NULL, Trial INT, ArticleID INT, Likert INT, PageTime INT, SpontaneousResponseCount INT, ThumbsUpCount INT) ENGINE = INNODB',
         function(err, result) {
             if (err) {
                 console.log('Error creating ArticleResponses table: ' + err);

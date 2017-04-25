@@ -16,7 +16,10 @@ CREATE TABLE ArticleResponses(
     SubjectID INT NOT NULL,
     Trial INT,
     ArticleID INT,
-    Likert INT
+    Likert INT,
+    PageTime INT,
+    SpontaneousResponseCount INT,
+    ThumbsUpCount INT
 ) ENGINE = INNODB
 
 -- create SpontaneousResponses

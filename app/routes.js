@@ -43,11 +43,14 @@ module.exports = function(app, db) {
             req.body.subjectID,
             req.body.trial,
             req.body.articleID,
-            req.body.likert
+            req.body.likert,
+            req.body.pageTime,
+            req.body.SRCount,
+            req.body.thumbsUpCount
         ];
 
         var subjectID;
-        db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert) VALUES (?, ?, ?, ?)',
+        db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert, PageTime, SpontaneousResponseCount, ThumbsUpCount) VALUES (?, ?, ?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
                 console.log('Registered new ArticleResponse.');
