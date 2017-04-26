@@ -51,14 +51,36 @@ angular.module('pyrite')
     });
 //handles routing behavior: scroll to top on route change, and subject consent validation
 angular.module('pyrite')
-    .run(['$rootScope', '$document', '$location', '$cookies', 'appConfig',
-        function($rootScope, $document, $location, $cookies, appConfig) {
+    .run(['$rootScope', '$document', '$location', 'appConfig', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
+        function($rootScope, $document, $location, appConfig, cookieService, progressService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
-                if (appConfig.DO_CONSENT_REDIRECT && $cookies.get('hasConsented') == undefined) {
+                if (appConfig.DO_CONSENT_REDIRECT && !cookieService.hasConsented()) {
                     // if hasn't consented, return to start page, unless accessing consent/start page
                     if (next.templateUrl != 'view/start.html' && next.templateUrl != 'view/consent.html') {
                         //if not going to start or consent page, redirect to start
                         $location.path('/');
+                    }
+                }
+                if (appConfig.DO_PROGRESS_CHECK) {
+                    var progress = progressService.getProgress();
+                    var stage = progress.stage;
+                    var path = $location.path();
+                    switch (stage) {
+                        case EXPERIMENT_STAGE.unstarted:
+                            if (path != '/' && path != '/consent') $location.path('/');
+                            break;
+                        case EXPERIMENT_STAGE.introduction:
+                            if (path != '/introduction') $location.path('/introduction');
+                            break;
+                        case EXPERIMENT_STAGE.articles:
+                            if (!path.includes('/articles')) $location.path('/articles/' + progress.index);
+                            break;
+                        case EXPERIMENT_STAGE.review:
+                            if (path != '/review') $location.path('/review'); //TODO add index
+                            break;
+                        case EXPERIMENT_STAGE.finished:
+                            if (path != '/prize' && path != '/end') $location.path('/end');
+                            break;
                     }
                 }
                 $document.scrollTopAnimated(0);

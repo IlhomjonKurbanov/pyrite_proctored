@@ -21,6 +21,17 @@ body {
     color: black;
 }
 
+/* == progress bar ========================================================== */
+#bootstrap-override .progress {
+    padding: 0px;
+}
+#bootstrap-override .progress-bar {
+    background-color: #00907c;
+}
+#articles-bar, #review-bar {
+    border-left: 1px solid black;
+}
+
 /* == animations ============================================================ */
 /* slide in from the right */
 @-webkit-keyframes slideInRight {

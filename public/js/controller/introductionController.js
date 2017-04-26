@@ -3,9 +3,10 @@
 // controller for 'introduction' view
 
 angular.module('pyrite')
-    .controller('introductionController', ['$scope', '$rootScope', 'appConfig', 'demographicValues',
-                                           'dbService', 'cookieService', 'articleService',
-    function($scope, $rootScope, appConfig, demographicValues, dbService, cookieService, articleService) {
+    .controller('introductionController', ['$scope', '$rootScope', '$location', 'appConfig', 'demographicValues',
+                                           'dbService', 'cookieService', 'articleService', 'progressService',
+    function($scope, $rootScope, $location, appConfig, demographicValues,
+             dbService, cookieService, articleService, progressService) {
         // == set up page values ===============================================
 
         //element visibility
@@ -127,4 +128,11 @@ angular.module('pyrite')
         $scope.handleOther3 = function() {
             $scope.toggleOther3($scope.selectField3.val == 'Other:', false);
         };
+
+        //continue
+        $scope.continue = function() {
+            progressService.setStage('articles');
+            progressService.setIndex(0);
+            $location.path('/articles/0');
+        }
     }]);

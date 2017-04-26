@@ -3,12 +3,12 @@
 // controller for 'articles' view
 
 angular.module('pyrite')
-    .controller('articlesController', ['$scope', '$rootScope', '$routeParams', '$location', 'appConfig',
-                                       'likertValuesDB', 'cookieService', 'dbService', 'articleService',
+    .controller('articlesController', ['$scope', '$rootScope', '$routeParams', '$location', 'appConfig', 'likertValuesDB',
+                                       'cookieService', 'dbService', 'articleService', 'progressService',
         function($scope, $rootScope, $routeParams, $location, appConfig,
-                 likertValuesDB, cookieService, dbService, articleService) {
+                 likertValuesDB, cookieService, dbService, articleService, progressService) {
             //TODO check route against progress object
-            $scope.index = $routeParams.index
+            $scope.index = parseInt($routeParams.index);
             //fallback to cookieService handles $rootScope wipe on refresh
             $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
                 $rootScope.articleOrder : cookieService.getArticleOrder();
@@ -18,6 +18,10 @@ angular.module('pyrite')
             $scope.pageTimeStart = Date.now(); //start response timer
             $scope.SRCount = 0; //set Spontaneous Response counter to 0
             $scope.thumbsUpCount = 0; //set "thumbs up" Spontaneous Response counter to 0
+
+            //display variables
+            $scope.numArticles = articleService.getNumArticles();
+            $scope.width = (50 / $scope.numArticles) * ($scope.index + 1)
 
             $scope.likertSelected = function() {
                 return ($scope.likert != undefined);
@@ -38,15 +42,20 @@ angular.module('pyrite')
                 }
                 dbService.registerArticleResponse(articleResponse);
 
-                var path = ($scope.index < articleService.getNumArticles()) ?
-                    '/articles/' + $scope.index : '/review';
-                $location.path(path);
+                if ($scope.index < articleService.getNumArticles()) {
+                    progressService.setIndex($scope.index);
+                    $location.path('/articles/' + $scope.index);
+                } else {
+                    progressService.setStage('review');
+                    progressService.setIndex(0);
+                    $location.path('/review');
+                }
             }
 
             $scope.submitSpontaneousResponse = function(thumbsUp) {
                 $scope.SRCount++;
                 if (thumbsUp) $scope.thumbsUpCount++;
-                //submit response to database
+                //TODO submit response to database
             }
         }
     ]);

@@ -1,5 +1,13 @@
 angular.module('pyrite')
     .service('cookieService', ['$cookies', function($cookies) {
+        this.registerConsent = function() {
+            $cookies.put('hasConsented', true);
+        }
+
+        this.hasConsented = function() {
+            return ($cookies.get('hasConsented') == undefined) ? false : true;
+        }
+
         this.setSubjectID = function(subjectID) {
             $cookies.put('subjectID', subjectID);
         }
@@ -16,11 +24,11 @@ angular.module('pyrite')
             return $cookies.getObject('articleOrder');
         }
 
-        this.setSubjectProgress = function(progress) {
+        this.setProgress = function(progress) {
             $cookies.putObject('progress', progress);
         }
 
-        this.getSubjectProgress = function() {
+        this.getProgress = function() {
             return $cookies.getObject('progress');
         }
     }]);

@@ -6,6 +6,12 @@
 
 <link rel="stylesheet" href="css/introduction.css">
 <div class="container col-sm-12">
+    <div class="progress col-sm-offset-2 col-sm-8">
+        <div id="demographic-bar" class="progress-bar progress-bar-striped active"
+            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+            Demographic Information
+        </div>
+    </div>
     <div class="panel panel-default col-sm-offset-2 col-sm-8">
         <div class="panel-heading">
             Before we begin...
@@ -128,7 +134,7 @@
                             <p>
                                 Sed fringilla sollicitudin nisl, a tincidunt lacus vestibulum ut. Nunc commodo ligula a blandit venenatis. Praesent tempus eget metus ac placerat. Phasellus nec ipsum ex. Nulla et nisl in libero molestie interdum eu quis mauris. Morbi non nisl mauris. Nulla vulputate lacinia vehicula. Etiam mollis erat sit amet tortor vulputate, sed feugiat lacus molestie. Integer maximus orci vitae lectus volutpat porttitor. Phasellus fermentum augue lacinia ipsum varius mollis a id justo. Cras faucibus ipsum vehicula tincidunt finibus.
                             </p>
-                            <a id="goToArticles" href="#/articles/0" class="btn btn-default">
+                            <a id="goToArticles" ng-click="continue()" class="btn btn-default">
                                 Continue <i class="fa fa-play" aria-hidden="true"></i>
                             </a>
                         </div>

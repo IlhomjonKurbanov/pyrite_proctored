@@ -30,7 +30,7 @@
                     <button id="print-button" type="button" ng-show="hasConsented" ng-click="downloadConsent()" class="btn btn-default">
                         Download Consent Form
                     </button>
-                    <a href="#/introduction" ng-show="hasConsented" class="btn btn-default">
+                    <a ng-click="continue()" ng-show="hasConsented" class="btn btn-default">
                         Continue <i class="fa fa-play" aria-hidden="true"></i>
                     </a>
                 </div>
