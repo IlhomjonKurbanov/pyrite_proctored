@@ -73,7 +73,9 @@ angular.module('pyrite')
                             if (path != '/introduction') $location.path('/introduction');
                             break;
                         case EXPERIMENT_STAGE.articles:
-                            if (!path.includes('/articles')) $location.path('/articles/' + progress.index);
+                            if (!path.includes('/articles') || next.params.index != progress.index) {
+                                $location.path('/articles/' + progress.index);
+                            }
                             break;
                         case EXPERIMENT_STAGE.review:
                             if (path != '/review') $location.path('/review'); //TODO add index
