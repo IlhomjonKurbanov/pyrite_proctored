@@ -7,7 +7,8 @@ angular.module('pyrite')
                                        'cookieService', 'dbService', 'articleService', 'progressService',
         function($scope, $rootScope, $routeParams, $location, appConfig,
                  likertValuesDB, cookieService, dbService, articleService, progressService) {
-            //TODO check route against progress object
+            // == set up page info =============================================
+            $scope.showResponseModal = false; //hide response modal initially
             $scope.index = parseInt($routeParams.index);
             //fallback to cookieService handles $rootScope wipe on refresh
             $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
@@ -19,16 +20,16 @@ angular.module('pyrite')
             $scope.SRCount = 0; //set Spontaneous Response counter to 0
             $scope.thumbsUpCount = 0; //set "thumbs up" Spontaneous Response counter to 0
 
-            //display variables
+            //display parameters
             $scope.numArticles = articleService.getNumArticles();
             $scope.width = (50 / $scope.numArticles) * ($scope.index + 1)
 
+            // == function definitions =========================================
             $scope.likertSelected = function() {
                 return ($scope.likert != undefined);
             }
 
             $scope.submitArticleResponse = function() {
-                //TODO update progress service
                 var pageTimeEnd = Date.now();
                 $scope.index++;
                 var articleResponse =  {

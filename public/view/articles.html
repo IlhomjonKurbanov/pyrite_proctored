@@ -24,9 +24,9 @@
         <div class="panel-body">
             <div id="article-well" class="well text-center align-middle">
                 <img id="article" src="data/article{{articleID}}.png">
-                <div id="response" class="hidden">
-                    <a id="positive" class="hoverable"><i class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i></a>
-                    <a id="negative" class="hoverable"><i class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i></a>
+                <div id="response" ng-show="showResponseModal">
+                    <a id="positive"><i class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i></a>
+                    <a id="negative"><i class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i></a>
                     <a id="close-response"><i class="fa fa-times" aria-hidden="true"></i></a>
                 </div>
             </div>
