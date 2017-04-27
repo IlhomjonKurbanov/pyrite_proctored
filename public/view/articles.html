@@ -37,22 +37,22 @@
                         <div class="table-responsive table">
                             <table class="text-center">
                                 <tr id="labels" class="small">
-                                    <td>Strongly Disagree</td>
-                                    <td>Disagree</td>
-                                    <td>Somewhat Disagree</td>
-                                    <td>Neither Agree nor Disagree</td>
-                                    <td>Somewhat Agree</td>
-                                    <td>Agree</td>
-                                    <td>Strongly<br>Agree</td>
+                                    <td><label for="strongly-disagree">Strongly Disagree</label></td>
+                                    <td><label for="disagree">Disagree</label></td>
+                                    <td><label for="somewhat-disagree">Somewhat Disagree</label></td>
+                                    <td><label for="neither">Neither Agree nor Disagree</label></td>
+                                    <td><label for="somewhat-agree">Somewhat Agree</label></td>
+                                    <td><label for="agree">Agree</label></td>
+                                    <td><label for="strongly-agree">Strongly<br>Agree</label></td>
                                 </tr>
                                 <tr id="radios">
-                                    <td><label><input type="radio" ng-model="likert" value="strongly-disagree"></label></td>
-                                    <td><label><input type="radio" ng-model="likert" value="disagree"></label></td>
-                                    <td><label><input type="radio" ng-model="likert" value="somewhat-disagree"></label></td>
-                                    <td><label><input type="radio" ng-model="likert" value="neither"></label></td>
-                                    <td><label><input type="radio" ng-model="likert" value="somewhat-agree"></label></td>
-                                    <td><label><input type="radio" ng-model="likert" value="agree"></label></td>
-                                    <td><label><input type="radio" ng-model="likert" value="strongly-agree"></label></td>
+                                    <td><input type="radio" ng-model="likert" id="strongly-disagree" value="strongly-disagree"></td>
+                                    <td><input type="radio" ng-model="likert" id="disagree" value="disagree"></td>
+                                    <td><input type="radio" ng-model="likert" id="somewhat-disagree" value="somewhat-disagree"></td>
+                                    <td><input type="radio" ng-model="likert" id="neither" value="neither"></td>
+                                    <td><input type="radio" ng-model="likert" id="somewhat-agree" value="somewhat-agree"></td>
+                                    <td><input type="radio" ng-model="likert" id="agree" value="agree"></td>
+                                    <td><input type="radio" ng-model="likert" id="strongly-agree" value="strongly-agree"></td>
                                 </tr>
                             </table>
                         </div>

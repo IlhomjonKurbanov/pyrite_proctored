@@ -30,6 +30,9 @@
 #labels td {
     padding: 0 5px;
 }
+#bootstrap-override label {
+    font-weight: normal;
+}
 #radios td {
     padding-top: 8px;
 }
