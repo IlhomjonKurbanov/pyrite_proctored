@@ -85,6 +85,6 @@ angular.module('pyrite')
                             break;
                     }
                 }
-                $document.scrollTopAnimated(0);
+                $document.scrollTopAnimated(0, 500); //param 2 adjusts scroll duration (ms)
             });
         }]);
