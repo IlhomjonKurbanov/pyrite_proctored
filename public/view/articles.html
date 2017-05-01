@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="css/articles.css">
 
-<div class="container col-sm-12">
+<div class="container col-sm-12" ng-click="hideSpontaneousResponse()">
     <div class="progress col-sm-offset-2 col-sm-8">
         <div id="demographic-bar" class="progress-bar progress-bar-striped"
             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">
@@ -22,13 +22,14 @@
             Review article and respond below.
         </div>
         <div class="panel-body">
-            <div id="article-well" class="well text-center align-middle">
-                <img id="article" src="data/article{{articleID}}.png">
-                <div id="response" ng-show="showResponseModal">
-                    <a id="positive"><i class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i></a>
-                    <a id="negative"><i class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i></a>
-                    <a id="close-response"><i class="fa fa-times" aria-hidden="true"></i></a>
-                </div>
+            <div id="article-well" class="well">
+                <!--
+                    ng-click statement 'stopPropagation' blocks the
+                    page container's 'hideSpontaneousResponse' event
+                 -->
+                <div ng-include="'view/partial/articles/testTemplate.html'"
+                     ng-click="selectElement($event);$event.stopPropagation()">
+                 </div>
             </div>
             <form>
                 <div id="likert-wrapper">
@@ -65,5 +66,19 @@
                 </div>
             </form>
         </div>
+    </div>
+    <!--
+        ng-click statement 'stopPropagation' blocks the
+        page container's 'hideSpontaneousResponse' event
+     -->
+    <div id="highlight" ng-show="showSpontaneousResponse"
+                        ng-style="highlightStyle"
+                        ng-click="$event.stopPropagation()"></div>
+    <div id="response" ng-show="showSpontaneousResponse"
+                       ng-style="responseStyle"
+                       ng-click="$event.stopPropagation()">
+        <a><i id="positive" class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i></a>
+        <a><i id="negative" class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i></a>
+        <a><i id="close-response" class="fa fa-times" aria-hidden="true" ng-click="hideSpontaneousResponse()"></i></a>
     </div>
 </div>
