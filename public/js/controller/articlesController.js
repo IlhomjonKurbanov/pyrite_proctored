@@ -3,8 +3,9 @@
 // controller for 'articles' view
 
 angular.module('pyrite')
-    .controller('articlesController', ['$scope', '$rootScope', '$routeParams', '$location', '$window', 'appConfig',
-                                       'likertValuesDB', 'cookieService', 'dbService', 'articleService', 'progressService',
+    .controller('articlesController', ['$scope', '$rootScope', '$routeParams', '$location',
+                                       '$window', 'appConfig', 'likertValuesDB', 'cookieService',
+                                       'dbService', 'articleService', 'progressService',
         function($scope, $rootScope, $routeParams, $location, $window, appConfig,
                  likertValuesDB, cookieService, dbService, articleService, progressService) {
             // == set up page info =============================================

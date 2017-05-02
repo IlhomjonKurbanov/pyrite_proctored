@@ -3,6 +3,7 @@ angular.module('pyrite')
         //TODO build details
             //bunch of nested loops to generate all combinations
             //uses articleDetails.ARTICLE_ATTRIBUTES values as indexes for larger 'details' object
+
         this.getNumArticles = function() {
             return articlesConfig.NUMBER_OF_ARTICLES;
         }
@@ -31,7 +32,7 @@ angular.module('pyrite')
             return order;
         }
 
-        this.getArticleDetails = function(index) {
+        this.getArticleDetails = function(articleID) {
             //TODO return details
         }
     }]);
