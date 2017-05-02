@@ -36,4 +36,15 @@ angular.module('pyrite')
                         	alert("failure message: " + JSON.stringify(response));
                         });
         }
+
+        this.registerSpontaneousResponse = function(spontaneousResponse) {
+            var data = angular.toJson(spontaneousResponse);
+            return $http.post('/api/spontaneous/register-response', data)
+                		.then(function success(response) {
+                            //success
+                		}, function failure(response) {
+                            //failure
+                        	alert("failure message: " + JSON.stringify(response));
+                        });
+        }
     }]);

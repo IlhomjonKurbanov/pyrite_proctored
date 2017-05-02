@@ -22,12 +22,24 @@ CREATE TABLE ArticleResponses(
     ThumbsUpCount INT
 ) ENGINE = INNODB
 
--- create SpontaneousResponses
+-- create SpontaneousResponses table
 CREATE TABLE SpontaneousResponses(
-
+    SRID INT NOT NULL AUTO_INCREMENT,
+    SubjectID INT NOT NULL,
+    Trial INT,
+    ArticleID INT,
+    ElementID VARCHAR(255),
+    ThumbsUp BIT(1), -- boolean, 0 = false, 1 = true
+    PRIMARY KEY (SRID)
 ) ENGINE = INNODB
 
--- create PrizeDrawingParticipants
+-- create NarrativeResponses table
+CREATE TABLE NarrativeResponses(
+    SRID INT NOT NULL,
+    Response TEXT -- limited to 65535
+) ENGINE = INNODB
+
+-- create PrizeDrawingParticipants table
 CREATE TABLE PrizeDrawingParticipants(
     EmailAddress VARCHAR(255),
     PRIMARY KEY (EmailAddress)

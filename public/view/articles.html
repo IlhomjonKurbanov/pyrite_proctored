@@ -77,8 +77,8 @@
     <div id="response" ng-show="showSpontaneousResponse"
                        ng-style="responseStyle"
                        ng-click="$event.stopPropagation()">
-        <a><i id="positive" class="fa fa-thumbs-up fa-4x" aria-hidden="true"></i></a>
-        <a><i id="negative" class="fa fa-thumbs-down fa-4x" aria-hidden="true"></i></a>
+        <a><i id="positive" class="fa fa-thumbs-up fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a>
+        <a><i id="negative" class="fa fa-thumbs-down fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a>
         <a><i id="close-response" class="fa fa-times" aria-hidden="true" ng-click="hideSpontaneousResponse()"></i></a>
     </div>
 </div>

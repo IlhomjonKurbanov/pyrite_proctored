@@ -49,7 +49,6 @@ module.exports = function(app, db) {
             req.body.thumbsUpCount
         ];
 
-        var subjectID;
         db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert, PageTime, SpontaneousResponseCount, ThumbsUpCount) VALUES (?, ?, ?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
@@ -60,11 +59,29 @@ module.exports = function(app, db) {
 
     //register a spontaneous response in the DB
     app.post('/api/spontaneous/register-response', function(req, res) {
-        //TODO
+        var data = [
+            req.body.subjectID,
+            req.body.trial,
+            req.body.articleID,
+            req.body.elementID,
+            req.body.thumbsUp
+        ];
+
+        db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, ThumbsUp) VALUES (?, ?, ?, ?, ?)',
+            data, function(err, result) {
+                if (err) throw err;
+                console.log('Registered new spontaneous response.');
+                res.send('Spontanous response registered.');
+            });
     });
 
     //get all spontaneous responses for a given subject
     app.post('/api/spontaneous/get-all-subject-responses', function(req, res) {
+        //TODO
+    });
+
+    //register a narrative response for a given spontaneous response
+    app.post('/api/narrative/register-response', function(req, res) {
         //TODO
     });
 
@@ -74,7 +91,6 @@ module.exports = function(app, db) {
             req.body.email
         ];
 
-        var subjectID;
         //'insert ignore' to avoid duplicates
         db.get().query('INSERT IGNORE INTO PrizeDrawingParticipants (EmailAddress) VALUES (?)',
             data, function(err, result) {

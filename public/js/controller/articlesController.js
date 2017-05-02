@@ -51,6 +51,8 @@ angular.module('pyrite')
                     SRCount: $scope.SRCount, //number of spontaneous responses to this article
                     thumbsUpCount: $scope.thumbsUpCount //number of those responses which were "positive"
                 }
+
+                //store in database
                 dbService.registerArticleResponse(articleResponse);
 
                 //if articles remaining, continue; else, go to next stage of experiment
@@ -105,9 +107,10 @@ angular.module('pyrite')
             //handle UI changes when user selects an article element
             $scope.selectElement = function(event) {
                 //get bounding rectange of selected element
-                var rect = document.elementFromPoint(event.pageX - $window.pageXOffset,
-                                                     event.pageY - $window.pageYOffset)
-                                   .getBoundingClientRect();
+                var selected = document.elementFromPoint(event.pageX - $window.pageXOffset,
+                                                         event.pageY - $window.pageYOffset);
+                $scope.selectedID = selected.id; //for storage in database
+                var rect = selected.getBoundingClientRect(); //for UI dimensions/position
 
                 //set dimensions and position of highlight box
                 $scope.setHighlightStyling(rect);
@@ -126,12 +129,27 @@ angular.module('pyrite')
             }
 
             //submit a "spontaneous response" to an article element
-            //["thumpsUp" is a boolean: true means user selected "thumbs up",
-            //false means user selected "thumbs down"]
-            $scope.submitSpontaneousResponse = function(thumbsUp) {
+            $scope.submitSpontaneousResponse = function(event) {
+                var isThumbsUp = event.target.id == "positive";
+
+                //increment counters
                 $scope.SRCount++;
-                if (thumbsUp) $scope.thumbsUpCount++;
-                //TODO submit response to database
+                if (isThumbsUp) $scope.thumbsUpCount++;
+
+                //construct spontaneousResponse object
+                var spontaneousResponse = {
+                    subjectID: cookieService.getSubjectID(),
+                    trial: $scope.index + 1, // + 1 because trials are 1-based instead of 0 based
+                    articleID: $scope.articleID,
+                    elementID: $scope.selectedID,
+                    thumbsUp: (isThumbsUp) ? 1 : 0 //1 = true, 0 = false
+                }
+
+                //store in database
+                dbService.registerSpontaneousResponse(spontaneousResponse);
+
+                //hide spontaneous response UI
+                $scope.hideSpontaneousResponse();
             }
         }
     ]);
