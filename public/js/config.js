@@ -52,7 +52,7 @@ angular.module('pyrite')
     .constant("likertValuesDB", {
         "strongly-disagree" : 1,
         "disagree"          : 2,
-        "somewhat-agree"    : 3,
+        "somewhat-disagree" : 3,
         "neither"           : 4,
         "somewhat-agree"    : 5,
         "agree"             : 6,
