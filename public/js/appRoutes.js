@@ -42,12 +42,17 @@ angular.module('pyrite')
                 controller: 'prizeController'
             })
 
+            // end page
             .when('/end', {
                 templateUrl: 'view/end.html'
             })
 
+            .when('/404', {
+                templateUrl: 'view/404.html'
+            })
+
             //otherwise redirect to start page
-            .otherwise('/');
+            .otherwise('/404');
     });
 //handles routing behavior: scroll to top on route change, and subject consent validation
 angular.module('pyrite')
