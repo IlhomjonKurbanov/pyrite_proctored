@@ -32,11 +32,6 @@ module.exports = function(app, db) {
             });
     });
 
-    //get subject details, based on subjectID
-    app.post('/api/subject/get-subject', function(req, res) {
-        //TODO
-    });
-
     //register an article response in the DB
     app.post('/api/article/register-response', function(req, res) {
         var data = [
@@ -77,7 +72,28 @@ module.exports = function(app, db) {
 
     //get all spontaneous responses for a given subject
     app.post('/api/spontaneous/get-all-subject-responses', function(req, res) {
-        //TODO
+        var data = [
+            req.body.subjectID,
+        ];
+
+        db.get().query('SELECT SRID, Trial, ArticleID, ElementID, ThumbsUp FROM SpontaneousResponses WHERE SubjectID = (?) ORDER BY Trial, SRID',
+            data, function(err, result) {
+                if (err) throw err;
+                var results = {};
+                var index = 0;
+                result.forEach(function(element, index, array) {
+                    results[index] = {
+                        SRID: element.SRID,
+                        trial: element.Trial,
+                        articleID: element.ArticleID,
+                        elementID: element.ElementID,
+                        thumbsUp: (element.ThumbsUp == 0) ? false : true
+                    }
+                    console.log(results[index]);
+                    index++;
+                });
+                res.json(results);
+            });
     });
 
     //register a narrative response for a given spontaneous response

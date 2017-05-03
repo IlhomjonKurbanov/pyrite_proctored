@@ -47,4 +47,16 @@ angular.module('pyrite')
                         	alert("failure message: " + JSON.stringify(response));
                         });
         }
+
+        this.getSpontaneousResponses = function(subjectID) {
+            var data = angular.toJson(subjectID);
+            return $http.post('/api/spontaneous/get-all-subject-responses', data)
+                		.then(function success(response) {
+                            //success
+                			return response.data;
+                		}, function failure(response) {
+                            //failure
+                        	alert("failure message: " + JSON.stringify(response));
+                        });
+        }
     }]);
