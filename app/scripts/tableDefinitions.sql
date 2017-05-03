@@ -29,7 +29,7 @@ CREATE TABLE SpontaneousResponses(
     Trial INT,
     ArticleID INT,
     ElementID VARCHAR(255),
-    ThumbsUp BIT(1), -- boolean, 0 = false, 1 = true
+    ThumbsUp TINYINT(1), -- boolean, 0 = false, 1 = true
     PRIMARY KEY (SRID)
 ) ENGINE = INNODB
 
