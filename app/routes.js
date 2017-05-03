@@ -59,10 +59,11 @@ module.exports = function(app, db) {
             req.body.trial,
             req.body.articleID,
             req.body.elementID,
+            req.body.elementCenterY,
             req.body.thumbsUp
         ];
 
-        db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, ThumbsUp) VALUES (?, ?, ?, ?, ?)',
+        db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, ElementCenterY, ThumbsUp) VALUES (?, ?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
                 console.log('Registered new spontaneous response.');

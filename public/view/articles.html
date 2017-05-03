@@ -27,8 +27,10 @@
                     ng-click statement 'stopPropagation' blocks the
                     page container's 'hideSpontaneousResponse' event
                  -->
-                <div ng-include="'view/partial/articles/testTemplate.html'"
-                     ng-click="selectElement($event);$event.stopPropagation()">
+                <div id="article"
+                    ng-include="'view/partial/articles/testTemplate.html'"
+                    onload="articleOnLoad()"
+                    ng-click="selectElement($event);$event.stopPropagation()">
                 </div>
             </div>
             <form>

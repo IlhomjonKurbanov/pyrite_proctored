@@ -32,6 +32,12 @@ angular.module('pyrite')
 
             // == function definitions =========================================
             // ---- likert response functions ----------------------------------
+            $scope.articleOnLoad = function() {
+                //get article y minimums
+                var articleRect = document.getElementById('article').getBoundingClientRect();
+                $scope.articleY = articleRect.top;
+            }
+
             //validation that an option has been selected within the likert scale
             $scope.likertSelected = function() {
                 return ($scope.likert != undefined);
@@ -110,8 +116,11 @@ angular.module('pyrite')
                 //get bounding rectange of selected element
                 var selected = document.elementFromPoint(event.pageX - $window.pageXOffset,
                                                          event.pageY - $window.pageYOffset);
-                $scope.selectedID = selected.id; //for storage in database
                 var rect = selected.getBoundingClientRect(); //for UI dimensions/position
+
+                //for storage in database
+                $scope.selectedID = selected.id;
+                $scope.selectedCenterY = (((rect.bottom - rect.top) / 2) + rect.top + $window.pageYOffset) - $scope.articleY;
 
                 //set dimensions and position of highlight box
                 $scope.setHighlightStyling(rect);
@@ -143,6 +152,7 @@ angular.module('pyrite')
                     trial: $scope.index + 1, // + 1 because trials are 1-based instead of 0 based
                     articleID: $scope.articleID,
                     elementID: $scope.selectedID,
+                    elementCenterY: $scope.selectedCenterY, //for rendering in review page
                     thumbsUp: (isThumbsUp) ? 1 : 0 //1 = true, 0 = false
                 }
 
