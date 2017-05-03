@@ -89,7 +89,6 @@ module.exports = function(app, db) {
                         elementID: element.ElementID,
                         thumbsUp: (element.ThumbsUp == 0) ? false : true
                     }
-                    console.log(results[index]);
                     index++;
                 });
                 res.json(results);
