@@ -91,10 +91,10 @@ angular.module('pyrite')
 
                 //set position and dimensions of highlight box
                 $scope.highlightStyle = {
-                    top: top + "px",
-                    left: left + "px",
-                    width: width + "px",
-                    height: height + "px"
+                    'top'    : top + "px",
+                    'left'   : left + "px",
+                    'width'  : width + "px",
+                    'height' : height + "px"
                 };
             }
 
@@ -106,8 +106,8 @@ angular.module('pyrite')
                 var topOffset = -35; //experimentally determined
                 var leftOffset = -15; //experimentally determined
                 $scope.responseStyle= {
-                    top: boundingRectangle.top + $window.pageYOffset + topOffset + "px",
-                    left: boundingRectangle.right + $window.pageXOffset + leftOffset + "px",
+                    'top'  : boundingRectangle.top + $window.pageYOffset + topOffset + "px",
+                    'left' : boundingRectangle.right + $window.pageXOffset + leftOffset + "px",
                 };
             }
 
