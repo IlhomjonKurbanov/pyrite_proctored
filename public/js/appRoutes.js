@@ -59,13 +59,6 @@ angular.module('pyrite')
     .run(['$rootScope', '$document', '$location', 'appConfig', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
         function($rootScope, $document, $location, appConfig, cookieService, progressService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
-                if (appConfig.DO_CONSENT_REDIRECT && !cookieService.hasConsented()) {
-                    // if hasn't consented, return to start page, unless accessing consent/start page
-                    if (next.templateUrl != 'view/start.html' && next.templateUrl != 'view/consent.html') {
-                        //if not going to start or consent page, redirect to start
-                        $location.path('/');
-                    }
-                }
                 if (appConfig.DO_PROGRESS_CHECK) {
                     var progress = progressService.getProgress();
                     var stage = progress.stage;

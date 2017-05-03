@@ -11,10 +11,9 @@ angular.module('pyrite')
             $scope.today = d.toLocaleDateString();
             $scope.hasConsented = false;
 
-            //submit a subject's consent, thereby creating Subject object
+            //submit a subject's consent
             $scope.submitConsent = function() {
                 $scope.hasConsented = true;
-                cookieService.registerConsent();
             };
 
             //download "signed" consent form

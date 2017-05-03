@@ -1,13 +1,5 @@
 angular.module('pyrite')
     .service('cookieService', ['$cookies', function($cookies) {
-        this.registerConsent = function() {
-            $cookies.put('hasConsented', true);
-        }
-
-        this.hasConsented = function() {
-            return ($cookies.get('hasConsented') == undefined) ? false : true;
-        }
-
         this.setSubjectID = function(subjectID) {
             $cookies.put('subjectID', subjectID);
         }

@@ -7,7 +7,6 @@ angular.module('pyrite')
     .constant("appConfig", {
         "SURVEY_LIVE"         : false, //WARNING: be very careful with changing this
         "REQUIRE_CONSENT"     : true,
-        "DO_CONSENT_REDIRECT" : false, //toggles redirect behavior that checks if user has consented
         "DO_PROGRESS_CHECK"   : false, //toggles redirect behavior that checks user's requested path against their stored progress information
         "PROCTORED"           : false, //toggles alternate behavior on narrative response page for proctored experiments
         "PATH"                : "http://localhost:8080/"
