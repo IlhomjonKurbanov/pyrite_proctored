@@ -31,35 +31,3 @@ body {
 #articles-bar, #review-bar {
     border-left: 1px solid black;
 }
-
-/* == animations ============================================================ */
-/* slide in from the right */
-@-webkit-keyframes slideInRight {
-    from    { -webkit-transform: translateX(100%); transform: translateX(100%); }
-    to      { -webkit-transform: translateX(0); transform: translateX(0); }
-}
-@keyframes slideInRight {
-    from    { -webkit-transform: translateX(100%); transform: translateX(100%); }
-    to      { -webkit-transform: translateX(0); transform: translateX(0); }
-}
-/* slide out to the left */
-@-webkit-keyframes slideOutLeft {
-    to      { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
-}
-@keyframes slideOutLeft {
-    to      { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
-}
-.ng-enter, .ng-leave {
-    width: 100%;
-    position: absolute;
-}
-.ng-enter {
-    z-index: 8888;
-    -webkit-animation:slideInRight 0.7s both ease-in;
-            animation:slideInRight 0.7s both ease-in;
-}
-.ng-leave {
-    z-index: 9999;
-    -webkit-animation:slideOutLeft 0.7s both ease-in;
-            animation:slideOutLeft 0.7s both ease-in;
-}
