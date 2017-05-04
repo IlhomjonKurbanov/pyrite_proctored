@@ -4,7 +4,7 @@
 
 angular.module('pyrite')
     .controller('startController', ['$scope', 'appConfig',
-    function($scope, appConfig) {
-        //setup page variables
-        $scope.goToConsent = appConfig.REQUIRE_CONSENT;
-    }]);
+        function($scope, appConfig) {
+            //setup page variables
+            $scope.goToConsent = appConfig.REQUIRE_CONSENT;
+        }]);
