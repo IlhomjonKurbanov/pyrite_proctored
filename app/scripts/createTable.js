@@ -1,7 +1,8 @@
 // createTables.js
 // ===============
 // script for creating all the database tables supporting this application
-// USAGE: 'node createTable.js [tableName]' (if tableName is 'all', creates all)
+// USAGE: 'node createTable.js [tableName]' (if tableName is 'all', creates all
+//        tables, but requires "ctrl+c" to end)
 
 
 var db = require('../db');
@@ -82,5 +83,3 @@ if (tableName == 'PrizeDrawingParticipants' || tableName == 'all') {
 }
 
 //add further table declarations here
-
-if (tableName == 'all') tablprocess.exit();
