@@ -51,7 +51,7 @@ angular.module('pyrite')
                 templateUrl: 'view/404.html'
             })
 
-            //otherwise redirect to start page
+            //otherwise redirect to page not found error
             .otherwise('/404');
     });
 //handles routing behavior: scroll to top on route change, and subject consent validation
