@@ -16,6 +16,7 @@ angular.module('pyrite')
             $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
                 $rootScope.articleOrder : cookieService.getArticleOrder();
             $scope.articleID = $scope.articleOrder[$scope.index]; //get articleID
+            $scope.articlePath = 'view/partial/articles/testArticle' + $scope.articleID + '.html';
 
             //response modal styles
             $scope.highlightStyle = {};
@@ -120,7 +121,6 @@ angular.module('pyrite')
 
                 //for storage in database
                 $scope.selectedID = selected.id;
-                $scope.selectedCenterY = (((rect.bottom - rect.top) / 2) + rect.top + $window.pageYOffset) - $scope.articleY;
 
                 //set dimensions and position of highlight box
                 $scope.setHighlightStyling(rect);
@@ -152,7 +152,6 @@ angular.module('pyrite')
                     trial: $scope.index + 1, // + 1 because trials are 1-based instead of 0 based
                     articleID: $scope.articleID,
                     elementID: $scope.selectedID,
-                    elementCenterY: $scope.selectedCenterY, //for rendering in review page
                     thumbsUp: (isThumbsUp) ? 1 : 0 //1 = true, 0 = false
                 }
 

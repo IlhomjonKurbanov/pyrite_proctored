@@ -25,7 +25,7 @@ angular.module('pyrite')
 
         this.getNewArticleOrder = function() {
             var order = new Array();
-            for (i = 0; i < articlesConfig.NUMBER_OF_ARTICLES; i++) {
+            for (i = 1; i <= articlesConfig.NUMBER_OF_ARTICLES; i++) {
                 order.push(i);
             }
             order = this.shuffle(order);
