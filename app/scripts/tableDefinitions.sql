@@ -29,7 +29,6 @@ CREATE TABLE SpontaneousResponses(
     Trial INT,
     ArticleID INT,
     ElementID VARCHAR(255),
-    ElementCenterY INT,
     ThumbsUp TINYINT(1), -- boolean, 0 = false, 1 = true
     PRIMARY KEY (SRID)
 ) ENGINE = INNODB

@@ -20,22 +20,75 @@
             Review Responses
         </div>
     </div>
-    <div class="panel panel-default col-sm-offset-2 col-sm-8">
+    <div id="response-panel" class="panel panel-default col-sm-offset-2 col-sm-8">
         <div class="panel-heading">
             Review spontaneous responses:
         </div>
         <div class="panel-body">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mauris mi, lobortis sit amet laoreet vel, sagittis at lorem. Donec semper hendrerit elementum. Donec vitae elementum purus, at commodo diam. Donec mauris est, lobortis ut elit accumsan, faucibus tristique mauris. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent at convallis nulla, non elementum diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus vehicula nulla ac bibendum volutpat. Ut convallis ultrices leo, ac hendrerit sem facilisis sit amet.
-            </p>
-            <p>
-                Fusce ac nisl eget ante cursus accumsan ut vitae tortor. Praesent orci nunc, fringilla nec nisi scelerisque, tempus ullamcorper velit. Donec sed eros rutrum, eleifend nibh quis, rhoncus mauris. Maecenas ullamcorper eget est vitae malesuada. Vivamus imperdiet auctor rhoncus. Nulla id justo enim. Aliquam blandit sollicitudin ante id egestas. Donec mollis, diam at egestas feugiat, quam mauris viverra libero, a lacinia arcu lectus id elit. Praesent aliquam augue ac massa rhoncus varius quis in velit. Nulla semper massa in mauris vestibulum, quis finibus mi auctor. Phasellus sed accumsan orci. Sed blandit euismod posuere. Nam elementum turpis eget mi tincidunt, non vulputate nulla aliquam. Nam porttitor lacus et enim molestie ullamcorper. Aenean id pharetra sapien, ultrices suscipit felis. Integer dictum aliquam pharetra.
-            </p>
-            <p>
-                Sed fringilla sollicitudin nisl, a tincidunt lacus vestibulum ut. Nunc commodo ligula a blandit venenatis. Praesent tempus eget metus ac placerat. Phasellus nec ipsum ex. Nulla et nisl in libero molestie interdum eu quis mauris. Morbi non nisl mauris. Nulla vulputate lacinia vehicula. Etiam mollis erat sit amet tortor vulputate, sed feugiat lacus molestie. Integer maximus orci vitae lectus volutpat porttitor. Phasellus fermentum augue lacinia ipsum varius mollis a id justo. Cras faucibus ipsum vehicula tincidunt finibus.
-            </p>
+            <div ng-show="showLoadingMessage" class="jumbotron text-center">
+                Loading responses... <i class="fa fa-refresh fa-spin fa-fw"></i>
+            </div>
+            <div ng-show="showNoResponsesMessage" class="jumbotron text-center">
+                No spontaneous responses registered.
+            </div>
+            <div class="panel-group" id="accordion">
+                <div id="prompt" ng-show="showPrompt" class="jumbotron text-center">
+                    <div>
+                        You will now be shown all the spontaneous responses you provided during the previous stage of the experiment. For each response, please provide a short explanation for why you responded the way you did.
+                    </div>
+                    <div id="begin">
+                        <a ng-click="begin()" class="btn btn-default">
+                            {{(trial == firstTrial) ? 'Begin ' : 'Continue where you left off '}}<i class="fa fa-play" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div ng-repeat="(trial,responseArray) in responses"
+                     class="panel panel-default"
+                     ng-init="$parent.showResponses = ($last) ? true : $parent.showResponses">
+                    <div class="panel-heading" id="article-{{trial}}">
+                        <div class="panel-title pull-left">
+                            Article {{trial}}
+                        </div>
+                        <div class="panel-title pull-right" ng-show="articlePanelState[trial].checked"><i class="fa fa-check" aria-hidden="true"></i></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="collapse-{{trial}}" class="panel-collapse collapse" ng-class="$parent.articlePanelState[trial].collapse">
+                        <div class="panel-body">
+                            <div class="well">
+                                <ng-include id="article-{{articleOrder[trial - 1]}}"
+                                    src="articlePaths[trial - 1]">
+                                </ng-include>
+                            </div>
+                            <div ng-repeat="response in responseArray">
+                                <div class="highlight" ng-style="highlightStyles[$parent.trial][response.SRID]"></div>
+                                <div id="response-modal-{{response.SRID}}"
+                                     class="response-modal"
+                                     ng-show="response.SRID == current.response.responses[current.response.index]"
+                                     ng-style="modalStyles[$parent.trial][response.SRID]">
+                                    <div class="well">
+                                        <div class="form-group col-xs-12">
+                                            <label for="explanation">Please explain your response:</label>
+                                            <textarea ng-model="explanation" class="form-control" rows="5" id="comment"></textarea>
+                                        </div>
+                                        <div class="thumb">
+                                            <i ng-show="response.thumbsUp" class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                                            <i ng-show="!response.thumbsUp" class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-xs-12 text-right align-middle">
+                                            <a class="cancel" href="" ng-click="cancelResponse(response.SRID, $last)">Delete Response</a>
+                                            <a ng-click="submitExplanation(trial, response.SRID, explanation, $last)" class="btn btn-default">
+                                                Submit <i class="fa fa-play" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="text-center">
-                <a ng-click="continue()" class="btn btn-default">
+                <a ng-disabled="disableContinue" ng-click="continue()" class="btn btn-default">
                     Continue <i class="fa fa-play" aria-hidden="true"></i>
                 </a>
             </div>
