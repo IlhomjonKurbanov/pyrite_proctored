@@ -2,4 +2,4 @@
 // ======
 // module and dependency declaration
 
-angular.module('pyrite', ['ngRoute', 'ngAnimate', 'ngCookies', 'duScroll']);
+angular.module('pyrite', ['ngRoute', 'ngAnimate', 'ngCookies']);

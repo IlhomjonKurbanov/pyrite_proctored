@@ -56,8 +56,8 @@ angular.module('pyrite')
     });
 //handles routing behavior: scroll to top on route change, and subject consent validation
 angular.module('pyrite')
-    .run(['$rootScope', '$document', '$location', 'appConfig', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
-        function($rootScope, $document, $location, appConfig, cookieService, progressService, EXPERIMENT_STAGE) {
+    .run(['$rootScope', '$window', '$location', 'appConfig', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
+        function($rootScope, $window, $location, appConfig, cookieService, progressService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
                 if (appConfig.DO_PROGRESS_CHECK) {
                     var progress = progressService.getProgress();
@@ -83,6 +83,6 @@ angular.module('pyrite')
                             break;
                     }
                 }
-                $document.scrollTopAnimated(0, 500); //param 2 adjusts scroll duration (ms)
+                $window.scrollTo(0 ,0);
             });
         }]);
