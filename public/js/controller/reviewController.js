@@ -56,24 +56,24 @@ angular.module('pyrite')
                     $scope.showNoResponsesMessage = true;
                 } else {
                     $scope.responses = processRawResponses(rawResponses);
+                    buildPageData(rawResponses);
                     $scope.showLoadingMessage = false;
                     $scope.showPrompt = true;
+                    $scope.showResponses = true;
                 }
             });
 
             // == page function definitions ====================================
-            // processes raw database response into responses grouped by article;
-            // creates an object mirroring the structure of the processed responses,
-            // used to apply styling to elements
+
+            // processes raw database response into responses grouped by trial/article
             function processRawResponses(rawResponses) {
                 var processed = {};
-                var trialIndex = 0; //for storing current trial in  $scope.current.trial object
-                var responseIndex = 0; //for storing current response in $scope.current.response object
                 for (var key in rawResponses) {
                     if (!rawResponses.hasOwnProperty(key)) {
-                        //The current property is not a direct property of p
+                        //The current property is not a direct property of rawResponses
                         continue;
                     }
+
                     var sr = rawResponses[key]; //get spontaneous response object
                     var processedSR = { //build procssed object
                         'SRID'      : sr.SRID,
@@ -83,6 +83,38 @@ angular.module('pyrite')
 
                     //to get review page working from initial state
                     if ($scope.response == -1) $scope.response = sr.SRID;
+
+                    if (!processed.hasOwnProperty(sr.trial)) {
+                        //if processed does not have an array for the current trial, create one
+                        processed[sr.trial] = [processedSR];
+
+                        //to get review page working form initial state
+                        if ($scope.trial == -1) $scope.trial = sr.trial;
+
+                        //if trial is first in the list, record it as such
+                        if ($scope.firstTrial == -1) $scope.firstTrial = sr.trial;
+                    } else {
+                        //if processed contains array for current trial, push into existing array
+                        processed[sr.trial].push(processedSR);
+                    }
+                }
+                return processed;
+            }
+
+            //use the raw responses object and the same collection creation/update
+            //logic as processRawResponses(), builds all necessary page data for
+            //tracking the current trial and response, as well as displaying various
+            //associated UI elements correctly
+            function buildPageData(rawResponses) {
+                var tracking = {} //for tracking when a trial is 'first' accessed
+                var trialIndex = 0; //for storing current trial in  $scope.current.trial object
+                var responseIndex = 0; //for storing current response in $scope.current.response object
+                for (var key in rawResponses) {
+                    if (!rawResponses.hasOwnProperty(key)) {
+                        //The current property is not a direct property of rawResponses
+                        continue;
+                    }
+                    var sr = rawResponses[key]; //get spontaneous response object
 
                     //add response to array of responses in $scope.current.response
                     $scope.current.response.responses.push(sr.SRID);
@@ -98,12 +130,9 @@ angular.module('pyrite')
                         }
                     }
 
-                    if (!processed.hasOwnProperty(sr.trial)) {
-                        //to get review page working form initial state
-                        if ($scope.trial == -1) $scope.trial = sr.trial;
-
-                        //if processed does not have an array for the current trial, create one
-                        processed[sr.trial] = [processedSR];
+                    if (!tracking.hasOwnProperty(sr.trial)) {
+                        //if tracking object does not have an array for the current trial, create one
+                        tracking[sr.trial] = [sr.SRID];
 
                         //if working with a new trial, create new collections in style objects
                         $scope.highlightStyles[sr.trial] = {};
@@ -115,9 +144,6 @@ angular.module('pyrite')
                         $scope.articlePanelState[sr.trial] = {};
                         $scope.articlePanelState[sr.trial]['collapse'] = '';
                         $scope.articlePanelState[sr.trial]['checked'] = ($scope.current.trial.index == -1 && sr.trial != $scope.trial);
-
-                        //if trial is first in the list, record it as such
-                        if ($scope.firstTrial == -1) $scope.firstTrial = sr.trial;
 
                         //if working with a new trial, add it to the array of trials
                         //in $scope.current.trial
@@ -136,7 +162,7 @@ angular.module('pyrite')
                         }
                     } else {
                         //else, push into existing array
-                        processed[sr.trial].push(processedSR);
+                        tracking[sr.trial].push(sr.SRID);
                     }
 
                     //create entries in styles arrays, mirroring structure of processed responses
@@ -147,9 +173,10 @@ angular.module('pyrite')
                         'display' : 'none'
                     }
                 }
-                return processed;
             }
 
+            //intelligently get the the desired 'element rectangle' parameters,
+            //for a given element. Accounts for borders/margins where necessary
             function getElementRectangle(element) {
                 //get element parameters
                 var style = window.getComputedStyle(element);
@@ -185,6 +212,8 @@ angular.module('pyrite')
                 return calculatedRect;
             }
 
+            //uses an element's position and dimensions to correctly set the
+            //styling for a given response's highlight element and response modal
             function setHighlightAndModalStyling(trial) {
                 $scope.responses[trial].forEach(function(response, index, array) {
                     var rect = getElementRectangle(document.querySelector('#' + response.elementID));
@@ -214,17 +243,14 @@ angular.module('pyrite')
                 })
             }
 
+            //get the vertical offset of a given response, to scroll the page to
             function getCurrentResponseOffset() {
                 var trial = $scope.current.trial.trials[$scope.current.trial.index];
                 var SRID = $scope.current.response.responses[$scope.current.response.index];
                 return $scope.highlightStyles[trial][SRID].top.split('px')[0] - 60;
             }
 
-            $scope.begin = function() {
-                $scope.showPrompt = false;
-                goToNextArticle(-1, $scope.current.trial.trials[$scope.current.trial.index]);
-            }
-
+            //go to the next trial/article: controls UI
             function goToNextArticle(currentTrial, nextTrial) {
                 $scope.disableNextButton = true; //make sure 'next' button in next section is disabled
 
@@ -242,9 +268,17 @@ angular.module('pyrite')
                 }, 25);
             }
 
+            //go to the first trial/article
+            $scope.begin = function() {
+                $scope.showPrompt = false;
+                goToNextArticle(-1, $scope.current.trial.trials[$scope.current.trial.index]);
+            }
+
+            //submit the explanation for a given response
             $scope.submitExplanation = function(trial, SRID, explanation, last) {
                 //TODO Send to db
 
+                $scope.highlightStyles[trial][SRID] = { 'display' : 'none' };
                 $scope.current.response.index++
                 if ($scope.current.response.index == $scope.current.response.responses.length) {
                     $scope.disableContinue = false;
@@ -256,10 +290,13 @@ angular.module('pyrite')
                 }
             }
 
+            //'cancel' a response, deleting it from the page and the database
             $scope.cancelResponse = function(SRID, last) {
                 //TODO
+                //delete from highlight & modal styling, $scope.current.response, and $scope.responses
             }
 
+            //continue to the prize page
             $scope.continue = function() {
                 progressService.setStage('finished');
                 $location.path('/prize');
