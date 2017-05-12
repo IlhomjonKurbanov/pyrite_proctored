@@ -27,9 +27,9 @@ angular.module('pyrite')
             })
 
             //progress info
-            $scope.trial = 3; //TODO use as index
-            $scope.response = 7; //TODO use as index
-            $scope.firstTrial = -1
+            $scope.trial = -1; //TODO use as index
+            $scope.response = -1; //TODO use as index
+            $scope.firstTrial = -1;
             $scope.current = {
                 'trial' : {
                     'index' : -1,
@@ -81,6 +81,9 @@ angular.module('pyrite')
                         'thumbsUp'  : sr.thumbsUp,
                     }
 
+                    //to get review page working from initial state
+                    if ($scope.response == -1) $scope.response = sr.SRID;
+
                     //add response to array of responses in $scope.current.response
                     $scope.current.response.responses.push(sr.SRID);
 
@@ -96,6 +99,9 @@ angular.module('pyrite')
                     }
 
                     if (!processed.hasOwnProperty(sr.trial)) {
+                        //to get review page working form initial state
+                        if ($scope.trial == -1) $scope.trial = sr.trial;
+
                         //if processed does not have an array for the current trial, create one
                         processed[sr.trial] = [processedSR];
 
