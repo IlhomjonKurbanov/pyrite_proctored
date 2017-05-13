@@ -75,7 +75,7 @@
                                             <i ng-show="!response.thumbsUp" class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
                                         </div>
                                         <div class="col-xs-12 text-right align-middle">
-                                            <a class="cancel" href="" ng-click="cancelResponse(response.SRID, $last)">Delete Response</a>
+                                            <a class="cancel" href="" ng-click="deleteResponse(trial, response.SRID, $last)">Delete Response</a>
                                             <a ng-click="submitExplanation(trial, response.SRID, explanation, $last)" class="btn btn-default">
                                                 Submit <i class="fa fa-play" aria-hidden="true"></i>
                                             </a>

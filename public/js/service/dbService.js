@@ -59,4 +59,27 @@ angular.module('pyrite')
                         	alert("failure message: " + JSON.stringify(response));
                         });
         }
+
+        this.deleteSpontaneousResponse = function(SRID) {
+            var data = angular.toJson(SRID);
+            return $http.post('/api/spontaneous/delete', data)
+                		.then(function success(response) {
+                            //success
+                			return response.data;
+                		}, function failure(response) {
+                            //failure
+                        	alert("failure message: " + JSON.stringify(response));
+                        });
+        }
+
+        this.registerNarrativeResponse = function(narrativeResponse) {
+            var data = angular.toJson(narrativeResponse);
+            return $http.post('/api/narrative/register-response', data)
+                		.then(function success(response) {
+                            //success
+                		}, function failure(response) {
+                            //failure
+                        	alert("failure message: " + JSON.stringify(response));
+                        });
+        }
     }]);

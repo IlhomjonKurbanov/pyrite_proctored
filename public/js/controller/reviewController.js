@@ -274,31 +274,47 @@ angular.module('pyrite')
                 goToNextArticle(-1, $scope.current.trial.trials[$scope.current.trial.index]);
             }
 
-            //submit the explanation for a given response
-            $scope.submitExplanation = function(trial, SRID, explanation, last) {
-                //TODO Send to db
+            //send response explanation, 'narrative response', to the database
+            function submitNarrativeResponse(SRID, response) {
+                var narrativeResponse = {
+                    SRID: SRID,
+                    response: response
+                }
 
-                $scope.highlightStyles[trial][SRID] = { 'display' : 'none' };
+                dbService.registerNarrativeResponse(narrativeResponse);
+            }
+
+            function moveToNextResponse(trial, SRID, last) {
+                //hide current highlight and response modal
+                $scope.highlightStyles[trial][SRID] = { 'display' : 'none' }; //if this is removed, put it in cancelResponse
                 $scope.current.response.index++
+
+                //handle special cases (last response overall / last response for given article)
                 if ($scope.current.response.index == $scope.current.response.responses.length) {
                     $scope.disableContinue = false;
                     $scope.articlePanelState[trial].collapse = '';
                     $scope.articlePanelState[trial].checked = true;
+                    progressService.setStage('finished');
                 } else {
                     if (last) goToNextArticle(trial, $scope.current.trial.trials[$scope.current.trial.index + 1]);
                     else $window.scrollTo(0, getCurrentResponseOffset());
                 }
             }
 
-            //'cancel' a response, deleting it from the page and the database
-            $scope.cancelResponse = function(SRID, last) {
-                //TODO
-                //delete from highlight & modal styling, $scope.current.response, and $scope.responses
+            //submit the explanation for a given response
+            $scope.submitExplanation = function(trial, SRID, explanation, last) {
+                moveToNextResponse(trial, SRID, last);
+                submitNarrativeResponse(SRID, explanation);
+            }
+
+            //delete a response
+            $scope.deleteResponse = function(trial, SRID, last) {
+                moveToNextResponse(trial, SRID, last);
+                dbService.deleteSpontaneousResponse({ SRID: SRID });
             }
 
             //continue to the prize page
             $scope.continue = function() {
-                progressService.setStage('finished');
                 $location.path('/prize');
             }
     }]);

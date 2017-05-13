@@ -95,9 +95,33 @@ module.exports = function(app, db) {
             });
     });
 
+    //delete a given spontaneous response
+    app.post('/api/spontaneous/delete', function(req, res) {
+        var data = [
+            req.body.SRID,
+        ];
+
+        db.get().query('DELETE FROM SpontaneousResponses WHERE SRID = (?)',
+            data, function(err, result) {
+                if (err) throw err;
+                console.log('Deleted Spontaneous Response.');
+                res.send('Spontaneous Response deleted.');
+            });
+    });
+
     //register a narrative response for a given spontaneous response
     app.post('/api/narrative/register-response', function(req, res) {
-        //TODO
+        var data = [
+            req.body.SRID,
+            req.body.response
+        ];
+
+        db.get().query('INSERT INTO NarrativeResponses (SRID, Response) VALUES (?, ?)',
+            data, function(err, result) {
+                if (err) throw err;
+                console.log('Registered new narrative response.');
+                res.send('Narrative response registered.');
+            });
     });
 
     //register a new email address for the gift card drawing
