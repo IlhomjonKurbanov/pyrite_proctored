@@ -65,11 +65,11 @@ angular.module('pyrite')
 
                 //if articles remaining, continue; else, go to next stage of experiment
                 if ($scope.index < articleService.getNumArticles()) {
-                    progressService.setIndex($scope.index);
+                    progressService.setArticleIndex($scope.index);
                     $location.path('/articles/' + $scope.index);
                 } else {
                     progressService.setStage('review');
-                    progressService.setIndex(0);
+                    progressService.setArticleIndex(0);
                     $location.path('/review');
                 }
             }

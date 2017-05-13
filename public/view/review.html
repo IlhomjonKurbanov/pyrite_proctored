@@ -38,7 +38,7 @@
                     </div>
                     <div id="begin">
                         <a ng-click="begin()" class="btn btn-default">
-                            {{(trial == firstTrial) ? 'Begin ' : 'Continue where you left off '}}<i class="fa fa-play" aria-hidden="true"></i>
+                            {{(current.trial.trials[current.trial.index] == firstTrial) ? 'Begin ' : 'Continue where you left off '}}<i class="fa fa-play" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -60,11 +60,11 @@
                                 </ng-include>
                             </div>
                             <div ng-repeat="response in responseArray">
-                                <div class="highlight" ng-style="highlightStyles[$parent.trial][response.SRID]"></div>
+                                <div class="highlight" ng-style="highlightStyles[trial][response.SRID]"></div>
                                 <div id="response-modal-{{response.SRID}}"
                                      class="response-modal"
                                      ng-show="response.SRID == current.response.responses[current.response.index]"
-                                     ng-style="modalStyles[$parent.trial][response.SRID]">
+                                     ng-style="modalStyles[trial][response.SRID]">
                                     <div class="well">
                                         <div class="form-group col-xs-12">
                                             <label for="explanation">Please explain your response:</label>

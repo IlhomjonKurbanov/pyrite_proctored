@@ -7,23 +7,45 @@ angular.module('pyrite')
         "finished"     : 4
     })
     .service('progressService', ['EXPERIMENT_STAGE', 'cookieService', function(EXPERIMENT_STAGE, cookieService) {
-        //TODO
-        //TODO retrieve progress from cookieService, then add redirect logic based on same data in appRoutes.js
-        //TODO
+        //initialize progress data
         this.progress = cookieService.getProgress();
         if (this.progress == undefined) {
             this.progress = {
                 stage : EXPERIMENT_STAGE.unstarted,
-                index : -1 //'null' index for unstarted stage
+                articleIndex : 0, //start "fresh" pages on first article
+                reviewIndex : { //start "fresh" pages on first trial and response
+                    trial: 0,
+                    response: 0
+                }
             }
+        }
+
+        this.save = function() {
+            cookieService.setProgress(this.progress);
         }
 
         this.setStage = function(stage) {
             this.progress.stage = EXPERIMENT_STAGE[stage];
+            this.save();
         }
 
-        this.setIndex = function(index) {
-            this.progress.index = index;
+        this.setArticleIndex = function(index) {
+            this.progress.articleIndex = index;
+            this.save();
+        }
+
+        this.getArticleIndex = function() {
+            return this.progress.articleIndex
+        }
+
+        this.setReviewIndex = function(type, index) {
+            if (type == 'trial') this.progress.reviewIndex.trial = index;
+            if (type == 'response') this.progress.reviewIndex.response = index;
+            this.save();
+        }
+
+        this.getReviewIndex = function() {
+            return this.progress.reviewIndex;
         }
 
         this.getProgress = function() {

@@ -27,19 +27,22 @@ angular.module('pyrite')
             })
 
             //progress info
-            $scope.trial = -1; //TODO use as index
-            $scope.response = -1; //TODO use as index
-            $scope.firstTrial = -1;
             $scope.current = {
                 'trial' : {
-                    'index' : -1,
+                    'index' : 0,
                     'trials' : new Array()
                 },
                 'response' : {
-                    'index' : -1,
+                    'index' : 0,
                     'responses' : new Array()
                 }
             }
+            if (appConfig.DO_PROGRESS_CHECK) {
+                var reviewIndex = progressService.getReviewIndex();
+                $scope.current.trial.index = reviewIndex.trial;
+                $scope.current.response.index = reviewIndex.response;
+            }
+            $scope.firstTrial = -1;
 
             //page data
             $scope.responses;
@@ -81,15 +84,9 @@ angular.module('pyrite')
                         'thumbsUp'  : sr.thumbsUp,
                     }
 
-                    //to get review page working from initial state
-                    if ($scope.response == -1) $scope.response = sr.SRID;
-
                     if (!processed.hasOwnProperty(sr.trial)) {
                         //if processed does not have an array for the current trial, create one
                         processed[sr.trial] = [processedSR];
-
-                        //to get review page working form initial state
-                        if ($scope.trial == -1) $scope.trial = sr.trial;
 
                         //if trial is first in the list, record it as such
                         if ($scope.firstTrial == -1) $scope.firstTrial = sr.trial;
@@ -107,8 +104,7 @@ angular.module('pyrite')
             //associated UI elements correctly
             function buildPageData(rawResponses) {
                 var tracking = {} //for tracking when a trial is 'first' accessed
-                var trialIndex = 0; //for storing current trial in  $scope.current.trial object
-                var responseIndex = 0; //for storing current response in $scope.current.response object
+                var trialIndex = 0; //for setting 'checked' states in articlePanelState
                 for (var key in rawResponses) {
                     if (!rawResponses.hasOwnProperty(key)) {
                         //The current property is not a direct property of rawResponses
@@ -118,17 +114,6 @@ angular.module('pyrite')
 
                     //add response to array of responses in $scope.current.response
                     $scope.current.response.responses.push(sr.SRID);
-
-                    //if $scope.current.response.index isn't set yet, and this
-                    //response is the 'current' response, set index; else,
-                    //increment responseIndex;
-                    if ($scope.current.response.index == -1) {
-                        if (sr.SRID == $scope.response) {
-                            $scope.current.response.index = responseIndex;
-                        } else {
-                            responseIndex++
-                        }
-                    }
 
                     if (!tracking.hasOwnProperty(sr.trial)) {
                         //if tracking object does not have an array for the current trial, create one
@@ -143,23 +128,12 @@ angular.module('pyrite')
                         //set 'checked' to true if trial has been completed.
                         $scope.articlePanelState[sr.trial] = {};
                         $scope.articlePanelState[sr.trial]['collapse'] = '';
-                        $scope.articlePanelState[sr.trial]['checked'] = ($scope.current.trial.index == -1 && sr.trial != $scope.trial);
+                        $scope.articlePanelState[sr.trial]['checked'] = (trialIndex < $scope.current.trial.index);
+                        trialIndex++;
 
                         //if working with a new trial, add it to the array of trials
                         //in $scope.current.trial
                         $scope.current.trial.trials.push(sr.trial);
-
-                        //if working with a new trial and $scope.current.trial.index
-                        //isn't set yet, either increment trialIndex, or if the
-                        //current trial == $scope.trial, set 'index' in
-                        //$scope.current.trial to trialIndex
-                        if ($scope.current.trial.index == -1) {
-                            if (sr.trial == $scope.trial) {
-                                $scope.current.trial.index = trialIndex;
-                            } else {
-                                trialIndex++
-                            }
-                        }
                     } else {
                         //else, push into existing array
                         tracking[sr.trial].push(sr.SRID);
@@ -258,6 +232,7 @@ angular.module('pyrite')
                     $scope.articlePanelState[currentTrial].collapse = '';
                     $scope.articlePanelState[currentTrial].checked = true;
                     $scope.current.trial.index++;
+                    progressService.setReviewIndex('trial', $scope.current.trial.index);
                 }
                 //expand next trial
                 $scope.articlePanelState[nextTrial].collapse = 'in';
@@ -288,6 +263,9 @@ angular.module('pyrite')
                 //hide current highlight and response modal
                 $scope.highlightStyles[trial][SRID] = { 'display' : 'none' }; //if this is removed, put it in cancelResponse
                 $scope.current.response.index++
+
+                //save progress
+                progressService.setReviewIndex('response', $scope.current.response.index);
 
                 //handle special cases (last response overall / last response for given article)
                 if ($scope.current.response.index == $scope.current.response.responses.length) {

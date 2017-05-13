@@ -71,12 +71,12 @@ angular.module('pyrite')
                             if (path != '/introduction') $location.path('/introduction');
                             break;
                         case EXPERIMENT_STAGE.articles:
-                            if (!path.includes('/articles') || next.params.index != progress.index) {
-                                $location.path('/articles/' + progress.index);
+                            if (!path.includes('/articles') || next.params.index != progress.articleIndex) {
+                                $location.path('/articles/' + progress.articleIndex);
                             }
                             break;
                         case EXPERIMENT_STAGE.review:
-                            if (path != '/review') $location.path('/review'); //TODO add index
+                            if (path != '/review') $location.path('/review');
                             break;
                         case EXPERIMENT_STAGE.finished:
                             if (path != '/prize' && path != '/end') $location.path('/end');
