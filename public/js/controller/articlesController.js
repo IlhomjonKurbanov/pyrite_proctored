@@ -33,12 +33,6 @@ angular.module('pyrite')
 
             // == function definitions =========================================
             // ---- likert response functions ----------------------------------
-            $scope.articleOnLoad = function() {
-                //get article y minimums
-                var articleRect = document.getElementById('article').getBoundingClientRect();
-                $scope.articleY = articleRect.top;
-            }
-
             //validation that an option has been selected within the likert scale
             $scope.likertSelected = function() {
                 return ($scope.likert != undefined);

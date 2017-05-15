@@ -24,13 +24,12 @@
         <div class="panel-body">
             <div id="article-well" class="well">
                 <!--
-                    ng-click statement 'stopPropagation' blocks the
-                    page container's 'hideSpontaneousResponse' event
+                    included article includes selectElement() onclick functions
+                    followed by $event.stopPropagation() calls to cancel the global
+                    hideSpontaneousResponse onclick function
                  -->
                 <ng-include id="article"
-                    src="articlePath"
-                    onload="articleOnLoad()"
-                    ng-click="selectElement($event);$event.stopPropagation()">
+                    src="articlePath">
                 </ng-include>
             </div>
             <form>
