@@ -3,7 +3,7 @@
 // full set of details for each combination of the article variables
 
 angular.module('pyrite').constant("articlesConfig", {
-    "NUMBER_OF_ARTICLES" : 5,
+    "NUMBER_OF_ARTICLES" : 3,
     "ARTICLE_ATTRIBUTES" : [
         "fontSize",
         "fontType",

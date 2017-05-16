@@ -1,24 +1,33 @@
 <style>
     /* navbar */
-    #navbar-2 ul {
+    #navbar-background-2 {
+        background-color: #00baa7;
+    }
+    #navbar-backround-2, #page-content-2 {
+        font-family: serif;
+    }
+    #navbar-2 {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: #333;
+        max-width: 740px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
     }
     #navbar-2 li {
-        float: left;
+        display: inline;
     }
     #navbar-2 a {
-        display: block;
+        display: inline-block;
         color: white;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
     }
     #navbar-2 li a:hover {
-        background-color: #111;
+        background-color: #017267;
     }
 
     /* page-content */
@@ -31,54 +40,41 @@
     #article-start-2 {
         text-align: center;
     }
-    #image-2-1, #image-2-2 {
-        height: 240px;
+    img {
         margin: 10px;
     }
     #image-2-1 {
-        float: right;
-    }
-    #image-2-2 {
+        width: 300px;
         float: left;
     }
+    #image-2-2 {
+        float: right;
+        width: 300px;
+    }
 </style>
-<div id="navbar-2">
-    <ul>
-        <li><a id="navbar-element-2-1">Aliquam</a></li>
-        <li><a id="navbar-element-2-2">Vestibulum</a></li>
-        <li><a id="navbar-element-2-3">Odio</a></li>
-        <li><a id="navbar-element-2-4">Tellus</a></li>
-        <li><a id="navbar-element-2-5">Vitae</a></li>
-        <li><a id="navbar-element-2-6">Porta</a></li>
-        <li><a id="navbar-element-2-7">Vivamus</a></li>
+<div id="navbar-background-2">
+    <ul id="navbar-2" ng-click="selectElement($event);$event.stopPropagation()">
+        <li><a ng-click="selectElement($event);$event.stopPropagation()" id="navbar-element-2-1">Nullam</a></li>
+        <li><a ng-click="selectElement($event);$event.stopPropagation()" id="navbar-element-2-2">Varius</a></li>
+        <li><a ng-click="selectElement($event);$event.stopPropagation()" id="navbar-element-2-3">Erat</a></li>
+        <li><a ng-click="selectElement($event);$event.stopPropagation()" id="navbar-element-2-4">Maecenas</a></li>
     </ul>
 </div>
 <div id="page-content-2">
     <div id="article-start-2">
-        <h1 id="article-title-2">2: Ex Mollis Consectetur in Malesuada</h1>
-        <video id="article-video-2" height="270" controls>
-            <source src="../../../../app/data/megaphone-stock.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <h1 id="article-title-2" ng-click="selectElement($event);$event.stopPropagation()">Vivamus Ultrices, est Gravida Egestas Commodo</h1>
     </div>
-    <p id="paragraph-2-1">
-        Morbi vel feugiat lectus. Donec at ullamcorper sapien. Duis rutrum pulvinar vestibulum. Ut condimentum leo et sem semper, nec molestie libero efficitur. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec placerat vestibulum arcu sit amet convallis.
+    <img ng-click="selectElement($event);$event.stopPropagation()" id="image-2-1" src="../../../../app/data/img5.jpg">
+    <p ng-click="selectElement($event);$event.stopPropagation()" id="paragraph-2-1">
+        Suspendisse in sapien vitae mauris congue egestas eget eu quam. <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-1" href="">Morbi augue orci</a>, blandit non consequat efficitur, volutpat sed libero. Etiam volutpat, enim quis pretium molestie, mauris quam interdum nunc, et aliquam felis odio eu ex. Phasellus viverra faucibus massa, a tempus velit volutpat ac. Mauris in est nec nibh lacinia ultrices quis eu quam. Praesent condimentum sapien <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-2" href="">eget massa tempus</a> eleifend. Morbi vitae elit vel felis iaculis convallis interdum vel magna. Morbi nulla mi, blandit laoreet turpis vel, fermentum suscipit augue. Integer vitae orci quis tortor dapibus tincidunt. Praesent venenatis molestie turpis. In tortor massa, gravida et neque ac, <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-3" href="">cursus aliquam mi</a>.
     </p>
-    <p id="paragraph-2-2">
-        In sagittis ac tellus id sagittis. Nam tincidunt erat et libero elementum, et imperdiet massa eleifend. Nullam posuere varius ullamcorper. Vivamus dui dolor, <a id="link-2-1" href="">commodo eu lectus eget</a>, dignissim sodales nulla. Quisque sed leo fermentum, ultrices tortor vitae, ornare velit. Nunc id ex nec purus gravida eleifend. Morbi magna mi, fringilla et turpis a, semper sollicitudin orci. Ut tempus tempor nunc, ut condimentum nisl tincidunt vel. Pellentesque tristique magna a nulla ultricies mollis.
+    <p ng-click="selectElement($event);$event.stopPropagation()" id="paragraph-2-2">
+        Nunc imperdiet vestibulum ultricies. <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-4" href="">Nulla facilisi</a>. Sed non quam eget lacus laoreet pellentesque. Sed viverra varius efficitur. Sed pretium ultrices dapibus. In a nulla porttitor, rhoncus orci vitae, rutrum mi. Cras ut <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-5" href="">gravida nisl</a>. Sed molestie ex eget eros tempor, et vulputate felis eleifend. Vivamus ac urna eu sem tempus ultrices et tincidunt nulla.
     </p>
-    <img id="image-2-1" src="../../../../app/data/stock1.jpeg">
-    <p id="paragraph-2-3">
-        Sed felis tortor, laoreet vitae convallis sit amet, imperdiet sodales eros. Nullam consequat semper pretium. Maecenas dignissim ac nisl sed aliquet. Aliquam molestie eleifend nulla sit amet facilisis. Integer quis ex felis. Nam dictum turpis in ipsum pharetra, ac porttitor orci elementum. Donec quis orci tristique, pellentesque tortor ac, bibendum velit. Praesent fringilla ultricies nulla commodo vehicula. Fusce faucibus, quam vitae condimentum pellentesque, augue ipsum fermentum nunc, vel lacinia mi justo quis lorem. Fusce aliquam diam a magna consequat, nec vehicula purus ultrices. Mauris lacinia nibh mi, ut egestas eros eleifend ac. Quisque interdum a elit quis posuere. Donec at risus a odio elementum molestie. Pellentesque <a id="link-2-2" href="">molestie leo</a> vitae nisl pulvinar, condimentum euismod dolor hendrerit. Proin ut aliquam velit, faucibus tristique mi. Vestibulum mauris metus, scelerisque sit amet elit at, hendrerit gravida eros.
+    <img ng-click="selectElement($event);$event.stopPropagation()" id="image-2-2" src="../../../../app/data/img6.jpg">
+    <p ng-click="selectElement($event);$event.stopPropagation()" id="paragraph-2-3">
+        Suspendisse mi ligula, sodales et imperdiet quis, feugiat et eros. Nullam a <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-6" href="">porttitor</a> est. Proin ornare erat vel commodo sagittis. Vivamus risus metus, euismod vitae ullamcorper sed, iaculis et ipsum. Nullam <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-7" href="">a commodo odio</a>, sit amet iaculis odio. Sed a nunc lacinia, bibendum magna malesuada, porttitor quam. Etiam lacinia porta quam, eu porta ipsum fringilla et. <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-8" href="">Mauris eu nisl</a> tincidunt, consequat felis vitae, suscipit nisl. Aliquam erat volutpat. Phasellus sit amet diam id est fermentum sagittis sed ut mauris. Donec maximus nulla non pellentesque faucibus. Sed <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-9" href="">elementum eros</a> in lacinia pulvinar.
     </p>
-    <p id="paragraph-2-4">
-        Fusce sed sem eget justo malesuada tincidunt. Aenean sodales elit in velit pulvinar, et varius erat molestie. Phasellus vitae nunc at lectus tempor molestie quis sed nulla. Curabitur volutpat neque eu eros rutrum scelerisque. Nulla convallis sodales massa sed accumsan. Mauris luctus, urna vel elementum efficitur, orci magna varius eros, ac dictum urna nisi sed felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In at vulputate magna.
+    <p ng-click="selectElement($event);$event.stopPropagation()" id="paragraph-2-4">
+        Nulla euismod commodo egestas. Cras mauris arcu, <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-10" href="">suscipit sed finibus</a> ac, sagittis mattis lacus. Aliquam ut turpis sit amet arcu venenatis pellentesque. Donec luctus, libero nec sagittis malesuada, elit elit tempor libero, ac ultrices mauris ipsum fermentum neque. Morbi in nibh quis felis suscipit laoreet. <a ng-click="selectElement($event);$event.stopPropagation()" id="link-2-11" href="">Curabitur quis</a> blandit nibh, pellentesque dictum dolor. Quisque in facilisis ligula, vel elementum ex. Cras tortor metus, facilisis eget ex nec, eleifend pretium dolor. Nulla a massa sit amet sapien imperdiet vulputate non sed orci.
     </p>
-    <img id="image-2-2" src="../../../../app/data/stock2.jpeg">
-    <p id="paragraph-2-5">
-        Maecenas hendrerit hendrerit sem, eu suscipit enim tempus id. In viverra lacus vitae elit varius, in iaculis lorem vulputate. Vestibulum quam mi, maximus non leo id, congue interdum ligula. Maecenas in nunc tempus, sollicitudin diam sit amet, laoreet felis. Aliquam pretium vestibulum magna, non eleifend nulla accumsan ut. Aliquam eget lectus viverra, mattis tellus a, mollis eros. Integer ut massa eget urna imperdiet hendrerit. Donec facilisis, dolor a eleifend pharetra, sem felis blandit ligula, id congue enim libero vitae mauris.
-    </p>
-    <p id="paragraph-2-6">
-        Praesent at orci elit. Ut ullamcorper rhoncus ligula, non tempor turpis egestas eget. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam ex odio, aliquam et interdum eget, ullamcorper vitae arcu. Etiam gravida ac dolor et congue. Quisque sodales diam sit amet varius consectetur. Proin at consequat lectus. Aenean vel massa id lorem pharetra venenatis. Donec ac tempor nunc. Donec faucibus <a id="link-2-3" href="">non odio in luctus</a>.
-    </p>
-</div>

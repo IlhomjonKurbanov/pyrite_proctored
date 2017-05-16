@@ -132,7 +132,7 @@ angular.module('pyrite')
             //continue
             $scope.continue = function() {
                 progressService.setStage('articles');
-                progressService.setIndex(0);
+                progressService.setArticleIndex(0);
                 $location.path('/articles/0');
             }
         }]);

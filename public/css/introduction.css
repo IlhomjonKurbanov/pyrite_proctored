@@ -37,7 +37,7 @@
     margin-top: 7px;
     display: inline-block;
 }
-#submitIntro, #goToArticles {
+#submitIntro {
     float: right;
 }
 #submitIntro span {
@@ -53,4 +53,12 @@
 .message-fade.ng-hide-add {
   -webkit-transition: all linear 500ms;
   transition: all linear 500ms;
+}
+#instructions {
+    font-size: 18px;
+}
+img {
+    width: 500px;
+    border: 10px solid black;
+    margin-bottom: 10px;
 }
