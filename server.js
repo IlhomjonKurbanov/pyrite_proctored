@@ -7,7 +7,7 @@ var express        = require('express');
 var app            = express();                  // create our app w/ express
 var morgan         = require('morgan');          // log requests to the console (express4)
 var bodyParser     = require('body-parser');     // pull information from HTML POST (express4)
-var port           = process.env.PORT || 80;
+var port           = 80;
 
 // == configuration ============================================================
 var db = require('./app/db');
