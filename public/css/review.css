@@ -81,6 +81,9 @@
 #bootstrap-override textarea {
     resize: vertical;
 }
+#bootstrap-override .response-modal div {
+    padding-right: 0px;
+}
 .cancel {
     text-decoration: underline;
     font-size: 12px;
