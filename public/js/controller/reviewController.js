@@ -53,13 +53,13 @@ angular.module('pyrite')
             //get responses
             var responses_promise = dbService.getSpontaneousResponses({subjectID: cookieService.getSubjectID()});
             responses_promise.then(function(responses) {
-                var rawResponses = responses;
-                if (angular.equals({}, $scope.responses)) {
+                if (angular.equals({}, responses)) {
                     $scope.showLoadingMessage = false;
                     $scope.showNoResponsesMessage = true;
+                    $scope.disableContinue = false;
                 } else {
-                    $scope.responses = processRawResponses(rawResponses);
-                    buildPageData(rawResponses);
+                    $scope.responses = processRawResponses(responses);
+                    buildPageData(responses);
                     $scope.showLoadingMessage = false;
                     $scope.showPrompt = true;
                     $scope.showResponses = true;

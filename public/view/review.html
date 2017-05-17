@@ -76,9 +76,9 @@
                                         </div>
                                         <div class="col-xs-12 text-right align-middle">
                                             <a class="cancel" href="" ng-click="deleteResponse(trial, response.SRID, $last)">Delete Response</a>
-                                            <a ng-click="submitExplanation(trial, response.SRID, explanation, $last)" class="btn btn-default">
+                                            <button ng-disabled="explanation == undefined" ng-click="submitExplanation(trial, response.SRID, explanation, $last)" class="btn btn-default">
                                                 Submit <i class="fa fa-play" aria-hidden="true"></i>
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -88,9 +88,9 @@
                 </div>
             </div>
             <div class="text-center">
-                <a ng-disabled="disableContinue" ng-click="continue()" class="btn btn-default">
+                <button ng-disabled="disableContinue" ng-click="continue()" class="btn btn-default">
                     Continue <i class="fa fa-play" aria-hidden="true"></i>
-                </a>
+                </button>
             </div>
         </div>
     </div>
