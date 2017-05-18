@@ -19,7 +19,7 @@ CREATE TABLE ArticleResponses(
     Likert INT,
     PageTime INT,
     SpontaneousResponseCount INT,
-    ThumbsUpCount INT
+    MoreBelievableCount INT
 ) ENGINE = INNODB
 
 -- create SpontaneousResponses table
@@ -29,7 +29,7 @@ CREATE TABLE SpontaneousResponses(
     Trial INT,
     ArticleID INT,
     ElementID VARCHAR(255),
-    ThumbsUp TINYINT(1), -- boolean, 0 = false, 1 = true
+    MoreBelievable TINYINT(1), -- boolean, 0 = 'less believable', 1 = 'more believable'
     PRIMARY KEY (SRID)
 ) ENGINE = INNODB
 

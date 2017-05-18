@@ -77,8 +77,17 @@
     <div id="response" ng-show="showSpontaneousResponse"
                        ng-style="responseStyle"
                        ng-click="$event.stopPropagation()">
-        <a><i id="positive" class="fa fa-thumbs-up fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a>
-        <a><i id="negative" class="fa fa-thumbs-down fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a>
+        <div id="response-prompt" class="col-xs-12">This element makes the article seem...</div>
+        <div class="text-center">
+            <button class="btn btn-default" id="more-believable" ng-click="submitSpontaneousResponse('more-believable')">
+                <strong>more believable</strong>
+            </button>
+            <button class="btn btn-default" id="less-believable" ng-click="submitSpontaneousResponse('less-believable')">
+                <strong>less believable</strong>
+            </button>
+        </div>
+        <!-- <a><i id="positive" class="fa fa-thumbs-up fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a>
+        <a><i id="negative" class="fa fa-thumbs-down fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a> -->
         <a><i id="close-response" class="fa fa-times" aria-hidden="true" ng-click="hideSpontaneousResponse()"></i></a>
     </div>
 </div>

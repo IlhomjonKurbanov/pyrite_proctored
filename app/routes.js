@@ -41,10 +41,10 @@ module.exports = function(app, db) {
             req.body.likert,
             req.body.pageTime,
             req.body.SRCount,
-            req.body.thumbsUpCount
+            req.body.moreBelievableCount
         ];
 
-        db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert, PageTime, SpontaneousResponseCount, ThumbsUpCount) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert, PageTime, SpontaneousResponseCount, MoreBelievableCount) VALUES (?, ?, ?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
                 console.log('Registered new ArticleResponse.');
@@ -59,10 +59,10 @@ module.exports = function(app, db) {
             req.body.trial,
             req.body.articleID,
             req.body.elementID,
-            req.body.thumbsUp
+            req.body.moreBelievable
         ];
 
-        db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, ThumbsUp) VALUES (?, ?, ?, ?, ?)',
+        db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, MoreBelievable) VALUES (?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
                 console.log('Registered new spontaneous response.');
@@ -76,7 +76,7 @@ module.exports = function(app, db) {
             req.body.subjectID,
         ];
 
-        db.get().query('SELECT SRID, Trial, ArticleID, ElementID, ThumbsUp FROM SpontaneousResponses WHERE SubjectID = (?) ORDER BY Trial, SRID',
+        db.get().query('SELECT SRID, Trial, ArticleID, ElementID, MoreBelievable FROM SpontaneousResponses WHERE SubjectID = (?) ORDER BY Trial, SRID',
             data, function(err, result) {
                 if (err) throw err;
                 var results = {};
@@ -87,7 +87,7 @@ module.exports = function(app, db) {
                         trial: element.Trial,
                         articleID: element.ArticleID,
                         elementID: element.ElementID,
-                        thumbsUp: (element.ThumbsUp == 0) ? false : true
+                        moreBelievable: (element.MoreBelievable == 0) ? false : true
                     }
                     index++;
                 });

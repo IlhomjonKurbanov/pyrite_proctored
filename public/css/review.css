@@ -34,7 +34,7 @@
     font-size: 16px;
     z-index: 1;
     position: absolute;
-    width: 450px;
+    width: 550px;
     padding: 10px;
     position: absolute;
     padding: 5px;
@@ -48,7 +48,7 @@
     content: "";
     position: absolute;
     top: -15px; /* value = - border-top-width - border-bottom-width */
-    right: 210px; /* controls horizontal position */
+    right: 260px; /* controls horizontal position */
     bottom: auto;
     left: auto;
     border-width: 0 15px 15px; /* vary these values to change the angle of the vertex */
@@ -63,15 +63,10 @@
     border-radius: 7px;
     padding: 10px;
 }
-.thumb {
-    position: absolute;
-    left: 405px;
-    top: 8px;
-}
-.fa-thumbs-up {
+.more-believable {
     color: #498a44;
 }
-.fa-thumbs-down {
+.less-believable {
     color: #c92d39;
 }
 #bootstrap-override .form-group {
@@ -88,6 +83,7 @@
     text-decoration: underline;
     font-size: 12px;
     color: grey;
+    margin-right: 10px;
 }
 .cancel:hover {
     color: #4c4c4c;

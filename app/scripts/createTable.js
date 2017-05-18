@@ -32,7 +32,7 @@ if (tableName == 'Subjects' || tableName == 'all') {
 
 // Article Responses Table
 if (tableName == 'ArticleResponses' || tableName == 'all') {
-    db.get().query('CREATE TABLE ArticleResponses(SubjectID INT NOT NULL, Trial INT, ArticleID INT, Likert INT, PageTime INT, SpontaneousResponseCount INT, ThumbsUpCount INT) ENGINE = INNODB',
+    db.get().query('CREATE TABLE ArticleResponses(SubjectID INT NOT NULL, Trial INT, ArticleID INT, Likert INT, PageTime INT, SpontaneousResponseCount INT, MoreBelievableCount INT) ENGINE = INNODB',
         function(err, result) {
             if (err) {
                 console.log('Error creating ArticleResponses table: ' + err);
@@ -45,7 +45,7 @@ if (tableName == 'ArticleResponses' || tableName == 'all') {
 
 // Spontaneous Responses Table
 if (tableName == 'SpontaneousResponses' || tableName == 'all') {
-    db.get().query('CREATE TABLE SpontaneousResponses(SRID INT NOT NULL AUTO_INCREMENT, SubjectID INT NOT NULL, Trial INT, ArticleID INT, ElementID VARCHAR(255), ThumbsUp TINYINT(1), PRIMARY KEY (SRID)) ENGINE = INNODB',
+    db.get().query('CREATE TABLE SpontaneousResponses(SRID INT NOT NULL AUTO_INCREMENT, SubjectID INT NOT NULL, Trial INT, ArticleID INT, ElementID VARCHAR(255), MoreBelievable TINYINT(1), PRIMARY KEY (SRID)) ENGINE = INNODB',
         function(err, result) {
             if (err) {
                 console.log('Error creating SpontaneousResponses table: ' + err);

@@ -67,12 +67,9 @@
                                      ng-style="modalStyles[trial][response.SRID]">
                                     <div class="well">
                                         <div class="form-group col-xs-12">
-                                            <label for="explanation">Please explain your response:</label>
+                                            <label for="explanation">Please explain why this element makes the article <span ng-show="response.moreBelievable" class="more-believable">more believable</span><span ng-show="!response.moreBelievable" class="less-believable">less believable</span>:
+                                            </label>
                                             <textarea ng-model="explanation" class="form-control" rows="5" id="comment"></textarea>
-                                        </div>
-                                        <div class="thumb">
-                                            <i ng-show="response.thumbsUp" class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
-                                            <i ng-show="!response.thumbsUp" class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
                                         </div>
                                         <div class="col-xs-12 text-right align-middle">
                                             <a class="cancel" href="" ng-click="deleteResponse(trial, response.SRID, $last)">Delete Response</a>

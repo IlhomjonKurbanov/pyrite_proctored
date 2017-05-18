@@ -79,9 +79,9 @@ angular.module('pyrite')
 
                     var sr = rawResponses[key]; //get spontaneous response object
                     var processedSR = { //build procssed object
-                        'SRID'      : sr.SRID,
-                        'elementID' : sr.elementID,
-                        'thumbsUp'  : sr.thumbsUp,
+                        'SRID'           : sr.SRID,
+                        'elementID'      : sr.elementID,
+                        'moreBelievable' : sr.moreBelievable,
                     }
 
                     if (!processed.hasOwnProperty(sr.trial)) {
@@ -95,6 +95,7 @@ angular.module('pyrite')
                         processed[sr.trial].push(processedSR);
                     }
                 }
+                console.log(angular.toJson(processed))
                 return processed;
             }
 
@@ -209,7 +210,7 @@ angular.module('pyrite')
                     };
 
                     //set position of explanation modal
-                    var modalWidth = 450;
+                    var modalWidth = 550;
                     $scope.modalStyles[trial][response.SRID] = {
                         'top'  : bottom + 20 + "px",
                         'left' : (left + (rect.width / 2)) - (modalWidth / 2) + "px"
