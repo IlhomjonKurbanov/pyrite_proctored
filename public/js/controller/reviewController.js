@@ -17,6 +17,10 @@ angular.module('pyrite')
             $scope.showNoResponsesMessage = false;
             $scope.disableNextButton = true;
             $scope.disableContinue = true;
+            $scope.responseTitleStyles = {
+                'more-believable' : { 'color' : '#498a44' },
+                'less-believable' : { 'color' : '#c92d39' },
+            }
 
             //article info
             $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
@@ -42,7 +46,6 @@ angular.module('pyrite')
                 $scope.current.trial.index = reviewIndex.trial;
                 $scope.current.response.index = reviewIndex.response;
             }
-            $scope.firstTrial = -1;
 
             //page data
             $scope.responses;
@@ -87,15 +90,11 @@ angular.module('pyrite')
                     if (!processed.hasOwnProperty(sr.trial)) {
                         //if processed does not have an array for the current trial, create one
                         processed[sr.trial] = [processedSR];
-
-                        //if trial is first in the list, record it as such
-                        if ($scope.firstTrial == -1) $scope.firstTrial = sr.trial;
                     } else {
                         //if processed contains array for current trial, push into existing array
                         processed[sr.trial].push(processedSR);
                     }
                 }
-                console.log(angular.toJson(processed))
                 return processed;
             }
 

@@ -34,11 +34,11 @@
             <div class="panel-group" id="accordion">
                 <div id="prompt" ng-show="showPrompt" class="jumbotron text-center">
                     <div>
-                        You will now be shown all the spontaneous responses you provided during the previous stage of the experiment, in the order that you responded. For each response, please provide a short explanation for why you responded the way you did.
+                        You will now be shown all article elements you indicated as making the article seem either "more believable" or "less believable". For each response, please provide a short explanation for why you responded the way you did.
                     </div>
                     <div id="begin">
                         <a ng-click="begin()" class="btn btn-default">
-                            {{(current.trial.trials[current.trial.index] == firstTrial) ? 'Begin ' : 'Continue where you left off '}}<i class="fa fa-play" aria-hidden="true"></i>
+                            {{(current.response.index == 0) ? 'Begin ' : 'Continue where you left off '}}<i class="fa fa-play" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -66,6 +66,9 @@
                                      ng-show="response.SRID == current.response.responses[current.response.index]"
                                      ng-style="modalStyles[trial][response.SRID]">
                                     <div class="well">
+                                        <div class="response-title" ng-style="responseTitleStyles[(response.moreBelievable) ? 'more-believable' : 'less-believable']">
+                                            Response {{current.response.index + 1}}
+                                        </div>
                                         <div class="form-group col-xs-12">
                                             <label for="explanation">Please explain why this element makes the article <span ng-show="response.moreBelievable" class="more-believable">more believable</span><span ng-show="!response.moreBelievable" class="less-believable">less believable</span>:
                                             </label>
