@@ -83,28 +83,15 @@
     padding-left: 0px;
     padding-bottom: 10px;
 }
-#bootstrap-override #less-believable {
-    /*background-color: #ff8787;*/
-    color: #b70000;
-    text-shadow: none !important;
-}
 #bootstrap-override #more-believable {
     color: #116600;
     margin-right: 10px;
+}
+#bootstrap-override #less-believable {
+    color: #b70000;
+}
+#bootstrap-override #more-believable, #bootstrap-override #less-believable {
     text-shadow: none !important;
-}
-#positive {
-    color: #498a44;
-    padding-right: 10px;
-}
-#positive:hover {
-    color: #346530;
-}
-#negative {
-    color: #c92d39;
-}
-#negative:hover {
-    color: #9b0d28;
 }
 #close-response {
     color: black;
