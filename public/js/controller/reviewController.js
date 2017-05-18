@@ -17,6 +17,10 @@ angular.module('pyrite')
             $scope.showNoResponsesMessage = false;
             $scope.disableNextButton = true;
             $scope.disableContinue = true;
+            $scope.responseTitleStyles = {
+                'more-believable' : { 'color' : '#498a44' },
+                'less-believable' : { 'color' : '#c92d39' },
+            }
 
             //article info
             $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
@@ -42,7 +46,6 @@ angular.module('pyrite')
                 $scope.current.trial.index = reviewIndex.trial;
                 $scope.current.response.index = reviewIndex.response;
             }
-            $scope.firstTrial = -1;
 
             //page data
             $scope.responses;
@@ -53,13 +56,13 @@ angular.module('pyrite')
             //get responses
             var responses_promise = dbService.getSpontaneousResponses({subjectID: cookieService.getSubjectID()});
             responses_promise.then(function(responses) {
-                var rawResponses = responses;
-                if (angular.equals({}, $scope.responses)) {
+                if (angular.equals({}, responses)) {
                     $scope.showLoadingMessage = false;
                     $scope.showNoResponsesMessage = true;
+                    $scope.disableContinue = false;
                 } else {
-                    $scope.responses = processRawResponses(rawResponses);
-                    buildPageData(rawResponses);
+                    $scope.responses = processRawResponses(responses);
+                    buildPageData(responses);
                     $scope.showLoadingMessage = false;
                     $scope.showPrompt = true;
                     $scope.showResponses = true;
@@ -79,17 +82,14 @@ angular.module('pyrite')
 
                     var sr = rawResponses[key]; //get spontaneous response object
                     var processedSR = { //build procssed object
-                        'SRID'      : sr.SRID,
-                        'elementID' : sr.elementID,
-                        'thumbsUp'  : sr.thumbsUp,
+                        'SRID'           : sr.SRID,
+                        'elementID'      : sr.elementID,
+                        'moreBelievable' : sr.moreBelievable,
                     }
 
                     if (!processed.hasOwnProperty(sr.trial)) {
                         //if processed does not have an array for the current trial, create one
                         processed[sr.trial] = [processedSR];
-
-                        //if trial is first in the list, record it as such
-                        if ($scope.firstTrial == -1) $scope.firstTrial = sr.trial;
                     } else {
                         //if processed contains array for current trial, push into existing array
                         processed[sr.trial].push(processedSR);
@@ -209,7 +209,7 @@ angular.module('pyrite')
                     };
 
                     //set position of explanation modal
-                    var modalWidth = 450;
+                    var modalWidth = 550;
                     $scope.modalStyles[trial][response.SRID] = {
                         'top'  : bottom + 20 + "px",
                         'left' : (left + (rect.width / 2)) - (modalWidth / 2) + "px"

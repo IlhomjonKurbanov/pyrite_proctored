@@ -25,7 +25,7 @@ angular.module('pyrite')
             //set counter variables
             $scope.pageTimeStart = Date.now(); //start response timer
             $scope.SRCount = 0; //set Spontaneous Response counter to 0
-            $scope.thumbsUpCount = 0; //set "thumbs up" Spontaneous Response counter to 0
+            $scope.moreBelievableCount = 0; //set "more believable" Spontaneous Response counter to 0
 
             //display parameters
             $scope.numArticles = articleService.getNumArticles();
@@ -51,7 +51,7 @@ angular.module('pyrite')
                     likert: likertValuesDB[$scope.likert], //transform text value into number for DB use
                     pageTime: pageTimeEnd - $scope.pageTimeStart, //time to respond, in ms
                     SRCount: $scope.SRCount, //number of spontaneous responses to this article
-                    thumbsUpCount: $scope.thumbsUpCount //number of those responses which were "positive"
+                    moreBelievableCount: $scope.moreBelievableCount //number of those responses which were "more believable"
                 }
 
                 //store in database
@@ -74,7 +74,7 @@ angular.module('pyrite')
             $scope.setHighlightStyling = function(boundingRectangle) {
                 //calculate size of highlight box:
                 //extend box to be "outside" of element borders
-                var extendDimension = 11; //experimentally determined
+                var extendDimension = 10; //experimentally determined
                 var width = boundingRectangle.right - boundingRectangle.left + extendDimension;
                 var height = boundingRectangle.bottom - boundingRectangle.top + extendDimension;
 
@@ -96,13 +96,16 @@ angular.module('pyrite')
             //set position of response callout based on bounding rectange of
             //selected element
             $scope.setResponseStyling = function(boundingRectangle) {
+                var elementWidth = boundingRectangle.right - boundingRectangle.left
+                var elementCenterX = (elementWidth / 2) + boundingRectangle.right + $window.pageXOffset;
+                var modalWidth = 316;
                 //set position of response callout:
                 //account for scroll with pageYOffset / pageXOffset
-                var topOffset = -35; //experimentally determined
-                var leftOffset = -15; //experimentally determined
+                var topOffset = -3; //experimentally determined
+                var leftOffset = -19; //experimentally determined
                 $scope.responseStyle= {
-                    'top'  : boundingRectangle.top + $window.pageYOffset + topOffset + "px",
-                    'left' : boundingRectangle.right + $window.pageXOffset + leftOffset + "px",
+                    'top'  : boundingRectangle.bottom + $window.pageYOffset + topOffset + "px",
+                    'left' : boundingRectangle.left + $window.pageXOffset + (elementWidth / 2) - (modalWidth / 2) + leftOffset + "px",
                 };
             }
 
@@ -133,12 +136,10 @@ angular.module('pyrite')
             }
 
             //submit a "spontaneous response" to an article element
-            $scope.submitSpontaneousResponse = function(event) {
-                var isThumbsUp = event.target.id == "positive";
-
+            $scope.submitSpontaneousResponse = function(val) {
                 //increment counters
                 $scope.SRCount++;
-                if (isThumbsUp) $scope.thumbsUpCount++;
+                if (val == 'more-believable') $scope.moreBelievableCount++;
 
                 //construct spontaneousResponse object
                 var spontaneousResponse = {
@@ -146,7 +147,7 @@ angular.module('pyrite')
                     trial: $scope.index + 1, // + 1 because trials are 1-based instead of 0 based
                     articleID: $scope.articleID,
                     elementID: $scope.selectedID,
-                    thumbsUp: (isThumbsUp) ? 1 : 0 //1 = true, 0 = false
+                    moreBelievable: (val == 'more-believable') ? 1 : 0 //1 = true, 0 = false
                 }
 
                 //store in database

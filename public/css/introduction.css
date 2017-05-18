@@ -33,14 +33,14 @@
 .fa {
     vertical-align: middle;
 }
-#selectField2, #selectField3, #otherField1, #otherField2, #otherField3 {
+#select-field-2, #select-field-3, #other-field-1, #other-field-2, #other-field-3 {
     margin-top: 7px;
     display: inline-block;
 }
-#submitIntro {
+#submit-intro {
     float: right;
 }
-#submitIntro span {
+#submit-intro span {
     padding: 5px;
 }
 .message-fade.ng-hide {
@@ -54,11 +54,18 @@
   -webkit-transition: all linear 500ms;
   transition: all linear 500ms;
 }
-#instructions {
-    font-size: 18px;
+#bootstrap-override #likert-statement {
+    text-align: center;
+    margin-bottom: 15px;
 }
-img {
-    width: 500px;
-    border: 10px solid black;
-    margin-bottom: 10px;
+#gif {
+    width: 403px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#begin {
+    margin: 5px 0px;
 }

@@ -9,7 +9,7 @@ angular.module('pyrite')
         "REQUIRE_CONSENT"     : true,
         "DO_PROGRESS_CHECK"   : false, //toggles redirect behavior that checks user's requested path against their stored progress information
         "PROCTORED"           : false, //toggles alternate behavior on narrative response page for proctored experiments
-        "PATH"                : "http://localhost:8080/"
+        "PATH"                : "http://localhost/"
     });
 
 // == demographic values =======================================================
@@ -24,7 +24,7 @@ angular.module('pyrite')
             5 : { "val" : "Education" },
             6 : { "val" : "Engineering" },
             7 : { "val" : "Environment" },
-            8 : { "val" : "The Information School" },
+            8 : { "val" : "Information Science" },
             9 : { "val" : "Law" },
             10 : { "val" : "Medicine" },
             11 : { "val" : "Nursing" },
