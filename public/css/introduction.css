@@ -33,7 +33,7 @@
 .fa {
     vertical-align: middle;
 }
-#selectField2, #selectField3, #otherField1, #otherField2, #otherField3 {
+#select-field-2, #select-field-3, #other-field-1, #other-field-2, #other-field-3 {
     margin-top: 7px;
     display: inline-block;
 }
