@@ -122,19 +122,17 @@
                         <h4 class="panel-title">Instructions</h4>
                     </div>
                     <div id="instructions" class="panel-collapse collapse">
-                        <div class="panel-body text-center">
+                        <div class="panel-body">
                             <p>
-                                The experiment is divided into two phases. In the first phase, you view a set of articles, and respond to the statement following each article:
+                                You will be shown a series of articles where words have been replaced by filler text- it has no meaning, and you will not be able to understand it. Please respond to the following statement after each article, based on the presentation (look and feel) of each page:
                             </p>
-                            <img src="/app/data/intro_img1.png">
+                            <p id="likert-statement">
+                                <strong>“This article seems believable.”</strong>
+                            </p>
                             <p>
-                                While viewing these articles, you are able to click on elements within the article to indicate whether the element makes the article seem more or less believable. A "thumbs-up" response means that the element encourages you to believe the article, and a "thumbs-down" response means that the element element influences you to doubt the article.
+                                You will also be able to give a more in-depth response to elements of the article that made it seem more or less believable. By clicking anywhere within the article, you will be able to indicate whether the element you clicked makes the article seem more or less believable. After viewing all the articles, you will be asked to provide a short text response for why you marked the elements as being “more” or “less” believable.
                             </p>
-                            <img src="/app/data/intro_img2.png">
-                            <p>
-                                In the second phase of the experiment you are prompted to give a more in-depth explanation for why you responed positively or negatively towards certain elements:
-                            </p>
-                            <img src="/app/data/intro_img3.png">
+                            <!--TODO: add gif-->
                             <div class="col-sm-12 text-center">
                                 <a id="goToArticles" ng-click="continue()" class="btn btn-default">
                                     Begin Experiment <i class="fa fa-play" aria-hidden="true"></i>
