@@ -54,9 +54,16 @@
   -webkit-transition: all linear 500ms;
   transition: all linear 500ms;
 }
+#bootstrap-override #not-understand {
+    font-size: 15px;
+}
 #bootstrap-override #likert-statement {
     text-align: center;
     margin-bottom: 15px;
+    font-size: 18px;
+}
+#bootstrap-override #last-paragraph {
+    margin-bottom: 20px;
 }
 #gif {
     width: 403px;
@@ -67,5 +74,6 @@
     overflow: hidden;
 }
 #begin {
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }

@@ -26,7 +26,7 @@
                 <button id="submit" type="button" ng-disabled="!consentCheck" ng-show="!hasConsented" ng-click="submitConsent()" class="btn btn-default">
                     Submit Consent
                 </button>
-                <span ng-show="hasConsented">Click <a ng-click="downloadConsent()">here</a> to download this form for your records.</span>
+                <span ng-show="hasConsented">(Optional) Click <a ng-click="downloadConsent()">here</a> to download this form for your records.</span>
                 <button id="continue" ng-click="continue()" ng-show="hasConsented" class="btn btn-default">
                     Continue <i class="fa fa-play" aria-hidden="true"></i>
                 </button>
