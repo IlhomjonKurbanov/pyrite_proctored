@@ -20,7 +20,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">Demographic Information</h4>
                     </div>
-                    <div id="demographicInfo" class="panel-collapse collapse in">
+                    <div id="demographic-info" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <form class="form-horizontal">
                                 <!-- Birth Year -->
@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5" for="field">What is your field of study?</label>
                                     <div class="col-sm-5">
-                                        <select id="selectField1" class="form-control" required
+                                        <select id="select-field-1" class="form-control" required
                                             ng-model="selectField1"
                                             ng-options="field as field.val disable when field.disabled for field in fields"
                                             ng-change="handleOther1()">
@@ -44,7 +44,7 @@
                                     </div>
                                     <div ng-show="selectedOther1">
                                         <div class="col-sm-offset-5 col-sm-5">
-                                            <input id="otherField1" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField1">
+                                            <input id="other-field-1" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField1">
                                             <p class="cancel-field">
                                                 <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther1(false, true)"></i>
                                             </p>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div ng-show="field2Visible">
                                         <div class="col-sm-offset-5 col-sm-5">
-                                            <select id="selectField2" class="form-control"
+                                            <select id="select-field-2" class="form-control"
                                                 ng-model="selectField2"
                                                 ng-options="field as field.val disable when field.disabled for field in fields"
                                                 ng-change="handleOther2()">
@@ -66,7 +66,7 @@
                                         </div>
                                         <div ng-show="selectedOther2">
                                             <div class="col-sm-offset-5 col-sm-5">
-                                                <input id="otherField2" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField2">
+                                                <input id="other-field-2" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField2">
                                                 <p class="cancel-field">
                                                     <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther2(false, true)"></i>
                                                 </p>
@@ -78,7 +78,7 @@
                                     </div>
                                     <div ng-show="field3Visible">
                                         <div class="col-sm-offset-5 col-sm-5">
-                                            <select id="selectField3" class="form-control"
+                                            <select id="select-field-3" class="form-control"
                                                 ng-model="selectField3"
                                                 ng-options="field as field.val disable when field.disabled for field in fields"
                                                 ng-change="handleOther3()">
@@ -89,7 +89,7 @@
                                         </div>
                                         <div ng-show="selectedOther3">
                                             <div class="col-sm-offset-5 col-sm-5">
-                                                <input id="otherField3" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField3">
+                                                <input id="other-field-3" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField3">
                                                 <p class="cancel-field">
                                                     <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther3(false, true)"></i>
                                                 </p>
