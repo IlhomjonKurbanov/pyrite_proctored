@@ -18,7 +18,7 @@
                 </div>
             </div>
             <form id="consent-check" class="form-horizontal col-sm-12">
-                <label class="checkbox-inline">
+                <label class="checkbox-inline" ng-show="!hasConsented">
                     <input type="checkbox" ng-model="consentCheck"  ng-disabled="hasConsented" name="consent-check" value="consent-check">
                         I give my consent to participate in this study. <span class="signed-date">{{today}}</span>
                     </input>
@@ -26,14 +26,10 @@
                 <button id="submit" type="button" ng-disabled="!consentCheck" ng-show="!hasConsented" ng-click="submitConsent()" class="btn btn-default">
                     Submit Consent
                 </button>
-                <div id="buttons">
-                    <button id="print-button" type="button" ng-show="hasConsented" ng-click="downloadConsent()" class="btn btn-default">
-                        Download Consent Form
-                    </button>
-                    <a ng-click="continue()" ng-show="hasConsented" class="btn btn-default">
-                        Continue <i class="fa fa-play" aria-hidden="true"></i>
-                    </a>
-                </div>
+                <span ng-show="hasConsented">Click <a ng-click="downloadConsent()">here</a> to download this form for your records.</span>
+                <button id="continue" ng-click="continue()" ng-show="hasConsented" class="btn btn-default">
+                    Continue <i class="fa fa-play" aria-hidden="true"></i>
+                </button>
             </form>
         </div>
     </div>

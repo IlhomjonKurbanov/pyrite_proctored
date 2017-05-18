@@ -9,10 +9,6 @@
 #consent-form {
     color: black;
 }
-#consent-text .panel-body {
-    max-height: 65vh;
-    overflow-y: scroll;
-}
 .signed-date {
     color: grey;
     font-style: italic;
@@ -20,6 +16,13 @@
 #consent-check label {
     float: left;
 }
-#consent-check #submit, #consent-check #buttons {
+#bootstrap-override a {
+    color: #00baa7;
+}
+#bootstrap-override a:hover {
+    color: #00907c;
+    cursor: pointer;
+}
+#consent-check #submit, #consent-check #continue {
     float: right;
 }
