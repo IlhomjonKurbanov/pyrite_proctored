@@ -21,7 +21,9 @@ angular.module('pyrite')
             $scope.d = new Date();
             $scope.thisYear = $scope.d.getFullYear();
             $scope.years.push({val: 'Select a birth year...', disabled: true });
-            for (i = $scope.thisYear - 18; i >= $scope.thisYear - 100; i--) {
+            var ageOfConsent = 18;
+            var maxReasonableAge = 100;
+            for (i = $scope.thisYear - ageOfConsent; i >= $scope.thisYear - maxReasonableAge; i--) {
                 $scope.years.push({val: i});
             }
             $scope.selectBirthYear = $scope.years[0];
