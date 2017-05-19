@@ -3,9 +3,7 @@
     =============
     template for 'articles' view
 -->
-
 <link rel="stylesheet" href="css/articles.css">
-
 <div class="container col-sm-12" ng-click="hideSpontaneousResponse()">
     <div class="progress col-sm-offset-2 col-sm-8">
         <div id="demographic-bar" class="progress-bar progress-bar-striped"
@@ -20,6 +18,9 @@
     <div class="panel panel-default col-sm-offset-2 col-sm-8">
         <div class="panel-heading">
             Review article and respond below.
+            <div>
+                <span id="confused" data-toggle="modal" data-target="#help" ng-show="index == 0">confused</span><span id="no-underline"> </span><i data-toggle="modal" data-target="#help" class="fa fa-question-circle" aria-hidden="true"></i>
+            </div>
         </div>
         <div class="panel-body">
             <div id="article-well" class="well">
@@ -89,5 +90,19 @@
         <!-- <a><i id="positive" class="fa fa-thumbs-up fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a>
         <a><i id="negative" class="fa fa-thumbs-down fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a> -->
         <a><i id="close-response" class="fa fa-times" aria-hidden="true" ng-click="hideSpontaneousResponse()"></i></a>
+    </div>
+    <div id="help" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Instructions</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-include="'view/partial/instructions-content.html'"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
