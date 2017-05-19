@@ -1,11 +1,11 @@
-// introductionController.js
-// =========================
-// controller for 'introduction' view
+// demographicController.js
+// ========================
+// controller for 'demographic' view
 
 angular.module('pyrite')
-    .controller('introductionController', ['$scope', '$rootScope', '$location', 'appConfig', 'demographicValues',
+    .controller('demographicController', ['$scope', '$rootScope', '$location', '$window', 'appConfig', 'demographicValues',
                                            'dbService', 'cookieService', 'articleService', 'progressService',
-        function($scope, $rootScope, $location, appConfig, demographicValues,
+        function($scope, $rootScope, $location, $window, appConfig, demographicValues,
                  dbService, cookieService, articleService, progressService) {
             // == set up page values ===============================================
 
@@ -56,32 +56,6 @@ angular.module('pyrite')
                         && $scope.selectGender != $scope.genders[0]);
             };
 
-            //processes demographic info and sends it to DB, stores returned SubjectID as a cookie
-            $scope.submitDemographicInfo = function() {
-                var newArticleOrder = articleService.getNewArticleOrder();
-                var demographicInfo = {
-                    articleOrder: newArticleOrder.toString(),
-                    age: ($scope.thisYear - $scope.selectBirthYear.val),
-                    field1: ($scope.selectedOther1 ? $scope.otherField1 : $scope.selectField1.val),
-                    field2: ($scope.selectedOther2 ? $scope.otherField2 : $scope.selectField2.val),
-                    field3: ($scope.selectedOther3 ? $scope.otherField3 : $scope.selectField3.val),
-                    gender: $scope.selectGender.val,
-                    dateConsented: $scope.d.toLocaleDateString()
-                }
-                //store articleOrder, in rootScope for quick lookup and in cookies as backup
-                $rootScope.articleOrder = newArticleOrder;
-                cookieService.setArticleOrder(newArticleOrder);
-
-                //handle when fields 2 and 3 haven't been selected
-                if (demographicInfo.field2 == 'Select a field...') demographicInfo.field2 = "";
-                if (demographicInfo.field3 == 'Select a field...') demographicInfo.field3 = "";
-
-                var subjectID_promise = dbService.registerNewSubject(demographicInfo);
-                subjectID_promise.then(function(subjectID) {
-                    cookieService.setSubjectID(subjectID);
-                });
-            };
-
             //toggle visibility of additional 'field' form elements
             $scope.toggleField2 = function(state) {
                 $scope.field2Visible = state;
@@ -129,10 +103,32 @@ angular.module('pyrite')
                 $scope.toggleOther3($scope.selectField3.val == 'Other:', false);
             };
 
-            //continue
-            $scope.continue = function() {
-                progressService.setStage('articles');
-                progressService.setArticleIndex(0);
-                $location.path('/articles/0');
-            }
+            //processes demographic info and sends it to DB, stores returned SubjectID as a cookie
+            $scope.submitDemographicInfo = function() {
+                var newArticleOrder = articleService.getNewArticleOrder();
+                var demographicInfo = {
+                    articleOrder: newArticleOrder.toString(),
+                    age: ($scope.thisYear - $scope.selectBirthYear.val),
+                    field1: ($scope.selectedOther1 ? $scope.otherField1 : $scope.selectField1.val),
+                    field2: ($scope.selectedOther2 ? $scope.otherField2 : $scope.selectField2.val),
+                    field3: ($scope.selectedOther3 ? $scope.otherField3 : $scope.selectField3.val),
+                    gender: $scope.selectGender.val,
+                    dateConsented: $scope.d.toLocaleDateString()
+                }
+                //store articleOrder, in rootScope for quick lookup and in cookies as backup
+                $rootScope.articleOrder = newArticleOrder;
+                cookieService.setArticleOrder(newArticleOrder);
+
+                //handle when fields 2 and 3 haven't been selected
+                if (demographicInfo.field2 == 'Select a field...') demographicInfo.field2 = "";
+                if (demographicInfo.field3 == 'Select a field...') demographicInfo.field3 = "";
+
+                var subjectID_promise = dbService.registerNewSubject(demographicInfo);
+                subjectID_promise.then(function(subjectID) {
+                    cookieService.setSubjectID(subjectID);
+                    progressService.setStage('articles');
+                    progressService.setArticleIndex(0);
+                    $location.path('/articles/0');
+                });
+            };
         }]);

@@ -1,10 +1,11 @@
 angular.module('pyrite')
     .constant("EXPERIMENT_STAGE", {
-        "unstarted"    : 0,
-        "introduction" : 1,
-        "articles"     : 2,
-        "review"       : 3,
-        "finished"     : 4
+        'unstarted'    : 0,
+        'instructions' : 1,
+        'demographics' : 2,
+        'articles'     : 3,
+        'review'       : 4,
+        'finished"'    : 5
     })
     .service('progressService', ['EXPERIMENT_STAGE', 'cookieService', function(EXPERIMENT_STAGE, cookieService) {
         //initialize progress data

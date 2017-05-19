@@ -1,0 +1,111 @@
+<!--
+    introduction.html
+    =================
+    template for 'introduction' view
+-->
+
+<link rel="stylesheet" href="css/demographic.css">
+<div class="container col-sm-12">
+    <div class="progress col-sm-offset-2 col-sm-8">
+        <div id="demographic-bar" class="progress-bar progress-bar-striped active"
+            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+            Demographic Information
+        </div>
+    </div>
+    <div class="panel panel-default col-sm-offset-2 col-sm-8">
+        <div class="panel-heading">Demographic Information</div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <!-- Birth Year -->
+                <div class="form-group">
+                    <label class="control-label col-sm-5" for="age">What year were you born?</label>
+                    <div class="col-sm-5">
+                        <select id="age" class="form-control" ng-model="selectBirthYear" required
+                            ng-options="year as year.val disable when year.disabled for year in years">
+                        </select>
+                    </div>
+                </div>
+                <!-- Field(s) -->
+                <div class="form-group">
+                    <label class="control-label col-sm-5" for="field">What is your field of study?</label>
+                    <div class="col-sm-5">
+                        <select id="select-field-1" class="form-control" required
+                            ng-model="selectField1"
+                            ng-options="field as field.val disable when field.disabled for field in fields"
+                            ng-change="handleOther1()">
+                        </select>
+                    </div>
+                    <div ng-show="selectedOther1">
+                        <div class="col-sm-offset-5 col-sm-5">
+                            <input id="other-field-1" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField1">
+                            <p class="cancel-field">
+                                <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther1(false, true)"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-5 col-sm-5 text-left add-field" ng-show="!field2Visible">
+                        <span class="pointer" ng-click="toggleField2(true)"><i class="fa fa-plus" aria-hidden="true"></i> add field</span>
+                    </div>
+                    <div ng-show="field2Visible">
+                        <div class="col-sm-offset-5 col-sm-5">
+                            <select id="select-field-2" class="form-control"
+                                ng-model="selectField2"
+                                ng-options="field as field.val disable when field.disabled for field in fields"
+                                ng-change="handleOther2()">
+                            </select>
+                            <p class="cancel-field" ng-show="!field3Visible">
+                                <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleField2(false)"></i>
+                            </p>
+                        </div>
+                        <div ng-show="selectedOther2">
+                            <div class="col-sm-offset-5 col-sm-5">
+                                <input id="other-field-2" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField2">
+                                <p class="cancel-field">
+                                    <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther2(false, true)"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-offset-5 col-sm-5 text-left pointer add-field" ng-show="!field3Visible">
+                            <span class="pointer" ng-click="toggleField3(true)"><i class="fa fa-plus" aria-hidden="true"></i> add field</span>
+                        </div>
+                    </div>
+                    <div ng-show="field3Visible">
+                        <div class="col-sm-offset-5 col-sm-5">
+                            <select id="select-field-3" class="form-control"
+                                ng-model="selectField3"
+                                ng-options="field as field.val disable when field.disabled for field in fields"
+                                ng-change="handleOther3()">
+                            </select>
+                            <p class="cancel-field">
+                                <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleField3(false)"></i>
+                            </p>
+                        </div>
+                        <div ng-show="selectedOther3">
+                            <div class="col-sm-offset-5 col-sm-5">
+                                <input id="other-field-3" class="form-control" type="text" placeholder="Enter other field..." ng-model="otherField3">
+                                <p class="cancel-field">
+                                    <i class="fa fa-times pointer" aria-hidden="true" ng-click="toggleOther3(false, true)"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gender -->
+                <div class="form-group">
+                    <label class="control-label col-sm-5" for="gender">Which gender do you identify with?</label>
+                    <div class="col-sm-5">
+                        <select id="gender" class="form-control" ng-model="selectGender" required
+                            ng-options="gender as gender.val disable when gender.disabled for gender in genders">
+                        </select>
+                    </div>
+                </div>
+                <!-- Submit -->
+                <div id="submit" class="col-sm-offset-5 col-sm-7">
+                    <button ng-click="submitDemographicInfo()" ng-disabled="!formValid()" class="btn btn-default">
+                        Continue <i class="fa fa-play" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

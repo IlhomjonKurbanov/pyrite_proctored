@@ -1,0 +1,30 @@
+<!--
+    instructions.html
+    =================
+    template for 'instructions' view
+-->
+
+<link rel="stylesheet" href="css/instructions.css">
+<div class="container col-sm-12">
+    <div class="panel panel-default col-sm-offset-2 col-sm-8">
+        <div class="panel-heading">Instructions</div>
+        <div class="panel-body">
+            <p>
+                You will be shown a series of articles where words, images, and videos have been replaced by filler content -- it has no meaning, and <strong id="not-understand">you will not be able to understand it</strong>. Please respond to the following statement after each article, based on the presentation (look and feel) of each page:
+            </p>
+            <p id="likert-statement">
+                <strong>“If it had real content, I would believe an article that looks like this.”</strong>
+            </p>
+            <p id="last-paragraph">
+                You will also be able to respond to specific elements of the article that made it seem more or less believable. By clicking anywhere within the article, you will be able to indicate whether the element you clicked makes the article seem more or less believable. After viewing all the articles, you will be asked to provide a short text response explaining why you marked the elements as being “more” or “less” believable.
+            </p>
+            <div id="gif">
+                <img src="/app/data/instructions.gif">
+            </div>
+            <div class="col-sm-12 text-center">
+                <a id="begin" ng-click="begin()" class="btn btn-default">
+                    Begin Experiment <i class="fa fa-play" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,28 @@
+/*
+    instructions.css
+    ================
+    CSS for 'instructions' view
+*/
+#bootstrap-override #not-understand {
+    font-size: 15px;
+}
+#bootstrap-override #likert-statement {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+#bootstrap-override #last-paragraph {
+    margin-bottom: 20px;
+}
+#gif {
+    width: 403px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#begin {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
