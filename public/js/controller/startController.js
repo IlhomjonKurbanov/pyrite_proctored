@@ -3,8 +3,11 @@
 // controller for 'start' view
 
 angular.module('pyrite')
-    .controller('startController', ['$scope', 'appConfig',
-        function($scope, appConfig) {
+    .controller('startController', ['$scope', '$location', 'appConfig', 'progressService',
+        function($scope, $location, appConfig, progressService) {
             //setup page variables
-            $scope.goToConsent = appConfig.REQUIRE_CONSENT;
+            $scope.start = function() {
+                progressService.setStage('instructions');
+                $location.path('/instructions');
+            }
         }]);
