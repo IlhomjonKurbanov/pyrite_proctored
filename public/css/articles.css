@@ -3,6 +3,21 @@
     ============
     CSS for 'articles' view
 */
+.panel-heading div {
+    line-height: 50px;
+    vertical-align: middle;
+    font-size: 24px;
+    float: right;
+    padding-right: 5px;
+}
+.panel-heading div:hover {
+    cursor: pointer;
+    color: #007263;
+}
+.panel-heading span {
+    font-size: 14px;
+    vertical-align: bottom;
+}
 #bootstrap-override .well {
     padding: 0;
     overflow: hidden;
@@ -101,4 +116,12 @@
 }
 #close-response:hover {
     opacity: .5;
+}
+#bootstrap-override .modal-dialog {
+    width: 650px;
+    margin: 15px auto;
+}
+#bootstrap-override .modal-body {
+    color: black;
+    padding-bottom: 20px;
 }
