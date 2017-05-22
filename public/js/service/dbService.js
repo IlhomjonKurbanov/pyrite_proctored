@@ -1,6 +1,6 @@
 angular.module('pyrite')
     .service('dbService', ['$http', function($http) {
-        //register a subject: {articleOrder, age, field1, field2, field3, gender, dateConsented}
+        //register a subject:
         this.registerNewSubject = function(subject) {
             var data = angular.toJson(subject);
             return $http.post('/api/subject/register-new', data)
@@ -13,7 +13,7 @@ angular.module('pyrite')
                         });
         }
 
-        //register an email address: {email}
+        //register an email address
         this.registerPrizeDrawingParticipant = function(email) {
             var data = angular.toJson(email);
             return $http.post('/api/prize/register-new', data)
@@ -25,7 +25,7 @@ angular.module('pyrite')
                         });
         }
 
-        //register an article response: {subjectID, trial, articleID, likert}
+        //register an article response
         this.registerArticleResponse = function(articleResponse) {
             var data = angular.toJson(articleResponse);
             return $http.post('/api/article/register-response', data)
@@ -37,6 +37,7 @@ angular.module('pyrite')
                         });
         }
 
+        //register a spontaneous response
         this.registerSpontaneousResponse = function(spontaneousResponse) {
             var data = angular.toJson(spontaneousResponse);
             return $http.post('/api/spontaneous/register-response', data)
@@ -48,6 +49,7 @@ angular.module('pyrite')
                         });
         }
 
+        //get all spontaneous responses for a given subject
         this.getSpontaneousResponses = function(subjectID) {
             var data = angular.toJson(subjectID);
             return $http.post('/api/spontaneous/get-all-subject-responses', data)
@@ -60,6 +62,7 @@ angular.module('pyrite')
                         });
         }
 
+        //delete a spontaneous response
         this.deleteSpontaneousResponse = function(SRID) {
             var data = angular.toJson(SRID);
             return $http.post('/api/spontaneous/delete', data)
@@ -72,6 +75,7 @@ angular.module('pyrite')
                         });
         }
 
+        //register a narrative response to a spontaneous response
         this.registerNarrativeResponse = function(narrativeResponse) {
             var data = angular.toJson(narrativeResponse);
             return $http.post('/api/narrative/register-response', data)

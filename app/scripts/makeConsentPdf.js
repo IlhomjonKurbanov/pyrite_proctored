@@ -10,7 +10,7 @@ var options = {
     "border" : "50px"
   };
 
-pdf.create(html, options).toFile(__dirname + '../data/Consent.pdf', function(err, res) {
+pdf.create(html, options).toFile(__dirname + '/../data/Consent.pdf', function(err, res) {
   if (err) return console.log(err);
   console.log(res);
 });
