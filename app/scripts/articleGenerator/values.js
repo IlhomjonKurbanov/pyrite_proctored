@@ -1,7 +1,7 @@
 exports.attributeValues = {
-    'linkRatio'  : [-1, 200, 50],
+    'linkRatio'  : [-1, 200, 50], //words per link
     'video'      : [0, 1, 2],
-    'imageRatio' : [-1, 500, 100],
+    'imageRatio' : [-1, 500, 100], //words per image
     'wordCount'  : [150, 400, 700],
     'fontSize'   : [10, 12, 14, 16, 18],
     'serifP'     : [0, 1],
