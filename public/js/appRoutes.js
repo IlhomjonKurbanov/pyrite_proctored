@@ -12,16 +12,22 @@ angular.module('pyrite')
                 controller: 'startController'
             })
 
+            // instructions page
+            .when('/instructions', {
+                templateUrl: 'view/instructions.html',
+                controller: 'instructionsController'
+            })
+
             // consent page
             .when('/consent', {
                 templateUrl: 'view/consent.html',
                 controller: 'consentController'
             })
 
-            // introduction page
-            .when('/introduction', {
-                templateUrl: 'view/introduction.html',
-                controller: 'introductionController'
+            // demographic page
+            .when('/demographic', {
+                templateUrl: 'view/demographic.html',
+                controller: 'demographicController'
             })
 
             // articles page
