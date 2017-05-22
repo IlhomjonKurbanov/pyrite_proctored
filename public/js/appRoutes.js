@@ -25,9 +25,9 @@ angular.module('pyrite')
             })
 
             // demographic page
-            .when('/demographic', {
-                templateUrl: 'view/demographic.html',
-                controller: 'demographicController'
+            .when('/demographics', {
+                templateUrl: 'view/demographics.html',
+                controller: 'demographicsController'
             })
 
             // articles page
