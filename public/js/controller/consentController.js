@@ -22,8 +22,8 @@ angular.module('pyrite')
             };
 
             $scope.continue = function() {
-                progressService.setStage('introduction'); //advance user to introduction stage
-                $location.path('/introduction');
+                progressService.setStage('demographics'); //advance user to introduction stage
+                $location.path('/demographics');
             }
         }
     ]);

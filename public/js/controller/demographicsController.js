@@ -1,9 +1,9 @@
-// demographicController.js
-// ========================
-// controller for 'demographic' view
+// demographicsController.js
+// =========================
+// controller for 'demographics' view
 
 angular.module('pyrite')
-    .controller('demographicController', ['$scope', '$rootScope', '$location', '$window', 'appConfig', 'demographicValues',
+    .controller('demographicsController', ['$scope', '$rootScope', '$location', '$window', 'appConfig', 'demographicValues',
                                            'dbService', 'cookieService', 'articleService', 'progressService',
         function($scope, $rootScope, $location, $window, appConfig, demographicValues,
                  dbService, cookieService, articleService, progressService) {
