@@ -14,10 +14,11 @@ exports.navbar = function(ID) {
 
     var offset = 1;
     var item = '';
-    for (var i = 1; i <= 8; i++) {
+    var numItems = Math.floor(Math.random() * 5) + 4;
+    for (var i = 1; i <= numItems; i++) {
         item = items[i - offset]
-        if (item.length > 3 && itemsUsed.indexOf(title) == -1) {
-            itemsUsed.push(title);
+        if (item.length > 3 && itemsUsed.indexOf(item) == -1) {
+            itemsUsed.push(item);
             built += '<li><a ng-click="selectElement($event);$event.stopPropagation()" id="navbar-element-' + ID + '-' + i + '">';
             built += item.charAt(0).toUpperCase() + item.slice(1);
             built += '</a></li>';

@@ -1,6 +1,11 @@
-const value = require('./values');
+const values = require('./values');
 const build = require('./functions');
 const loremipsum = require('lorem-ipsum');
+
+function randomSelect(values) {
+    var index = Math.floor(Math.random() * values.length);
+    return values[index];
+}
 
 function run() {
     var ID = 1;
@@ -11,6 +16,4 @@ function run() {
     page += '</div>' //end page content
     console.log(page);
 }
-//TODO randomize number of navbar elements
-// run();
-build.title(1);
+run();
