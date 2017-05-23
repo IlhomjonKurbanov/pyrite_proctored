@@ -38,3 +38,18 @@ exports.navbarColors = {
     4 : { 'background': '#0378a3', 'hover': '#025d7f'}, //blue
     5 : { 'background': '#7e018e', 'hover': '#4a0054'}, //purple
 }
+
+exports.images = [
+    'data/img1.jpg',
+    'data/img2.jpg',
+    'data/img3.jpg',
+    'data/img4.jpg',
+    'data/img5.jpg',
+    'data/img6.jpg',
+    'data/img7.jpg'
+]
+
+exports.videos = [
+    'data/video1.jpg',
+    'data/video2.jpg'
+]

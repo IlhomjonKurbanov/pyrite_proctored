@@ -85,21 +85,22 @@ exports.paragraph = function() {
 //         added randomly
 exports.links = function(ID, paragraphs, links) {
     var paragraph, sentence, maxWords, numWords, beginIndex, prepend;
-    var addedLinks = {}; //stores '2D array' of indexes where links have been added (addedLinks[paragraph][sentence])
+    var linkIndexes = {}; //stores '2D array' of indexes where links have been added (linkIndexes[paragraph][sentence])
     for (var i = 1; i <= links; i++) {
         var paragraph = Math.floor(Math.random() * paragraphs.length); //select a random paragraph
         var sentence = Math.floor(Math.random() * paragraphs[paragraph].length); //select a random sentence
 
-        //if link has been added, skip link, otherwise store its index
-        if (addedLinks.hasOwnProperty(paragraph)) {
-            if (addedLinks[paragraph].indexOf(sentence) != -1) {
+        //if link has been added at this index, skip an iteration of the loop,
+        //otherwise store this index
+        if (linkIndexes.hasOwnProperty(paragraph)) {
+            if (linkIndexes[paragraph].indexOf(sentence) != -1) {
                 i--;
                 continue;
             } else {
-                addedLinks[paragraph].push(sentence);
+                linkIndexes[paragraph].push(sentence);
             }
         } else {
-            addedLinks[paragraph] = [sentence];
+            linkIndexes[paragraph] = [sentence];
         }
 
         //links can be 1 to 5 words
@@ -112,6 +113,53 @@ exports.links = function(ID, paragraphs, links) {
         prepend = '<a id="link-' + ID + '-' + i + '" ' + this.NGCLICK + '>';
         paragraphs[paragraph][sentence][beginIndex] = prepend + paragraphs[paragraph][sentence][beginIndex];
         paragraphs[paragraph][sentence][beginIndex + numWords - 1] += '</a>'; //numWords - 1 means that end tag will be added to the correct index
+    }
+    return {
+        'data' : paragraphs,
+        'indexes' : linkIndexes
+    };
+}
+
+// output: completed video tag
+exports.video = function(ID, videoPath) {
+    var data = '<video id="article-video-' + ID + '" height="270" controls>';
+    data += '<source src="' + videoPath + '" type="video/mp4">';
+    data += 'Your browser does not support the video tag.</video>';
+    return data;
+}
+
+// input: articleID; 3D array of words, grouped by sentences, paragraphs, and
+//        entire page; 2D array of index where a link has already been added;
+//        number of images to add; image paths
+// output: same array of words as has been input, with images added randomly (at
+//         the beginning of sentences)
+exports.images = function(ID, paragraphs, linkIndexes, images, imagePaths) {
+    var paragraph, sentence, imageEnd;
+    var imageStart = '<img ' + this.NGCLICK + ' ';
+    var imageIndexes = new Array();
+    for (var i = 1; i <= images; i++) {
+        var paragraph = Math.floor(Math.random() * paragraphs.length); //select a random paragraph
+        var sentence = Math.floor(Math.random() * paragraphs[paragraph].length); //select a random sentence
+
+        //if an images has already been added to this paragraph, skip an iteration
+        //of the loop, otherwise store index
+        if (imageIndexes.indexOf(paragraph) != -1) {
+            i--;
+            continue;
+        } else {
+            imageIndexes.push(paragraph);
+        }
+
+        //if link has already been added to this sentence, pick a new sentence
+        if (linkIndexes.hasOwnProperty(paragraph)) {
+            while (linkIndexes[paragraph].indexOf(sentence) != -1) {
+                sentence = Math.floor(Math.random() * paragraphs[paragraph].length); //select a random sentence
+            }
+        }
+
+        //add image
+        imageEnd = 'id="image-' + ID + '-' + i + '" src="' + imagePaths.pop() + '">';
+        paragraphs[paragraph][sentence][0] = imageStart + imageEnd + paragraphs[paragraph][sentence][0];;
     }
     return paragraphs;
 }
