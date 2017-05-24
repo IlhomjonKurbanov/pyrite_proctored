@@ -1,8 +1,12 @@
-var loremipsum = require('lorem-ipsum');
+// element.js
+// ==========
+// functions for building article elements
 
+// dependencies & constants
+var loremipsum = require('lorem-ipsum');
 exports.NGCLICK = 'ng-click="selectElement($event);$event.stopPropagation()"'
 
-// == building functions (build article elements) ==============================
+// build navbar
 exports.navbar = function(ID) {
     var built = '';
     var items = loremipsum({
@@ -37,6 +41,7 @@ exports.navbar = function(ID) {
     return built;
 }
 
+// build article title
 exports.title = function(ID) {
     var built = '';
     var title = loremipsum({
@@ -60,6 +65,8 @@ exports.title = function(ID) {
     return built;
 }
 
+// build a paragraph
+// =================
 // output: { wordCount: # of words, data: paragraph text}
 exports.paragraph = function() {
     var data = {
@@ -79,6 +86,8 @@ exports.paragraph = function() {
     return data;
 }
 
+// add links to an object containing the article's words
+// =====================================================
 // input: articleID; 3D array of words, grouped by sentences, paragraphs, and
 //        entire page; number of links to add
 // output: same array of words as has been input, with links (pairs of 'a' tags)
@@ -120,7 +129,7 @@ exports.links = function(ID, paragraphs, links) {
     };
 }
 
-// output: completed video tag
+// build video element
 exports.video = function(ID, videoPath) {
     var data = '<video id="article-video-' + ID + '" height="270" controls>';
     data += '<source src="' + videoPath + '" type="video/mp4">';
@@ -128,6 +137,8 @@ exports.video = function(ID, videoPath) {
     return data;
 }
 
+// add images to an object containing the article's words
+// ======================================================
 // input: articleID; 3D array of words, grouped by sentences, paragraphs, and
 //        entire page; 2D array of index where a link has already been added;
 //        number of images to add; image paths
@@ -162,34 +173,4 @@ exports.images = function(ID, paragraphs, linkIndexes, images, imagePaths) {
         paragraphs[paragraph][sentence][0] = imageStart + imageEnd + paragraphs[paragraph][sentence][0];;
     }
     return paragraphs;
-}
-
-// == processing functions =====================================================
-
-// input: array of paragraphs
-// output: 3d array, arrays of words grouped by sentences, then paragraphs (data[paragraph#][sentence#][word#])
-exports.paragraphsToWords = function(data) {
-    for (var i = 0; i < data.length; i++) {
-        //split paragraphs into sentences
-        data[i] = data[i].split('.');
-        data[i].pop(); //drop trailing empty item
-
-        //split sentences into words
-        for (var j = 0; j < data[i].length; j++) {
-            data[i][j] = data[i][j].trim().split(' ');
-        }
-    }
-    return data;
-}
-
-// input: 3d array, arrays of words grouped by sentences, then paragraphs (data[paragraph#][sentence#][word#])
-// output: array of paragraphs
-exports.wordsToParagraphs = function(data) {
-    for (var i = 0; i < data.length; i++) {
-        for (var j = 0; j < data[i].length; j++) {
-            data[i][j] = data[i][j].join(' ');
-        }
-        data[i] = data[i].join('. ') + '.';
-    }
-    return data;
 }
