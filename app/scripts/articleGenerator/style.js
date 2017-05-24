@@ -51,3 +51,21 @@ exports.navbar = function(ID, colors) {
 exports.videoHeight = function(ID, height) {
     return '#video-' + ID + '{height:' + height + 'px;}';
 }
+
+exports.globalImageStyling = function(ID) {
+    return '#page-content-' + ID + ' img{margin:5px;}';
+}
+
+// create styles for all images
+exports.images = function(ID, images, imageWidths, imageFloats, firstImagePosition) {
+    var data = '';
+    for (var i = 1; i <= images; i++) {
+        data += '#image-' + ID + '-' + i + '{';
+        data += 'width:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
+        if (!(firstImagePosition == 'top' && i == images)) {
+            data += 'float:' + imageFloats[i - 1] + ';'; //arrays are 0-based
+        }
+        data += '}';
+    }
+    return data;
+}

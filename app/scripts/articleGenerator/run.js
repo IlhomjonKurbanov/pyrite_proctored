@@ -118,7 +118,20 @@ function run() {
     styles += style.navbar(ID, process.randomSelect(values.navbarColors));
 
     //video height
-    styles += style.videoHeight(ID, process.randomSelect(values.heights));
+    styles += style.videoHeight(ID, process.randomSelect(values.dimensions));
+
+    //video 'follow on scroll'
+    //TODO
+
+    //image styling
+    styles += style.globalImageStyling(ID);
+    var imageWidths = new Array();
+    for (var i = 0; i < images; i++) imageWidths.push(process.randomSelect(values.dimensions));
+    var imageFloats = new Array();
+    for (var i = 0; (firstImagePosition == 'top' && i < (images - 1) || i < images); i++) {
+        imageFloats.push(process.randomSelect(values.positions.imageFloat));
+    }
+    styles += style.images(ID, images, imageWidths, imageFloats, firstImagePosition);
 
     styles += '</style>' //end styles section
     page = styles + page; //insert styles into beginning of page

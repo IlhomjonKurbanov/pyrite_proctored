@@ -31,11 +31,11 @@ exports.NAVBARP_CODE = {
 exports.positions = {
     'videoPosition'      : ['top', 'middle'],
     'firstImagePosition' : ['top', 'middle'],
-    'imageAlign'         : ['left', 'right', 'full']
+    'imageFloat'         : ['left', 'right']
 }
 
-//image/video heights
-exports.heights = [250, 300, 350]
+//widths for images, heights for videos
+exports.dimensions = [250, 300, 350]
 
 exports.navbarColors = [
     { 'background': '#ad1f1f', 'hover': '#841616' }, //red
