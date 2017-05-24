@@ -131,7 +131,7 @@ exports.links = function(ID, paragraphs, links) {
 
 // build video element
 exports.video = function(ID, videoPath) {
-    var data = '<video id="article-video-' + ID + '" height="270" controls>';
+    var data = '<video id="video-' + ID + '" height="270" controls>';
     data += '<source src="' + videoPath + '" type="video/mp4">';
     data += 'Your browser does not support the video tag.</video>';
     return data;
