@@ -112,6 +112,9 @@ function run() {
     //font face
     styles += style.fontFace(ID, process.randomSelect(values.attributeValues.serifP));
 
+    //navbar
+    styles += style.navbar(ID, process.randomSelect(values.navbarColors));
+
     styles += '</style>' //end styles section
     page = styles + page; //insert styles into beginning of page
     // == print to console and to 'output.html' ================================

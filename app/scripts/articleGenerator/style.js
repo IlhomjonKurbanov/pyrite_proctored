@@ -31,3 +31,13 @@ exports.fontFace = function(ID, serifP) {
     data += ';}';
     return data;
 }
+
+// create styles for navbar, with provided colors
+exports.navbar = function(ID, colors) {
+    var data = '#navbar-background-' + ID + '{background-color:' + colors.background + ';}';
+    data += '#navbar-' + ID + '{list-style-type:none;margin:0;padding:0;overflow:hidden;max-width:740px;margin-left:auto;margin-right:auto;text-align:center;}';
+    data += '#navbar-' + ID + ' li{display:inline;}';
+    data += '#navbar-' + ID + ' a{display:inline-block;color:white;text-align:center;padding:14px 16px;text-decoration:none;}';
+    data += '#navbar-' + ID + ' li a:hover{background-color:' + colors.hover + ';}';
+    return data;
+}

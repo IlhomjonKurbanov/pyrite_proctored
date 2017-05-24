@@ -16,12 +16,12 @@ exports.navbar = function(ID) {
                 }).split(' ');
     var itemsUsed = new Array();
 
-    built += '<div class="navbar-background">';
+    built += '<div id="navbar-background-' + ID + '">';
     built += '<ul id="navbar-' + ID + '" class="navbar" ' + this.NGCLICK + '>';
 
     var offset = 1;
     var item = '';
-    var numItems = Math.floor(Math.random() * 5) + 4;
+    var numItems = Math.floor(Math.random() * 4) + 4;
     for (var i = 1; i <= numItems; i++) {
         item = items[i - offset]
         if (item.length > 3 && itemsUsed.indexOf(item) == -1) {
