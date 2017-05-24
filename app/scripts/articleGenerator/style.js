@@ -16,3 +16,12 @@ exports.fontSize = function(ID, fontSize) {
     data += 'font-size:' + fontSize.title + 'px;}';
     return data;
 }
+
+// create font face style (serif or sans-serif)
+exports.fontFace = function(ID, serifP) {
+    var data = '#navbar-' + ID + ',#page-content-' + ID + '{';
+    data += 'font-family:';
+    data += (serifP) ? 'serif' : 'sans-serif';
+    data += ';}';
+    return data;
+}

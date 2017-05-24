@@ -101,6 +101,9 @@ function run() {
     //font sizes
     styles += style.fontSize(ID, process.randomSelect(values.attributeValues.fontSize));
 
+    //font face
+    styles += style.fontFace(ID, process.randomSelect(values.attributeValues.serifP));
+
     // //navbar
     // styles += style.navbar()
 
