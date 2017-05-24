@@ -96,15 +96,22 @@ function run() {
     page += '</div>'; //end page content
 
     // == build styles =========================================================
-    //TODO
+    var styles = '<style>'; // begin styles section
 
+    //font sizes
+    styles += style.fontSize(ID, process.randomSelect(values.attributeValues.fontSize));
+
+    // //navbar
+    // styles += style.navbar()
+
+    styles += '</style>' //end styles section
+    page = styles + page; //insert styles into beginning of page
     // == print to console and to 'output.html' ================================
     console.log(page);
     fs.writeFile('output.html', page, function(err) {
         if(err) {
             return console.log(err);
         }
-
         console.log("Output was saved.");
     });
 }

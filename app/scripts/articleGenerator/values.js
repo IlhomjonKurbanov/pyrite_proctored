@@ -3,8 +3,11 @@ exports.attributeValues = {
     'video'         : [0, 1, 2],
     'imageRatio'    : [-1, 500, 100], //words per image
     'wordCount'     : [150, 400, 700],
-    'fontSize'      : [14, 16, 18],
-    'titleFontSize' : [36, 40, 44], //scales w/ 'fontsize'
+    'fontSize'      : [ //using objects so that titles scale with body font size
+        { 'article' : 14, 'title' : 32 },
+        { 'article' : 16, 'title' : 38 },
+        { 'article' : 18, 'title' : 44 }
+    ],
     'serifP'        : [0, 1],
     'navbarP'       : [0, 1]
 }
