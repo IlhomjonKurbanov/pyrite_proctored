@@ -13,6 +13,7 @@ function run() {
     page += element.navbar(ID);
 
     page += '<div id="page-content-' + ID + '">' //begin page content
+    page += '<div id="article-start-' + ID + '">' // for centering beginning elements
     page += element.title(ID);
 
     // == build body text ======================================================
@@ -80,6 +81,9 @@ function run() {
     paragraphs = element.images(ID, paragraphs, linkIndexes, numImages, imagePaths);
 
     // == construct body =======================================================
+    //end article-start section -- images or videos positioned at 'top' are now added
+    page += '</div>';
+
     //rebuild paragraphs
     paragraphs = process.wordsToParagraphs(paragraphs);
 
@@ -98,14 +102,15 @@ function run() {
     // == build styles =========================================================
     var styles = '<style>'; // begin styles section
 
+    //center elements (title, video, and image, if image is positioned at
+    //beginning of article)
+    styles += style.center(ID, video, values.VIDEO_CODE.absent, images, firstImagePosition);
+
     //font sizes
     styles += style.fontSize(ID, process.randomSelect(values.attributeValues.fontSize));
 
     //font face
     styles += style.fontFace(ID, process.randomSelect(values.attributeValues.serifP));
-
-    // //navbar
-    // styles += style.navbar()
 
     styles += '</style>' //end styles section
     page = styles + page; //insert styles into beginning of page
