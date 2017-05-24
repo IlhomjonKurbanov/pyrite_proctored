@@ -117,6 +117,9 @@ function run() {
     //navbar
     styles += style.navbar(ID, process.randomSelect(values.navbarColors));
 
+    //video height
+    styles += style.videoHeight(ID, process.randomSelect(values.heights));
+
     styles += '</style>' //end styles section
     page = styles + page; //insert styles into beginning of page
     // == print to console and to 'output.html' ================================

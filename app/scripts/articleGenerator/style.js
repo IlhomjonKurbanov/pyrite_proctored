@@ -46,3 +46,8 @@ exports.navbar = function(ID, colors) {
     data += '#navbar-' + ID + ' li a:hover{background-color:' + colors.hover + ';}';
     return data;
 }
+
+// create style for video height
+exports.videoHeight = function(ID, height) {
+    return '#video-' + ID + '{height:' + height + 'px;}';
+}
