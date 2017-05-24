@@ -141,13 +141,14 @@ exports.video = function(ID, videoPath) {
 // ======================================================
 // input: articleID; 3D array of words, grouped by sentences, paragraphs, and
 //        entire page; 2D array of index where a link has already been added;
-//        number of images to add; image paths
+//        number of images to add; the first image position; image paths
 // output: same array of words as has been input, with images added randomly (at
 //         the beginning of sentences)
-exports.images = function(ID, paragraphs, linkIndexes, images, imagePaths) {
+exports.images = function(ID, paragraphs, linkIndexes, images, firstImagePosition, imagePaths) {
     var paragraph, sentence, imageEnd;
     var imageStart = '<img ' + this.NGCLICK + ' ';
     var imageIndexes = new Array();
+    if (firstImagePosition == 'top') images--; //if an image has been placed at the top, place on less throughout
     for (var i = 1; i <= images; i++) {
         var paragraph = Math.floor(Math.random() * paragraphs.length); //select a random paragraph
         var sentence = Math.floor(Math.random() * paragraphs[paragraph].length); //select a random sentence

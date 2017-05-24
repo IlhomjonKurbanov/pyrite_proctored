@@ -8,6 +8,11 @@ exports.center = function(ID, video, absent, images, firstImagePosition) {
     return '#article-start-' + ID + '{text-align:center}';
 }
 
+// create style of the page content wrapper
+exports.wrapper = function(ID) {
+    return '#page-content-' + ID + '{padding:15px;max-width:740px;margin-left:auto;margin-right:auto;}'
+}
+
 // create font size style
 // ======================
 // input: ID, fontSize object ({'article' : value, 'title' : value})

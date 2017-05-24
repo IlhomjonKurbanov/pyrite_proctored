@@ -77,8 +77,7 @@ function run() {
         page += '<img ng-click="selectElement($event);$event.stopPropagation()" ';
         page += 'id="image-' + ID + '-' + images + '" src="' + imagePaths.pop() + '">';
     }
-    var numImages = (firstImagePosition == 'top') ? images - 1 : images;
-    paragraphs = element.images(ID, paragraphs, linkIndexes, numImages, imagePaths);
+    paragraphs = element.images(ID, paragraphs, linkIndexes, images, firstImagePosition, imagePaths);
 
     // == construct body =======================================================
     //end article-start section -- images or videos positioned at 'top' are now added
@@ -105,6 +104,9 @@ function run() {
     //center elements (title, video, and image, if image is positioned at
     //beginning of article)
     styles += style.center(ID, video, values.VIDEO_CODE.absent, images, firstImagePosition);
+
+    //wrapper styles
+    styles += style.wrapper(ID);
 
     //font sizes
     styles += style.fontSize(ID, process.randomSelect(values.attributeValues.fontSize));
