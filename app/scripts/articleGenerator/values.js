@@ -34,14 +34,14 @@ exports.positions = {
 //image/video heights
 exports.heights = [250, 300, 350]
 
-exports.navbarColors = {
-    0 : { 'background': '#ad1f1f', 'hover': '#841616'}, //red
-    1 : { 'background': '#c17005', 'hover': '#9b5903'}, //orange
-    2 : { 'background': '#6b9607', 'hover': '#517205'}, //green
-    3 : { 'background': '#04916e', 'hover': '#027256'}, //teal
-    4 : { 'background': '#0378a3', 'hover': '#025d7f'}, //blue
-    5 : { 'background': '#7e018e', 'hover': '#4a0054'}, //purple
-}
+exports.navbarColors = [
+    { 'background': '#ad1f1f', 'hover': '#841616' }, //red
+    { 'background': '#c17005', 'hover': '#9b5903' }, //orange
+    { 'background': '#6b9607', 'hover': '#517205' }, //green
+    { 'background': '#04916e', 'hover': '#027256' }, //teal
+    { 'background': '#0378a3', 'hover': '#025d7f' }, //blue
+    { 'background': '#7e018e', 'hover': '#4a0054' }, //purple
+]
 
 exports.images = [
     'data/img1.jpg',
