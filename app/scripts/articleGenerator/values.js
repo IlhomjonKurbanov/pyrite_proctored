@@ -57,6 +57,6 @@ exports.images = [
 ]
 
 exports.videos = [
-    'data/video1.jpg',
-    'data/video2.jpg'
+    'data/video1.mp4',
+    'data/video2.mp4'
 ]
