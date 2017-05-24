@@ -1,11 +1,12 @@
 exports.attributeValues = {
-    'linkRatio'  : [-1, 200, 50], //words per link
-    'video'      : [0, 1, 2],
-    'imageRatio' : [-1, 500, 100], //words per image
-    'wordCount'  : [150, 400, 700],
-    'fontSize'   : [10, 12, 14, 16, 18],
-    'serifP'     : [0, 1],
-    'navbarP'    : [0, 1]
+    'linkRatio'     : [-1, 200, 50], //words per link
+    'video'         : [0, 1, 2],
+    'imageRatio'    : [-1, 500, 100], //words per image
+    'wordCount'     : [150, 400, 700],
+    'fontSize'      : [14, 16, 18],
+    'titleFontSize' : [36, 40, 44], //scales w/ 'fontsize'
+    'serifP'        : [0, 1],
+    'navbarP'       : [0, 1]
 }
 
 exports.BOOL = {
@@ -29,6 +30,9 @@ exports.positions = {
     'firstImagePosition' : ['top', 'middle'],
     'imageAlign'         : ['left', 'right', 'full']
 }
+
+//image/video heights
+exports.heights = [250, 300, 350]
 
 exports.navbarColors = {
     0 : { 'background': '#ad1f1f', 'hover': '#841616'}, //red
