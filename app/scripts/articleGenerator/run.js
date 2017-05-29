@@ -135,7 +135,7 @@ function run() {
 
     styles += '</style>' //end styles section
     page = styles + page; //insert styles into beginning of page
-    // == print to console and to 'output.html' ================================
+    // == print to 'output.html' ===============================================
     console.log(page);
     fs.writeFile('output.html', page, function(err) {
         if(err) {
