@@ -10,7 +10,7 @@ exports.center = function(ID, video, absent, images, firstImagePosition) {
 
 // create style of the page content wrapper
 exports.wrapper = function(ID) {
-    return '#page-content-' + ID + '{padding:15px;max-width:740px;margin-left:auto;margin-right:auto;}'
+    return '#page-content-' + ID + '{padding:15px;max-width:740px;overflow:hidden;margin-left:auto;margin-right:auto;}'
 }
 
 // create font size style
@@ -61,9 +61,11 @@ exports.images = function(ID, images, imageWidths, imageFloats, firstImagePositi
     var data = '';
     for (var i = 1; i <= images; i++) {
         data += '#image-' + ID + '-' + i + '{';
-        data += 'width:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
         if (!(firstImagePosition == 'top' && i == images)) {
+            data += 'width:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
             data += 'float:' + imageFloats[i - 1] + ';'; //arrays are 0-based
+        } else {
+            data += 'height:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
         }
         data += '}';
     }
