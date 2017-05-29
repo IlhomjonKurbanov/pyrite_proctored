@@ -76,10 +76,10 @@ exports.paragraph = function() {
     data.paragraph = loremipsum({
                          count: 1,
                          units: 'paragraphs',
-                         sentenceLowerBound: 5,
+                         sentenceLowerBound: 8,
                          sentenceUpperBound: 15,
-                         paragraphLowerBound: 3,
-                         paragraphUpperBound: 7,
+                         paragraphLowerBound: 5,
+                         paragraphUpperBound: 9,
                          format: 'plain'
                      });
     data.wordCount = data.paragraph.split(' ').length;
@@ -119,7 +119,7 @@ exports.links = function(ID, paragraphs, links) {
         beginIndex = Math.floor(Math.random() * (paragraphs[paragraph][sentence].length - numWords));
 
         //add link
-        prepend = '<a id="link-' + ID + '-' + i + '" ' + this.NGCLICK + '>';
+        prepend = '<a id="link-' + ID + '-' + i + '" ' + this.NGCLICK + ' href="">';
         paragraphs[paragraph][sentence][beginIndex] = prepend + paragraphs[paragraph][sentence][beginIndex];
         paragraphs[paragraph][sentence][beginIndex + numWords - 1] += '</a>'; //numWords - 1 means that end tag will be added to the correct index
     }
