@@ -28,11 +28,7 @@ exports.NAVBARP_CODE = {
     'fixed'  : 1
 }
 
-exports.positions = {
-    'videoPosition'      : ['top', 'middle'],
-    'firstImagePosition' : ['top', 'middle'],
-    'imageFloat'         : ['left', 'right']
-}
+exports.videoLocation = ['top', 'middle'];
 
 //widths for images, heights for videos
 exports.dimensions = [250, 300, 350]

@@ -4,7 +4,7 @@
 
 // create style to center elements (title, video, and image, if image is
 // positioned at beginning of article)
-exports.center = function(ID, video, absent, images, firstImagePosition) {
+exports.center = function(ID) {
     return '#article-start-' + ID + '{text-align:center}';
 }
 
@@ -57,17 +57,21 @@ exports.globalImageStyling = function(ID) {
 }
 
 // create styles for all images
-exports.images = function(ID, images, imageWidths, imageFloats, firstImagePosition) {
+exports.images = function(ID, images, imageWidths) {
     var data = '';
-    for (var i = 1; i <= images; i++) {
-        data += '#image-' + ID + '-' + i + '{';
-        if (!(firstImagePosition == 'top' && i == images)) {
-            data += 'width:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
-            data += 'float:' + imageFloats[i - 1] + ';'; //arrays are 0-based
-        } else {
-            data += 'height:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
+    //if imageWidths is empty, images are full-width, so set all to full-width
+    if (imageWidths.length == 0) {
+        for (var i = 1; i < images; i++) {
+            data += '#image-' + ID + '-' + i + ',';
         }
-        data += '}';
+        data += '#image-' + ID + '-' + images;
+        data += '{width:540px;}';
+    } else {
+        for (var i = 1; i <= images; i++) {
+            data += '#image-' + ID + '-' + i;
+            data += '{width:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
+            data += 'float:left;}';
+        }
     }
     return data;
 }

@@ -46,38 +46,27 @@ function run() {
     // == build body media =====================================================
     //establish video parameters
     var video = process.randomSelect(values.attributeValues.video);
-    var videoPosition, videoPath; //undefined if video == VIDEO_CODE.absent
-    if (video == values.VIDEO_CODE.follows) videoPosition = 'top';
-    if (video == values.VIDEO_CODE.present) videoPosition = process.randomSelect(values.positions.videoPosition);
+    var videoLocation, videoPath; //undefined if video == VIDEO_CODE.absent
+    if (video == values.VIDEO_CODE.follows) videoLocation = 'top';
+    if (video == values.VIDEO_CODE.present) videoLocation = process.randomSelect(values.videoLocation);
     if (video != values.VIDEO_CODE.absent) videoPath = process.randomSelect(values.videos);
+
+    //assign video position
+    var videoInjectIndex; //undefined if videoLocation == 'top';
+    if (video != values.VIDEO_CODE.absent) {
+        if (videoLocation == 'top') page += element.video(ID, videoPath);
+        if (videoLocation == 'middle') videoInjectIndex = Math.floor(paragraphs.length / 2);
+    }
 
     //establish image parameters
     var imageRatio = process.randomSelect(values.attributeValues.imageRatio);
     var images = (imageRatio == -1) ? 0 : Math.round(actualWordCount / imageRatio);
-    var firstImagePosition;
-    if (images > 0) {
-        if (video == values.VIDEO_CODE.absent || videoPosition == 'middle') {
-            firstImagePosition = process.randomSelect(values.positions.firstImagePosition);
-        } else {
-            firstImagePosition = 'middle';
-        }
-    }
-
-    //assign video position
-    var videoInjectIndex; //undefined if videoPosition == 'top';
-    if (video != values.VIDEO_CODE.absent) {
-        if (videoPosition == 'top') page += element.video(ID, videoPath);
-        if (videoPosition == 'middle') videoInjectIndex = Math.floor(paragraphs.length / 2);
-    }
+    imagePositioning = (Math.random() <= 0.85) ? 'full' : 'left';
 
     //assign image positions
     var imagePaths = process.shuffle(values.images);
     while (imagePaths.length > images) imagePaths.pop();
-    if (firstImagePosition == 'top') {
-        page += '<img ng-click="selectElement($event);$event.stopPropagation()" ';
-        page += 'id="image-' + ID + '-' + images + '" src="' + imagePaths.pop() + '">';
-    }
-    paragraphs = element.images(ID, paragraphs, linkIndexes, images, firstImagePosition, imagePaths);
+    var imageData = element.images(ID, images, imagePaths, paragraphs.length, imagePositioning, videoLocation, videoInjectIndex);
 
     // == construct body =======================================================
     //end article-start section -- images or videos positioned at 'top' are now added
@@ -89,7 +78,9 @@ function run() {
     //add paragraphs (with injected links, images, and videos) to body
     for (var i = 0; i < paragraphs.length; i++) {
         //add video to beginning of paragraph if appropriate
-        if (videoPosition == 'middle' && videoInjectIndex == i) page += element.video(ID, videoPath);
+        if (videoLocation == 'middle' && videoInjectIndex == i) page += element.video(ID, videoPath);
+
+        if (imageData[i] != undefined) page += imageData[i];
 
         //add paragraph
         prepend = '<p id="paragraph-' + ID + '-' + i + '" ' + element.NGCLICK + '>'
@@ -103,7 +94,7 @@ function run() {
 
     //center elements (title, video, and image, if image is positioned at
     //beginning of article)
-    styles += style.center(ID, video, values.VIDEO_CODE.absent, images, firstImagePosition);
+    styles += style.center(ID);
 
     //wrapper styles
     styles += style.wrapper(ID);
@@ -118,25 +109,25 @@ function run() {
     styles += style.navbar(ID, process.randomSelect(values.navbarColors));
 
     //video height
+    if (video != values.VIDEO_CODE.absent)
     styles += style.videoHeight(ID, process.randomSelect(values.dimensions));
 
     //video 'follow on scroll'
     //TODO
 
     //image styling
-    styles += style.globalImageStyling(ID);
-    var imageWidths = new Array();
-    for (var i = 0; i < images; i++) imageWidths.push(process.randomSelect(values.dimensions));
-    var imageFloats = new Array();
-    for (var i = 0; (firstImagePosition == 'top' && i < (images - 1) || i < images); i++) {
-        imageFloats.push(process.randomSelect(values.positions.imageFloat));
+    if (images > 0) {
+        styles += style.globalImageStyling(ID);
+        var imageWidths = new Array();
+        if (imagePositioning == 'left') {
+            for (var i = 0; i < images; i++) imageWidths.push(process.randomSelect(values.dimensions));
+        }
+        styles += style.images(ID, images, imageWidths);
     }
-    styles += style.images(ID, images, imageWidths, imageFloats, firstImagePosition);
 
     styles += '</style>' //end styles section
     page = styles + page; //insert styles into beginning of page
     // == print to 'output.html' ===============================================
-    console.log(page);
     fs.writeFile('output.html', page, function(err) {
         if(err) {
             return console.log(err);
