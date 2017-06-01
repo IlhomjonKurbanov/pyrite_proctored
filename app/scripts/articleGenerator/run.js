@@ -55,7 +55,7 @@ function run() {
     //assign video position
     var videoInjectIndex; //undefined if videoLocation == 'top';
     if (video != values.VIDEO_CODE.absent) {
-        if (videoLocation == 'top') page += element.video(ID, videoPath);
+        if (videoLocation == 'top') page += element.video(ID, videoPath, videoLocation);
         if (videoLocation == 'middle') videoInjectIndex = Math.floor(paragraphs.length / 2);
     }
 
@@ -79,7 +79,7 @@ function run() {
     //add paragraphs (with injected links, images, and videos) to body
     for (var i = 0; i < paragraphs.length; i++) {
         //add video to beginning of paragraph if appropriate
-        if (videoLocation == 'middle' && videoInjectIndex == i) page += element.video(ID, videoPath);
+        if (videoLocation == 'middle' && videoInjectIndex == i) page += element.video(ID, videoPath, videoLocation);
 
         if (imageData[i] != undefined) page += imageData[i];
 
@@ -109,9 +109,10 @@ function run() {
     //navbar
     styles += style.navbar(ID, process.randomSelect(values.navbarColors), navbarP);
 
-    //video height
-    if (video != values.VIDEO_CODE.absent)
-    styles += style.videoHeight(ID, process.randomSelect(values.dimensions));
+    //video
+    if (video != values.VIDEO_CODE.absent) {
+        styles += style.video(ID, process.randomSelect(values.dimensions));
+    }
 
     //video 'follow on scroll'
     //TODO

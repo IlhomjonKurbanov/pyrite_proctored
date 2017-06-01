@@ -137,10 +137,11 @@ exports.links = function(ID, paragraphs, links) {
 }
 
 // build video element
-exports.video = function(ID, videoPath) {
+exports.video = function(ID, videoPath, videoLocation) {
     var data = '<video id="video-' + ID + '" controls>';
     data += '<source src="' + videoPath + '" type="video/mp4">';
     data += 'Your browser does not support the video tag.</video>';
+    if (videoLocation == 'middle') data = '<div class="text-center">' + data + '</div>';
     return data;
 }
 

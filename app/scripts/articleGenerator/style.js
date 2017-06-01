@@ -48,8 +48,8 @@ exports.navbar = function(ID, colors, navbarP) {
     return data;
 }
 
-// create style for video height
-exports.videoHeight = function(ID, height) {
+// create style for video
+exports.video = function(ID, height) {
     return '#video-' + ID + '{height:' + height + 'px;}';
 }
 
