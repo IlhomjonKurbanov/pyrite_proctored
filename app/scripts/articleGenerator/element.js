@@ -7,7 +7,9 @@ var loremipsum = require('lorem-ipsum');
 exports.NGCLICK = 'ng-click="selectElement($event);$event.stopPropagation()"'
 
 // build navbar
-exports.navbar = function(ID) {
+// ============
+// if navbarP = 0 (false), navbar is static. if navbarP = 1 (true), navbar is fixed
+exports.navbar = function(ID, navbarP) {
     var built = '';
     var items = loremipsum({
                     count: 24,
@@ -16,7 +18,9 @@ exports.navbar = function(ID) {
                 }).split(' ');
     var itemsUsed = new Array();
 
-    built += '<div id="navbar-background-' + ID + '">';
+    built += '<div ';
+    if (navbarP) built += 'navbar-fix-on-scroll ' //add directive to handle fixed-position logic
+    built += 'id="navbar-background-' + ID + '">';
     built += '<ul id="navbar-' + ID + '" class="navbar" ' + this.NGCLICK + '>';
 
     var offset = 1;
@@ -37,6 +41,9 @@ exports.navbar = function(ID) {
 
     built += '</ul>';
     built += '</div>';
+
+    //add wrapper w/ directive to handle fixed-position logic
+    if (navbarP) built = '<div navbar-bumper>' + built + '</div>'
 
     return built;
 }

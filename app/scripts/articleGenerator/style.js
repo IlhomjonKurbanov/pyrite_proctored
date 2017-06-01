@@ -37,13 +37,14 @@ exports.fontFace = function(ID, serifP) {
     return data;
 }
 
-// create styles for navbar, with provided colors
-exports.navbar = function(ID, colors) {
+// create styles for navbar, with provided colors and positioning
+exports.navbar = function(ID, colors, navbarP) {
     var data = '#navbar-background-' + ID + '{background-color:' + colors.background + ';}';
     data += '#navbar-' + ID + '{list-style-type:none;margin:0;padding:0;overflow:hidden;max-width:740px;margin-left:auto;margin-right:auto;text-align:center;}';
     data += '#navbar-' + ID + ' li{display:inline;}';
     data += '#navbar-' + ID + ' a{display:inline-block;color:white;text-align:center;padding:14px 16px;text-decoration:none;}';
     data += '#navbar-' + ID + ' li a:hover{background-color:' + colors.hover + ';}';
+    if (navbarP) data += '.navbar-fixed{position:fixed;top:0px;}';
     return data;
 }
 
@@ -53,7 +54,7 @@ exports.videoHeight = function(ID, height) {
 }
 
 exports.globalImageStyling = function(ID) {
-    return '#page-content-' + ID + ' img{margin:5px;}';
+    return '#page-content-' + ID + ' img{margin:10px;}';
 }
 
 // create styles for all images

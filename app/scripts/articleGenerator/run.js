@@ -10,7 +10,8 @@ function run() {
 
     // == begin page, build navbar =============================================
     var page = '';
-    page += element.navbar(ID);
+    var navbarP = process.randomSelect(values.attributeValues.navbarP);
+    page += element.navbar(ID, navbarP);
 
     page += '<div id="page-content-' + ID + '">' //begin page content
     page += '<div id="article-start-' + ID + '">' // for centering beginning elements
@@ -106,7 +107,7 @@ function run() {
     styles += style.fontFace(ID, process.randomSelect(values.attributeValues.serifP));
 
     //navbar
-    styles += style.navbar(ID, process.randomSelect(values.navbarColors));
+    styles += style.navbar(ID, process.randomSelect(values.navbarColors), navbarP);
 
     //video height
     if (video != values.VIDEO_CODE.absent)
