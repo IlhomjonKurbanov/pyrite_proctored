@@ -130,10 +130,7 @@ exports.links = function(ID, paragraphs, links) {
         paragraphs[paragraph][sentence][beginIndex] = prepend + paragraphs[paragraph][sentence][beginIndex];
         paragraphs[paragraph][sentence][beginIndex + numWords - 1] += '</a>'; //numWords - 1 means that end tag will be added to the correct index
     }
-    return {
-        'data' : paragraphs,
-        'indexes' : linkIndexes
-    };
+    return paragraphs;
 }
 
 // build video element

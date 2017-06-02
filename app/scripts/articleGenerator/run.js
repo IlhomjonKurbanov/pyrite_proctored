@@ -5,6 +5,26 @@ const process    = require('./process');
 const loremipsum = require('lorem-ipsum');
 const fs         = require('fs');
 
+// 'global' variables:
+// =============================================================================
+// page             : html string for the entire page
+// navbarP          : 0=static, 1=fixed navbar
+// wordCount        : prescribed word count
+// actualWordCount  : actual word count due to randomized lorem ipsum generation
+// paragraphs       : array of paragraphs, which gets expanded into 3d array of words,
+//                    grouped by sentence and paragraph
+// linkRatio        : words per link, -1 if no links
+// links            : number of links
+// video            : 0=absent, 1=present, 2=follows on scroll
+// videoLocation    : 'top' or 'middle'
+// videoInjectIndex : index where video is added to text body, if videoLocation == 'middle'
+// imageRatio       : words per image, -1 if no images
+// images           : number of images
+// imagePositioning : 'full'-width or 'left'-floated
+// imageData        : associative array of indices and image html strings, for
+//                    injecting into image body between paragraphs
+// styles           : html string containing all page styles
+
 function run() {
     var ID = 1;
 
@@ -36,13 +56,7 @@ function run() {
     //add links
     var linkRatio = process.randomSelect(values.attributeValues.linkRatio);
     var links = (linkRatio == -1) ? 0 : Math.round(actualWordCount / linkRatio);
-    var linkIndexes = {};
-    returned = element.links(ID, paragraphs, links);
-    paragraphs = returned.data;
-
-    //indexes where a link has been added, stored for later,
-    //to ensure images aren't inserted into the middle of links
-    var linkIndexes = returned.indexes;
+    paragraphs = element.links(ID, paragraphs, links);
 
     // == build body media =====================================================
     //establish video parameters
@@ -77,6 +91,7 @@ function run() {
     paragraphs = process.wordsToParagraphs(paragraphs);
 
     //add paragraphs (with injected links, images, and videos) to body
+    var prepend;
     for (var i = 0; i < paragraphs.length; i++) {
         //add video to beginning of paragraph if appropriate
         if (videoLocation == 'middle' && videoInjectIndex == i) page += element.video(ID, videoPath, videoLocation);
