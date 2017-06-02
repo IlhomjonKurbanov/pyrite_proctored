@@ -9,7 +9,7 @@ function run() {
     var ID = 1;
 
     // == begin page, build navbar =============================================
-    var page = '';
+    var page = '<script>plyr.setup()</script>';
     var navbarP = process.randomSelect(values.attributeValues.navbarP);
     page += element.navbar(ID, navbarP);
 

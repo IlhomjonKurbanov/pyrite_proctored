@@ -138,9 +138,11 @@ exports.links = function(ID, paragraphs, links) {
 
 // build video element
 exports.video = function(ID, videoPath, videoLocation) {
-    var data = '<video id="video-' + ID + '" controls>';
+    var data = '<div class="video-wrapper">';
+    data += '<video id="video-' + ID + '" ' + this.NGCLICK + ' controls>';
     data += '<source src="' + videoPath + '" type="video/mp4">';
     data += 'Your browser does not support the video tag.</video>';
+    data += '</div>';
     if (videoLocation == 'middle') data = '<div class="text-center">' + data + '</div>';
     return data;
 }

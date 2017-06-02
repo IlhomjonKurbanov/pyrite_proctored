@@ -44,13 +44,15 @@ exports.navbar = function(ID, colors, navbarP) {
     data += '#navbar-' + ID + ' li{display:inline;}';
     data += '#navbar-' + ID + ' a{display:inline-block;color:white;text-align:center;padding:14px 16px;text-decoration:none;}';
     data += '#navbar-' + ID + ' li a:hover{background-color:' + colors.hover + ';}';
-    if (navbarP) data += '.navbar-fixed{position:fixed;top:0px;}';
+    if (navbarP) data += '.navbar-fixed{position:fixed;top:0px;z-index:5;}';
     return data;
 }
 
 // create style for video
 exports.video = function(ID, height) {
-    return '#video-' + ID + '{height:' + height + 'px;}';
+    var data = '#video-' + ID + '{max-width:540px;}';
+    data += '.video-wrapper{max-width:540px;margin:15px auto;}'
+    return data;
 }
 
 exports.globalImageStyling = function(ID) {
