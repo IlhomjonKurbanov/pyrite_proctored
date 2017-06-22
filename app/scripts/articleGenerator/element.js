@@ -119,8 +119,8 @@ exports.links = function(ID, paragraphs, links) {
             linkIndexes[paragraph] = [sentence];
         }
 
-        //links can be 1 to 5 words
-        numWords = Math.floor(Math.random() * 5) + 1;
+        //links can be 2 to 5 words
+        numWords = Math.floor(Math.random() * 4) + 2;
 
         //beginIndex can be anywhere from beginning of sentence to sentence length - numWords
         beginIndex = Math.floor(Math.random() * (paragraphs[paragraph][sentence].length - numWords));
