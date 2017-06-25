@@ -1,5 +1,5 @@
-// changeClassOnScroll.js
-// ======================
+// navbarFixOnScroll.js
+// ====================
 // for use with generated articles in articles view
 // ------------------------------------------------
 // fixes element width and applies 'navbar-fixed' class when scroll reaches given offset
