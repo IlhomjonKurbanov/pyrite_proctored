@@ -18,9 +18,7 @@ const fs         = require('fs');
 // video            : 0=absent, 1=present, 2=follows on scroll
 // videoLocation    : 'top' or 'middle'
 // videoInjectIndex : index where video is added to text body, if videoLocation == 'middle'
-// imageRatio       : words per image, -1 if no images
 // images           : number of images
-// imagePositioning : 'full'-width or 'left'-floated
 // imageData        : associative array of indices and image html strings, for
 //                    injecting into image body between paragraphs
 // styles           : html string containing all page styles
@@ -74,14 +72,12 @@ function run() {
     }
 
     //establish image parameters
-    var imageRatio = process.randomSelect(values.attributeValues.imageRatio);
-    var images = (imageRatio == -1) ? 0 : Math.round(actualWordCount / imageRatio);
-    imagePositioning = (Math.random() <= 0.85) ? 'full' : 'left';
+    var images = process.randomSelect(values.attributeValues.images);
 
     //assign image positions
     var imagePaths = process.shuffle(values.images);
     while (imagePaths.length > images) imagePaths.pop();
-    var imageData = element.images(ID, images, imagePaths, paragraphs.length, imagePositioning, videoLocation, videoInjectIndex);
+    var imageData = element.images(ID, images, imagePaths, paragraphs.length, videoLocation, videoInjectIndex);
 
     // == construct body =======================================================
     //end article-start section -- images or videos positioned at 'top' are now added
@@ -135,15 +131,14 @@ function run() {
     //image styling
     if (images > 0) {
         styles += style.globalImageStyling(ID);
-        var imageWidths = new Array();
-        if (imagePositioning == 'left') {
-            for (var i = 0; i < images; i++) imageWidths.push(process.randomSelect(values.dimensions));
-        }
-        styles += style.images(ID, images, imageWidths);
+        var imageHeights = new Array();
+        for (var i = 0; i < images; i++) imageHeights.push(process.randomSelect(values.dimensions));
+        styles += style.images(ID, images, imageHeights);
     }
 
     styles += '</style>' //end styles section
     page = styles + page; //insert styles into beginning of page
+
     // == print to 'output.html' ===============================================
     fs.writeFile('output.html', page, function(err) {
         if(err) {

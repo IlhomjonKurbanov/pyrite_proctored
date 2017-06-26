@@ -146,69 +146,38 @@ exports.video = function(ID, videoPath, videoLocation) {
 
 // generate an object indicating where images should be added to an article
 // input: articleID, number of images, file paths for images, number of paragraphs,
-//        image positioning (full-width or left-floated), location of video ('top'
-//        or 'middle', undefined if no video), index of injected video if location
-//        of video is 'middle' (undefined otherwise)
+//        location of video ('top' or 'middle', undefined if no video), index of
+//        injected video if locationof video is 'middle' (undefined otherwise)
 // output: an object w/ image location indexes as keys, and image html strings as
 //         values (undefined if no image at this position)
-exports.images = function(ID, images, imagePaths, paragraphs, imagePositioning, videoLocation, videoInjectIndex) {
-    //TODO remove firstImageLocation from everywhere
+exports.images = function(ID, images, imagePaths, paragraphs, videoLocation, videoInjectIndex) {
     var data = {};
     var options = [true, false];
-    var allowZeroIndex = (videoLocation != 'top')
-    if (imagePositioning == 'full') paragraphs++; //allows for full-width images to happen after article end
+    var allowZeroIndex = (videoLocation != 'top');
+    if (allowZeroIndex && videoInjectIndex != undefined) paragraphs++; //allows for full-width images to happen after article end
+    images = Math.min(paragraphs, images);
     for (var i = 0; i < paragraphs; i++) {
         data[i] = undefined;
     }
 
-    var imageStart = '<img ' + this.NGCLICK + ' ';
-    var imageEnd;
-    var imageWrapper = (imagePositioning == 'full') ? {'begin':'<div class="text-center">','end':'</div>'} : {'begin':'','end':''};
+    var imageStart = '<div class="text-center"><img ' + this.NGCLICK + ' ';
+    var rechoose = 0;
+    for (var i = 1; i <= images; i++) {
+        if (rechoose == 30) break; //avoid infinite loops
+        var index = Math.floor(Math.random() * paragraphs);
 
-    if (images >= Math.round(paragraphs / 2)) {
-        //if # images exceeds available indices (half of indices, because
-        //neighboring indices may not be populated), put images in non-randomly,
-        //to avoid time-consuming looping to place last few images
-        var startIndex;
-        if (videoInjectIndex == undefined) {
-            //video is absent or positioned at 'top'
-            startIndex = (allowZeroIndex) ? Math.round(Math.random()) : 1
-        } else {
-            //video is somewhere in middle, space out images accordingly
-            startIndex = (videoInjectIndex % 2 == 0) ? 0 : 1;
-            if (videoLocation == 'middle') images--; //otherwise it can loop endlessly
+        //if an image or video has been stored at this or an adjacent index, pick a new index
+        if (data[index] != undefined
+        || (!allowZeroIndex && index == 0)
+        || index == videoInjectIndex) {
+            rechoose++;
+            i--;
+            continue;
         }
-        var imageID = 1;
-        for (var i = startIndex; i < paragraphs; i += 2) {
-            if (videoInjectIndex == i) continue;
-            imageEnd = 'id="image-' + ID + '-' + imageID + '" src="' + imagePaths.pop() + '">';
-            data[i] = imageWrapper['begin'] + imageStart + imageEnd + imageWrapper['end'];
-            imageID++;
-        }
-    } else {
-        //else, do normal loop w/ random positioning
-        var rechoose = 0;
-        for (var i = 1; i <= images; i++) {
-            if (rechoose == 30) break; //avoid infinite loops
-            var index = Math.floor(Math.random() * paragraphs);
+        rechoose = 0;
 
-            //if an image or video has been stored at this or an adjacent index, pick a new index
-            if (data[index] != undefined
-             || data[index - 1] != undefined
-             || data[index + 1] != undefined
-             || (!allowZeroIndex && index == 0)
-             || index == videoInjectIndex
-             || index + 1 == videoInjectIndex
-             || index - 1 == videoInjectIndex) {
-                rechoose++;
-                i--;
-                continue;
-            }
-            rechoose = 0;
-
-            imageEnd = 'id="image-' + ID + '-' + i + '" src="' + imagePaths.pop() + '">';
-            data[index] = imageWrapper['begin'] + imageStart + imageEnd + imageWrapper['end'];
-        }
+        data[index] = imageStart + 'id="image-' + ID + '-' + i + '" src="' + imagePaths.pop() + '"></div>';
     }
+
     return data;
 }

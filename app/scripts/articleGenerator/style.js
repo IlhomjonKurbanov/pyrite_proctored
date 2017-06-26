@@ -60,21 +60,12 @@ exports.globalImageStyling = function(ID) {
 }
 
 // create styles for all images
-exports.images = function(ID, images, imageWidths) {
+exports.images = function(ID, images, imageHeights) {
     var data = '';
-    //if imageWidths is empty, images are full-width, so set all to full-width
-    if (imageWidths.length == 0) {
-        for (var i = 1; i < images; i++) {
-            data += '#image-' + ID + '-' + i + ',';
-        }
-        data += '#image-' + ID + '-' + images;
-        data += '{width:540px;}';
-    } else {
-        for (var i = 1; i <= images; i++) {
-            data += '#image-' + ID + '-' + i;
-            data += '{width:' + imageWidths[i - 1] + 'px;'; //arrays are 0-based
-            data += 'float:left;}';
-        }
+    for (var i = 1; i <= images; i++) {
+        data += '#image-' + ID + '-' + i + '{';
+        data += 'height:' + imageHeights[i - 1] + 'px;'; //arrays are 0-based
+        data += '}';
     }
     return data;
 }

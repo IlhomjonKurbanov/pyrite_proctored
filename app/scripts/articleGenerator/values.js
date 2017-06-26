@@ -1,7 +1,7 @@
 exports.attributeValues = {
     'linkRatio'     : [-1, 200, 50], //words per link
     'video'         : [0, 1, 2],
-    'imageRatio'    : [-1, 500, 100], //words per image
+    'images'        : [0, 2, 4],
     'wordCount'     : [150, 400, 700],
     'fontSize'      : [ //using objects so that titles scale with body font size
         { 'article' : 14, 'title' : 32 },
@@ -30,8 +30,8 @@ exports.NAVBARP_CODE = {
 
 exports.videoLocation = ['top', 'middle'];
 
-//widths for images, heights for videos
-exports.dimensions = [250, 300, 350]
+//heights for images, videos
+exports.dimensions = [250, 325, 400]
 
 exports.navbarColors = [
     { 'background': '#ad1f1f', 'hover': '#841616' }, //red
