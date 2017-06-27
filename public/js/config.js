@@ -9,6 +9,7 @@ angular.module('pyrite')
         "REQUIRE_CONSENT"     : true,
         "DO_PROGRESS_CHECK"   : false, //toggles redirect behavior that checks user's requested path against their stored progress information
         "PROCTORED"           : false, //toggles alternate behavior on narrative response page for proctored experiments
+        "BLUR_TOOL_AVAILABLE" : true,
         "PATH"                : "http://localhost/"
     });
 

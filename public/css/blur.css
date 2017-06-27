@@ -1,0 +1,8 @@
+/*
+    blur.css
+    ========
+    CSS for 'blur' view
+*/
+#canvas {
+    display: none;
+}

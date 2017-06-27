@@ -57,6 +57,12 @@ angular.module('pyrite')
                 templateUrl: 'view/404.html'
             })
 
+            // blur utility
+            .when('/blur', {
+                templateUrl: 'view/blur.html',
+                controller: 'blurController'
+            })
+
             //otherwise redirect to page not found error
             .otherwise('/404');
     });
@@ -65,6 +71,9 @@ angular.module('pyrite')
     .run(['$rootScope', '$window', '$location', 'appConfig', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
         function($rootScope, $window, $location, appConfig, cookieService, progressService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
+                if ($location.path() == '/blur' && !appConfig.BLUR_TOOL_AVAILABLE) {
+                    $location.path('/404');
+                }
                 if (appConfig.DO_PROGRESS_CHECK) {
                     var progress = progressService.getProgress();
                     var stage = progress.stage;
