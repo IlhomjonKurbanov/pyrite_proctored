@@ -9,7 +9,7 @@ angular.module('pyrite')
                 			return response.data.subjectID;
                 		}, function failure(response) {
                             //failure
-                        	alert("failure message: " + JSON.stringify(response));
+                        	console.log("failure message: " + JSON.stringify(response));
                         });
         }
 
@@ -21,7 +21,7 @@ angular.module('pyrite')
                             //success
                 		}, function failure(response) {
                             //failure
-                        	alert("failure message: " + JSON.stringify(response));
+                        	console.log("failure message: " + JSON.stringify(response));
                         });
         }
 
@@ -33,7 +33,7 @@ angular.module('pyrite')
                             //success
                 		}, function failure(response) {
                             //failure
-                        	alert("failure message: " + JSON.stringify(response));
+                        	console.log("failure message: " + JSON.stringify(response));
                         });
         }
 
@@ -45,7 +45,7 @@ angular.module('pyrite')
                             //success
                 		}, function failure(response) {
                             //failure
-                        	alert("failure message: " + JSON.stringify(response));
+                        	console.log("failure message: " + JSON.stringify(response));
                         });
         }
 
@@ -58,7 +58,7 @@ angular.module('pyrite')
                 			return response.data;
                 		}, function failure(response) {
                             //failure
-                        	alert("failure message: " + JSON.stringify(response));
+                        	console.log("failure message: " + JSON.stringify(response));
                         });
         }
 
@@ -68,10 +68,9 @@ angular.module('pyrite')
             return $http.post('/api/spontaneous/delete', data)
                 		.then(function success(response) {
                             //success
-                			return response.data;
                 		}, function failure(response) {
                             //failure
-                        	alert("failure message: " + JSON.stringify(response));
+                        	console.log("failure message: " + JSON.stringify(response));
                         });
         }
 
@@ -83,7 +82,7 @@ angular.module('pyrite')
                             //success
                 		}, function failure(response) {
                             //failure
-                        	alert("failure message: " + JSON.stringify(response));
+                        	console.log("failure message: " + JSON.stringify(response));
                         });
         }
     }]);
