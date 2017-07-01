@@ -117,6 +117,9 @@ function run() {
     //font face
     styles += style.fontFace(ID, process.randomSelect(values.attributeValues.serifP));
 
+    //links
+    styles += style.links();
+
     //navbar
     styles += style.navbar(ID, process.randomSelect(values.navbarColors), navbarP);
 

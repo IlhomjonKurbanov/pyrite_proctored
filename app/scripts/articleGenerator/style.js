@@ -37,6 +37,11 @@ exports.fontFace = function(ID, serifP) {
     return data;
 }
 
+// create link styling
+exports.links = function() {
+    return 'a{text-decoration:underline;}';
+}
+
 // create styles for navbar, with provided colors and positioning
 exports.navbar = function(ID, colors, navbarP) {
     var data = '#navbar-background-' + ID + '{background-color:' + colors.background + ';}';
