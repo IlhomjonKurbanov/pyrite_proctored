@@ -1,6 +1,6 @@
 exports.attributeValues = {
     'linkRatio'     : [-1, 200, 50], //words per link
-    'video'         : [0, 1, 2],
+    'video'         : [0, 1],// 2], added if time allows
     'images'        : [0, 2, 4],
     'wordCount'     : [150, 400, 700],
     'fontSize'      : [ //using objects so that titles scale with body font size
@@ -12,15 +12,10 @@ exports.attributeValues = {
     'navbarP'       : [0, 1]
 }
 
-exports.BOOL = {
-    'false' : 0,
-    'true'  : 1
-}
-
 exports.VIDEO_CODE = {
     'absent'  : 0,
-    'present' : 1,
-    'follows' : 2
+    'present' : 1 //,
+    //'follows' : 2
 }
 
 exports.NAVBARP_CODE = {
