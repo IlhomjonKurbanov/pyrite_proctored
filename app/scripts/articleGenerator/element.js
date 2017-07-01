@@ -160,7 +160,7 @@ exports.images = function(ID, images, imagePaths, paragraphs, videoLocation, vid
         data[i] = undefined;
     }
 
-    var imageStart = '<div class="text-center"><img ' + this.NGCLICK + ' ';
+    var imageStart = '<div class="text-center"><div class="img-wrapper text-center"><img ' + this.NGCLICK + ' ';
     var rechoose = 0;
     for (var i = 1; i <= images; i++) {
         if (rechoose == 30) break; //avoid infinite loops
@@ -176,7 +176,7 @@ exports.images = function(ID, images, imagePaths, paragraphs, videoLocation, vid
         }
         rechoose = 0;
 
-        data[index] = imageStart + 'id="image-' + ID + '-' + i + '" src="' + imagePaths.pop() + '"></div>';
+        data[index] = imageStart + 'id="image-' + ID + '-' + i + '" src="' + imagePaths.pop() + '"></div></div>';
     }
 
     return data;

@@ -50,13 +50,13 @@ exports.navbar = function(ID, colors, navbarP) {
 
 // create style for video
 exports.video = function(ID, height) {
-    var data = '#video-' + ID + '{max-width:540px;}';
-    data += '.video-wrapper{max-width:540px;margin:15px auto;}'
+    var data = '#video-' + ID + '{max-width:540px;-webkit-filter:blur(20px);-moz-filter:blur(20px);-o-filter:blur(20px);-ms-filter:blur(20px);filter:blur(20px);}';
+    data += '.video-wrapper{max-width:540px;margin:15px auto;overflow:hidden;}'
     return data;
 }
 
 exports.globalImageStyling = function(ID) {
-    return '#page-content-' + ID + ' img{margin:10px;}';
+    return '#page-content-' + ID + ' img{-webkit-filter:blur(20px);-moz-filter:blur(20px);-o-filter:blur(20px);-ms-filter:blur(20px);filter:blur(20px);}.img-wrapper{overflow:hidden;display:inline-block;}';
 }
 
 // create styles for all images

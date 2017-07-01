@@ -49,7 +49,10 @@ exports.images = [
     'data/img4.jpg',
     'data/img5.jpg',
     'data/img6.jpg',
-    'data/img7.jpg'
+    'data/img7.jpg',
+    'data/img8.jpg',
+    'data/img9.jpg',
+    'data/img10.jpg'
 ]
 
 exports.videos = [
