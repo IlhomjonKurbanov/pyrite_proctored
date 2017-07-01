@@ -26,7 +26,7 @@ app.use(bodyParser.json());                     //parse application/json
 
 // == routes ===================================================================
 //pass our application, DB connection, and videoshow plugin into our routes
-require('./app/routes')(app, db, videoshow);
+require('./app/routes')(app, db);
 
 // == listen (start app with node server.js) ===================================
 var d = new Date();
