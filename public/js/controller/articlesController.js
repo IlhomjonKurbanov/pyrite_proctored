@@ -15,10 +15,8 @@ angular.module('pyrite')
             //fallback to cookieService handles $rootScope wipe on refresh
             $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
                 $rootScope.articleOrder : cookieService.getArticleOrder();
-            console.log($scope.articleOrder)
-            $scope.articleID = $scope.articleOrder[$scope.index]; //get articleID
-            console.log($scope.articleID);
-            $scope.articlePath = 'data/articles/article_' + $scope.articleID + '.html';
+            $scope.articlePath = $scope.articleOrder[$scope.index]; //get articlePath
+            $scope.articleID = $scope.articlePath.split('_')[1].split('.')[0];
 
             //response modal styles
             $scope.highlightStyle = {};
@@ -31,7 +29,7 @@ angular.module('pyrite')
 
             //display parameters
             $scope.numTrials = articleService.getNumTrials();
-            $scope.width = (50 / $scope.numTrials) * $scope.index
+            $scope.width = (50 / $scope.numTrials) * ($scope.index + 1)
 
             // == function definitions =========================================
             // ---- likert response functions ----------------------------------

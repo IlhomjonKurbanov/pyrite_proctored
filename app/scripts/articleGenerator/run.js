@@ -4,6 +4,7 @@ const style      = require('./style');
 const util       = require('./util');
 const loremipsum = require('lorem-ipsum');
 const fs         = require('fs');
+const mkdirp     = require('mkdirp');
 
 // == MAIN =====================================================================
 var arg = process.argv[2];
@@ -14,14 +15,42 @@ if (arg == 'all') {
 }
 
 // == FUNCTIONS ================================================================
+//build directories for most important attributes
+function buildDirectories() {
+    var i_linkDensity, i_video, i_images;
+    var attr = values.attributeValues;
+
+    for (i_linkDensity = 0; i_linkDensity < attr.linkDensity.length; i_linkDensity++) {
+        mkdirp('articles/' + i_linkDensity + '/', function (err) {
+            if (err) console.error(err)
+            else //console.log('success')
+        });
+
+        for (i_video = 0; i_video < attr.video.length; i_video++) {
+            mkdirp('articles/' + i_linkDensity + '/' + i_video + '/', function (err) {
+                if (err) console.error(err)
+                else //console.log('success')
+            });
+
+            for (i_images = 0; i_images < attr.images.length; i_images++) {
+                mkdirp('articles/' + i_linkDensity + '/' + i_video + '/' + i_images + '/', function (err) {
+                    if (err) console.error(err)
+                    else //console.log('success')
+                });
+            }
+        }
+    }
+}
 // RUNALL ====
 function runAll() {
     // == script variables =====================================================
     var ID;
     var i_linkDensity, i_video, i_images, i_wordCount, i_fontSize, i_serifP, i_navbarP;
     var attr = values.attributeValues;
+    buildDirectories();
 
-var i = 1;
+    var i = 1;
+    var articlePaths = new Array();
     // == variable iteration loop ==============================================
     //establish linkDensity
     for (i_linkDensity = 0; i_linkDensity < attr.linkDensity.length; i_linkDensity++) {
@@ -41,7 +70,7 @@ var i = 1;
                                 for (i_videoLocation = 0; i_videoLocation < attr.videoLocation.length; i_videoLocation++) {
                                     ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP + '-' + i_navbarP + '-' + i_videoLocation;
                                     console.log('Generating Article: ' + ID);
-                                    run(ID);
+                                    articlePaths.push(run(ID));
                                     // for generating all IDs for storage in articlesConfig
                                     // console.log('"' + i + '" : "' + ID + '",');
                                     // i++;
@@ -53,6 +82,11 @@ var i = 1;
             }
         }
     }
+//     i = 1;
+//     articlePaths.forEach(function(cur, index, arr) {
+//         console.log('"' + i + '" : "' + cur + '",');
+//         i++;
+//     })
 }
 
 // RUN ====
@@ -77,6 +111,7 @@ function run(ID) {
 
     // == get article parameters from ID =======================================
     var test = (ID == 'test');
+    var params;
     if (test) {
         console.log('TEST: random values.');
     } else {
@@ -216,11 +251,12 @@ function run(ID) {
     page = styles + page; //insert styles into beginning of page
 
     // == print to 'output.html' ===============================================
-    var filename = 'articles/article_' + ID + '.html';
+    var filename = (test) ? 'article_' + ID + '.html' : 'articles/' + params[0] + '/' + params[1] + '/' + params[2] + '/article_' + ID + '.html';
     fs.writeFile(filename, page, function(err) {
         if(err) {
             return console.log(err);
         }
         console.log(filename + ' was saved.');
     });
+    return filename;
 }

@@ -28,7 +28,7 @@ angular.module('pyrite')
             for (i = 1; i <= articlesConfig.NUMBER_OF_TRIALS; i++) {
                 //TODO pick from buckets
                 var index = Math.floor(Math.random() * articlesConfig.NUMBER_OF_ARTICLES) + 1;
-                var ID = articlesConfig.ARTICLE_ID[index];
+                var ID = articlesConfig.ARTICLE_PATHS[index];
                 order.push(ID);
             }
             order = this.shuffle(order);
