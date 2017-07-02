@@ -1,9 +1,5 @@
 angular.module('pyrite')
     .service('articleService', ['appConfig', 'articlesConfig', function(appConfig, articlesConfig) {
-        //TODO build details
-            //bunch of nested loops to generate all combinations
-            //uses articleDetails.ARTICLE_ATTRIBUTES values as indexes for larger 'details' object
-
         this.getNumTrials = function() {
             return articlesConfig.NUMBER_OF_TRIALS;
         }
@@ -25,9 +21,9 @@ angular.module('pyrite')
 
         this.getNewArticleOrder = function() {
             var order = new Array();
-            for (i = 1; i <= articlesConfig.NUMBER_OF_TRIALS; i++) {
-                //TODO pick from buckets
-                var index = Math.floor(Math.random() * articlesConfig.NUMBER_OF_ARTICLES) + 1;
+            var block = articlesConfig.NUMBER_OF_ARTICLES / (articlesConfig.ATTRIBUTE_VALUES.linkDensity.length * articlesConfig.ATTRIBUTE_VALUES.video.length * articlesConfig.ATTRIBUTE_VALUES.images.length);
+            for (i = 1; i < articlesConfig.NUMBER_OF_ARTICLES; i += block) {
+                var index = Math.floor(Math.random() * block) + i;
                 var ID = articlesConfig.ARTICLE_PATHS[index];
                 order.push(ID);
             }

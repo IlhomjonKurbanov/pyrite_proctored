@@ -6,17 +6,17 @@ angular.module('pyrite').constant("articlesConfig", {
     "NUMBER_OF_TRIALS" : 24, //per subject
     "NUMBER_OF_ARTICLES" : 1728,
     "ARTICLE_ATTRIBUTES" : [
-        "fontSize",
-        "fontType",
-        "linkRatio",
-        "imageRatio",
-        "audio",
+        "linkDensity",
         "video",
-        "unsolicitedVideo",
-        "navbarPosition"
+        "images",
+        "wordCount",
+        "fontSize",
+        "serifP",
+        "navbarP",
+        "videoLocation"
     ],
     "ATTRIBUTE_VALUES" : {
-        "linkDensity"   : [0, 0.005, 0.02], //links per word
+        "linkDensity"   : [0, 0.005, 0.012, 0.02], //links per word
         "video"         : [0, 1],// 2], added if time allows
         "images"        : [0, 2, 4],
         "wordCount"     : [150, 400, 700],
