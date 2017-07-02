@@ -13,7 +13,7 @@ const fs         = require('fs');
 // actualWordCount  : actual word count due to randomized lorem ipsum generation
 // paragraphs       : array of paragraphs, which gets expanded into 3d array of words,
 //                    grouped by sentence and paragraph
-// linkRatio        : words per link, -1 if no links
+// linkDensity      : links per word
 // links            : number of links
 // video            : 0=absent, 1=present, 2=follows on scroll
 // videoLocation    : 'top' or 'middle'
@@ -52,8 +52,8 @@ function run() {
     paragraphs = process.paragraphsToWords(paragraphs);
 
     //add links
-    var linkRatio = process.randomSelect(values.attributeValues.linkRatio);
-    var links = (linkRatio == -1) ? 0 : Math.round(actualWordCount / linkRatio);
+    var linkDensity = process.randomSelect(values.attributeValues.linkDensity);
+    var links = Math.round(actualWordCount * linkDensity);
     paragraphs = element.links(ID, paragraphs, links);
 
     // == build body media =====================================================

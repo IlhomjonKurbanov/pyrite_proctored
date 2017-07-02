@@ -1,5 +1,5 @@
 exports.attributeValues = {
-    'linkRatio'     : [-1, 200, 50], //words per link
+    'linkDensity'   : [0, 0.005, 0.02], //links per word
     'video'         : [0, 1],// 2], added if time allows
     'images'        : [0, 2, 4],
     'wordCount'     : [150, 400, 700],
