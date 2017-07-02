@@ -45,7 +45,7 @@ function runAll() {
                             //establish navbarP
                             for (i_navbarP = 0; i_navbarP < attr.navbarP.length; i_navbarP++) {
                                 navbarP = attr.navbarP[i_navbarP];
-                                ID = i_linkDensity + '_' + i_video + '_' + i_images + '_' + i_wordCount + '_' + i_fontSize + '_' + i_serifP + '_' + i_navbarP;
+                                ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP + '-' + i_navbarP;
                                 console.log(ID);
                                 //run(ID, linkDensity, video, images, wordCount, fontSize, serifP, navbarP);
                             }
@@ -82,8 +82,8 @@ function run(ID) {
     var navbarP = util.randomSelect(values.attributeValues.navbarP);
     page += element.navbar(ID, navbarP);
 
-    page += '<div id="page-content-' + ID + '">' //begin page content
-    page += '<div id="article-start-' + ID + '">' // for centering beginning elements
+    page += '<div id="page-content_' + ID + '">' //begin page content
+    page += '<div id="article-start_' + ID + '">' // for centering beginning elements
     page += element.title(ID);
 
     // == build body text ======================================================
@@ -146,7 +146,7 @@ function run(ID) {
         if (imageData[i] != undefined) page += imageData[i];
 
         //add paragraph
-        prepend = '<p id="paragraph-' + ID + '-' + i + '" ' + element.NGCLICK + '>'
+        prepend = '<p id="paragraph_' + ID + '_' + i + '" ' + element.NGCLICK + '>'
         page += prepend + paragraphs[i] + '</p>';
     }
 

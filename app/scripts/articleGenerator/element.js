@@ -20,8 +20,8 @@ exports.navbar = function(ID, navbarP) {
 
     built += '<div ';
     if (navbarP) built += 'navbar-fix-on-scroll ' //add directive to handle fixed-position logic
-    built += 'id="navbar-background-' + ID + '">';
-    built += '<ul id="navbar-' + ID + '" class="navbar" ' + this.NGCLICK + '>';
+    built += 'id="navbar-background_' + ID + '">';
+    built += '<ul id="navbar_' + ID + '" class="navbar" ' + this.NGCLICK + '>';
 
     var offset = 1;
     var item = '';
@@ -30,7 +30,7 @@ exports.navbar = function(ID, navbarP) {
         item = items[i - offset]
         if (item.length > 3 && itemsUsed.indexOf(item) == -1) {
             itemsUsed.push(item);
-            built += '<li><a id="navbar-element-' + ID + '-' + i + '" ' + this.NGCLICK + '>';
+            built += '<li><a id="navbar-element_' + ID + '_' + i + '" ' + this.NGCLICK + '>';
             built += item.charAt(0).toUpperCase() + item.slice(1);
             built += '</a></li>';
         } else {
@@ -65,7 +65,7 @@ exports.title = function(ID) {
     });
     title = title.join(' ');
 
-    built += '<h1 id="article-title-' + ID + '" ' + this.NGCLICK + '>';
+    built += '<h1 id="article-title_' + ID + '" ' + this.NGCLICK + '>';
     built += title;
     built += '</h1>'
 
@@ -126,7 +126,7 @@ exports.links = function(ID, paragraphs, links) {
         beginIndex = Math.floor(Math.random() * (paragraphs[paragraph][sentence].length - numWords));
 
         //add link
-        prepend = '<a id="link-' + ID + '-' + i + '" ' + this.NGCLICK + ' href="">';
+        prepend = '<a id="link_' + ID + '_' + i + '" ' + this.NGCLICK + ' href="">';
         paragraphs[paragraph][sentence][beginIndex] = prepend + paragraphs[paragraph][sentence][beginIndex];
         paragraphs[paragraph][sentence][beginIndex + numWords - 1] += '</a>'; //numWords - 1 means that end tag will be added to the correct index
     }
@@ -136,7 +136,7 @@ exports.links = function(ID, paragraphs, links) {
 // build video element
 exports.video = function(ID, videoPath, videoLocation) {
     var data = '<div class="video-wrapper">';
-    data += '<video id="video-' + ID + '" ' + this.NGCLICK + ' controls>';
+    data += '<video id="video_' + ID + '" ' + this.NGCLICK + ' controls>';
     data += '<source src="' + videoPath + '" type="video/mp4">';
     data += 'Your browser does not support the video tag.</video>';
     data += '</div>';
@@ -176,7 +176,7 @@ exports.images = function(ID, images, imagePaths, paragraphs, videoLocation, vid
         }
         rechoose = 0;
 
-        data[index] = imageStart + 'id="image-' + ID + '-' + i + '" src="' + imagePaths.pop() + '"></div></div>';
+        data[index] = imageStart + 'id="image_' + ID + '_' + i + '" src="' + imagePaths.pop() + '"></div></div>';
     }
 
     return data;
