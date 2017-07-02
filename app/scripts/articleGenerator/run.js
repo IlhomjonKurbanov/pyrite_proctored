@@ -18,36 +18,34 @@ if (arg == 'all') {
 function runAll() {
     // == script variables =====================================================
     var ID;
-    var page, styles;
-    var linkDensity, video, images, wordCount, fontSize, serifP, navbarP;
     var i_linkDensity, i_video, i_images, i_wordCount, i_fontSize, i_serifP, i_navbarP;
     var attr = values.attributeValues;
 
+var i = 1;
     // == variable iteration loop ==============================================
     //establish linkDensity
     for (i_linkDensity = 0; i_linkDensity < attr.linkDensity.length; i_linkDensity++) {
-        linkDensity = attr.linkDensity[i_linkDensity];
         //establish video
         for (i_video = 0; i_video < attr.video.length; i_video++) {
-            video = attr.video[i_video];
             //establish images
             for (i_images = 0; i_images < attr.images.length; i_images++) {
-                images = attr.images[i_images];
                 //establish wordCount
                 for (i_wordCount = 0; i_wordCount < attr.wordCount.length; i_wordCount++) {
-                    wordCount = attr.wordCount[i_wordCount];
                     //establish fontSize
                     for (i_fontSize = 0; i_fontSize < attr.fontSize.length; i_fontSize++) {
-                        fontSize = attr.fontSize[i_fontSize];
                         //establish serifP
                         for (i_serifP = 0; i_serifP < attr.serifP.length; i_serifP++) {
-                            serifP = attr.serifP[i_serifP];
                             //establish navbarP
                             for (i_navbarP = 0; i_navbarP < attr.navbarP.length; i_navbarP++) {
-                                navbarP = attr.navbarP[i_navbarP];
-                                ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP + '-' + i_navbarP;
-                                console.log(ID);
-                                //run(ID, linkDensity, video, images, wordCount, fontSize, serifP, navbarP);
+                                //establish videoLocation
+                                for (i_videoLocation = 0; i_videoLocation < attr.videoLocation.length; i_videoLocation++) {
+                                    ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP + '-' + i_navbarP + '-' + i_videoLocation;
+                                    // console.log('Generating Article: ' + ID);
+                                    // run(ID);
+                                    // for generating all IDs for storage in articlesConfig
+                                    console.log('"' + i + '" : "' + ID + '",');
+                                    i++;
+                                }
                             }
                         }
                     }
@@ -70,16 +68,37 @@ function run(ID) {
     // linkDensity      : links per word
     // links            : number of links
     // video            : 0=absent, 1=present, 2=follows on scroll
-    // videoLocation    : 'top' or 'middle'
+    // videoLocation    : 0=top, 1=middle
     // videoInjectIndex : index where video is added to text body, if videoLocation == 'middle'
     // images           : number of images
     // imageData        : associative array of indices and image html strings, for
     //                    injecting into image body between paragraphs
     // styles           : html string containing all page styles
 
+    // == get article parameters from ID =======================================
+    var test = (ID == 'test');
+    if (test) {
+        console.log('TEST: random values.');
+    } else {
+        params = ID.split('-');
+        var av = values.attributeValues;
+
+        //set article attributes
+        var linkDensity   = av.linkDensity[params[0]];
+        var video         = av.video[params[1]];
+        var images        = av.images[params[2]];
+        var wordCount     = av.wordCount[params[3]];
+        var fontSize      = av.fontSize[params[4]];
+        var serifP        = av.serifP[params[5]];
+        var navbarP       = av.navbarP[params[6]];
+        var videoLocation = av.videoLocation[params[7]];
+        //console.log(linkDensity + ', ' + video + ', ' + images + ', ' + wordCount + ', ' + fontSize + ', ' + serifP + ', ' + navbarP + ', ' + videoLocation)
+    }
+
+
     // == begin page, build navbar =============================================
     var page = '<script>plyr.setup()</script>';
-    var navbarP = util.randomSelect(values.attributeValues.navbarP);
+    if (test) var navbarP = util.randomSelect(values.attributeValues.navbarP);
     page += element.navbar(ID, navbarP);
 
     page += '<div id="page-content_' + ID + '">' //begin page content
@@ -87,7 +106,7 @@ function run(ID) {
     page += element.title(ID);
 
     // == build body text ======================================================
-    var wordCount = util.randomSelect(values.attributeValues.wordCount); //prescribed wordCount
+    if (test) var wordCount = util.randomSelect(values.attributeValues.wordCount); //prescribed wordCount
     var actualWordCount = 0; //actual word count
     var paragraphs = new Array();
     var returned;
@@ -103,27 +122,30 @@ function run(ID) {
     paragraphs = util.paragraphsToWords(paragraphs);
 
     //add links
-    var linkDensity = util.randomSelect(values.attributeValues.linkDensity);
+    if (test) var linkDensity = util.randomSelect(values.attributeValues.linkDensity);
     var links = Math.round(actualWordCount * linkDensity);
     paragraphs = element.links(ID, paragraphs, links);
 
     // == build body media =====================================================
     //establish video parameters
-    var video = util.randomSelect(values.attributeValues.video);
-    var videoLocation, videoPath; //undefined if video == VIDEO_CODE.absent
-    if (video == values.VIDEO_CODE.follows) videoLocation = 'top';
-    if (video == values.VIDEO_CODE.present) videoLocation = util.randomSelect(values.videoLocation);
-    if (video != values.VIDEO_CODE.absent) videoPath = util.randomSelect(values.videos);
+    if (test) var video = util.randomSelect(values.attributeValues.video);
+    var videoPath; //undefined if video == VIDEO_CODE.absent
+    //if (video == values.VIDEO_CODE.follows) videoLocation = 'top';
+    if (video == values.VIDEO_CODE.present)  {
+        if (test) var videoLocation = util.randomSelect(values.attributeValues.videoLocation);
+        videoPath = util.randomSelect(values.videos);
+    }
+
 
     //assign video position
     var videoInjectIndex; //undefined if videoLocation == 'top';
     if (video != values.VIDEO_CODE.absent) {
-        if (videoLocation == 'top') page += element.video(ID, videoPath, videoLocation);
-        if (videoLocation == 'middle') videoInjectIndex = Math.floor(paragraphs.length / 2);
+        if (videoLocation == values.VIDEO_LOC_CODE.top) page += element.video(ID, videoPath, videoLocation);
+        if (videoLocation == values.VIDEO_LOC_CODE.middle) videoInjectIndex = Math.floor(paragraphs.length / 2);
     }
 
     //establish image parameters
-    var images = util.randomSelect(values.attributeValues.images);
+    if (test) var images = util.randomSelect(values.attributeValues.images);
 
     //assign image positions
     var imagePaths = util.shuffle(values.images);
@@ -141,7 +163,7 @@ function run(ID) {
     var prepend;
     for (var i = 0; i < paragraphs.length; i++) {
         //add video to beginning of paragraph if appropriate
-        if (videoLocation == 'middle' && videoInjectIndex == i) page += element.video(ID, videoPath, videoLocation);
+        if (videoLocation == values.VIDEO_LOC_CODE.middle && videoInjectIndex == i) page += element.video(ID, videoPath, videoLocation);
 
         if (imageData[i] != undefined) page += imageData[i];
 
@@ -163,10 +185,10 @@ function run(ID) {
     styles += style.wrapper(ID);
 
     //font sizes
-    styles += style.fontSize(ID, util.randomSelect(values.attributeValues.fontSize));
+    styles += style.fontSize(ID, (test) ? util.randomSelect(values.attributeValues.fontSize) : fontSize);
 
     //font face
-    styles += style.fontFace(ID, util.randomSelect(values.attributeValues.serifP));
+    styles += style.fontFace(ID, (test) ? util.randomSelect(values.attributeValues.serifP) : serifP);
 
     //links
     styles += style.links();
@@ -194,10 +216,11 @@ function run(ID) {
     page = styles + page; //insert styles into beginning of page
 
     // == print to 'output.html' ===============================================
-    fs.writeFile('output.html', page, function(err) {
+    var filename = 'article_' + ID + '.html';
+    fs.writeFile(filename, page, function(err) {
         if(err) {
             return console.log(err);
         }
-        console.log("Output was saved.");
+        console.log(filename + ' was saved.');
     });
 }

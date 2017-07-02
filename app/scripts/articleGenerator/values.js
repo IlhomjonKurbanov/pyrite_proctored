@@ -1,5 +1,6 @@
+//URGENT: keep in sync w/ articlesConfig.ATTRIBUTE_VALUES
 exports.attributeValues = {
-    'linkDensity'   : [0, 0.005, 0.02], //links per word
+    'linkDensity'   : [0, 0.005, 0.012, 0.02], //links per word
     'video'         : [0, 1],// 2], added if time allows
     'images'        : [0, 2, 4],
     'wordCount'     : [150, 400, 700],
@@ -9,7 +10,8 @@ exports.attributeValues = {
         { 'article' : 18, 'title' : 44 }
     ],
     'serifP'        : [0, 1],
-    'navbarP'       : [0, 1]
+    'navbarP'       : [0, 1],
+    'videoLocation' : [0, 1] // 0 = top, 1 = middle
 }
 
 exports.VIDEO_CODE = {
@@ -18,12 +20,16 @@ exports.VIDEO_CODE = {
     //'follows' : 2
 }
 
+//video location code
+exports.VIDEO_LOC_CODE = {
+    'top'    : 0,
+    'middle' : 1
+}
+
 exports.NAVBARP_CODE = {
     'static' : 0,
     'fixed'  : 1
 }
-
-exports.videoLocation = ['top', 'middle'];
 
 //heights for images, videos
 exports.dimensions = [250, 325, 400]

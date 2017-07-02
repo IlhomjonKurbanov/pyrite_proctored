@@ -140,7 +140,7 @@ exports.video = function(ID, videoPath, videoLocation) {
     data += '<source src="' + videoPath + '" type="video/mp4">';
     data += 'Your browser does not support the video tag.</video>';
     data += '</div>';
-    if (videoLocation == 'middle') data = '<div class="text-center">' + data + '</div>';
+    if (videoLocation == 1) data = '<div class="text-center">' + data + '</div>';
     return data;
 }
 
@@ -153,7 +153,7 @@ exports.video = function(ID, videoPath, videoLocation) {
 exports.images = function(ID, images, imagePaths, paragraphs, videoLocation, videoInjectIndex) {
     var data = {};
     var options = [true, false];
-    var allowZeroIndex = (videoLocation != 'top');
+    var allowZeroIndex = (videoLocation != 0);
     if (allowZeroIndex && videoInjectIndex != undefined) paragraphs++; //allows for full-width images to happen after article end
     images = Math.min(paragraphs, images);
     for (var i = 0; i < paragraphs; i++) {
