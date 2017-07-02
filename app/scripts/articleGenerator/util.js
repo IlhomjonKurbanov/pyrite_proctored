@@ -8,18 +8,19 @@ exports.randomSelect = function(values) {
 }
 
 exports.shuffle = function(array) {
-    var currentIndex = array.length;
+    var copy = array.slice(0);
+    var currentIndex = copy.length;
     var temporaryValue, randomIndex;
     while (0 !== currentIndex) {
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
         // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        temporaryValue = copy[currentIndex];
+        copy[currentIndex] = copy[randomIndex];
+        copy[randomIndex] = temporaryValue;
     }
-    return array;
+    return copy;
 }
 
 // break down paragraphs into individual words

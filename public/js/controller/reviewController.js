@@ -27,7 +27,7 @@ angular.module('pyrite')
                 $rootScope.articleOrder : cookieService.getArticleOrder();
             $scope.articlePaths = new Array();
             $scope.articleOrder.forEach(function(val, index, array) {
-                $scope.articlePaths.push('view/partial/articles/testArticle' + val + '.html');
+                $scope.articlePaths.push('data/articles/article_' + val + '.html');
             })
 
             //progress info

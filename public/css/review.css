@@ -25,11 +25,12 @@
     background-color: rgba(255, 255, 0, 0.5);
     border: 4px solid rgb(255, 217, 0);
     border-radius: 7px;
+    z-index: 999;
 }
 /* == The following CSS is borrowed from http://nicolasgallagher.com/pure-css-speech-bubbles/ == */
 .response-modal {
     font-size: 16px;
-    z-index: 1;
+    z-index: 999;
     position: absolute;
     width: 550px;
     padding: 10px;
@@ -39,7 +40,8 @@
     background: #3d3d3d;
     border-radius: 10px;
     display: inline-block;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 .response-modal:after {
     content: "";

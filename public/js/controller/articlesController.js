@@ -15,8 +15,10 @@ angular.module('pyrite')
             //fallback to cookieService handles $rootScope wipe on refresh
             $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
                 $rootScope.articleOrder : cookieService.getArticleOrder();
+            console.log($scope.articleOrder)
             $scope.articleID = $scope.articleOrder[$scope.index]; //get articleID
-            $scope.articlePath = 'view/partial/articles/testArticle' + $scope.articleID + '.html';
+            console.log($scope.articleID);
+            $scope.articlePath = 'data/articles/article_' + $scope.articleID + '.html';
 
             //response modal styles
             $scope.highlightStyle = {};
@@ -28,8 +30,8 @@ angular.module('pyrite')
             $scope.moreBelievableCount = 0; //set "more believable" Spontaneous Response counter to 0
 
             //display parameters
-            $scope.numArticles = articleService.getNumArticles();
-            $scope.width = (50 / $scope.numArticles) * ($scope.index + 1)
+            $scope.numTrials = articleService.getNumTrials();
+            $scope.width = (50 / $scope.numTrials) * $scope.index
 
             // == function definitions =========================================
             // ---- likert response functions ----------------------------------
@@ -58,7 +60,7 @@ angular.module('pyrite')
                 dbService.registerArticleResponse(articleResponse);
 
                 //if articles remaining, continue; else, go to next stage of experiment
-                if ($scope.index < articleService.getNumArticles()) {
+                if ($scope.index < $scope.numTrials) {
                     progressService.setArticleIndex($scope.index);
                     $location.path('/articles/' + $scope.index);
                 } else {

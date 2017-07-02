@@ -40,11 +40,11 @@ var i = 1;
                                 //establish videoLocation
                                 for (i_videoLocation = 0; i_videoLocation < attr.videoLocation.length; i_videoLocation++) {
                                     ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP + '-' + i_navbarP + '-' + i_videoLocation;
-                                    // console.log('Generating Article: ' + ID);
-                                    // run(ID);
+                                    console.log('Generating Article: ' + ID);
+                                    run(ID);
                                     // for generating all IDs for storage in articlesConfig
-                                    console.log('"' + i + '" : "' + ID + '",');
-                                    i++;
+                                    // console.log('"' + i + '" : "' + ID + '",');
+                                    // i++;
                                 }
                             }
                         }
@@ -191,7 +191,7 @@ function run(ID) {
     styles += style.fontFace(ID, (test) ? util.randomSelect(values.attributeValues.serifP) : serifP);
 
     //links
-    styles += style.links();
+    styles += style.links(ID);
 
     //navbar
     styles += style.navbar(ID, util.randomSelect(values.navbarColors), navbarP);
@@ -216,7 +216,7 @@ function run(ID) {
     page = styles + page; //insert styles into beginning of page
 
     // == print to 'output.html' ===============================================
-    var filename = 'article_' + ID + '.html';
+    var filename = 'articles/article_' + ID + '.html';
     fs.writeFile(filename, page, function(err) {
         if(err) {
             return console.log(err);

@@ -38,8 +38,8 @@ exports.fontFace = function(ID, serifP) {
 }
 
 // create link styling
-exports.links = function() {
-    return 'a{text-decoration:underline;}';
+exports.links = function(ID) {
+    return '#page-content_' + ID + ' a{text-decoration:underline;}';
 }
 
 // create styles for navbar, with provided colors and positioning
