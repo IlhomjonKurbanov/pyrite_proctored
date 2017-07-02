@@ -1,6 +1,6 @@
-// process.js
+// util.js
 // ==========
-// functions for processing data structures
+// utility functions for processing data structures
 
 exports.randomSelect = function(values) {
     var index = Math.floor(Math.random() * values.length);

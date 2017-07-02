@@ -1,34 +1,85 @@
 const values     = require('./values');
 const element    = require('./element');
 const style      = require('./style');
-const process    = require('./process');
+const util       = require('./util');
 const loremipsum = require('lorem-ipsum');
 const fs         = require('fs');
 
-// 'global' variables:
-// =============================================================================
-// page             : html string for the entire page
-// navbarP          : 0=static, 1=fixed navbar
-// wordCount        : prescribed word count
-// actualWordCount  : actual word count due to randomized lorem ipsum generation
-// paragraphs       : array of paragraphs, which gets expanded into 3d array of words,
-//                    grouped by sentence and paragraph
-// linkDensity      : links per word
-// links            : number of links
-// video            : 0=absent, 1=present, 2=follows on scroll
-// videoLocation    : 'top' or 'middle'
-// videoInjectIndex : index where video is added to text body, if videoLocation == 'middle'
-// images           : number of images
-// imageData        : associative array of indices and image html strings, for
-//                    injecting into image body between paragraphs
-// styles           : html string containing all page styles
+// == MAIN =====================================================================
+var arg = process.argv[2];
+if (arg == 'all') {
+    runAll();
+} else {
+    run(arg);
+}
 
-function run() {
-    var ID = 1;
+// == FUNCTIONS ================================================================
+// RUNALL ====
+function runAll() {
+    // == script variables =====================================================
+    var ID;
+    var page, styles;
+    var linkDensity, video, images, wordCount, fontSize, serifP, navbarP;
+    var i_linkDensity, i_video, i_images, i_wordCount, i_fontSize, i_serifP, i_navbarP;
+    var attr = values.attributeValues;
+
+    // == variable iteration loop ==============================================
+    //establish linkDensity
+    for (i_linkDensity = 0; i_linkDensity < attr.linkDensity.length; i_linkDensity++) {
+        linkDensity = attr.linkDensity[i_linkDensity];
+        //establish video
+        for (i_video = 0; i_video < attr.video.length; i_video++) {
+            video = attr.video[i_video];
+            //establish images
+            for (i_images = 0; i_images < attr.images.length; i_images++) {
+                images = attr.images[i_images];
+                //establish wordCount
+                for (i_wordCount = 0; i_wordCount < attr.wordCount.length; i_wordCount++) {
+                    wordCount = attr.wordCount[i_wordCount];
+                    //establish fontSize
+                    for (i_fontSize = 0; i_fontSize < attr.fontSize.length; i_fontSize++) {
+                        fontSize = attr.fontSize[i_fontSize];
+                        //establish serifP
+                        for (i_serifP = 0; i_serifP < attr.serifP.length; i_serifP++) {
+                            serifP = attr.serifP[i_serifP];
+                            //establish navbarP
+                            for (i_navbarP = 0; i_navbarP < attr.navbarP.length; i_navbarP++) {
+                                navbarP = attr.navbarP[i_navbarP];
+                                ID = i_linkDensity + '_' + i_video + '_' + i_images + '_' + i_wordCount + '_' + i_fontSize + '_' + i_serifP + '_' + i_navbarP;
+                                console.log(ID);
+                                //run(ID, linkDensity, video, images, wordCount, fontSize, serifP, navbarP);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// RUN ====
+function run(ID) {
+    // 'global' variables:
+    // =============================================================================
+    // page             : html string for the entire page
+    // navbarP          : 0=static, 1=fixed navbar
+    // wordCount        : prescribed word count
+    // actualWordCount  : actual word count due to randomized lorem ipsum generation
+    // paragraphs       : array of paragraphs, which gets expanded into 3d array of words,
+    //                    grouped by sentence and paragraph
+    // linkDensity      : links per word
+    // links            : number of links
+    // video            : 0=absent, 1=present, 2=follows on scroll
+    // videoLocation    : 'top' or 'middle'
+    // videoInjectIndex : index where video is added to text body, if videoLocation == 'middle'
+    // images           : number of images
+    // imageData        : associative array of indices and image html strings, for
+    //                    injecting into image body between paragraphs
+    // styles           : html string containing all page styles
 
     // == begin page, build navbar =============================================
     var page = '<script>plyr.setup()</script>';
-    var navbarP = process.randomSelect(values.attributeValues.navbarP);
+    var navbarP = util.randomSelect(values.attributeValues.navbarP);
     page += element.navbar(ID, navbarP);
 
     page += '<div id="page-content-' + ID + '">' //begin page content
@@ -36,7 +87,7 @@ function run() {
     page += element.title(ID);
 
     // == build body text ======================================================
-    var wordCount = process.randomSelect(values.attributeValues.wordCount); //prescribed wordCount
+    var wordCount = util.randomSelect(values.attributeValues.wordCount); //prescribed wordCount
     var actualWordCount = 0; //actual word count
     var paragraphs = new Array();
     var returned;
@@ -49,20 +100,20 @@ function run() {
     }
 
     //break paragraphs into groups of sentences and words, for adding links
-    paragraphs = process.paragraphsToWords(paragraphs);
+    paragraphs = util.paragraphsToWords(paragraphs);
 
     //add links
-    var linkDensity = process.randomSelect(values.attributeValues.linkDensity);
+    var linkDensity = util.randomSelect(values.attributeValues.linkDensity);
     var links = Math.round(actualWordCount * linkDensity);
     paragraphs = element.links(ID, paragraphs, links);
 
     // == build body media =====================================================
     //establish video parameters
-    var video = process.randomSelect(values.attributeValues.video);
+    var video = util.randomSelect(values.attributeValues.video);
     var videoLocation, videoPath; //undefined if video == VIDEO_CODE.absent
     if (video == values.VIDEO_CODE.follows) videoLocation = 'top';
-    if (video == values.VIDEO_CODE.present) videoLocation = process.randomSelect(values.videoLocation);
-    if (video != values.VIDEO_CODE.absent) videoPath = process.randomSelect(values.videos);
+    if (video == values.VIDEO_CODE.present) videoLocation = util.randomSelect(values.videoLocation);
+    if (video != values.VIDEO_CODE.absent) videoPath = util.randomSelect(values.videos);
 
     //assign video position
     var videoInjectIndex; //undefined if videoLocation == 'top';
@@ -72,10 +123,10 @@ function run() {
     }
 
     //establish image parameters
-    var images = process.randomSelect(values.attributeValues.images);
+    var images = util.randomSelect(values.attributeValues.images);
 
     //assign image positions
-    var imagePaths = process.shuffle(values.images);
+    var imagePaths = util.shuffle(values.images);
     while (imagePaths.length > images) imagePaths.pop();
     var imageData = element.images(ID, images, imagePaths, paragraphs.length, videoLocation, videoInjectIndex);
 
@@ -84,7 +135,7 @@ function run() {
     page += '</div>';
 
     //rebuild paragraphs
-    paragraphs = process.wordsToParagraphs(paragraphs);
+    paragraphs = util.wordsToParagraphs(paragraphs);
 
     //add paragraphs (with injected links, images, and videos) to body
     var prepend;
@@ -112,20 +163,20 @@ function run() {
     styles += style.wrapper(ID);
 
     //font sizes
-    styles += style.fontSize(ID, process.randomSelect(values.attributeValues.fontSize));
+    styles += style.fontSize(ID, util.randomSelect(values.attributeValues.fontSize));
 
     //font face
-    styles += style.fontFace(ID, process.randomSelect(values.attributeValues.serifP));
+    styles += style.fontFace(ID, util.randomSelect(values.attributeValues.serifP));
 
     //links
     styles += style.links();
 
     //navbar
-    styles += style.navbar(ID, process.randomSelect(values.navbarColors), navbarP);
+    styles += style.navbar(ID, util.randomSelect(values.navbarColors), navbarP);
 
     //video
     if (video != values.VIDEO_CODE.absent) {
-        styles += style.video(ID, process.randomSelect(values.dimensions));
+        styles += style.video(ID, util.randomSelect(values.dimensions));
     }
 
     //video 'follow on scroll'
@@ -135,7 +186,7 @@ function run() {
     if (images > 0) {
         styles += style.globalImageStyling(ID);
         var imageHeights = new Array();
-        for (var i = 0; i < images; i++) imageHeights.push(process.randomSelect(values.dimensions));
+        for (var i = 0; i < images; i++) imageHeights.push(util.randomSelect(values.dimensions));
         styles += style.images(ID, images, imageHeights);
     }
 
@@ -150,4 +201,3 @@ function run() {
         console.log("Output was saved.");
     });
 }
-run();
