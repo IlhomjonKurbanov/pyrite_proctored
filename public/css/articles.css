@@ -137,9 +137,9 @@
     opacity: 0;
     -webkit-transition: opacity .5s ease;
     transition: opacity .5s ease;
-    position: relative;
-    right: -15px;
-    top: 0px;
+    position: fixed;
+    right: 50px;
+    top: 40%;
     color: black;
     font-size: 130px;
 }

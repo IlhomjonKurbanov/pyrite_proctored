@@ -75,7 +75,7 @@ angular.module('pyrite')
                         }
                         if ($scope.demoStep == 2 && this.pageYOffset > top2) {
                             $scope.demoStep = 'arrow';
-                            document.querySelector("#hint").setAttribute('style', 'opacity:1;top:' + topForArrow + 'px;');
+                            document.querySelector("#hint").setAttribute('style', 'opacity:1;');
                         }
                         if ($scope.demoStep == 'arrow' && this.pageYOffset > top3) {
                             $scope.demoStep = 3;
@@ -87,7 +87,6 @@ angular.module('pyrite')
             }
 
             function doDemo2Logic() {
-
                 $scope.demo2modals = 'view/partial/demo2modals.html';
                 $scope.demo2TriggeredClick = false;
                 $scope.step2 = function(event) {
@@ -106,7 +105,6 @@ angular.module('pyrite')
                         }, 100);
                     }
                 }
-
 
                 setTimeout(function () {
                     var top1 = document.querySelector("#image_demo2_1").getBoundingClientRect().top;
@@ -243,6 +241,10 @@ angular.module('pyrite')
 
                 //for storage in database
                 $scope.selectedID = selected.id;
+
+                if ($scope.demo2 && $scope.demoStep == 2 && $scope.selectedID == 'video_demo2') {
+                    document.querySelector("#hint").setAttribute('style', 'opacity:1;');
+                }
 
                 //set dimensions and position of highlight box
                 $scope.setHighlightStyling(rect);
