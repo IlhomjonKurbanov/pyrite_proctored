@@ -25,7 +25,7 @@
     background-color: rgba(255, 255, 0, 0.5);
     border: 4px solid rgb(255, 217, 0);
     border-radius: 7px;
-    z-index: 999;
+    z-index: 998;
 }
 /* == The following CSS is borrowed from http://nicolasgallagher.com/pure-css-speech-bubbles/ == */
 .response-modal {

@@ -57,12 +57,6 @@ angular.module('pyrite')
                 templateUrl: 'view/404.html'
             })
 
-            // blur utility
-            .when('/blur', {
-                templateUrl: 'view/blur.html',
-                controller: 'blurController'
-            })
-
             //otherwise redirect to page not found error
             .otherwise('/404');
     });

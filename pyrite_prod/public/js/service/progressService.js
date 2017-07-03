@@ -5,7 +5,7 @@ angular.module('pyrite')
         'demographics' : 2,
         'articles'     : 3,
         'review'       : 4,
-        'finished"'    : 5
+        'finished'     : 5
     })
     .service('progressService', ['EXPERIMENT_STAGE', 'cookieService', function(EXPERIMENT_STAGE, cookieService) {
         //initialize progress data

@@ -37,13 +37,17 @@ angular.module('pyrite')
 
                 if (!$scope.demo) {
                     $scope.index = parseInt($routeParams.index); //get article index from URL
+
+                    //clean up from modals
                     angular.element('.modal-backdrop').css('display', 'none');
+                    angular.element('body').removeClass('modal-open');
                 }
 
                 if ($scope.demo) {
                     setTimeout(function () {
                         $scope.demoStep = 1;
-                        $("#step1").modal("show");
+                        if ($scope.demo1) $("#step1-1").modal("show");
+                        if ($scope.demo2) $("#step2-1").modal("show");
                     }, 100);
                     $scope.articlePath = 'view/partial/';
                     $scope.articlePath += ($scope.demo1) ? 'demo1.html' : 'demo2.html';
@@ -59,8 +63,6 @@ angular.module('pyrite')
             }
 
             function doDemo1Logic() {
-                $scope.demo1modals = 'view/partial/demo1modals.html';
-                $scope.showArrow = false;
                 var likertHighlightTriggered = false;
                 setTimeout(function () {
                     var top1 = document.querySelector("#paragraph_demo1_1").getBoundingClientRect().top;
@@ -71,26 +73,25 @@ angular.module('pyrite')
                     angular.element($window).bind("scroll", function() {
                         if ($scope.demoStep == 1 && this.pageYOffset > top1) {
                             $scope.demoStep = 2;
-                            $("#step2").modal("show");
+                            $("#step1-2").modal("show");
                         }
                         if ($scope.demoStep == 2 && this.pageYOffset > top2) {
                             $scope.demoStep = 'arrow';
-                            document.querySelector("#hint").setAttribute('style', 'opacity:1;');
+                            document.querySelector("#hint1").setAttribute('style', 'opacity:1;');
                         }
                         if ($scope.demoStep == 'arrow' && this.pageYOffset > top3) {
                             $scope.demoStep = 3;
-                            $("#step3").modal("show");
+                            $("#step1-3").modal("show");
                             angular.element(document.querySelector('#likert')).addClass('highlight-border');
                         }
                     });
-                }, 100);
+                }, 500);
             }
 
             function doDemo2Logic() {
                 $scope.demo2modals = 'view/partial/demo2modals.html';
-                $scope.demo2TriggeredClick = false;
                 $scope.step2 = function(event) {
-                    if (event.target.id == 'step1' || event.target.id == 'step1-close' || event.target.id == 'step1-start') {
+                    if (event.target.id == 'step2-1' || event.target.id == 'step2-1-close' || event.target.id == 'step2-1-start') {
                         setTimeout(function () {
                             var wrapper = angular.element('.video-wrapper');
                             wrapper.css("border", "8px solid rgb(255, 217, 0)");
@@ -100,8 +101,8 @@ angular.module('pyrite')
                             wrapper.css("margin-top", parseInt(wrapper.css("margin-top").split("px")[0]) - 8) + "px";
 
                             $scope.demoStep = 2;
-                            $("#step2").modal("show");
-                            angular.element('#step2').css("height", "25%");
+                            $("#step2-2").modal("show");
+                            angular.element('#step2-2').css("height", "25%");
                         }, 100);
                     }
                 }
@@ -112,21 +113,21 @@ angular.module('pyrite')
 
                     angular.element($window).bind("scroll", function() {
                         if ($scope.demoStep == 2 && this.pageYOffset > top1) {
-                            $("#step2").modal("hide");
+                            $("#step2-2").modal("hide");
                             $scope.demoStep = 3;
-                            $("#step3").modal("show");
+                            $("#step2-3").modal("show");
                         }
                         if ($scope.demoStep == 3 && this.pageYOffset > top2) {
-                            $("#step3").modal("hide");
+                            $("#step2-3").modal("hide");
                             $scope.demoStep = 4;
-                            $("#step4").modal("show");
+                            $("#step2-4").modal("show");
                         }
                     });
-                }, 100);
+                }, 500);
             }
 
             $scope.endDemo = function() {
-                $('#step4').modal('hide');
+                $('#step2-4').modal('hide');
                 progressService.setArticleIndex(0);
                 $location.path('/articles/0');
             }
@@ -222,7 +223,7 @@ angular.module('pyrite')
                     return;
                 } else if ($scope.demo2) {
                     if ($scope.demoStep == 2) {
-                        $('#step2').modal("hide");
+                        $('#step2-2').modal("hide");
                         var wrapper = angular.element('.video-wrapper');
                         wrapper.css("border", "none");
                         wrapper.css("border-radius", "0px");
@@ -230,7 +231,7 @@ angular.module('pyrite')
                         wrapper.css("margin-bottom", parseInt(wrapper.css("margin-bottom").split("px")[0]) + 8 + "px");
                         wrapper.css("margin-top", parseInt(wrapper.css("margin-top").split("px")[0]) + 8 + "px");
                     } else if ($scope.demoStep == 3) {
-                        $('#step3').modal("hide");
+                        $('#step2-3').modal("hide");
                     }
                 }
 
@@ -243,7 +244,7 @@ angular.module('pyrite')
                 $scope.selectedID = selected.id;
 
                 if ($scope.demo2 && $scope.demoStep == 2 && $scope.selectedID == 'video_demo2') {
-                    document.querySelector("#hint").setAttribute('style', 'opacity:1;');
+                    document.querySelector("#hint2").setAttribute('style', 'opacity:1;');
                 }
 
                 //set dimensions and position of highlight box

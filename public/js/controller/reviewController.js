@@ -269,7 +269,6 @@ angular.module('pyrite')
                     $scope.disableContinue = false;
                     $scope.articlePanelState[trial].collapse = '';
                     $scope.articlePanelState[trial].checked = true;
-                    progressService.setStage('finished');
                 } else {
                     if (last) goToNextArticle(trial, $scope.current.trial.trials[$scope.current.trial.index + 1]);
                     else $window.scrollTo(0, getCurrentResponseOffset());
@@ -290,6 +289,7 @@ angular.module('pyrite')
 
             //continue to the prize page
             $scope.continue = function() {
+                progressService.setStage('finished');
                 $location.path('/prize');
             }
     }]);

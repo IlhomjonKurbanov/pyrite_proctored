@@ -127,13 +127,13 @@
     color: black;
     padding-bottom: 20px;
 }
-#demo-1-modals p, #demo-2-modals p, #demo-1-modals button, #demo-2-modals button {
+#demo p, #demo button {
     font-size: 18px;
 }
-#demo-1-modals .modal-dialog, #demo-2-modals .modal-dialog {
-    margin: 7% auto;
+#bootstrap-override #demo .modal-dialog {
+    margin: 7% auto !important;
 }
-#hint {
+#hint1, #hint2 {
     opacity: 0;
     -webkit-transition: opacity .5s ease;
     transition: opacity .5s ease;
@@ -143,14 +143,14 @@
     color: black;
     font-size: 130px;
 }
-#demo-1-modals img, #demo-2-modals img {
+#demo img {
     border: 1px solid LightGrey;
     border-radius: 5px;
     max-width: 80%;
     overflow: hidden;
     margin-bottom: 10px;
 }
-#demo-1-modals strong, #demo-2-modals strong {
+#demo strong {
     font-size: 18px !important;
 }
 #bootstrap-override #likert-statement {
@@ -158,23 +158,23 @@
 }
 #likert.highlight-border {
     padding: 2px;
-    margin: 2px auto;
+    margin: 2px auto !important;
     background-color: rgba(255, 255, 0, 0.5);
     border: 8px solid rgb(255, 217, 0);
     border-radius: 7px;
 }
-#step2, #step3 {
+#step2-2, #step2-3 {
     overflow: visible !important;
 }
-#demo-2-modals #step2 .modal-dialog, #demo-2-modals #step3 .modal-dialog {
-    margin-top: 100px;
+#bootstrap-override #step2-2 .modal-dialog, #bootstrap-override #step2-3 .modal-dialog {
+    margin-top: 100px !important;
 }
-#demo-2-modals #step2 .modal-content, #demo-2-modals #step3 .modal-content {
-    border: 3px solid black;
+#step2-2 .modal-content, #step2-3 .modal-content {
+    border: 3px solid black !important;
 }
-#demo-2-modals #step2, #demo-2-modals #step3 {
-    height: 180px;
+#step2-2, #step2-3 {
+    height: 180px !important;
 }
-#demo-2-modals #step4 .modal-dialog {
-    margin-top: 50px;
+#bootstrap-override #step2-4 .modal-dialog {
+    margin-top: 50px !important;
 }
