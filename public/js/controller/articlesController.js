@@ -10,21 +10,59 @@ angular.module('pyrite')
                  likertValuesDB, cookieService, dbService, articleService, progressService) {
             // == set up page info =============================================
             $scope.showSpontaneousResponse = false; //hide response modal initially
+
+            // demo section
             $scope.demo = ($routeParams.index == 'demo1' || $routeParams.index == 'demo2');
+            if ($scope.demo) $scope.demoStep = 1;
             $scope.demo1 = ($routeParams.index == 'demo1');
+
             $scope.demo2 = ($scope.demo && !$scope.demo1);
-            if ($scope.demo2) $scope.likert = "neither";
+            if ($scope.demo2) {
+                $scope.likert = "neither";
+                $scope.demo2modals = 'view/partial/demo2modals.html';
+            }
+
             if (!$scope.demo) $scope.index = parseInt($routeParams.index); //get article index from URL
 
-            //fallback to cookieService handles $rootScope wipe on refresh
             if ($scope.demo) {
-                $scope.articlePath = 'view/partial/demo/';
+                setTimeout(function () {
+                    $("#step1").modal("show");
+                }, 100);
+                $scope.articlePath = 'view/partial/';
                 $scope.articlePath += ($scope.demo1) ? 'demo1.html' : 'demo2.html';
             } else {
+                //fallback to cookieService handles $rootScope wipe on refresh
                 $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
                     $rootScope.articleOrder : cookieService.getArticleOrder();
                 $scope.articlePath = $scope.articleOrder[$scope.index]; //get articlePath
                 $scope.articleID = $scope.articlePath.split('_')[1].split('.')[0];
+            }
+            if ($scope.demo1) {
+                $scope.demo1modals = 'view/partial/demo1modals.html';
+                $scope.showArrow = false;
+                var likertHighlightTriggered = false;
+                setTimeout(function () {
+                    var top1 = document.querySelector("#paragraph_demo1_1").getBoundingClientRect().top;
+                    var top2 = document.querySelector("#video_demo1").getBoundingClientRect().top;
+                    var topForArrow = document.querySelector("#paragraph_demo1_4").getBoundingClientRect().top;
+                    var top3 = document.querySelector("#image_demo1_2").getBoundingClientRect().top;
+
+                    angular.element($window).bind("scroll", function() {
+                        if ($scope.demoStep == 1 && this.pageYOffset > top1) {
+                            $scope.demoStep = 2;
+                            $("#step2").modal("show");
+                        }
+                        if ($scope.demoStep == 2 && this.pageYOffset > top2) {
+                            $scope.demoStep = 'arrow';
+                            document.querySelector("#hint").setAttribute('style', 'opacity:1;top:' + topForArrow + 'px;');
+                        }
+                        if ($scope.demoStep == 'arrow' && this.pageYOffset > top3) {
+                            $scope.demoStep = 3;
+                            $("#step3").modal("show");
+                            angular.element(document.querySelector('#likert')).addClass('highlight-border');
+                        }
+                    });
+                }, 100);
             }
 
             //response modal styles
@@ -44,7 +82,7 @@ angular.module('pyrite')
             // ---- likert response functions ----------------------------------
             //validation that an option has been selected within the likert scale
             $scope.likertSelected = function() {
-                return ($scope.likert != undefined);
+                return ($scope.likert != undefined || $scope.demo2);
             }
 
             //submit likert response to current article to DB, and transition to the next article
