@@ -14,7 +14,8 @@
         "morgan"      : "1.8.1",
         "express"     : "4.15.2",
         "html-pdf"    : "2.1.0",
-        "lorem-ipsum" : "1.0.4"
+        "lorem-ipsum" : "1.0.4",
+        "mkdirp"      : "0.5.1"
     },
     "scripts": {
         "postinstall" : "bower install"

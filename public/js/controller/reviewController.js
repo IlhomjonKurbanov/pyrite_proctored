@@ -23,12 +23,9 @@ angular.module('pyrite')
             }
 
             //article info
-            $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
+            $scope.articlePaths = ($rootScope.articleOrder != undefined) ?
                 $rootScope.articleOrder : cookieService.getArticleOrder();
-            $scope.articlePaths = new Array();
-            $scope.articleOrder.forEach(function(val, index, array) {
-                $scope.articlePaths.push('view/partial/articles/testArticle' + val + '.html');
-            })
+
 
             //progress info
             $scope.current = {
