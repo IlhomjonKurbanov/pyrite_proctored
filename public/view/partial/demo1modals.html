@@ -1,0 +1,64 @@
+<div id="step1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Demo: respond to articles</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>
+                    You will be shown a series of articles where words, images, and videos have been replaced by filler content -- it has no meaning, and <strong id="not-understand">you will not be able to understand it</strong>. Please respond to the following statement after each article, based on how believable it looks:
+                </p>
+                <p id="likert-statement">
+                    <strong>“If it had real content, I would believe an article that looks like this.”</strong>
+                </p>
+                <p>
+                    Please take a moment to look at this demonstration article and observe its layout characteristics.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Start</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="step2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Confused?</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>
+                    Previous participants have been confused by the meaningless text, images, and videos. These elements are meaningless by design; please focus on the presentation of the article.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="hint">
+    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+</div>
+<div id="step3" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Demo: respond to articles</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>
+                    You will respond to each article via a Likert scale, as seen below. Consider all aspects of the article's presentation when responding.
+                </p>
+                <img src="data/img/likert.png">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="highlightLikertScale()" data-dismiss="modal">Finish</button>
+            </div>
+        </div>
+    </div>
+</div>

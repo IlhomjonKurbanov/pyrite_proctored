@@ -33,9 +33,7 @@
                     followed by $event.stopPropagation() calls to cancel the global
                     hideSpontaneousResponse onclick function
                  -->
-                <ng-include id="article"
-                    src="articlePath">
-                </ng-include>
+                <ng-include id="article" src="articlePath"></ng-include>
             </div>
             <form>
                 <div id="likert-wrapper">
@@ -73,6 +71,7 @@
             </form>
         </div>
     </div>
+    <!-- SpontaneousResponse -->
     <!--
         ng-click statement 'stopPropagation' blocks the
         page container's 'hideSpontaneousResponse' event
@@ -95,6 +94,7 @@
         <a><i id="negative" class="fa fa-thumbs-down fa-4x" ng-click="submitSpontaneousResponse($event)" aria-hidden="true"></i></a> -->
         <a><i id="close-response" class="fa fa-times" aria-hidden="true" ng-click="hideSpontaneousResponse()"></i></a>
     </div>
+    <!-- INSTRUCTIONS -->
     <div id="help" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -109,4 +109,8 @@
             </div>
         </div>
     </div>
+    <!-- DEMO MODALS: src is only defined if in given demo phase -->
+    <ng-include id="demo-1-modals" src="demo1modals"></ng-include>
+    <ng-include id="demo-2-modals" src="demo2modals"></ng-include>
+
 </div>
