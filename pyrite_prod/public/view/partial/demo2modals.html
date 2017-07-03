@@ -1,0 +1,64 @@
+<div id="step1" class="modal fade" role="dialog" ng-click="step2($event)">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="step1-close" type="button" class="close" data-dismiss="modal" ng-click="step2($event)">&times;</button>
+                <h2 class="modal-title">Demo: respond to individual elements</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>
+                    You are also able to respond to individual elements of the article, to indicate whether the element made the article seem <strong>more or less believable.</strong>
+                </p>
+                <img src="data/img/element.png">
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="step1-start" class="btn btn-default" data-dismiss="modal" ng-click="step2($event)">Start</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="step2" class="modal fade" data-backdrop="false" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Click on the video and respond.</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="hint">
+    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+</div>
+<div id="step3" class="modal fade" data-backdrop="false" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Try it out: click on other elements.</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="step4" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="step1-close" type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Provide explanations</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>
+                    We will also prompt you for more extensive responses to these individual elemens, at the end of the experiment. This is done via a free-form text response, as seen below.
+                </p>
+                <img src="data/img/qualitative.png">
+                <p>
+                    Full instructions can be found at the top-right of every article in the experiment, if you need a reminder.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="endDemo()" data-dismiss="modal">Begin Experiment</button>
+            </div>
+        </div>
+    </div>
+</div>

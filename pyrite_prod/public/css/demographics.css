@@ -1,0 +1,39 @@
+/*
+    demographics.css
+    ================
+    CSS for 'demographics' view
+*/
+#bootstrap-override .panel-group {
+    margin: 0;
+}
+#bootstrap-override .form-control {
+    max-width: 250px;
+}
+.pointer {
+    cursor: pointer;
+}
+.add-field {
+    color: grey;
+    font-weight: bold;
+    padding-top: 7px;
+    padding-left: 18px;
+}
+.add-field > span:hover, .cancel-field > i:hover {
+    color: black;
+}
+#bootstrap-override .cancel-field {
+    color: grey;
+    padding-top: 7px;
+    padding-left: 5px;
+    line-height: 32px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    display: inline-block;
+}
+.fa {
+    vertical-align: middle;
+}
+#select-field-2, #select-field-3, #other-field-1, #other-field-2, #other-field-3 {
+    margin-top: 7px;
+    display: inline-block;
+}

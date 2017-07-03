@@ -1,0 +1,92 @@
+/*
+    review.css
+    ==========
+    CSS for 'review' view
+*/
+#bootstrap-override .jumbotron#prompt {
+    font-size: 18px;
+    padding: 15px 30px 20px 30px;
+    margin-bottom: 15px;
+}
+#begin {
+    margin-top: 15px;
+}
+.collapsing {
+    -webkit-transition: height 0.01s;
+    transition: height 0.01s;
+}
+#bootstrap-override .well {
+    padding: 0;
+    overflow: hidden;
+    margin: 0;
+}
+.highlight {
+    position: absolute;
+    background-color: rgba(255, 255, 0, 0.5);
+    border: 4px solid rgb(255, 217, 0);
+    border-radius: 7px;
+    z-index: 999;
+}
+/* == The following CSS is borrowed from http://nicolasgallagher.com/pure-css-speech-bubbles/ == */
+.response-modal {
+    font-size: 16px;
+    z-index: 999;
+    position: absolute;
+    width: 550px;
+    padding: 10px;
+    position: absolute;
+    padding: 5px;
+    color: #000;
+    background: #3d3d3d;
+    border-radius: 10px;
+    display: inline-block;
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+.response-modal:after {
+    content: "";
+    position: absolute;
+    top: -15px; /* value = - border-top-width - border-bottom-width */
+    right: 260px; /* controls horizontal position */
+    bottom: auto;
+    left: auto;
+    border-width: 0 15px 15px; /* vary these values to change the angle of the vertex */
+    border-color: #3d3d3d transparent;
+    border-style: solid;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    width: 0;
+}
+/* == End of borrowed code == */
+#bootstrap-override .response-modal .well {
+    border-radius: 7px;
+    padding: 10px;
+}
+.response-title {
+    margin-bottom: 5px;
+}
+.more-believable {
+    color: #498a44;
+}
+.less-believable {
+    color: #c92d39;
+}
+#bootstrap-override .form-group {
+    margin-bottom: 10px;
+    padding: 0px;
+}
+#bootstrap-override textarea {
+    resize: vertical;
+}
+#bootstrap-override .response-modal div {
+    padding-right: 0px;
+}
+.cancel {
+    text-decoration: underline;
+    font-size: 12px;
+    color: grey;
+    margin-right: 10px;
+}
+.cancel:hover {
+    color: #4c4c4c;
+}

@@ -1,0 +1,33 @@
+/*
+    pyrite.css
+    ==========
+    global CSS rules for pyrite app
+*/
+html, body, .container { max-height: 100% }
+body {
+    padding: 20px;
+    background: #00D0BC;
+    color: #00907c;
+}
+.panel {
+    padding: 0px;
+}
+#bootstrap-override .panel-heading {
+    color: #00907c;
+    font-weight: 500;
+    font-size: 35px;
+}
+.panel-body {
+    color: black;
+}
+
+/* == progress bar ========================================================== */
+#bootstrap-override .progress {
+    padding: 0px;
+}
+#bootstrap-override .progress-bar {
+    background-color: #00907c;
+}
+#demographic-bar, #articles-bar, #review-bar {
+    border-left: 1px solid black;
+}

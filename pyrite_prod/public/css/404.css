@@ -1,0 +1,8 @@
+/*
+    404.css
+    =======
+    CSS for '404' view
+*/
+#bootstrap-override .jumbotron {
+    margin-top: 10%;
+}

@@ -1,0 +1,8 @@
+/*
+    end.css
+    =======
+    CSS for 'end' view
+*/
+#bootstrap-override .jumbotron {
+    margin-top: 10%;
+}

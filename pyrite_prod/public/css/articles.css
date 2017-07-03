@@ -1,0 +1,180 @@
+/*
+    articles.css
+    ============
+    CSS for 'articles' view
+*/
+.panel-heading div {
+    line-height: 50px;
+    vertical-align: middle;
+    font-size: 24px;
+    float: right;
+    padding-right: 5px;
+}
+.panel-heading div:hover {
+    cursor: pointer;
+    color: #007263;
+}
+.panel-heading span {
+    font-size: 14px;
+    vertical-align: bottom;
+}
+#bootstrap-override .well {
+    padding: 0;
+    overflow: hidden;
+}
+#article {
+    max-width: 100%;
+    max-height: 100%;
+}
+#likert {
+    display: table;
+    margin: 0 auto;
+}
+#likert-wrapper {
+    overflow: scroll;
+}
+#bootstrap-override .table-responsive {
+    border: none;
+}
+#likert table {
+    max-width: 650px;
+    background-color: #eee;
+    border: 7px solid #eee;
+    border-radius: 6px;
+    border-collapse: separate;
+}
+#likert td {
+    width: 14.28%;
+}
+#labels td {
+    padding: 0 5px;
+}
+#bootstrap-override label {
+    font-weight: normal;
+}
+#radios td {
+    padding-top: 8px;
+}
+
+#highlight {
+    position: absolute;
+    background-color: rgba(255, 255, 0, 0.5);
+    border: 4px solid rgb(255, 217, 0);
+    border-radius: 7px;
+    z-index: 999;
+}
+/* == Spontaneous Response Modal == */
+/* == The following CSS is borrowed from http://nicolasgallagher.com/pure-css-speech-bubbles/ == */
+#response {
+    font-size: 16px;
+    z-index: 1;
+    position: absolute;
+    width: 316px;
+    padding: 10px;
+    padding-bottom: 15px;
+    position: absolute;
+    color: #000;
+    background: #d1d1d1;
+    border: 3px solid black;
+    border-radius: 10px;
+    display: inline-block;
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+#response:after {
+    content: "";
+    position: absolute;
+    top: -15px; /* value = - border-top-width - border-bottom-width */
+    right: 141px; /* controls horizontal position */
+    bottom: auto;
+    left: auto;
+    border-width: 0 15px 15px; /* vary these values to change the angle of the vertex */
+    border-color: black transparent;
+    border-style: solid;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    width: 0;
+}
+/* == End of borrowed code == */
+#bootstrap-override #response-prompt {
+    padding-left: 0px;
+    padding-bottom: 10px;
+}
+#bootstrap-override #more-believable {
+    color: #116600;
+    margin-right: 10px;
+}
+#bootstrap-override #less-believable {
+    color: #b70000;
+}
+#bootstrap-override #more-believable, #bootstrap-override #less-believable {
+    text-shadow: none !important;
+}
+#close-response {
+    color: black;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+#close-response:hover {
+    opacity: .5;
+}
+#bootstrap-override .modal-dialog {
+    width: 650px;
+    margin: 15px auto;
+}
+#bootstrap-override .modal-body {
+    color: black;
+    padding-bottom: 20px;
+}
+#demo-1-modals p, #demo-2-modals p, #demo-1-modals button, #demo-2-modals button {
+    font-size: 18px;
+}
+#demo-1-modals .modal-dialog, #demo-2-modals .modal-dialog {
+    margin: 7% auto;
+}
+#hint {
+    opacity: 0;
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease;
+    position: fixed;
+    right: 50px;
+    top: 40%;
+    color: black;
+    font-size: 130px;
+}
+#demo-1-modals img, #demo-2-modals img {
+    border: 1px solid LightGrey;
+    border-radius: 5px;
+    max-width: 80%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+#demo-1-modals strong, #demo-2-modals strong {
+    font-size: 18px !important;
+}
+#bootstrap-override #likert-statement {
+    font-size: 22px !important;
+}
+#likert.highlight-border {
+    padding: 2px;
+    margin: 2px auto;
+    background-color: rgba(255, 255, 0, 0.5);
+    border: 8px solid rgb(255, 217, 0);
+    border-radius: 7px;
+}
+#step2, #step3 {
+    overflow: visible !important;
+}
+#demo-2-modals #step2 .modal-dialog, #demo-2-modals #step3 .modal-dialog {
+    margin-top: 100px;
+}
+#demo-2-modals #step2 .modal-content, #demo-2-modals #step3 .modal-content {
+    border: 3px solid black;
+}
+#demo-2-modals #step2, #demo-2-modals #step3 {
+    height: 180px;
+}
+#demo-2-modals #step4 .modal-dialog {
+    margin-top: 50px;
+}

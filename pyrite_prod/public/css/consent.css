@@ -1,0 +1,28 @@
+/*
+    consent.css
+    ===========
+    CSS for 'consent' view
+*/
+#consent ul {
+    list-style-type: none;
+}
+#consent-form {
+    color: black;
+}
+.signed-date {
+    color: grey;
+    font-style: italic;
+}
+#consent-check label {
+    float: left;
+}
+#bootstrap-override a {
+    color: #00baa7;
+}
+#bootstrap-override a:hover {
+    color: #00907c;
+    cursor: pointer;
+}
+#consent-check #submit, #consent-check #continue {
+    float: right;
+}

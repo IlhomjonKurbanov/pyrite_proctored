@@ -1,0 +1,34 @@
+<!--
+    consent.html
+    ============
+    template for 'consent' view
+-->
+<link rel="stylesheet" href="css/consent.css">
+<div class="container col-sm-12">
+    <div id="consent" class="panel panel-default col-sm-offset-2 col-sm-8">
+        <div class="panel-heading">
+            Consent
+        </div>
+        <div class="panel-body" id="consent-form">
+            <div id="consent-text" class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-include="'view/partial/consent-text.html'"></div>
+                </div>
+            </div>
+            <form id="consent-check" class="form-horizontal col-sm-12">
+                <label class="checkbox-inline" ng-show="!hasConsented">
+                    <input type="checkbox" ng-model="consentCheck"  ng-disabled="hasConsented" name="consent-check" value="consent-check">
+                        I give my consent to participate in this study. <span class="signed-date">{{today}}</span>
+                    </input>
+                </label>
+                <button id="submit" type="button" ng-disabled="!consentCheck" ng-show="!hasConsented" ng-click="submitConsent()" class="btn btn-default">
+                    Submit Consent
+                </button>
+                <span ng-show="hasConsented">(Optional) Click <a ng-click="downloadConsent()">here</a> to download this form for your records.</span>
+                <button id="continue" ng-click="continue()" ng-show="hasConsented" class="btn btn-default">
+                    Continue <i class="fa fa-play" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

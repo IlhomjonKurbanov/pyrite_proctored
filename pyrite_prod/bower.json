@@ -1,0 +1,24 @@
+{
+    "name"        : "pyrite",
+    "description" : "A web-based test engine for research on visual presentation factors in online news articles.",
+    "authors"     : [ "marijnburger" ],
+    "license"     : "MIT",
+    "homepage"    : "https://github.com/marijnburger/pyrite",
+    "ignore"      : [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies" : {
+        "jquery"            : "3.2.1",
+        "bootstrap"         : "3.3.7",
+        "font-awesome"      : "4.7.0",
+        "angular"           : "1.6.4",
+        "angular-route"     : "1.6.4",
+        "angular-animate"   : "1.6.4",
+        "angular-cookies"   : "1.6.4",
+        "plyr"              : "2.0.13"
+    }
+}
