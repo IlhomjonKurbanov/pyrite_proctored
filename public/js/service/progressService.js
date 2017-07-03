@@ -13,7 +13,7 @@ angular.module('pyrite')
         if (this.progress == undefined) {
             this.progress = {
                 stage : EXPERIMENT_STAGE.unstarted,
-                articleIndex : 0, //start "fresh" pages on first article
+                articleIndex : 'demo1', //start "fresh" pages on first article
                 reviewIndex : { //start "fresh" pages on first trial and response
                     trial: 0,
                     response: 0

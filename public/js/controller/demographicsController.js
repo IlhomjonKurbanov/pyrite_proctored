@@ -129,8 +129,8 @@ angular.module('pyrite')
                 subjectID_promise.then(function(subjectID) {
                     cookieService.setSubjectID(subjectID);
                     progressService.setStage('articles');
-                    progressService.setArticleIndex(0);
-                    $location.path('/articles/0');
+                    progressService.setArticleIndex('demo1');
+                    $location.path('/articles/demo1');
                 });
             };
         }]);

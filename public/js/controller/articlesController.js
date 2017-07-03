@@ -10,13 +10,22 @@ angular.module('pyrite')
                  likertValuesDB, cookieService, dbService, articleService, progressService) {
             // == set up page info =============================================
             $scope.showSpontaneousResponse = false; //hide response modal initially
-            $scope.index = parseInt($routeParams.index); //get article index from URL
+            $scope.demo = ($routeParams.index == 'demo1' || $routeParams.index == 'demo2');
+            $scope.demo1 = ($routeParams.index == 'demo1');
+            $scope.demo2 = ($scope.demo && !$scope.demo1);
+            if ($scope.demo2) $scope.likert = "neither";
+            if (!$scope.demo) $scope.index = parseInt($routeParams.index); //get article index from URL
 
             //fallback to cookieService handles $rootScope wipe on refresh
-            $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
-                $rootScope.articleOrder : cookieService.getArticleOrder();
-            $scope.articlePath = $scope.articleOrder[$scope.index]; //get articlePath
-            $scope.articleID = $scope.articlePath.split('_')[1].split('.')[0];
+            if ($scope.demo) {
+                $scope.articlePath = 'view/partial/demo/';
+                $scope.articlePath += ($scope.demo1) ? 'demo1.html' : 'demo2.html';
+            } else {
+                $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
+                    $rootScope.articleOrder : cookieService.getArticleOrder();
+                $scope.articlePath = $scope.articleOrder[$scope.index]; //get articlePath
+                $scope.articleID = $scope.articlePath.split('_')[1].split('.')[0];
+            }
 
             //response modal styles
             $scope.highlightStyle = {};
@@ -29,7 +38,7 @@ angular.module('pyrite')
 
             //display parameters
             $scope.numTrials = articleService.getNumTrials();
-            $scope.width = (50 / $scope.numTrials) * ($scope.index + 1)
+            $scope.width = ($scope.demo) ? 0 : (50 / $scope.numTrials) * ($scope.index + 1);
 
             // == function definitions =========================================
             // ---- likert response functions ----------------------------------
@@ -40,6 +49,18 @@ angular.module('pyrite')
 
             //submit likert response to current article to DB, and transition to the next article
             $scope.submitArticleResponse = function() {
+                if ($scope.demo) {
+                    if ($scope.demo1) {
+                        progressService.setArticleIndex('demo2');
+                        $location.path('/articles/demo2');
+                        return;
+                    } else {
+                        progressService.setArticleIndex('0');
+                        $location.path('/articles/0');
+                        return;
+                    }
+                }
+
                 var pageTimeEnd = Date.now(); //stop response timer
                 $scope.index++; //advance to next trial
 
@@ -119,6 +140,12 @@ angular.module('pyrite')
                 //for storage in database
                 $scope.selectedID = selected.id;
 
+                //ignore if in demo and not permitted
+                if ($scope.demo && $scope.selectedID != 'video_demo2' && $scope.selectedID != 'link_demo2_1') {
+                    $scope.hideSpontaneousResponse();
+                    return;
+                }
+
                 //set dimensions and position of highlight box
                 $scope.setHighlightStyling(rect);
 
@@ -137,6 +164,8 @@ angular.module('pyrite')
 
             //submit a "spontaneous response" to an article element
             $scope.submitSpontaneousResponse = function(val) {
+                if ($scope.demo) return; //neuter if in demo
+
                 //increment counters
                 $scope.SRCount++;
                 if (val == 'more-believable') $scope.moreBelievableCount++;
