@@ -12,12 +12,6 @@ angular.module('pyrite')
                 controller: 'startController'
             })
 
-            // instructions page
-            .when('/instructions', {
-                templateUrl: 'view/instructions.html',
-                controller: 'instructionsController'
-            })
-
             // consent page
             .when('/consent', {
                 templateUrl: 'view/consent.html',
@@ -73,8 +67,8 @@ angular.module('pyrite')
                         case EXPERIMENT_STAGE.unstarted:
                             if (path != '/' && path != '/consent') $location.path('/');
                             break;
-                        case EXPERIMENT_STAGE.introduction:
-                            if (path != '/introduction') $location.path('/introduction');
+                        case EXPERIMENT_STAGE.demographics:
+                            if (path != '/demographics') $location.path('/demographics');
                             break;
                         case EXPERIMENT_STAGE.articles:
                             if (!path.includes('/articles') || next.params.index != progress.articleIndex) {
