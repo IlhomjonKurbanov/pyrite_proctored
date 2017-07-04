@@ -47,6 +47,12 @@ angular.module('pyrite')
                 templateUrl: 'view/end.html'
             })
 
+            // window size warning
+            .when('/resize', {
+                templateUrl: 'view/resize.html',
+                controller: 'resizeController'
+            })
+
             .when('/404', {
                 templateUrl: 'view/404.html'
             })
@@ -56,10 +62,20 @@ angular.module('pyrite')
     });
 //handles routing behavior: scroll to top on route change, and subject consent validation
 angular.module('pyrite')
-    .run(['$rootScope', '$window', '$location', 'appConfig', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
-        function($rootScope, $window, $location, appConfig, cookieService, progressService, EXPERIMENT_STAGE) {
-            $rootScope.$on("$routeChangeStart", function (event, next, current) {
-                if (appConfig.DO_PROGRESS_CHECK) {
+    .run(['$rootScope', '$window', '$location', 'appConfig', 'cookieService', 'progressService', 'resizeService', 'EXPERIMENT_STAGE',
+        function($rootScope, $window, $location, appConfig, cookieService, progressService, resizeService, EXPERIMENT_STAGE) {
+            $rootScope.$on("$routeChangeStart", function (event, next, pr) {
+                if (appConfig.DO_WINDOW_SIZE_CHECK && !$location.path().includes('/resize')) {
+                    var ideal = resizeService.getIdealDimensions();
+                    var width = $window.innerWidth;
+                    var height = $window.innerHeight;
+                    if (width > ideal.width.max || width < ideal.width.min
+                        || height > ideal.height.max || height < ideal.height.min) {
+                        resizeService.setOrigin($location.path());
+                        $location.path('/resize');
+                    }
+                }
+                if (appConfig.DO_PROGRESS_CHECK && !$location.path().includes('/resize')) {
                     var progress = progressService.getProgress();
                     var stage = progress.stage;
                     var path = $location.path();

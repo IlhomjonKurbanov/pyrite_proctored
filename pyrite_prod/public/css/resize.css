@@ -1,0 +1,10 @@
+i {
+    vertical-align: middle;
+}
+#bootstrap-override button {
+    color: inherit;
+    margin-top: 20px;
+}
+#bootstrap-override button h2 {
+    margin: 0px;
+}

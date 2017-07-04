@@ -1,0 +1,26 @@
+
+<!--
+    resize.html
+    ===========
+    template for 'resize' view
+-->
+<link rel="stylesheet" href="css/resize.css">
+<div class="container col-sm-12">
+    <div ng-show="loading" class="jumbotron text-center col-sm-offset-2 col-sm-8">
+        <h2>Loading <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></h2>
+    </div>
+    <div ng-show="!loading">
+        <div ng-show="!idealSize" class="jumbotron text-center col-sm-offset-2 col-sm-8">
+            <h2>For optimal results, please <span ng-show="height.invalid">{{height.direction}} the viewing window height</span><span ng-show="bothInvalid()">. Please also </span><span ng-show="width.invalid">{{width.direction}} the viewing window width</span>.</h2>
+            <h2 ng-show="width.invalid">The window is now {{width.val}} pixels wide. Please {{width.direction}} the width to be within the range of {{ideal.width.min}} to {{ideal.width.max}} pixels.</h2>
+            <h2 ng-show="height.invalid">The window is now {{height.val}} pixels tall. Please {{height.direction}} the height to be within the range of {{ideal.height.min}} to {{ideal.height.max}} pixels.</h2>
+            <!-- congrats you can retry -->
+            <!-- retry button -->
+        </div>
+        <div ng-show="idealSize" class="jumbotron text-center col-sm-offset-2 col-sm-8">
+            <h2>Thank you!</h2>
+            <h2>Your viewing window is now the correct size.</h2>
+            <button class="btn btn-default" ng-click="continue()"><h2>Continue <i class="fa fa-play" aria-hidden="true"></i></h2></button>
+        </div>
+    </div>
+</div>
