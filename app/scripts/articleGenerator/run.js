@@ -10,6 +10,8 @@ const mkdirp     = require('mkdirp');
 var arg = process.argv[2];
 if (arg == 'all') {
     runAll();
+} else if (arg == 'directories') {
+    buildDirectories();
 } else {
     run(arg);
 }
@@ -47,7 +49,6 @@ function runAll() {
     var ID;
     var i_linkDensity, i_video, i_images, i_wordCount, i_fontSize, i_serifP, i_navbarP;
     var attr = values.attributeValues;
-    buildDirectories();
 
     var i = 1;
     var articlePaths = new Array();

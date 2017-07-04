@@ -10,7 +10,7 @@ exports.center = function(ID) {
 
 // create style of the page content wrapper
 exports.wrapper = function(ID) {
-    return '#page-content_' + ID + '{padding:15px;max-width:740px;overflow:hidden;margin-left:auto;margin-right:auto;}'
+    return '#page-content_' + ID + '{padding:15px;width:740px;overflow:hidden;margin-left:auto;margin-right:auto;}'
 }
 
 // create font size style
@@ -45,7 +45,7 @@ exports.links = function(ID) {
 // create styles for navbar, with provided colors and positioning
 exports.navbar = function(ID, colors, navbarP) {
     var data = '#navbar-background_' + ID + '{background-color:' + colors.background + ';}';
-    data += '#navbar_' + ID + '{list-style-type:none;margin:0;padding:0;overflow:hidden;max-width:740px;margin-left:auto;margin-right:auto;text-align:center;}';
+    data += '#navbar_' + ID + '{list-style-type:none;margin:0;padding:0;overflow:hidden;width:740px;margin-left:auto;margin-right:auto;text-align:center;}';
     data += '#navbar_' + ID + ' li{display:inline;}';
     data += '#navbar_' + ID + ' a{display:inline-block;color:white;text-align:center;padding:14px 16px;text-decoration:none;}';
     data += '#navbar_' + ID + ' li a:hover{background-color:' + colors.hover + ';}';
