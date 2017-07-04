@@ -23,19 +23,19 @@ function buildDirectories() {
     for (i_linkDensity = 0; i_linkDensity < attr.linkDensity.length; i_linkDensity++) {
         mkdirp('articles/' + i_linkDensity + '/', function (err) {
             if (err) console.error(err)
-            else //console.log('success')
+            else console.log('success')
         });
 
         for (i_video = 0; i_video < attr.video.length; i_video++) {
             mkdirp('articles/' + i_linkDensity + '/' + i_video + '/', function (err) {
                 if (err) console.error(err)
-                else //console.log('success')
+                else console.log('success')
             });
 
             for (i_images = 0; i_images < attr.images.length; i_images++) {
                 mkdirp('articles/' + i_linkDensity + '/' + i_video + '/' + i_images + '/', function (err) {
                     if (err) console.error(err)
-                    else //console.log('success')
+                    else console.log('success')
                 });
             }
         }

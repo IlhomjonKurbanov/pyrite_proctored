@@ -55,7 +55,7 @@ exports.navbar = function(ID, colors, navbarP) {
 
 // create style for video
 exports.video = function(ID, height) {
-    var data = '#video_' + ID + '{max-width:540px;-webkit-filter:blur(20px);-moz-filter:blur(20px);-o-filter:blur(20px);-ms-filter:blur(20px);filter:blur(20px);}';
+    var data = '#video_' + ID + '{max-width:540px;-webkit-filter:blur(40px);-moz-filter:blur(40px);-o-filter:blur(40px);-ms-filter:blur(40px);filter:blur(40px);}';
     data += '.video-wrapper{max-width:540px;margin:15px auto;overflow:hidden;}'
     return data;
 }
