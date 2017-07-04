@@ -67,8 +67,8 @@ angular.module('pyrite')
                 setTimeout(function () {
                     var top1 = document.querySelector("#paragraph_demo1_1").getBoundingClientRect().top;
                     var top2 = document.querySelector("#video_demo1").getBoundingClientRect().top;
-                    var topForArrow = document.querySelector("#paragraph_demo1_5").getBoundingClientRect().top;
-                    var top3 = document.querySelector("#image_demo1_2").getBoundingClientRect().top;
+                    var topForArrow = document.querySelector("#paragraph_demo1_2").getBoundingClientRect().top;
+                    var bottom = document.querySelector(".container").clientHeight;
 
                     angular.element($window).bind("scroll", function() {
                         if ($scope.demoStep == 1 && this.pageYOffset > top1) {
@@ -77,9 +77,9 @@ angular.module('pyrite')
                         }
                         if ($scope.demoStep == 2 && this.pageYOffset > top2) {
                             $scope.demoStep = 'arrow';
-                            document.querySelector("#hint1").setAttribute('style', 'opacity:1;');
+                            document.querySelector("#hint1").setAttribute('style', 'opacity:1;right:50px;');
                         }
-                        if ($scope.demoStep == 'arrow' && this.pageYOffset > top3) {
+                        if ($scope.demoStep == 'arrow' && this.pageYOffset + $window.innerHeight >= bottom) {
                             $scope.demoStep = 3;
                             $("#step1-3").modal("show");
                             angular.element(document.querySelector('#likert')).addClass('highlight-border');
@@ -244,7 +244,7 @@ angular.module('pyrite')
                 $scope.selectedID = selected.id;
 
                 if ($scope.demo2 && $scope.demoStep == 2 && $scope.selectedID == 'video_demo2') {
-                    document.querySelector("#hint2").setAttribute('style', 'opacity:1;');
+                    document.querySelector("#hint2").setAttribute('style', 'opacity:1;right:50px;');
                 }
 
                 //set dimensions and position of highlight box

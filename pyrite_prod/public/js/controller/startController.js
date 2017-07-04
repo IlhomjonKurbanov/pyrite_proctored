@@ -7,7 +7,6 @@ angular.module('pyrite')
         function($scope, $location, appConfig, progressService) {
             //setup page variables
             $scope.start = function() {
-                progressService.setStage('instructions');
-                $location.path('/instructions');
+                $location.path('/consent');
             }
         }]);

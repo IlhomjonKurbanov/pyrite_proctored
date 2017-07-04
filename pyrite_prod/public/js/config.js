@@ -7,7 +7,7 @@ angular.module('pyrite')
     .constant("appConfig", {
         "SURVEY_LIVE"       : false, //WARNING: be very careful with changing this
         "REQUIRE_CONSENT"   : true,
-        "DO_PROGRESS_CHECK" : true, //toggles redirect behavior that checks user's requested path against their stored progress information
+        "DO_PROGRESS_CHECK" : false, //toggles redirect behavior that checks user's requested path against their stored progress information
         "PROCTORED"         : false, //toggles alternate behavior on narrative response page for proctored experiments
         "PATH"              : "http://ec2-34-203-212-114.compute-1.amazonaws.com/"
     });
