@@ -86,7 +86,7 @@ exports.paragraph = function() {
                          sentenceLowerBound: 8,
                          sentenceUpperBound: 15,
                          paragraphLowerBound: 5,
-                         paragraphUpperBound: 9,
+                         paragraphUpperBound: 12,
                          format: 'plain'
                      });
     data.wordCount = data.paragraph.split(' ').length;

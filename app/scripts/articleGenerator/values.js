@@ -1,9 +1,9 @@
 //URGENT: keep in sync w/ articlesConfig.ATTRIBUTE_VALUES
 exports.attributeValues = {
-    'linkDensity'   : [0, 0.005, 0.012, 0.02], //links per word
+    'linkDensity'   : [0, .00214362, 0.00701098, 0.01743092], //links per word: none, low, medium, hihg density
     'video'         : [0, 1],// 2], added if time allows
     'images'        : [0, 2, 4],
-    'wordCount'     : [150, 400, 700],
+    'wordCount'     : [348, 644, 1070],
     'fontSize'      : [ //using objects so that titles scale with body font size
         { 'article' : 14, 'title' : 32 },
         { 'article' : 16, 'title' : 38 },
