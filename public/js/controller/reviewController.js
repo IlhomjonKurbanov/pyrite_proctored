@@ -152,22 +152,23 @@ angular.module('pyrite')
                 //get element parameters
                 var style = window.getComputedStyle(element);
                 var margin = {
-                    left: parseInt(style["margin-left"]),
-                    top: parseInt(style["margin-top"]),
+                    left: parseInt(style["margin-left"]) || 0,
+                    top: parseInt(style["margin-top"]) || 0,
                 };
                 var border = {
-                    right: parseInt(style["border-right"]),
-                    top: parseInt(style["border-top"]),
-                    bottom: parseInt(style["border-bottom"])
+                    right: parseInt(style["border-right"]) || 0,
+                    top: parseInt(style["border-top"]) || 0,
+                    bottom: parseInt(style["border-bottom"]) || 0
                 };
+
 
                 //get container parameters
                 var responsePanel = document.querySelector('#response-panel');
                 var panelRect = responsePanel.getBoundingClientRect();
                 var panelStyle = window.getComputedStyle(responsePanel);
                 panelBorder = {
-                    left: parseInt(panelStyle["border-left"]),
-                    top: parseInt(panelStyle["border-top"]),
+                    left: parseInt(panelStyle["border-left"]) || 0,
+                    top: parseInt(panelStyle["border-top"]) || 0,
                 }
 
                 //calculate "true" rectangle
