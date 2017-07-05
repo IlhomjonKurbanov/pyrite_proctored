@@ -7,16 +7,14 @@ angular.module('pyrite')
         function($scope, $window, $location, resizeService) {
             $scope.loading = true;
             $scope.idealSize = false;
-            $scope.ideal = resizeService.getIdealDimensions();
+            $scope.minimum = resizeService.getMinimums();
             $scope.width = {
                 invalid   : true,
                 val       : 'undefined',
-                direction : 'undefined'
             }
             $scope.height = {
                 invalid   : true,
                 val       : 'undefined',
-                direction : 'undefined'
             }
 
             $scope.bothInvalid = function() {
@@ -25,27 +23,17 @@ angular.module('pyrite')
 
             function updateVal() {
                 $scope.width.val = $window.innerWidth;
-                if ($scope.width.val > $scope.ideal.width.max) {
+                if ($scope.width.val < $scope.minimum.width) {
                     $scope.idealSize = false;
                     $scope.width.invalid = true;
-                    $scope.width.direction = 'decrease';
-                } else if ($scope.width.val < $scope.ideal.width.min) {
-                    $scope.idealSize = false;
-                    $scope.width.invalid = true;
-                    $scope.width.direction = 'increase';
                 } else {
                     $scope.width.invalid = false;
                 }
 
                 $scope.height.val = $window.innerHeight;
-                if ($scope.height.val > $scope.ideal.height.max) {
+                if ($scope.height.val < $scope.minimum.height) {
                     $scope.idealSize = false;
                     $scope.height.invalid = true;
-                    $scope.height.direction = 'decrease';
-                } else if ($scope.height.val < $scope.ideal.height.min) {
-                    $scope.idealSize = false;
-                    $scope.height.invalid = true;
-                    $scope.height.direction = 'increase';
                 } else {
                     $scope.height.invalid = false;
                 }

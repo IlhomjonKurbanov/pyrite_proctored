@@ -11,11 +11,8 @@
     </div>
     <div ng-show="!loading">
         <div ng-show="!idealSize" class="jumbotron text-center col-sm-offset-2 col-sm-8">
-            <h2>For optimal results, please <span ng-show="height.invalid">{{height.direction}} the viewing window height</span><span ng-show="bothInvalid()">. Please also </span><span ng-show="width.invalid">{{width.direction}} the viewing window width</span>.</h2>
-            <h2 ng-show="width.invalid">The window is now {{width.val}} pixels wide. Please {{width.direction}} the width to be within the range of {{ideal.width.min}} to {{ideal.width.max}} pixels.</h2>
-            <h2 ng-show="height.invalid">The window is now {{height.val}} pixels tall. Please {{height.direction}} the height to be within the range of {{ideal.height.min}} to {{ideal.height.max}} pixels.</h2>
-            <!-- congrats you can retry -->
-            <!-- retry button -->
+            <h2>For optimal results, please increase the viewing window <span ng-show="height.invalid">height</span><span ng-show="bothInvalid()"> and </span><span ng-show="width.invalid">width</span>. It is possible that you are using a mobile browser: please complete this experiment on a laptop or desktop computer instead.</h2>
+            <h2>You can continue the experiment when the window is <span ng-show="height.invalid">tall</span><span ng-show="bothInvalid()"> and </span><span ng-show="width.invalid">wide</span> enough.</h2>
         </div>
         <div ng-show="idealSize" class="jumbotron text-center col-sm-offset-2 col-sm-8">
             <h2>Thank you!</h2>

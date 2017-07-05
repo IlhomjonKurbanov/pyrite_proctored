@@ -66,11 +66,10 @@ angular.module('pyrite')
         function($rootScope, $window, $location, appConfig, cookieService, progressService, resizeService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, pr) {
                 if (appConfig.DO_WINDOW_SIZE_CHECK && !$location.path().includes('/resize')) {
-                    var ideal = resizeService.getIdealDimensions();
+                    var minimum = resizeService.getMinimums();
                     var width = $window.innerWidth;
                     var height = $window.innerHeight;
-                    if (width > ideal.width.max || width < ideal.width.min
-                        || height > ideal.height.max || height < ideal.height.min) {
+                    if (width < minimum.width || height < minimum.height) {
                         resizeService.setOrigin($location.path());
                         $location.path('/resize');
                     }
