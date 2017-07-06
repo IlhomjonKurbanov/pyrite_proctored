@@ -30,9 +30,6 @@
     display: table;
     margin: 0 auto;
 }
-#likert-wrapper {
-    overflow: scroll;
-}
 #bootstrap-override .table-responsive {
     border: none;
 }

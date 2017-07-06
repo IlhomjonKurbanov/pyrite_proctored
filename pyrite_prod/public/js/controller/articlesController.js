@@ -144,6 +144,9 @@ angular.module('pyrite')
                     progressService.setArticleIndex('demo2');
                     $location.path('/articles/demo2');
                     return;
+                } else if ($scope.demo2) {
+                    endDemo();
+                    return;
                 }
 
                 var pageTimeEnd = Date.now(); //stop response timer
