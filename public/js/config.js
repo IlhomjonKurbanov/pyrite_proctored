@@ -58,3 +58,10 @@ angular.module('pyrite')
         "agree"             : 6,
         "strongly-agree"    : 7
     });
+
+// == minimum values for window dimensions, in pixels ==========================
+angular.module('pyrite')
+    .constant("windowSizeMinimums", {
+        "width" : 1220,
+        "height" : 400
+    });

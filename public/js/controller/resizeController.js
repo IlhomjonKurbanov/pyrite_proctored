@@ -49,7 +49,7 @@ angular.module('pyrite')
             $scope.loading = false;
 
             $scope.continue = function() {
-                $location.path(resizeService.getOrigin());
+                $location.path(cookieService.getOrigin());
             }
         }
     ]);

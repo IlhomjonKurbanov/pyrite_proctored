@@ -62,15 +62,15 @@ angular.module('pyrite')
     });
 //handles routing behavior: scroll to top on route change, and subject consent validation
 angular.module('pyrite')
-    .run(['$rootScope', '$window', '$location', 'appConfig', 'cookieService', 'progressService', 'resizeService', 'EXPERIMENT_STAGE',
-        function($rootScope, $window, $location, appConfig, cookieService, progressService, resizeService, EXPERIMENT_STAGE) {
+    .run(['$rootScope', '$window', '$location', 'appConfig', 'windowSizeMinimums', 'cookieService', 'progressService', 'resizeService', 'EXPERIMENT_STAGE',
+        function($rootScope, $window, $location, appConfig, windowSizeMinimums, cookieService, progressService, resizeService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, pr) {
                 if (appConfig.DO_WINDOW_SIZE_CHECK && !$location.path().includes('/resize')) {
-                    var minimum = resizeService.getMinimums();
+                    var minimum = windowSizeMinimums;
                     var width = $window.innerWidth;
                     var height = $window.innerHeight;
                     if (width < minimum.width || height < minimum.height) {
-                        resizeService.setOrigin($location.path());
+                        cookieService.setOrigin($location.path());
                         $location.path('/resize');
                     }
                 }
