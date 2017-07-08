@@ -292,10 +292,6 @@ angular.module('pyrite')
                 //for storage in database
                 $scope.selectedID = selected.id;
 
-                if ($scope.demo2 && $scope.demoStep == 2 && $scope.selectedID == 'video_demo2') {
-                    document.querySelector("#hint2").setAttribute('style', 'opacity:1;right:50px;');
-                }
-
                 //set dimensions and position of highlight box
                 $scope.setHighlightStyling(rect);
 
@@ -314,15 +310,13 @@ angular.module('pyrite')
             $scope.hideSpontaneousResponse = function() {
                 $scope.showNarrativeResponse = false;
                 $scope.showSpontaneousResponse = false;
+                if ($scope.demo2 && $scope.demoStep == 2 && $scope.selectedID == 'video_demo2') {
+                    document.querySelector("#hint2").setAttribute('style', 'opacity:1;right:50px;');
+                }
             }
 
             //submit a "spontaneous response" to an article element
             $scope.submitSpontaneousResponse = function(val) {
-                if ($scope.demo) {
-                    $scope.hideSpontaneousResponse();
-                    return; //neuter if in demo
-                }
-
                 //increment counters
                 $scope.SRCount++;
                 if (val == 'more-believable') {
@@ -330,6 +324,12 @@ angular.module('pyrite')
                     $scope.moreBelievable = true;
                 } else {
                     $scope.moreBelievable = false;
+                }
+
+                //skip from here, because moreBelievable needs to be set
+                if ($scope.demo) {
+                    $scope.showNarrativeResponse = true;
+                    return; //neuter if in demo
                 }
 
                 //construct spontaneousResponse object
@@ -350,6 +350,11 @@ angular.module('pyrite')
             }
 
             $scope.submitNarrativeResponse = function(response) {
+                if ($scope.demo) {
+                    $scope.hideSpontaneousResponse();
+                    return; //neuter if in demo
+                }
+
                 if (response == undefined) {
                     $scope.hideSpontaneousResponse();
                     return;
