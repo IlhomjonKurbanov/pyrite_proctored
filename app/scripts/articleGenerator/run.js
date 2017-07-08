@@ -129,7 +129,7 @@ function run(ID) {
         var fontSize      = av.fontSize[params[4]];
         var serifP        = av.serifP[params[5]];
         // var navbarP       = av.navbarP[params[6]]; (currently removed)
-        var videoLocation = av.videoLocation[params[7]];
+        var videoLocation = av.videoLocation[params[6]];
         //console.log(linkDensity + ', ' + video + ', ' + images + ', ' + wordCount + ', ' + fontSize + ', ' + serifP + ', ' + navbarP + ', ' + videoLocation)
     }
 
