@@ -24,7 +24,7 @@ angular.module('pyrite')
             return $cookies.getObject('progress');
         }
 
-        this.getOrigin = function(origin) {
+        this.setOrigin = function(origin) {
             $cookies.put('origin', origin);
         }
 
