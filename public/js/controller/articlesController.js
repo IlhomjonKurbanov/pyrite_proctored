@@ -342,15 +342,31 @@ angular.module('pyrite')
                 }
 
                 //store in database
-                dbService.registerSpontaneousResponse(spontaneousResponse);
-
+                var SRID_promise = dbService.registerSpontaneousResponse(spontaneousResponse);
+                SRID_promise.then(function(SRID) {
+                    $scope.currentSRID = SRID;
+                });
                 $scope.showNarrativeResponse = true;
             }
 
-            $scope.submitNarrativeResponse = function(explanation) {
-                //send response to db
-                //$scope.showNarrativeResponse = false;
-                //$scope.hideSpontaneousResponse();
+            $scope.submitNarrativeResponse = function(response) {
+                if (response == undefined) {
+                    $scope.hideSpontaneousResponse();
+                    return;
+                }
+
+                var narrativeResponse = {
+                    SRID: $scope.currentSRID,
+                    response: response
+                }
+                dbService.registerNarrativeResponse(narrativeResponse);
+
+                $scope.hideSpontaneousResponse();
+            }
+
+            $scope.cancelResponse = function() {
+                $scope.hideSpontaneousResponse();
+                dbService.deleteSpontaneousResponse({SRID: $scope.currentSRID});
             }
         }
     ]);

@@ -98,12 +98,12 @@
                 <div class="form-group col-xs-12">
                     <label for="explanation"><span id="optional">(Optional)</span> Explain why this element makes the article <span ng-show="moreBelievable" class="more-believable">more believable</span><span ng-show="!moreBelievable" class="less-believable">less believable</span>:
                     </label>
-                    <textarea ng-model="explanation" class="form-control" rows="5" id="comment"></textarea>
+                    <textarea ng-model="response" class="form-control" rows="5" id="comment"></textarea>
                 </div>
                 <div class="col-xs-12 text-right align-middle">
-                    <a class="cancel" href="" ng-click="deleteResponse()">Cancel Response</a>
-                    <button ng-click="submitExplanation(explanation)" class="btn btn-default">
-                        Submit <i class="fa fa-play" aria-hidden="true"></i>
+                    <a class="cancel" href="" ng-click="cancelResponse()">Cancel Element Response</a>
+                    <button ng-click="submitNarrativeResponse(response)" class="btn btn-default">
+                        <span ng-show="response == undefined">Continue Without Responding</span><span ng-show="response != undefined">Submit</span> <i class="fa fa-play" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>

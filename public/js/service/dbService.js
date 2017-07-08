@@ -43,6 +43,7 @@ angular.module('pyrite')
             return $http.post('/api/spontaneous/register-response', data)
                 		.then(function success(response) {
                             //success
+                            return response.data.SRID;
                 		}, function failure(response) {
                             //failure
                         	console.log("failure message: " + JSON.stringify(response));

@@ -61,12 +61,11 @@ module.exports = function(app, db) {
             req.body.elementID,
             req.body.moreBelievable
         ];
-
         db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, MoreBelievable) VALUES (?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
-                console.log('Registered new spontaneous response.');
-                res.send('Spontanous response registered.');
+                console.log('Registered new spontaneous response. SRID: ' + result.insertId);
+                res.json({SRID : result.insertId});
             });
     });
 
