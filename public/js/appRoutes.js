@@ -30,12 +30,6 @@ angular.module('pyrite')
                 controller: 'articlesController'
             })
 
-            // review spontaneous responses page
-            .when('/review', {
-                templateUrl: 'view/review.html',
-                controller: 'reviewController'
-            })
-
             // prize drawing page
             .when('/prize', {
                 templateUrl: 'view/prize.html',
@@ -89,9 +83,6 @@ angular.module('pyrite')
                             if (!path.includes('/articles') || next.params.index != progress.articleIndex) {
                                 $location.path('/articles/' + progress.articleIndex);
                             }
-                            break;
-                        case EXPERIMENT_STAGE.review:
-                            if (path != '/review') $location.path('/review');
                             break;
                         case EXPERIMENT_STAGE.finished:
                             if (path != '/prize' && path != '/end') $location.path('/end');

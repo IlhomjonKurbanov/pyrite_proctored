@@ -70,31 +70,6 @@ module.exports = function(app, db) {
             });
     });
 
-    //get all spontaneous responses for a given subject
-    app.post('/api/spontaneous/get-all-subject-responses', function(req, res) {
-        var data = [
-            req.body.subjectID,
-        ];
-
-        db.get().query('SELECT SRID, Trial, ArticleID, ElementID, MoreBelievable FROM SpontaneousResponses WHERE SubjectID = (?) ORDER BY Trial, SRID',
-            data, function(err, result) {
-                if (err) throw err;
-                var results = {};
-                var index = 0;
-                result.forEach(function(element, index, array) {
-                    results[index] = {
-                        SRID: element.SRID,
-                        trial: element.Trial,
-                        articleID: element.ArticleID,
-                        elementID: element.ElementID,
-                        moreBelievable: (element.MoreBelievable == 0) ? false : true
-                    }
-                    index++;
-                });
-                res.json(results);
-            });
-    });
-
     //delete a given spontaneous response
     app.post('/api/spontaneous/delete', function(req, res) {
         var data = [

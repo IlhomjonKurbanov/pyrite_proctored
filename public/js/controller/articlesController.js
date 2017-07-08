@@ -195,9 +195,9 @@ angular.module('pyrite')
                     progressService.setArticleIndex($scope.index);
                     $location.path('/articles/' + $scope.index);
                 } else {
-                    progressService.setStage('review');
+                    progressService.setStage('finished');
                     progressService.setArticleIndex(0);
-                    $location.path('/review');
+                    $location.path('/prize');
                 }
             }
 
