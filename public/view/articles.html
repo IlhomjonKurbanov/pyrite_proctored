@@ -114,11 +114,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Demo: respond to articles</h4>
+                        <h2 class="modal-title">Demo: Respond to Articles</h4>
                     </div>
                     <div class="modal-body text-center">
                         <p>
-                            You will be shown a series of articles where words, images, and videos have been replaced by filler content -- it has no meaning, and <strong id="not-understand">you will not be able to understand it</strong>. Please take a moment to look at this demonstration article and observe its layout characteristics.
+                            You will be shown a series of news articles where words, images, and videos have been replaced by filler content -- the content has no meaning, and <strong id="not-understand">you will not be able to understand it</strong>. Please take a moment to look at this demonstration article and observe its layout characteristics.
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -136,7 +136,7 @@
                     </div>
                     <div class="modal-body text-center">
                         <p>
-                            Previous participants have been confused by the meaningless text, images, and videos. These elements are meaningless by design; please focus on the presentation of the article.
+                            Previous participants have been confused by the meaningless text, images, and videos. These elements are meaningless by design; please focus on the presentation of the news article.
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -153,12 +153,12 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Demo: respond to articles</h4>
+                        <h2 class="modal-title">Demo: Respond to Articles</h4>
                     </div>
                     <div class="modal-body text-center">
                         <img src="data/img/likert.png">
                         <p>
-                            You will respond to each article via a Likert scale, as seen above. Consider all aspects of the article's presentation when responding. Please respond to the following statement after each article, based on how believable it looks:
+                            You will respond to each news article via a Likert scale, as seen above. Consider all aspects of the article's presentation when responding. Please respond to the following statement after each article, based on how believable it looks:
                         </p>
                         <p id="likert-statement">
                             <strong>“If it had real content, I would believe an article that looks like this.”</strong>
@@ -175,13 +175,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button id="step2-1-close" type="button" class="close" data-dismiss="modal" ng-click="step2($event)">&times;</button>
-                        <h2 class="modal-title">Demo: respond to individual elements</h4>
+                        <h2 class="modal-title">Demo: Respond to Individual Elements</h4>
                     </div>
                     <div class="modal-body text-center">
                         <p>
-                            You are also able to click on and respond to individual elements of the article, to indicate whether the element made the article seem <strong>more or less believable.</strong>
+                            As an <strong>optional</strong> second form of response, you can identify elements of the article that have a significant effect on how believable it looks. You can click on and respond to individual elements of the news article to indicate whether the elements make the article seem <strong>more or less believable:</strong>
                         </p>
                         <img src="data/img/element.png">
+                        <p>
+                            This includes providing a short text response explaining why you think the element makes the article seem more or less believable.
+                        </p>
+                        <img src="data/img/qualitative.png">
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="step2-1-start" class="btn btn-default" data-dismiss="modal" ng-click="step2($event)">Start</button>
@@ -194,7 +198,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Click on the video and respond.</h4>
+                        <h2 class="modal-title">Click on the video and respond.</2>
                     </div>
                 </div>
             </div>
@@ -207,7 +211,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Try it out: click on other elements.</h4>
+                        <h2 class="modal-title">Try it out: click on other elements. You can respond to font characteristics, layout, multimedia, and so on.</h2>
                     </div>
                 </div>
             </div>
@@ -217,16 +221,13 @@
                 <div class="modal-content">
                     <div class="modal-header" ng-click="$event.stopPropagation()">
                         <button id="step1-close" type="button" class="close" ng-click="endDemo()" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title" ng-click="$event.stopPropagation()">Provide explanations</h4>
+                        <h2 class="modal-title" ng-click="$event.stopPropagation()">Begin Experiment</h4>
                     </div>
                     <div class="modal-body text-center" ng-click="$event.stopPropagation()">
                         <p>
-                            After viewing all the articles, you will be asked to provide a short text response explaining why you marked certain elements as being “more” or “less” believable, as seen below.
+                            Full instructions can be accessed at the top-right of every article in the experiment, if you need a reminder. Just look for the help icon:
                         </p>
-                        <img src="data/img/qualitative.png">
-                        <p>
-                            Full instructions can be accessed at the top-right of every article in the experiment, if you need a reminder.
-                        </p>
+                        <h1><i data-toggle="modal" data-target="#help" class="fa fa-question-circle" aria-hidden="true"></i></h1>
                     </div>
                     <div class="modal-footer" ng-click="$event.stopPropagation()">
                         <button type="button" class="btn btn-default" ng-click="endDemo()" data-dismiss="modal">Begin Experiment</button>

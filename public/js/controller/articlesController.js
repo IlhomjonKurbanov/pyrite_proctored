@@ -35,14 +35,6 @@ angular.module('pyrite')
                 $scope.demo1 = ($routeParams.index == 'demo1');
                 $scope.demo2 = ($scope.demo && !$scope.demo1);
 
-                if (!$scope.demo) {
-                    $scope.index = parseInt($routeParams.index); //get article index from URL
-
-                    //clean up from modals
-                    angular.element('.modal-backdrop').css('display', 'none');
-                    angular.element('body').removeClass('modal-open');
-                }
-
                 if ($scope.demo) {
                     setTimeout(function () {
                         $scope.demoStep = 1;
@@ -52,6 +44,12 @@ angular.module('pyrite')
                     $scope.articlePath = 'view/partial/';
                     $scope.articlePath += ($scope.demo1) ? 'demo1.html' : 'demo2.html';
                 } else {
+                    $scope.index = parseInt($routeParams.index); //get article index from URL
+
+                    //clean up from modals
+                    angular.element('.modal-backdrop').css('display', 'none');
+                    angular.element('body').removeClass('modal-open');
+
                     //fallback to cookieService handles $rootScope wipe on refresh
                     $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
                         $rootScope.articleOrder : cookieService.getArticleOrder();
@@ -66,7 +64,7 @@ angular.module('pyrite')
                 var likertHighlightTriggered = false;
                 setTimeout(function () {
                     var top1 = document.querySelector("#paragraph_demo1_1").getBoundingClientRect().top;
-                    var top2 = document.querySelector("#video_demo1").getBoundingClientRect().top;
+                    var top2 = document.querySelector("#paragraph_demo1_3").getBoundingClientRect().top;
                     var topForArrow = document.querySelector("#paragraph_demo1_2").getBoundingClientRect().top;
                     var bottom = document.querySelector(".container").clientHeight;
 
@@ -86,6 +84,30 @@ angular.module('pyrite')
                         }
                     });
                 }, 500);
+            }
+
+            function setDemoHighlightStyles() {
+                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '#img-wrapper_demo2'];
+                var element;
+                elements.forEach(function (cur, index, array) {
+                    var element = angular.element(document.querySelector(cur));
+                    element.css("border", "4px solid rgb(255, 217, 0)");
+                    element.css("border-radius", "7px");
+                    element.css("background-color", "rgba(255, 255, 0, 0.5)");
+                });
+                $scope.showDemoHighlights = true;
+            }
+
+            function unsetDemoHighlightStyles() {
+                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '#img-wrapper_demo2'];
+                var element;
+                elements.forEach(function (cur, index, array) {
+                    var element = angular.element(document.querySelector(cur));
+                    element.css("border-width", "0px");
+                    element.css("border-radius", "0px");
+                    element.css("background-color", "inherit");
+                });
+                $scope.showDemoHighlights = true;
             }
 
             function doDemo2Logic() {
@@ -108,14 +130,16 @@ angular.module('pyrite')
                 }
 
                 setTimeout(function () {
+                    setDemoHighlightStyles();
                     var top1 = document.querySelector("#image_demo2_1").getBoundingClientRect().top;
-                    var top2 = document.querySelector("#paragraph_demo2_2").getBoundingClientRect().top;
+                    var top2 = document.querySelector("#image_demo2_2").getBoundingClientRect().top;
 
                     angular.element($window).bind("scroll", function() {
                         if ($scope.demoStep == 2 && this.pageYOffset > top1) {
                             $("#step2-2").modal("hide");
                             $scope.demoStep = 3;
                             $("#step2-3").modal("show");
+                            angular.element('body').removeClass('modal-open');
                         }
                         if ($scope.demoStep == 3 && this.pageYOffset > top2) {
                             $("#step2-3").modal("hide");
@@ -234,6 +258,7 @@ angular.module('pyrite')
                         wrapper.css("margin-bottom", parseInt(wrapper.css("margin-bottom").split("px")[0]) + 8 + "px");
                         wrapper.css("margin-top", parseInt(wrapper.css("margin-top").split("px")[0]) + 8 + "px");
                     } else if ($scope.demoStep == 3) {
+                        unsetDemoHighlightStyles();
                         $('#step2-3').modal("hide");
                     }
                 }
