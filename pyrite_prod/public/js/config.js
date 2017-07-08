@@ -10,7 +10,7 @@ angular.module('pyrite')
         "DO_PROGRESS_CHECK"    : false, //toggles redirect behavior that checks user's requested path against their stored progress information
         "DO_WINDOW_SIZE_CHECK" : true, //toggles redirect behavior that check's user's window size against ideal window size
         "PROCTORED"            : false, //toggles alternate behavior on narrative response page for proctored experiments
-        "PATH"                 : "http://localhost/"
+        "PATH"                 : "http://ec2-34-203-212-114.compute-1.amazonaws.com/"
     });
 
 // == demographic values =======================================================
