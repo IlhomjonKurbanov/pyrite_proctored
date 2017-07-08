@@ -10,13 +10,15 @@ angular.module('pyrite')
                  likertValuesDB, cookieService, dbService, articleService, progressService) {
             // == set up page info =============================================
             $scope.showSpontaneousResponse = false; //hide response modal initially
+            $scope.showNarrativeResponse = false; //hide narrative response modal initially
 
             // demo section, initiates major page variables
             doDemoLogic();
 
             //response modal styles
             $scope.highlightStyle = {};
-            $scope.responseStyle = {};
+            $scope.spontaneousResponseStyle = {};
+            $scope.narrativeResponseStyle = {};
 
             //set counter variables
             $scope.pageTimeStart = Date.now(); //start response timer
@@ -26,6 +28,7 @@ angular.module('pyrite')
             //display parameters
             $scope.numTrials = articleService.getNumTrials();
             $scope.width = ($scope.demo) ? 0 : (50 / $scope.numTrials) * ($scope.index + 1);
+            $scope.moreBelievable = true;
 
             // == function definitions =========================================
             // ---- all custom demo logic --------------------------------------
@@ -228,15 +231,33 @@ angular.module('pyrite')
 
             //set position of response callout based on bounding rectange of
             //selected element
-            $scope.setResponseStyling = function(boundingRectangle) {
+            $scope.setSpontaneousResponseStyling = function(boundingRectangle) {
                 var elementWidth = boundingRectangle.right - boundingRectangle.left
                 var elementCenterX = (elementWidth / 2) + boundingRectangle.right + $window.pageXOffset;
                 var modalWidth = 316;
+
                 //set position of response callout:
                 //account for scroll with pageYOffset / pageXOffset
                 var topOffset = -3; //experimentally determined
                 var leftOffset = -19; //experimentally determined
-                $scope.responseStyle= {
+                $scope.spontaneousResponseStyle= {
+                    'top'  : boundingRectangle.bottom + $window.pageYOffset + topOffset + "px",
+                    'left' : boundingRectangle.left + $window.pageXOffset + (elementWidth / 2) - (modalWidth / 2) + leftOffset + "px",
+                };
+            }
+
+            //set position of response callout based on bounding rectange of
+            //selected element
+            $scope.setNarrativeResponseStyling = function(boundingRectangle) {
+                var elementWidth = boundingRectangle.right - boundingRectangle.left
+                var elementCenterX = (elementWidth / 2) + boundingRectangle.right + $window.pageXOffset;
+                var modalWidth = 550;
+
+                //set position of narrative response callout:
+                //account for scroll with pageYOffset / pageXOffset
+                var topOffset = 1; //experimentally determined
+                var leftOffset = -19; //experimentally determined
+                $scope.narrativeResponseStyle = {
                     'top'  : boundingRectangle.bottom + $window.pageYOffset + topOffset + "px",
                     'left' : boundingRectangle.left + $window.pageXOffset + (elementWidth / 2) - (modalWidth / 2) + leftOffset + "px",
                 };
@@ -279,7 +300,10 @@ angular.module('pyrite')
                 $scope.setHighlightStyling(rect);
 
                 //set position of response callout
-                $scope.setResponseStyling(rect);
+                $scope.setSpontaneousResponseStyling(rect);
+
+                //set position of narrative response callout
+                $scope.setNarrativeResponseStyling(rect);
 
                 //now that they are configured, show highlight box and
                 //response callout
@@ -288,6 +312,7 @@ angular.module('pyrite')
 
             //hide spontaneous response
             $scope.hideSpontaneousResponse = function() {
+                $scope.showNarrativeResponse = false;
                 $scope.showSpontaneousResponse = false;
             }
 
@@ -300,7 +325,12 @@ angular.module('pyrite')
 
                 //increment counters
                 $scope.SRCount++;
-                if (val == 'more-believable') $scope.moreBelievableCount++;
+                if (val == 'more-believable') {
+                    $scope.moreBelievableCount++;
+                    $scope.moreBelievable = true;
+                } else {
+                    $scope.moreBelievable = false;
+                }
 
                 //construct spontaneousResponse object
                 var spontaneousResponse = {
@@ -314,8 +344,13 @@ angular.module('pyrite')
                 //store in database
                 dbService.registerSpontaneousResponse(spontaneousResponse);
 
-                //hide spontaneous response UI
-                $scope.hideSpontaneousResponse();
+                $scope.showNarrativeResponse = true;
+            }
+
+            $scope.submitNarrativeResponse = function(explanation) {
+                //send response to db
+                //$scope.showNarrativeResponse = false;
+                //$scope.hideSpontaneousResponse();
             }
         }
     ]);
