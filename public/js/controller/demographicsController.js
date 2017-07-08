@@ -22,6 +22,7 @@ angular.module('pyrite')
             $scope.thisYear = $scope.d.getFullYear();
             $scope.years.push({val: 'Select a birth year...', disabled: true });
             var ageOfConsent = 18;
+            $scope.years.push({val: 'Must be '+ ageOfConsent + ' or older to participate.'});
             var maxReasonableAge = 100;
             for (i = $scope.thisYear - ageOfConsent; i >= $scope.thisYear - maxReasonableAge; i--) {
                 $scope.years.push({val: i});
