@@ -6,47 +6,48 @@
 var loremipsum = require('lorem-ipsum');
 exports.NGCLICK = 'ng-click="selectElement($event);$event.stopPropagation()"'
 
-// build navbar
-// ============
-// if navbarP = 0 (false), navbar is static. if navbarP = 1 (true), navbar is fixed
-exports.navbar = function(ID, navbarP) {
-    var built = '';
-    var items = loremipsum({
-                    count: 24,
-                    units: 'words',
-                    format: 'plain'
-                }).split(' ');
-    var itemsUsed = new Array();
-
-    built += '<div ';
-    if (navbarP) built += 'navbar-fix-on-scroll ' //add directive to handle fixed-position logic
-    built += 'id="navbar-background_' + ID + '">';
-    built += '<ul id="navbar_' + ID + '" class="navbar" ' + this.NGCLICK + '>';
-
-    var offset = 1;
-    var item = '';
-    var numItems = Math.floor(Math.random() * 4) + 4;
-    for (var i = 1; i <= numItems; i++) {
-        item = items[i - offset]
-        if (item.length > 3 && itemsUsed.indexOf(item) == -1) {
-            itemsUsed.push(item);
-            built += '<li><a id="navbar-element_' + ID + '_' + i + '" ' + this.NGCLICK + '>';
-            built += item.charAt(0).toUpperCase() + item.slice(1);
-            built += '</a></li>';
-        } else {
-            offset--;
-            i--;
-        }
-    }
-
-    built += '</ul>';
-    built += '</div>';
-
-    //add wrapper w/ directive to handle fixed-position logic
-    if (navbarP) built = '<div navbar-bumper>' + built + '</div>'
-
-    return built;
-}
+// (currently removed);
+// // build navbar
+// // ============
+// // if navbarP = 0 (false), navbar is static. if navbarP = 1 (true), navbar is fixed
+// exports.navbar = function(ID, navbarP) {
+//     var built = '';
+//     var items = loremipsum({
+//                     count: 24,
+//                     units: 'words',
+//                     format: 'plain'
+//                 }).split(' ');
+//     var itemsUsed = new Array();
+//
+//     built += '<div ';
+//     if (navbarP) built += 'navbar-fix-on-scroll ' //add directive to handle fixed-position logic
+//     built += 'id="navbar-background_' + ID + '">';
+//     built += '<ul id="navbar_' + ID + '" class="navbar" ' + this.NGCLICK + '>';
+//
+//     var offset = 1;
+//     var item = '';
+//     var numItems = Math.floor(Math.random() * 4) + 4;
+//     for (var i = 1; i <= numItems; i++) {
+//         item = items[i - offset]
+//         if (item.length > 3 && itemsUsed.indexOf(item) == -1) {
+//             itemsUsed.push(item);
+//             built += '<li><a id="navbar-element_' + ID + '_' + i + '" ' + this.NGCLICK + '>';
+//             built += item.charAt(0).toUpperCase() + item.slice(1);
+//             built += '</a></li>';
+//         } else {
+//             offset--;
+//             i--;
+//         }
+//     }
+//
+//     built += '</ul>';
+//     built += '</div>';
+//
+//     //add wrapper w/ directive to handle fixed-position logic
+//     if (navbarP) built = '<div navbar-bumper>' + built + '</div>'
+//
+//     return built;
+// }
 
 // build article title
 exports.title = function(ID) {
@@ -72,6 +73,26 @@ exports.title = function(ID) {
     return built;
 }
 
+// build article author
+exports.author = function(ID) {
+    var built = '<h1 id="author_' + ID + '">';
+    var author = '';
+    var word;
+
+    while (author.split(' ').length < 3) {
+        word = loremipsum({
+            count: 1,
+            units: 'word',
+            format: 'plain'
+        });
+        if (word.length > 3) author += (((author.split.length > 1) ? ' ' : '') + word.charAt(0).toUpperCase() + word.slice(1));
+    }
+
+    built += author;
+    built += '</h1>';
+    return built;
+}
+
 // build a paragraph
 // =================
 // output: { wordCount: # of words, data: paragraph text}
@@ -85,8 +106,8 @@ exports.paragraph = function() {
                          units: 'paragraphs',
                          sentenceLowerBound: 8,
                          sentenceUpperBound: 15,
-                         paragraphLowerBound: 5,
-                         paragraphUpperBound: 12,
+                         paragraphLowerBound: 2,
+                         paragraphUpperBound: 15,
                          format: 'plain'
                      });
     data.wordCount = data.paragraph.split(' ').length;
@@ -160,7 +181,7 @@ exports.images = function(ID, images, imagePaths, paragraphs, videoLocation, vid
         data[i] = undefined;
     }
 
-    var imageStart = '<div class="text-center"><div class="img-wrapper text-center"><img ' + this.NGCLICK + ' ';
+    var imageStart = '<br><div class="text-center"><div class="img-wrapper text-center"><img ' + this.NGCLICK + ' ';
     var rechoose = 0;
     for (var i = 1; i <= images; i++) {
         if (rechoose == 30) break; //avoid infinite loops
@@ -176,7 +197,7 @@ exports.images = function(ID, images, imagePaths, paragraphs, videoLocation, vid
         }
         rechoose = 0;
 
-        data[index] = imageStart + 'id="image_' + ID + '_' + i + '" src="' + imagePaths.pop() + '"></div></div>';
+        data[index] = imageStart + 'id="image_' + ID + '_' + i + '" src="' + imagePaths.pop() + '"></div></div><br>';
     }
 
     return data;

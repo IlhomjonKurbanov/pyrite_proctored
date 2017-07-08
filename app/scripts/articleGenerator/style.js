@@ -19,7 +19,7 @@ exports.wrapper = function(ID) {
 // output: styling for article text and article title
 exports.fontSize = function(ID, fontSize) {
     //article text size
-    var data = '#navbar_' + ID + ' li,#page-content_' + ID + ' p{';
+    var data = /*'#navbar_' + ID + ' li, */ '#page-content_' + ID + ' p{'; //navbar currently removed
     data += 'font-size:' + fontSize.article + 'px;}';
 
     //article title size
@@ -30,7 +30,7 @@ exports.fontSize = function(ID, fontSize) {
 
 // create font face style (serif or sans-serif)
 exports.fontFace = function(ID, serifP) {
-    var data = '#navbar_' + ID + ',#page-content_' + ID + '{';
+    var data = /*'#navbar_' + ID + ',*/ '#page-content_' + ID + '{'; //navbar currently removed
     data += 'font-family:';
     data += (serifP) ? 'serif' : 'sans-serif';
     data += ';}';
@@ -42,21 +42,32 @@ exports.links = function(ID) {
     return '#page-content_' + ID + ' a{text-decoration:underline;}';
 }
 
-// create styles for navbar, with provided colors and positioning
-exports.navbar = function(ID, colors, navbarP) {
-    var data = '#navbar-background_' + ID + '{background-color:' + colors.background + ';}';
-    data += '#navbar_' + ID + '{list-style-type:none;margin:0;padding:0;overflow:hidden;width:740px;margin-left:auto;margin-right:auto;text-align:center;}';
-    data += '#navbar_' + ID + ' li{display:inline;}';
-    data += '#navbar_' + ID + ' a{display:inline-block;color:white;text-align:center;padding:14px 16px;text-decoration:none;}';
-    data += '#navbar_' + ID + ' li a:hover{background-color:' + colors.hover + ';}';
-    if (navbarP) data += '.navbar-fixed{position:fixed;top:0px;z-index:5;}';
-    return data;
+// (currently removed)
+// // create styles for navbar, with provided colors and positioning
+// exports.navbar = function(ID, colors, navbarP) {
+//     var data = '#navbar-background_' + ID + '{background-color:' + colors.background + ';}';
+//     data += '#navbar_' + ID + '{list-style-type:none;margin:0;padding:0;overflow:hidden;width:740px;margin-left:auto;margin-right:auto;text-align:center;}';
+//     data += '#navbar_' + ID + ' li{display:inline;}';
+//     data += '#navbar_' + ID + ' a{display:inline-block;color:white;text-align:center;padding:14px 16px;text-decoration:none;}';
+//     data += '#navbar_' + ID + ' li a:hover{background-color:' + colors.hover + ';}';
+//     if (navbarP) data += '.navbar-fixed{position:fixed;top:0px;z-index:5;}';
+//     return data;
+// }
+
+// if the navbar is removed, this reduces the title margin to make the page look better
+exports.ifNavbarRemoved = function(ID) {
+    return '#bootstrap-override #page-content_' + ID + ' h1{margin-top:10px;}'
+}
+
+// create style for author
+exports.author = function(ID, fontSize) {
+    return '#bootstrap-override #author_' + ID + '{font-size:' + fontSize.article + 'px;font-style:italic;color:DimGray;}';
 }
 
 // create style for video
 exports.video = function(ID, height) {
     var data = '#video_' + ID + '{max-width:540px;-webkit-filter:blur(40px);-moz-filter:blur(40px);-o-filter:blur(40px);-ms-filter:blur(40px);filter:blur(40px);}';
-    data += '.video-wrapper{max-width:540px;margin:15px auto;overflow:hidden;}'
+    data += '.video-wrapper{max-width:540px;margin:25px auto;overflow:hidden;}'
     return data;
 }
 

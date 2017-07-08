@@ -2,15 +2,15 @@
 exports.attributeValues = {
     'linkDensity'   : [0, .00214362, 0.00701098, 0.01743092], //links per word: none, low, medium, hihg density
     'video'         : [0, 1],// 2], added if time allows
-    'images'        : [0, 2, 4],
+    'images'        : [0, 3, 6],
     'wordCount'     : [348, 644, 1070],
     'fontSize'      : [ //using objects so that titles scale with body font size
-        { 'article' : 14, 'title' : 32 },
+        { 'article' : 13, 'title' : 30 },
         { 'article' : 16, 'title' : 38 },
-        { 'article' : 18, 'title' : 44 }
+        { 'article' : 19, 'title' : 46 }
     ],
     'serifP'        : [0, 1],
-    'navbarP'       : [0, 1],
+    //'navbarP'       : [0, 1], (currently removed)
     'videoLocation' : [0, 1] // 0 = top, 1 = middle
 }
 
@@ -26,22 +26,24 @@ exports.VIDEO_LOC_CODE = {
     'middle' : 1
 }
 
-exports.NAVBARP_CODE = {
-    'static' : 0,
-    'fixed'  : 1
-}
+// (currently removed)
+// exports.NAVBARP_CODE = {
+//     'static' : 0,
+//     'fixed'  : 1
+// }
 
 //heights for images, videos
 exports.dimensions = [250, 325, 400]
 
-exports.navbarColors = [
-    { 'background': '#ad1f1f', 'hover': '#841616' }, //red
-    { 'background': '#c17005', 'hover': '#9b5903' }, //orange
-    { 'background': '#6b9607', 'hover': '#517205' }, //green
-    { 'background': '#04916e', 'hover': '#027256' }, //teal
-    { 'background': '#0378a3', 'hover': '#025d7f' }, //blue
-    { 'background': '#7e018e', 'hover': '#4a0054' }, //purple
-]
+// (navbar currently removed)
+// exports.navbarColors = [
+//     { 'background': '#ad1f1f', 'hover': '#841616' }, //red
+//     { 'background': '#c17005', 'hover': '#9b5903' }, //orange
+//     { 'background': '#6b9607', 'hover': '#517205' }, //green
+//     { 'background': '#04916e', 'hover': '#027256' }, //teal
+//     { 'background': '#0378a3', 'hover': '#025d7f' }, //blue
+//     { 'background': '#7e018e', 'hover': '#4a0054' }, //purple
+// ]
 
 exports.images = [
     'data/img/img1.jpg',

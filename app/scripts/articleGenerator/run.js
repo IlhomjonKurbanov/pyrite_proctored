@@ -10,8 +10,10 @@ const mkdirp     = require('mkdirp');
 var arg = process.argv[2];
 if (arg == 'all') {
     runAll();
-} else if (arg == 'directories') {
+} else if (arg == 'buckets') {
     buildDirectories();
+} else if (arg == 'unit-test') { //'test' runs randomized article
+    //test code
 } else {
     run(arg);
 }
@@ -65,29 +67,29 @@ function runAll() {
                     for (i_fontSize = 0; i_fontSize < attr.fontSize.length; i_fontSize++) {
                         //establish serifP
                         for (i_serifP = 0; i_serifP < attr.serifP.length; i_serifP++) {
-                            //establish navbarP
-                            for (i_navbarP = 0; i_navbarP < attr.navbarP.length; i_navbarP++) {
-                                //establish videoLocation
-                                for (i_videoLocation = 0; i_videoLocation < attr.videoLocation.length; i_videoLocation++) {
-                                    ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP + '-' + i_navbarP + '-' + i_videoLocation;
-                                    console.log('Generating Article: ' + ID);
-                                    articlePaths.push(run(ID));
-                                    // for generating all IDs for storage in articlesConfig
-                                    // console.log('"' + i + '" : "' + ID + '",');
-                                    // i++;
-                                }
+//establish navbarP (currently removed)
+// for (i_navbarP = 0; i_navbarP < attr.navbarP.length; i_navbarP++) {
+                            //establish videoLocation
+                            for (i_videoLocation = 0; i_videoLocation < attr.videoLocation.length; i_videoLocation++) {
+                                ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP /*+ '-' + i_navbarP*/ + '-' + i_videoLocation; //navbar currently removed
+                                console.log('Generating Article: ' + ID);
+                                articlePaths.push(run(ID));
+                                //for generating all IDs for storage in articlesConfig
+                                // console.log('"' + i + '" : "data/articles/' + i_linkDensity + '/' + i_video + '/' + i_images + '/article_' + ID + '.html",');
+                                // i++;
                             }
+// }
                         }
                     }
                 }
             }
         }
     }
-//     i = 1;
-//     articlePaths.forEach(function(cur, index, arr) {
-//         console.log('"' + i + '" : "' + cur + '",');
-//         i++;
-//     })
+    // i = 1;
+    // articlePaths.forEach(function(cur, index, arr) {
+    //     console.log('"' + i + '" : "' + cur + '",');
+    //     i++;
+    // })
 }
 
 // RUN ====
@@ -126,20 +128,23 @@ function run(ID) {
         var wordCount     = av.wordCount[params[3]];
         var fontSize      = av.fontSize[params[4]];
         var serifP        = av.serifP[params[5]];
-        var navbarP       = av.navbarP[params[6]];
+        // var navbarP       = av.navbarP[params[6]]; (currently removed)
         var videoLocation = av.videoLocation[params[7]];
         //console.log(linkDensity + ', ' + video + ', ' + images + ', ' + wordCount + ', ' + fontSize + ', ' + serifP + ', ' + navbarP + ', ' + videoLocation)
     }
 
 
-    // == begin page, build navbar =============================================
+    // == begin page content ===================================================
     var page = '<script>plyr.setup()</script>';
-    if (test) var navbarP = util.randomSelect(values.attributeValues.navbarP);
-    page += element.navbar(ID, navbarP);
+
+    //navbar currently removed
+    //if (test) var navbarP = util.randomSelect(values.attributeValues.navbarP);
+    //page += element.navbar(ID, navbarP);
 
     page += '<div id="page-content_' + ID + '">' //begin page content
     page += '<div id="article-start_' + ID + '">' // for centering beginning elements
     page += element.title(ID);
+    page += element.author(ID);
 
     // == build body text ======================================================
     if (test) var wordCount = util.randomSelect(values.attributeValues.wordCount); //prescribed wordCount
@@ -221,7 +226,8 @@ function run(ID) {
     styles += style.wrapper(ID);
 
     //font sizes
-    styles += style.fontSize(ID, (test) ? util.randomSelect(values.attributeValues.fontSize) : fontSize);
+    var randFontSize = util.randomSelect(values.attributeValues.fontSize);
+    styles += style.fontSize(ID, (test) ? randFontSize : fontSize);
 
     //font face
     styles += style.fontFace(ID, (test) ? util.randomSelect(values.attributeValues.serifP) : serifP);
@@ -229,8 +235,12 @@ function run(ID) {
     //links
     styles += style.links(ID);
 
-    //navbar
-    styles += style.navbar(ID, util.randomSelect(values.navbarColors), navbarP);
+    //navbar (currently removed)
+    //styles += style.navbar(ID, util.randomSelect(values.navbarColors), navbarP);
+    styles += style.ifNavbarRemoved(ID);
+
+    //author
+    styles += style.author(ID, (test) ? randFontSize : fontSize);
 
     //video
     if (video != values.VIDEO_CODE.absent) {

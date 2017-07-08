@@ -11,7 +11,6 @@
         margin-right: auto;
     }
 
-    #navbar_demo2 li,
     #page-content_demo2 p {
         font-size: 16px;
     }
@@ -20,50 +19,12 @@
         font-size: 38px;
     }
 
-    #navbar_demo2,
     #page-content_demo2 {
         font-family: sans-serif;
     }
 
     #page-content_demo2 a {
         text-decoration: underline;
-    }
-
-    #navbar-background_demo2 {
-        background-color: #c17005;
-    }
-
-    #navbar_demo2 {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        max-width: 740px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-
-    #navbar_demo2 li {
-        display: inline;
-    }
-
-    #navbar_demo2 a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-
-    #navbar_demo2 li a:hover {
-        background-color: #9b5903;
-    }
-
-    .navbar-fixed {
-        position: fixed;
-        top: 0px;
-        z-index: 5;
     }
 
     #video_demo2 {
@@ -102,22 +63,13 @@
     #image_demo2_2 {
         height: 400px;
     }
-</style>
+
+    #bootstrap-override #page-content_demo2 h1 {
+        margin-top: 10px;
+    }</style>
 <script>
     plyr.setup()
 </script>
-<div navbar-bumper>
-    <div navbar-fix-on-scroll id="navbar-background_demo2">
-        <ul id="navbar_demo2" class="navbar" ng-click="selectElement($event);$event.stopPropagation()">
-            <li><a id="navbar-element_demo2_1" ng-click="selectElement($event);$event.stopPropagation()">Adipisicing</a></li>
-            <li><a id="navbar-element_demo2_2" ng-click="selectElement($event);$event.stopPropagation()">Culpa</a></li>
-            <li><a id="navbar-element_demo2_3" ng-click="selectElement($event);$event.stopPropagation()">Occaecat</a></li>
-            <li><a id="navbar-element_demo2_4" ng-click="selectElement($event);$event.stopPropagation()">Velit</a></li>
-            <li><a id="navbar-element_demo2_5" ng-click="selectElement($event);$event.stopPropagation()">Cillum</a></li>
-            <li><a id="navbar-element_demo2_6" ng-click="selectElement($event);$event.stopPropagation()">Sint</a></li>
-        </ul>
-    </div>
-</div>
 <div id="page-content_demo2">
     <div id="article-start_demo2">
         <h1 id="article-title_demo2" ng-click="selectElement($event);$event.stopPropagation()">Ullamco Magna Consequat Occaecat Tempor</h1>
