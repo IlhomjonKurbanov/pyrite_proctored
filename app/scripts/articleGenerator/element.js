@@ -75,7 +75,7 @@ exports.title = function(ID) {
 
 // build article author
 exports.author = function(ID) {
-    var built = '<h1 id="author_' + ID + '">';
+    var built = '<h1 id="author_' + ID + '" ' + this.NGCLICK + '>';
     var author = '';
     var word;
 
@@ -85,8 +85,9 @@ exports.author = function(ID) {
             units: 'word',
             format: 'plain'
         });
-        if (word.length > 3) author += (((author.split.length > 1) ? ' ' : '') + word.charAt(0).toUpperCase() + word.slice(1));
+        if (word.length > 3) author += (' ' + word.charAt(0).toUpperCase() + word.slice(1));
     }
+    author = author.trim();
 
     built += author;
     built += '</h1>';
