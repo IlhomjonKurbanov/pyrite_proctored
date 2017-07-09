@@ -28,6 +28,6 @@ body {
 #bootstrap-override .progress-bar {
     background-color: #00907c;
 }
-#demographic-bar, #articles-bar, #review-bar {
+#demographic-bar, #articles-bar {
     border-left: 1px solid black;
 }

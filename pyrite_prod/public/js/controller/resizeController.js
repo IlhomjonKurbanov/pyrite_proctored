@@ -3,11 +3,11 @@
 // controller for 'consent' view
 
 angular.module('pyrite')
-    .controller('resizeController', ['$scope', '$window', '$location', 'resizeService',
-        function($scope, $window, $location, resizeService) {
+    .controller('resizeController', ['$scope', '$window', '$location', 'windowSizeMinimums', 'cookieService',
+        function($scope, $window, $location, windowSizeMinimums, cookieService) {
             $scope.loading = true;
             $scope.idealSize = false;
-            $scope.minimum = resizeService.getMinimums();
+            $scope.minimum = windowSizeMinimums;
             $scope.width = {
                 invalid   : true,
                 val       : 'undefined',
@@ -49,7 +49,7 @@ angular.module('pyrite')
             $scope.loading = false;
 
             $scope.continue = function() {
-                $location.path(resizeService.getOrigin());
+                $location.path(cookieService.getOrigin());
             }
         }
     ]);

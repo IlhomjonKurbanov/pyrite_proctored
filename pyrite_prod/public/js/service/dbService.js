@@ -43,19 +43,7 @@ angular.module('pyrite')
             return $http.post('/api/spontaneous/register-response', data)
                 		.then(function success(response) {
                             //success
-                		}, function failure(response) {
-                            //failure
-                        	console.log("failure message: " + JSON.stringify(response));
-                        });
-        }
-
-        //get all spontaneous responses for a given subject
-        this.getSpontaneousResponses = function(subjectID) {
-            var data = angular.toJson(subjectID);
-            return $http.post('/api/spontaneous/get-all-subject-responses', data)
-                		.then(function success(response) {
-                            //success
-                			return response.data;
+                            return response.data.SRID;
                 		}, function failure(response) {
                             //failure
                         	console.log("failure message: " + JSON.stringify(response));
