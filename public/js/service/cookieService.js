@@ -23,4 +23,12 @@ angular.module('pyrite')
         this.getProgress = function() {
             return $cookies.getObject('progress');
         }
+
+        this.setOrigin = function(origin) {
+            $cookies.put('origin', origin);
+        }
+
+        this.getOrigin = function() {
+            return $cookies.get('origin');
+        }
     }]);

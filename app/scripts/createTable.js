@@ -19,7 +19,7 @@ db.connect(function(err) {
 
 // Subjects Table
 if (tableName == 'Subjects' || tableName == 'all') {
-    db.get().query('CREATE TABLE Subjects(SubjectID INT NOT NULL AUTO_INCREMENT, ArticleOrder VARCHAR(255), Age INT, Field1 VARCHAR(255), Field2 VARCHAR(255), Field3 VARCHAR(255), Gender VARCHAR(255), DateConsented VARCHAR(255), PRIMARY KEY (SubjectID)) ENGINE = INNODB',
+    db.get().query('CREATE TABLE Subjects(SubjectID INT NOT NULL AUTO_INCREMENT, ArticleOrder TEXT, Age INT, Field1 VARCHAR(255), Field2 VARCHAR(255), Field3 VARCHAR(255), Gender VARCHAR(255), DateConsented VARCHAR(255), PRIMARY KEY (SubjectID)) ENGINE = INNODB',
         function(err, result) {
             if (err) {
                 console.log('Error creating Subjects table: ' + err);
@@ -32,7 +32,7 @@ if (tableName == 'Subjects' || tableName == 'all') {
 
 // Article Responses Table
 if (tableName == 'ArticleResponses' || tableName == 'all') {
-    db.get().query('CREATE TABLE ArticleResponses(SubjectID INT NOT NULL, Trial INT, ArticleID INT, Likert INT, PageTime INT, SpontaneousResponseCount INT, MoreBelievableCount INT) ENGINE = INNODB',
+    db.get().query('CREATE TABLE ArticleResponses(SubjectID INT NOT NULL, Trial INT, ArticleID VARCHAR(255), Likert INT, PageTime INT, SpontaneousResponseCount INT, MoreBelievableCount INT) ENGINE = INNODB',
         function(err, result) {
             if (err) {
                 console.log('Error creating ArticleResponses table: ' + err);
@@ -45,7 +45,7 @@ if (tableName == 'ArticleResponses' || tableName == 'all') {
 
 // Spontaneous Responses Table
 if (tableName == 'SpontaneousResponses' || tableName == 'all') {
-    db.get().query('CREATE TABLE SpontaneousResponses(SRID INT NOT NULL AUTO_INCREMENT, SubjectID INT NOT NULL, Trial INT, ArticleID INT, ElementID VARCHAR(255), MoreBelievable TINYINT(1), PRIMARY KEY (SRID)) ENGINE = INNODB',
+    db.get().query('CREATE TABLE SpontaneousResponses(SRID INT NOT NULL AUTO_INCREMENT, SubjectID INT NOT NULL, Trial INT, ArticleID VARCHAR(255), ElementID VARCHAR(255), MoreBelievable TINYINT(1), PRIMARY KEY (SRID)) ENGINE = INNODB',
         function(err, result) {
             if (err) {
                 console.log('Error creating SpontaneousResponses table: ' + err);

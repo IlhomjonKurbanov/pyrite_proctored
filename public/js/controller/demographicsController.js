@@ -22,6 +22,7 @@ angular.module('pyrite')
             $scope.thisYear = $scope.d.getFullYear();
             $scope.years.push({val: 'Select a birth year...', disabled: true });
             var ageOfConsent = 18;
+            $scope.years.push({val: 'Must be '+ ageOfConsent + ' or older to participate.', disabled: true });
             var maxReasonableAge = 100;
             for (i = $scope.thisYear - ageOfConsent; i >= $scope.thisYear - maxReasonableAge; i--) {
                 $scope.years.push({val: i});
@@ -108,8 +109,13 @@ angular.module('pyrite')
             //processes demographic info and sends it to DB, stores returned SubjectID as a cookie
             $scope.submitDemographicInfo = function() {
                 var newArticleOrder = articleService.getNewArticleOrder();
+                var articleOrderJustIDs = new Array();
+                newArticleOrder.forEach(function (cur, index, array) {
+                    articleOrderJustIDs.push(cur.split('_')[1].split('.')[0]);
+                });
+
                 var demographicInfo = {
-                    articleOrder: newArticleOrder.toString(),
+                    articleOrder: articleOrderJustIDs.toString(),
                     age: ($scope.thisYear - $scope.selectBirthYear.val),
                     field1: ($scope.selectedOther1 ? $scope.otherField1 : $scope.selectField1.val),
                     field2: ($scope.selectedOther2 ? $scope.otherField2 : $scope.selectField2.val),

@@ -30,12 +30,6 @@ angular.module('pyrite')
                 controller: 'articlesController'
             })
 
-            // review spontaneous responses page
-            .when('/review', {
-                templateUrl: 'view/review.html',
-                controller: 'reviewController'
-            })
-
             // prize drawing page
             .when('/prize', {
                 templateUrl: 'view/prize.html',
@@ -62,15 +56,15 @@ angular.module('pyrite')
     });
 //handles routing behavior: scroll to top on route change, and subject consent validation
 angular.module('pyrite')
-    .run(['$rootScope', '$window', '$location', 'appConfig', 'cookieService', 'progressService', 'resizeService', 'EXPERIMENT_STAGE',
-        function($rootScope, $window, $location, appConfig, cookieService, progressService, resizeService, EXPERIMENT_STAGE) {
+    .run(['$rootScope', '$window', '$location', 'appConfig', 'windowSizeMinimums', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
+        function($rootScope, $window, $location, appConfig, windowSizeMinimums, cookieService, progressService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, pr) {
                 if (appConfig.DO_WINDOW_SIZE_CHECK && !$location.path().includes('/resize')) {
-                    var minimum = resizeService.getMinimums();
+                    var minimum = windowSizeMinimums;
                     var width = $window.innerWidth;
                     var height = $window.innerHeight;
                     if (width < minimum.width || height < minimum.height) {
-                        resizeService.setOrigin($location.path());
+                        cookieService.setOrigin($location.path());
                         $location.path('/resize');
                     }
                 }
@@ -89,9 +83,6 @@ angular.module('pyrite')
                             if (!path.includes('/articles') || next.params.index != progress.articleIndex) {
                                 $location.path('/articles/' + progress.articleIndex);
                             }
-                            break;
-                        case EXPERIMENT_STAGE.review:
-                            if (path != '/review') $location.path('/review');
                             break;
                         case EXPERIMENT_STAGE.finished:
                             if (path != '/prize' && path != '/end') $location.path('/end');

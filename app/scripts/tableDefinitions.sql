@@ -1,7 +1,7 @@
 -- create Subjects table
 CREATE TABLE Subjects(
     SubjectID INT NOT NULL AUTO_INCREMENT,
-    ArticleOrder VARCHAR(255),
+    ArticleOrder TEXT,
     Age INT,
     Field1 VARCHAR(255),
     Field2 VARCHAR(255),
@@ -15,7 +15,7 @@ CREATE TABLE Subjects(
 CREATE TABLE ArticleResponses(
     SubjectID INT NOT NULL,
     Trial INT,
-    ArticleID INT,
+    ArticleID VARCHAR(255),
     Likert INT,
     PageTime INT,
     SpontaneousResponseCount INT,
@@ -27,7 +27,7 @@ CREATE TABLE SpontaneousResponses(
     SRID INT NOT NULL AUTO_INCREMENT,
     SubjectID INT NOT NULL,
     Trial INT,
-    ArticleID INT,
+    ArticleID VARCHAR(255),
     ElementID VARCHAR(255),
     MoreBelievable TINYINT(1), -- boolean, 0 = 'less believable', 1 = 'more believable'
     PRIMARY KEY (SRID)

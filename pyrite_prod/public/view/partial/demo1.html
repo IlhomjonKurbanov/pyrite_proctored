@@ -11,7 +11,6 @@
         margin-right: auto;
     }
 
-    #navbar_demo1 li,
     #page-content_demo1 p {
         font-size: 16px;
     }
@@ -20,50 +19,12 @@
         font-size: 38px;
     }
 
-    #navbar_demo1,
     #page-content_demo1 {
         font-family: serif;
     }
 
     #page-content_demo1 a {
         text-decoration: underline;
-    }
-
-    #navbar-background_demo1 {
-        background-color: #04916e;
-    }
-
-    #navbar_demo1 {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        max-width: 740px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-
-    #navbar_demo1 li {
-        display: inline;
-    }
-
-    #navbar_demo1 a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-
-    #navbar_demo1 li a:hover {
-        background-color: #027256;
-    }
-
-    .navbar-fixed {
-        position: fixed;
-        top: 0px;
-        z-index: 5;
     }
 
     #video_demo1 {
@@ -101,23 +62,14 @@
     #image_demo1_2 {
         height: 325px;
     }
+
+    #bootstrap-override #page-content_demo1 h1 {
+        margin-top: 10px;
+    }
 </style>
 <script>
     plyr.setup()
 </script>
-<div navbar-bumper>
-    <div navbar-fix-on-scroll id="navbar-background_demo1">
-        <ul id="navbar_demo1" class="navbar" ng-click="selectElement($event);$event.stopPropagation()">
-            <li><a id="navbar-element_demo1_1" ng-click="selectElement($event);$event.stopPropagation()">Esse</a></li>
-            <li><a id="navbar-element_demo1_2" ng-click="selectElement($event);$event.stopPropagation()">Aliqua</a></li>
-            <li><a id="navbar-element_demo1_3" ng-click="selectElement($event);$event.stopPropagation()">Sint</a></li>
-            <li><a id="navbar-element_demo1_4" ng-click="selectElement($event);$event.stopPropagation()">Eiusmod</a></li>
-            <li><a id="navbar-element_demo1_5" ng-click="selectElement($event);$event.stopPropagation()">Reprehenderit</a></li>
-            <li><a id="navbar-element_demo1_6" ng-click="selectElement($event);$event.stopPropagation()">Adipisicing</a></li>
-            <li><a id="navbar-element_demo1_7" ng-click="selectElement($event);$event.stopPropagation()">Pariatur</a></li>
-        </ul>
-    </div>
-</div>
 <div id="page-content_demo1">
     <div id="article-start_demo1">
         <h1 id="article-title_demo1" ng-click="selectElement($event);$event.stopPropagation()">Laborum Anim Consequat ad ex Id</h1></div>

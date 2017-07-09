@@ -9,7 +9,6 @@ angular.module('pyrite')
         "REQUIRE_CONSENT"      : true,
         "DO_PROGRESS_CHECK"    : false, //toggles redirect behavior that checks user's requested path against their stored progress information
         "DO_WINDOW_SIZE_CHECK" : true, //toggles redirect behavior that check's user's window size against ideal window size
-        "PROCTORED"            : false, //toggles alternate behavior on narrative response page for proctored experiments
         "PATH"                 : "http://localhost/"
     });
 
@@ -57,4 +56,11 @@ angular.module('pyrite')
         "somewhat-agree"    : 5,
         "agree"             : 6,
         "strongly-agree"    : 7
+    });
+
+// == minimum values for window dimensions, in pixels ==========================
+angular.module('pyrite')
+    .constant("windowSizeMinimums", {
+        "width" : 1220,
+        "height" : 400
     });

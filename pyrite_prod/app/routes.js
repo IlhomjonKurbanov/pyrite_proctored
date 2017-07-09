@@ -61,37 +61,11 @@ module.exports = function(app, db) {
             req.body.elementID,
             req.body.moreBelievable
         ];
-
         db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, MoreBelievable) VALUES (?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
-                console.log('Registered new spontaneous response.');
-                res.send('Spontanous response registered.');
-            });
-    });
-
-    //get all spontaneous responses for a given subject
-    app.post('/api/spontaneous/get-all-subject-responses', function(req, res) {
-        var data = [
-            req.body.subjectID,
-        ];
-
-        db.get().query('SELECT SRID, Trial, ArticleID, ElementID, MoreBelievable FROM SpontaneousResponses WHERE SubjectID = (?) ORDER BY Trial, SRID',
-            data, function(err, result) {
-                if (err) throw err;
-                var results = {};
-                var index = 0;
-                result.forEach(function(element, index, array) {
-                    results[index] = {
-                        SRID: element.SRID,
-                        trial: element.Trial,
-                        articleID: element.ArticleID,
-                        elementID: element.ElementID,
-                        moreBelievable: (element.MoreBelievable == 0) ? false : true
-                    }
-                    index++;
-                });
-                res.json(results);
+                console.log('Registered new spontaneous response. SRID: ' + result.insertId);
+                res.json({SRID : result.insertId});
             });
     });
 
