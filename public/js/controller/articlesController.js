@@ -310,6 +310,7 @@ angular.module('pyrite')
             $scope.hideSpontaneousResponse = function() {
                 $scope.showNarrativeResponse = false;
                 $scope.showSpontaneousResponse = false;
+                $scope.response = undefined;
                 if ($scope.demo2 && $scope.demoStep == 2 && $scope.selectedID == 'video_demo2') {
                     document.querySelector("#hint2").setAttribute('style', 'opacity:1;right:50px;');
                 }
