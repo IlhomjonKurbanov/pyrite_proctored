@@ -134,17 +134,17 @@ angular.module('pyrite')
 
                 setTimeout(function () {
                     setDemoHighlightStyles();
-                    var top1 = document.querySelector("#image_demo2_1").getBoundingClientRect().top;
-                    var top2 = document.querySelector("#image_demo2_2").getBoundingClientRect().top;
+                    var top = document.querySelector("#image_demo2_1").getBoundingClientRect().top;
+                    var bottom = document.querySelector(".container").clientHeight;
 
                     angular.element($window).bind("scroll", function() {
-                        if ($scope.demoStep == 2 && this.pageYOffset > top1) {
+                        if ($scope.demoStep == 2 && this.pageYOffset > top) {
                             $("#step2-2").modal("hide");
                             $scope.demoStep = 3;
                             $("#step2-3").modal("show");
                             angular.element('body').removeClass('modal-open');
                         }
-                        if ($scope.demoStep == 3 && this.pageYOffset > top2) {
+                        if ($scope.demoStep == 3 && this.pageYOffset + $window.innerHeight >= bottom) {
                             $("#step2-3").modal("hide");
                             $scope.demoStep = 4;
                             $("#step2-4").modal("show");
