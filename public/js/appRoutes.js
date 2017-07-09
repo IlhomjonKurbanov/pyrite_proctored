@@ -58,7 +58,7 @@ angular.module('pyrite')
 angular.module('pyrite')
     .run(['$rootScope', '$window', '$location', 'appConfig', 'windowSizeMinimums', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
         function($rootScope, $window, $location, appConfig, windowSizeMinimums, cookieService, progressService, EXPERIMENT_STAGE) {
-            $rootScope.$on("$routeChangeStart", function (event, next, pr) {
+            $rootScope.$on("$routeChangeStart", function (event, next, current) {
                 if (appConfig.DO_WINDOW_SIZE_CHECK && !$location.path().includes('/resize')) {
                     var minimum = windowSizeMinimums;
                     var width = $window.innerWidth;
@@ -90,5 +90,8 @@ angular.module('pyrite')
                     }
                 }
                 $window.scrollTo(0 ,0);
+            });
+            $rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
+                $("div.modal-backdrop.fade.in:first").remove();
             });
         }]);
