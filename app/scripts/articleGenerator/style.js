@@ -72,7 +72,7 @@ exports.video = function(ID, height) {
 }
 
 exports.globalImageStyling = function(ID) {
-    return '#page-content_' + ID + ' img{-webkit-filter:blur(20px);-moz-filter:blur(20px);-o-filter:blur(20px);-ms-filter:blur(20px);filter:blur(20px);}.img-wrapper{overflow:hidden;display:inline-block;}';
+    return '#page-content_' + ID + ' img{-webkit-filter:blur(20px);-moz-filter:blur(20px);-o-filter:blur(20px);-ms-filter:blur(20px);filter:blur(20px);max-width:690px;}.img-wrapper{overflow:hidden;display:inline-block;}';
 }
 
 // create styles for all images
