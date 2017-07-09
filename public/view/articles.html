@@ -119,8 +119,21 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Instructions</h4>
                 </div>
-                <div class="modal-body">
-                    <div ng-include="'view/partial/instructions-content.html'"></div>
+                <div class="modal-body text-center">
+                    <p>
+                        You will be shown a series of articles where words, images, and videos have been replaced by filler content -- it has no meaning, and <strong id="not-understand">you will not be able to understand it</strong>. Please respond to the following statement after each article, based on the presentation (look and feel) of each page:
+                    </p>
+                    <p id="likert-statement">
+                        <strong>“If it had real content, I would believe an article that looks like this.”</strong>
+                    </p>
+                    <p>
+                        As an <strong>optional</strong> second form of response, you can identify elements of the article that have a significant effect on how believable it looks. You can click on and respond to individual elements of the news article to indicate whether the elements make the article seem <strong>more or less believable:</strong>
+                    </p>
+                    <img src="data/img/element.png">
+                    <p>
+                        This includes providing a short text response explaining why you think the element makes the article seem more or less believable.
+                    </p>
+                    <img id="img-too-big" src="data/img/qualitative.png">
                 </div>
             </div>
         </div>

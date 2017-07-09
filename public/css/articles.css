@@ -192,6 +192,23 @@ span#optional {
     color: #4c4c4c;
 }
 
+/* == INSTRUCTIONS CONTENT ================================================== */
+#bootstrap-override #not-understand {
+    font-size: 15px;
+}
+#bootstrap-override #likert-statement {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+#help img {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 15px;
+}
+#img-too-big {
+    max-width: 400px;
+}
+
 /* == DEMO CONTENT ========================================================== */
 #bootstrap-override .modal-dialog {
     width: 650px;
