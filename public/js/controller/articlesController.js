@@ -27,7 +27,7 @@ angular.module('pyrite')
 
             //display parameters
             $scope.numTrials = articleService.getNumTrials();
-            $scope.width = ($scope.demo) ? 0 : (50 / $scope.numTrials) * ($scope.index + 1);
+            $scope.width = ($scope.demo) ? 0 : (75 / $scope.numTrials) * ($scope.index + 1);
             $scope.moreBelievable = true;
 
             // == function definitions =========================================
