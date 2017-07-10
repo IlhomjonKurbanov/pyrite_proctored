@@ -72,7 +72,7 @@ exports.video = function(ID, height) {
 }
 
 exports.globalImageStyling = function(ID) {
-    return '#page-content_' + ID + ' img{-webkit-filter:blur(20px);-moz-filter:blur(20px);-o-filter:blur(20px);-ms-filter:blur(20px);filter:blur(20px);max-width:690px;}.img-wrapper{overflow:hidden;display:inline-block;}';
+    return '#page-content_' + ID + ' img{-webkit-filter:blur(20px);-moz-filter:blur(20px);-o-filter:blur(20px);-ms-filter:blur(20px);filter:blur(20px);max-width:740px;margin:-25px}.img-wrapper{overflow:hidden;display:inline-block;}';
 }
 
 // create styles for all images
@@ -80,7 +80,7 @@ exports.images = function(ID, images, imageHeights) {
     var data = '';
     for (var i = 1; i <= images; i++) {
         data += '#image_' + ID + '_' + i + '{';
-        data += 'height:' + imageHeights[i - 1] + 'px;'; //arrays are 0-based
+        data += 'height:' + (imageHeights[i - 1] + 50) + 'px;'; //arrays are 0-based, "+ 50" accounts for -25px margin on every image
         data += '}';
     }
     return data;
