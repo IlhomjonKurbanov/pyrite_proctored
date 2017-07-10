@@ -185,10 +185,7 @@
                     <div class="modal-body text-center">
                         <img src="data/img/likert.png">
                         <p>
-                            You will respond to each news article via a Likert scale, as seen above. Consider all aspects of the article's presentation when responding. Please respond to the following statement after each article, based on how believable it looks:
-                        </p>
-                        <p id="likert-statement">
-                            <strong>“If it had real content, I would believe an article that looks like this.”</strong>
+                            You will respond to each news article via a Likert scale, as seen above. Consider all aspects of the article's <strong>presentation</strong> when responding.
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -206,13 +203,9 @@
                     </div>
                     <div class="modal-body text-center">
                         <p>
-                            As an <strong>optional</strong> second form of response, you can identify elements of the article that have a significant effect on how believable it looks. You can click on and respond to individual elements of the news article to indicate whether the elements make the article seem <strong>more or less believable:</strong>
+                            If something makes you think the article seems more or less believable, you can identify it specifically. This is <strong>optional</strong>.
                         </p>
                         <img src="data/img/element.png">
-                        <p>
-                            This includes providing a short text response explaining why you think the element makes the article seem more or less believable.
-                        </p>
-                        <img src="data/img/qualitative.png">
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="step2-1-start" class="btn btn-default" data-dismiss="modal" ng-click="step2($event)">Start</button>
@@ -225,7 +218,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Click on the video and respond.</2>
+                        <h2 class="modal-title">As an example, click on this image and respond.</h2>
                     </div>
                 </div>
             </div>
@@ -233,7 +226,26 @@
         <div id="hint2">
             <i class="fa fa-arrow-down" aria-hidden="true"></i>
         </div>
-        <div id="step2-3" class="modal fade" data-backdrop="false" role="dialog">
+        <div id="step2-3" class="modal fade" role="dialog" ng-click="$event.stopPropagation()">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">Demo: Respond to Individual Elements</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>
+                            When you respond to an element, you have the option to provide a short text response explaining why you think the element makes the article seem more or less believable.
+                        </p>
+                        <img src="data/img/qualitative.png">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="step2-4" class="modal fade" data-backdrop="false" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header text-center">
@@ -243,7 +255,7 @@
                 </div>
             </div>
         </div>
-        <div id="step2-4" class="modal fade" role="dialog" ng-click="endDemo()">
+        <div id="step2-5" class="modal fade" role="dialog" ng-click="endDemo()">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" ng-click="$event.stopPropagation()">
