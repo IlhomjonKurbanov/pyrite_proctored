@@ -54,14 +54,17 @@
     .img-wrapper {
         overflow: hidden;
         display: inline-block;
+        margin: 15px;
     }
 
     #image_demo2_1 {
+        margin: -25px;
         height: 325px;
     }
 
     #image_demo2_2 {
-        height: 400px;
+        margin: -25px;
+        height: 300px;
     }
 
     #bootstrap-override #page-content_demo2 h1 {
@@ -73,7 +76,7 @@
 <div id="page-content_demo2">
     <div id="article-start_demo2">
         <h1 id="article-title_demo2" ng-click="selectElement($event);$event.stopPropagation()">Ullamco Magna Consequat Occaecat Tempor</h1>
-        <div class="video-wrapper"><video id="video_demo2" ng-click="selectElement($event);$event.stopPropagation()" controls><source src="data/video/video2.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
+        <div id="first-image" class="img-wrapper text-center"><img ng-click="selectElement($event);$event.stopPropagation()" id="image_demo2_1" src="data/img/img10.jpg"></div>
     </div>
     <p id="paragraph_demo2_0" ng-click="selectElement($event);$event.stopPropagation()">Nostrud sint enim labore laboris excepteur enim nulla culpa sint est consequat mollit. Fugiat Lorem quis cillum esse et consectetur duis. Anim aliqua in <a id="link_demo2_2" ng-click="selectElement($event);$event.stopPropagation()" href="">irure velit elit</a>        laboris ipsum in esse minim elit. Fugiat laborum eu ullamco ipsum aliquip adipisicing ex veniam et eu laboris enim Lorem. Ullamco enim sit quis aliqua culpa consequat cupidatat pariatur quis incididunt non cupidatat dolore. Aliqua non ea minim
         reprehenderit veniam elit aliqua Lorem ut tempor. Qui veniam occaecat duis do aliqua ipsum proident.</p>
@@ -82,7 +85,7 @@
         sint aute aliqua. Exercitation cillum ut tempor ex enim Lorem tempor magna do voluptate. Voluptate officia sunt culpa nisi eiusmod Lorem dolore nisi magna exercitation. Enim sint nisi irure aute ex fugiat cupidatat ad esse aliquip eiusmod deserunt
         minim voluptate.</p>
     <div class="text-center">
-        <div class="img-wrapper text-center"><img ng-click="selectElement($event);$event.stopPropagation()" id="image_demo2_1" src="data/img/img6.jpg"></div>
+        <div class="video-wrapper"><video id="video_demo2" ng-click="selectElement($event);$event.stopPropagation()" controls><source src="data/video/video2.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
     </div>
     <p id="paragraph_demo2_2" ng-click="selectElement($event);$event.stopPropagation()">Eiusmod laboris dolore tempor dolore proident velit laborum amet velit quis dolor consectetur ullamco. Occaecat <a id="link_demo2_3" ng-click="selectElement($event);$event.stopPropagation()" href="">ipsum id id voluptate</a> pariatur voluptate elit reprehenderit magna eu eu ea reprehenderit. Lorem ad non eu enim occaecat ipsum quis. Ad
         nostrud proident enim duis non fugiat ipsum id aliquip cillum reprehenderit. Consequat esse nulla tempor tempor do consequat commodo. Officia adipisicing dolore qui laborum cupidatat <a id="link_demo2_4" ng-click="selectElement($event);$event.stopPropagation()" href="">officia qui ad adipisicing</a>. Qui sint incididunt tempor nulla

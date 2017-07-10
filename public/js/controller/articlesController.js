@@ -66,10 +66,10 @@ angular.module('pyrite')
             function doDemo1Logic() {
                 var likertHighlightTriggered = false;
                 setTimeout(function () {
-                    var top1 = document.querySelector("#paragraph_demo1_1").getBoundingClientRect().top;
+                    var top1 = document.querySelector("#image_demo1_1").getBoundingClientRect().top;
                     var top2 = document.querySelector("#paragraph_demo1_3").getBoundingClientRect().top;
                     var topForArrow = document.querySelector("#paragraph_demo1_2").getBoundingClientRect().top;
-                    var bottom = document.querySelector(".container").clientHeight;
+                    var bottom = document.querySelector(".container").clientHeight - 130;
 
                     angular.element($window).bind("scroll", function() {
                         if ($scope.demoStep == 1 && this.pageYOffset > top1) {
@@ -90,7 +90,7 @@ angular.module('pyrite')
             }
 
             function setDemoHighlightStyles() {
-                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '#img-wrapper_demo2'];
+                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '.video-wrapper'];
                 var element;
                 elements.forEach(function (cur, index, array) {
                     var element = angular.element(document.querySelector(cur));
@@ -102,7 +102,8 @@ angular.module('pyrite')
             }
 
             function unsetDemoHighlightStyles() {
-                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '#img-wrapper_demo2'];
+                $scope.showDemoHighlights = false;
+                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '.video-wrapper'];
                 var element;
                 elements.forEach(function (cur, index, array) {
                     var element = angular.element(document.querySelector(cur));
@@ -110,7 +111,6 @@ angular.module('pyrite')
                     element.css("border-radius", "0px");
                     element.css("background-color", "inherit");
                 });
-                $scope.showDemoHighlights = true;
             }
 
             function doDemo2Logic() {
@@ -118,7 +118,7 @@ angular.module('pyrite')
                 $scope.step2 = function(event) {
                     if (event.target.id == 'step2-1' || event.target.id == 'step2-1-close' || event.target.id == 'step2-1-start') {
                         setTimeout(function () {
-                            var wrapper = angular.element('.video-wrapper');
+                            var wrapper = angular.element('#first-image');
                             wrapper.css("border", "8px solid rgb(255, 217, 0)");
                             wrapper.css("border-radius", "7px");
                             wrapper.css("max-width", parseInt(wrapper.css("max-width").split("px")[0]) + 16 + "px");
@@ -127,34 +127,34 @@ angular.module('pyrite')
 
                             $scope.demoStep = 2;
                             $("#step2-2").modal("show");
-                            angular.element('#step2-2').css("height", "25%");
                         }, 100);
                     }
                 }
 
                 setTimeout(function () {
                     setDemoHighlightStyles();
-                    var top = document.querySelector("#image_demo2_1").getBoundingClientRect().top;
-                    var bottom = document.querySelector(".container").clientHeight;
+                    var top = document.querySelector("#paragraph_demo2_1").getBoundingClientRect().top + 80;
+                    var bottom = document.querySelector(".container").clientHeight - 130;
 
                     angular.element($window).bind("scroll", function() {
-                        if ($scope.demoStep == 2 && this.pageYOffset > top) {
+                        if (($scope.demoStep == 3 || $scope.demoStep == 2) && this.pageYOffset > top) {
                             $("#step2-2").modal("hide");
-                            $scope.demoStep = 3;
-                            $("#step2-3").modal("show");
-                            angular.element('body').removeClass('modal-open');
-                        }
-                        if ($scope.demoStep == 3 && this.pageYOffset + $window.innerHeight >= bottom) {
-                            $("#step2-3").modal("hide");
                             $scope.demoStep = 4;
                             $("#step2-4").modal("show");
+                            angular.element('body').removeClass('modal-open');
+                        }
+                        if ($scope.demoStep == 4 && this.pageYOffset + $window.innerHeight >= bottom) {
+                            $("#step2-4").modal("hide");
+                            $scope.demoStep = 5;
+                            $("#step2-5").modal("show");
                         }
                     });
                 }, 500);
             }
 
             $scope.endDemo = function() {
-                $('#step2-4').modal('hide');
+                $('#step2-5').modal('hide');
+                angular.element($window).unbind("scroll");
                 progressService.setArticleIndex(0);
                 $location.path('/articles/0');
             }
@@ -168,6 +168,7 @@ angular.module('pyrite')
             //submit likert response to current article to DB, and transition to the next article
             $scope.submitArticleResponse = function() {
                 if ($scope.demo1) {
+                    angular.element($window).unbind("scroll");
                     progressService.setArticleIndex('demo2');
                     $location.path('/articles/demo2');
                     return;
@@ -220,6 +221,14 @@ angular.module('pyrite')
                 var top = boundingRectangle.top + $window.pageYOffset + positionOffset;
                 var left = boundingRectangle.left + $window.pageXOffset + positionOffset;
 
+                //images have -25px margins
+                if ($scope.selectedID.indexOf('image_') > -1) {
+                    top += 25;
+                    left += 25;
+                    width -= 50;
+                    height -= 50;
+                }
+
                 //set position and dimensions of highlight box
                 $scope.highlightStyle = {
                     'top'    : top + "px",
@@ -232,13 +241,13 @@ angular.module('pyrite')
             //set position of response callout based on bounding rectange of
             //selected element
             $scope.setSpontaneousResponseStyling = function(boundingRectangle) {
-                var elementWidth = boundingRectangle.right - boundingRectangle.left
-                var elementCenterX = (elementWidth / 2) + boundingRectangle.right + $window.pageXOffset;
+                var elementWidth = boundingRectangle.right - boundingRectangle.left;
                 var modalWidth = 316;
 
                 //set position of response callout:
                 //account for scroll with pageYOffset / pageXOffset
                 var topOffset = -3; //experimentally determined
+                if ($scope.selectedID.indexOf('image_') > -1) topOffset -= 25; //images have -25px margins
                 var leftOffset = -19; //experimentally determined
                 $scope.spontaneousResponseStyle= {
                     'top'  : boundingRectangle.bottom + $window.pageYOffset + topOffset + "px",
@@ -249,13 +258,13 @@ angular.module('pyrite')
             //set position of response callout based on bounding rectange of
             //selected element
             $scope.setNarrativeResponseStyling = function(boundingRectangle) {
-                var elementWidth = boundingRectangle.right - boundingRectangle.left
-                var elementCenterX = (elementWidth / 2) + boundingRectangle.right + $window.pageXOffset;
+                var elementWidth = boundingRectangle.right - boundingRectangle.left;
                 var modalWidth = 550;
 
                 //set position of narrative response callout:
                 //account for scroll with pageYOffset / pageXOffset
                 var topOffset = 1; //experimentally determined
+                if ($scope.selectedID.indexOf('image_') > -1) topOffset -= 25; //images have -25px margins;
                 var leftOffset = -19; //experimentally determined
                 $scope.narrativeResponseStyle = {
                     'top'  : boundingRectangle.bottom + $window.pageYOffset + topOffset + "px",
@@ -272,15 +281,15 @@ angular.module('pyrite')
                 } else if ($scope.demo2) {
                     if ($scope.demoStep == 2) {
                         $('#step2-2').modal("hide");
-                        var wrapper = angular.element('.video-wrapper');
+                        var wrapper = angular.element('#first-image');
                         wrapper.css("border", "none");
                         wrapper.css("border-radius", "0px");
                         wrapper.css("max-width", parseInt(wrapper.css("max-width").split("px")[0]) - 16 + "px");
                         wrapper.css("margin-bottom", parseInt(wrapper.css("margin-bottom").split("px")[0]) + 8 + "px");
                         wrapper.css("margin-top", parseInt(wrapper.css("margin-top").split("px")[0]) + 8 + "px");
-                    } else if ($scope.demoStep == 3) {
+                    } else if ($scope.demoStep == 4) {
                         unsetDemoHighlightStyles();
-                        $('#step2-3').modal("hide");
+                        $('#step2-4').modal("hide");
                     }
                 }
 
@@ -330,6 +339,10 @@ angular.module('pyrite')
                 //skip from here, because moreBelievable needs to be set
                 if ($scope.demo) {
                     $scope.showNarrativeResponse = true;
+                    if ($scope.demo2 && $scope.demoStep == 2) {
+                        $scope.demoStep = 3;
+                        $('#step2-3').modal("show");
+                    }
                     return; //neuter if in demo
                 }
 
