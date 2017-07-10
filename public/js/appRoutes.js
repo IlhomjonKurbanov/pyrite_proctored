@@ -59,7 +59,7 @@ angular.module('pyrite')
     .run(['$rootScope', '$window', '$location', 'appConfig', 'windowSizeMinimums', 'cookieService', 'progressService', 'EXPERIMENT_STAGE',
         function($rootScope, $window, $location, appConfig, windowSizeMinimums, cookieService, progressService, EXPERIMENT_STAGE) {
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
-                if (appConfig.DO_WINDOW_SIZE_CHECK && !$location.path().includes('/resize')) {
+                if (appConfig.DO_WINDOW_SIZE_CHECK && $location.path().indexOf('/resize') == -1) {
                     var minimum = windowSizeMinimums;
                     var width = $window.innerWidth;
                     var height = $window.innerHeight;
@@ -68,7 +68,7 @@ angular.module('pyrite')
                         $location.path('/resize');
                     }
                 }
-                if (appConfig.DO_PROGRESS_CHECK && !$location.path().includes('/resize')) {
+                if (appConfig.DO_PROGRESS_CHECK && $location.path().indexOf('/resize') == -1) {
                     var progress = progressService.getProgress();
                     var stage = progress.stage;
                     var path = $location.path();
@@ -80,7 +80,7 @@ angular.module('pyrite')
                             if (path != '/demographics') $location.path('/demographics');
                             break;
                         case EXPERIMENT_STAGE.articles:
-                            if (!path.includes('/articles') || next.params.index != progress.articleIndex) {
+                            if (path.indexOf('/articles') == -1 || next.params.index != progress.articleIndex) {
                                 $location.path('/articles/' + progress.articleIndex);
                             }
                             break;
