@@ -38,7 +38,8 @@ angular.module('pyrite')
 
             // end page
             .when('/end', {
-                templateUrl: 'view/end.html'
+                templateUrl: 'view/end.html',
+                controller: 'endController'
             })
 
             // window size warning
