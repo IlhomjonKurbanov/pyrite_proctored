@@ -193,20 +193,15 @@ span#optional {
 }
 
 /* == INSTRUCTIONS CONTENT ================================================== */
-#bootstrap-override #not-understand {
-    font-size: 15px;
-}
-#bootstrap-override #likert-statement {
-    margin-bottom: 15px;
+#bootstrap-override #help {
     font-size: 18px;
 }
 #help img {
+    width: 90%;
     border: 2px solid black;
     border-radius: 10px;
     margin: 15px;
-}
-#img-too-big {
-    max-width: 400px;
+    margin-bottom: 25px;
 }
 
 /* == DEMO CONTENT ========================================================== */
@@ -224,7 +219,7 @@ span#optional {
 #bootstrap-override #demo .modal-dialog {
     margin: 7% auto !important;
 }
-#hint1, #hint2 {
+#hint {
     opacity: 0;
     -webkit-transition: opacity 1s ease;
     transition: opacity 1s ease;
@@ -253,22 +248,4 @@ span#optional {
     background-color: rgba(255, 255, 0, 0.5);
     border: 8px solid rgb(255, 217, 0);
     border-radius: 7px;
-}
-#step2-1 img {
-    margin: 15px;
-}
-#step2-2, #step2-4 {
-    overflow: visible !important;
-}
-#bootstrap-override #step2-2 .modal-dialog, #bootstrap-override #step2-4 .modal-dialog {
-    margin-top: 100px !important;
-}
-#step2-2 .modal-content, #step2-4 .modal-content {
-    border: 3px solid black !important;
-}
-#step2-2, #step2-4 {
-    height: 0px !important;
-}
-#step2-5 i {
-    color: #00907c;
 }

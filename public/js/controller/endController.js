@@ -12,7 +12,7 @@ angular.module('pyrite')
                 cookieService.cleanUp(['subjectID', 'articleOrder', 'progress']);
 
                 progressService.setStage('unstarted');
-                progressService.setArticleIndex('demo1');
+                progressService.setArticleIndex('demo');
                 $location.path('/');
             }
         }]);

@@ -15,6 +15,29 @@ angular.module('pyrite')
             // demo section, initiates major page variables
             doDemoLogic();
 
+            // check if demo
+            $scope.demo = ($routeParams.index == 'demo');
+
+            if ($scope.demo) { //begin demo
+                setTimeout(function () {
+                    $scope.demoStep = 1;
+                    $("#step-1").modal("show");
+                }, 100);
+                $scope.articlePath = 'view/partial/demo.html';
+                doDemoLogic();
+            } else { //begin article
+                $scope.index = parseInt($routeParams.index); //get article index from URL
+
+                //clean up from modals
+                angular.element('.modal-backdrop').css('display', 'none');
+                angular.element('body').removeClass('modal-open');
+
+                //fallback to cookieService handles $rootScope wipe on refresh
+                $scope.articleOrder = $rootScope.articleOrder || cookieService.getArticleOrder();
+                $scope.articlePath = $scope.articleOrder[$scope.index]; //get articlePath
+                $scope.articleID = $scope.articlePath.split('_')[1].split('.')[0];
+            }
+
             //response modal styles
             $scope.highlightStyle = {};
             $scope.spontaneousResponseStyle = {};
@@ -32,38 +55,7 @@ angular.module('pyrite')
 
             // == function definitions =========================================
             // ---- all custom demo logic --------------------------------------
-            // special values of page values, special behaviors
             function doDemoLogic() {
-                $scope.demo = ($routeParams.index == 'demo1' || $routeParams.index == 'demo2');
-                $scope.demo1 = ($routeParams.index == 'demo1');
-                $scope.demo2 = ($scope.demo && !$scope.demo1);
-
-                if ($scope.demo) {
-                    setTimeout(function () {
-                        $scope.demoStep = 1;
-                        if ($scope.demo1) $("#step1-1").modal("show");
-                        if ($scope.demo2) $("#step2-1").modal("show");
-                    }, 100);
-                    $scope.articlePath = 'view/partial/';
-                    $scope.articlePath += ($scope.demo1) ? 'demo1.html' : 'demo2.html';
-                } else {
-                    $scope.index = parseInt($routeParams.index); //get article index from URL
-
-                    //clean up from modals
-                    angular.element('.modal-backdrop').css('display', 'none');
-                    angular.element('body').removeClass('modal-open');
-
-                    //fallback to cookieService handles $rootScope wipe on refresh
-                    $scope.articleOrder = ($rootScope.articleOrder != undefined) ?
-                        $rootScope.articleOrder : cookieService.getArticleOrder();
-                    $scope.articlePath = $scope.articleOrder[$scope.index]; //get articlePath
-                    $scope.articleID = $scope.articlePath.split('_')[1].split('.')[0];
-                }
-                if ($scope.demo1) doDemo1Logic();
-                if ($scope.demo2) doDemo2Logic();
-            }
-
-            function doDemo1Logic() {
                 var likertHighlightTriggered = false;
                 setTimeout(function () {
                     var top1 = document.querySelector("#image_demo1_1").getBoundingClientRect().top;
@@ -74,86 +66,22 @@ angular.module('pyrite')
                     angular.element($window).bind("scroll", function() {
                         if ($scope.demoStep == 1 && this.pageYOffset > top1) {
                             $scope.demoStep = 2;
-                            $("#step1-2").modal("show");
+                            $("#step-2").modal("show");
                         }
                         if ($scope.demoStep == 2 && this.pageYOffset > top2) {
                             $scope.demoStep = 'arrow';
-                            document.querySelector("#hint1").setAttribute('style', 'opacity:1;right:50px;');
+                            document.querySelector("#hint").setAttribute('style', 'opacity:1;right:50px;');
                         }
                         if ($scope.demoStep == 'arrow' && this.pageYOffset + $window.innerHeight >= bottom) {
                             $scope.demoStep = 3;
-                            $("#step1-3").modal("show");
+                            $("#step-3").modal("show");
                             angular.element(document.querySelector('#likert')).addClass('highlight-border');
                         }
                     });
                 }, 500);
             }
 
-            function setDemoHighlightStyles() {
-                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '.video-wrapper'];
-                var element;
-                elements.forEach(function (cur, index, array) {
-                    var element = angular.element(document.querySelector(cur));
-                    element.css("border", "4px solid rgb(255, 217, 0)");
-                    element.css("border-radius", "7px");
-                    element.css("background-color", "rgba(255, 255, 0, 0.5)");
-                });
-                $scope.showDemoHighlights = true;
-            }
-
-            function unsetDemoHighlightStyles() {
-                $scope.showDemoHighlights = false;
-                var elements = ['#link_demo2_3', '#paragraph_demo2_3', '.video-wrapper'];
-                var element;
-                elements.forEach(function (cur, index, array) {
-                    var element = angular.element(document.querySelector(cur));
-                    element.css("border-width", "0px");
-                    element.css("border-radius", "0px");
-                    element.css("background-color", "inherit");
-                });
-            }
-
-            function doDemo2Logic() {
-                $scope.demo2modals = 'view/partial/demo2modals.html';
-                $scope.step2 = function(event) {
-                    if (event.target.id == 'step2-1' || event.target.id == 'step2-1-close' || event.target.id == 'step2-1-start') {
-                        setTimeout(function () {
-                            var wrapper = angular.element('#first-image');
-                            wrapper.css("border", "8px solid rgb(255, 217, 0)");
-                            wrapper.css("border-radius", "7px");
-                            wrapper.css("max-width", parseInt(wrapper.css("max-width").split("px")[0]) + 16 + "px");
-                            wrapper.css("margin-bottom", parseInt(wrapper.css("margin-bottom").split("px")[0]) - 8 + "px");
-                            wrapper.css("margin-top", parseInt(wrapper.css("margin-top").split("px")[0]) - 8) + "px";
-
-                            $scope.demoStep = 2;
-                            $("#step2-2").modal("show");
-                        }, 100);
-                    }
-                }
-
-                setTimeout(function () {
-                    setDemoHighlightStyles();
-                    var top = document.querySelector("#paragraph_demo2_1").getBoundingClientRect().top + 80;
-                    var bottom = document.querySelector(".container").clientHeight - 130;
-
-                    angular.element($window).bind("scroll", function() {
-                        if (($scope.demoStep == 3 || $scope.demoStep == 2) && this.pageYOffset > top) {
-                            $("#step2-2").modal("hide");
-                            $scope.demoStep = 4;
-                            $("#step2-4").modal("show");
-                            angular.element('body').removeClass('modal-open');
-                        }
-                        if ($scope.demoStep == 4 && this.pageYOffset + $window.innerHeight >= bottom) {
-                            $("#step2-4").modal("hide");
-                            $scope.demoStep = 5;
-                            $("#step2-5").modal("show");
-                        }
-                    });
-                }, 500);
-            }
-
             $scope.endDemo = function() {
-                $('#step2-5').modal('hide');
                 angular.element($window).unbind("scroll");
                 progressService.setArticleIndex(0);
                 $location.path('/articles/0');
@@ -167,13 +95,8 @@ angular.module('pyrite')
 
             //submit likert response to current article to DB, and transition to the next article
             $scope.submitArticleResponse = function() {
-                if ($scope.demo1) {
-                    angular.element($window).unbind("scroll");
-                    progressService.setArticleIndex('demo2');
-                    $location.path('/articles/demo2');
-                    return;
-                } else if ($scope.demo2) {
-                    endDemo();
+                if ($scope.demo) {
+                    $scope.endDemo();
                     return;
                 }
 
@@ -275,22 +198,9 @@ angular.module('pyrite')
             //handle UI changes when user selects an article element
             $scope.selectElement = function(event) {
                 //ignore if in demo1
-                if ($scope.demo1) {
+                if ($scope.demo) {
                     $scope.hideSpontaneousResponse();
                     return;
-                } else if ($scope.demo2) {
-                    if ($scope.demoStep == 2) {
-                        $('#step2-2').modal("hide");
-                        var wrapper = angular.element('#first-image');
-                        wrapper.css("border", "none");
-                        wrapper.css("border-radius", "0px");
-                        wrapper.css("max-width", parseInt(wrapper.css("max-width").split("px")[0]) - 16 + "px");
-                        wrapper.css("margin-bottom", parseInt(wrapper.css("margin-bottom").split("px")[0]) + 8 + "px");
-                        wrapper.css("margin-top", parseInt(wrapper.css("margin-top").split("px")[0]) + 8 + "px");
-                    } else if ($scope.demoStep == 4) {
-                        unsetDemoHighlightStyles();
-                        $('#step2-4').modal("hide");
-                    }
                 }
 
                 //get bounding rectange of selected element
@@ -320,9 +230,6 @@ angular.module('pyrite')
                 $scope.showNarrativeResponse = false;
                 $scope.showSpontaneousResponse = false;
                 $scope.response = undefined;
-                if ($scope.demo2 && $scope.demoStep == 2 && $scope.selectedID == 'video_demo2') {
-                    document.querySelector("#hint2").setAttribute('style', 'opacity:1;right:50px;');
-                }
             }
 
             //submit a "spontaneous response" to an article element
@@ -339,10 +246,6 @@ angular.module('pyrite')
                 //skip from here, because moreBelievable needs to be set
                 if ($scope.demo) {
                     $scope.showNarrativeResponse = true;
-                    if ($scope.demo2 && $scope.demoStep == 2) {
-                        $scope.demoStep = 3;
-                        $('#step2-3').modal("show");
-                    }
                     return; //neuter if in demo
                 }
 
