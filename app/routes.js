@@ -39,62 +39,14 @@ module.exports = function(app, db) {
             req.body.trial,
             req.body.articleID,
             req.body.likert,
-            req.body.pageTime,
-            req.body.SRCount,
-            req.body.moreBelievableCount
+            req.body.pageTime
         ];
 
-        db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert, PageTime, SpontaneousResponseCount, MoreBelievableCount) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        db.get().query('INSERT INTO ArticleResponses (SubjectID, Trial, ArticleID, Likert, PageTime) VALUES (?, ?, ?, ?, ?)',
             data, function(err, result) {
                 if (err) throw err;
                 console.log('Registered new ArticleResponse.');
                 res.send('Article response registered.')
-            });
-    });
-
-    //register a spontaneous response in the DB
-    app.post('/api/spontaneous/register-response', function(req, res) {
-        var data = [
-            req.body.subjectID,
-            req.body.trial,
-            req.body.articleID,
-            req.body.elementID,
-            req.body.moreBelievable
-        ];
-        db.get().query('INSERT INTO SpontaneousResponses (SubjectID, Trial, ArticleID, ElementID, MoreBelievable) VALUES (?, ?, ?, ?, ?)',
-            data, function(err, result) {
-                if (err) throw err;
-                console.log('Registered new spontaneous response. SRID: ' + result.insertId);
-                res.json({SRID : result.insertId});
-            });
-    });
-
-    //delete a given spontaneous response
-    app.post('/api/spontaneous/delete', function(req, res) {
-        var data = [
-            req.body.SRID,
-        ];
-
-        db.get().query('DELETE FROM SpontaneousResponses WHERE SRID = (?)',
-            data, function(err, result) {
-                if (err) throw err;
-                console.log('Deleted Spontaneous Response.');
-                res.send('Spontaneous Response deleted.');
-            });
-    });
-
-    //register a narrative response for a given spontaneous response
-    app.post('/api/narrative/register-response', function(req, res) {
-        var data = [
-            req.body.SRID,
-            req.body.response
-        ];
-
-        db.get().query('INSERT INTO NarrativeResponses (SRID, Response) VALUES (?, ?)',
-            data, function(err, result) {
-                if (err) throw err;
-                console.log('Registered new narrative response.');
-                res.send('Narrative response registered.');
             });
     });
 
