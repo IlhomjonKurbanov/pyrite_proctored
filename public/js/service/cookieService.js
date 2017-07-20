@@ -31,4 +31,10 @@ angular.module('pyrite')
         this.getOrigin = function() {
             return $cookies.get('origin');
         }
+
+        this.cleanUp = function(cookies) {
+            cookies.forEach(function(cur, index, array) {
+                $cookies.remove(cur);
+            });
+        }
     }]);

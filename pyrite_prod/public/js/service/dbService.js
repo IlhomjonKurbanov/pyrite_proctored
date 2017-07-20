@@ -36,41 +36,4 @@ angular.module('pyrite')
                         	console.log("failure message: " + JSON.stringify(response));
                         });
         }
-
-        //register a spontaneous response
-        this.registerSpontaneousResponse = function(spontaneousResponse) {
-            var data = angular.toJson(spontaneousResponse);
-            return $http.post('/api/spontaneous/register-response', data)
-                		.then(function success(response) {
-                            //success
-                            return response.data.SRID;
-                		}, function failure(response) {
-                            //failure
-                        	console.log("failure message: " + JSON.stringify(response));
-                        });
-        }
-
-        //delete a spontaneous response
-        this.deleteSpontaneousResponse = function(SRID) {
-            var data = angular.toJson(SRID);
-            return $http.post('/api/spontaneous/delete', data)
-                		.then(function success(response) {
-                            //success
-                		}, function failure(response) {
-                            //failure
-                        	console.log("failure message: " + JSON.stringify(response));
-                        });
-        }
-
-        //register a narrative response to a spontaneous response
-        this.registerNarrativeResponse = function(narrativeResponse) {
-            var data = angular.toJson(narrativeResponse);
-            return $http.post('/api/narrative/register-response', data)
-                		.then(function success(response) {
-                            //success
-                		}, function failure(response) {
-                            //failure
-                        	console.log("failure message: " + JSON.stringify(response));
-                        });
-        }
     }]);

@@ -209,7 +209,7 @@ function run(ID) {
         if (imageData[i] != undefined) page += imageData[i];
 
         //add paragraph
-        prepend = '<p id="paragraph_' + ID + '_' + i + '" ' + element.NGCLICK + '>'
+        prepend = '<p id="paragraph_' + ID + '_' + i + '">'
         page += prepend + paragraphs[i] + '</p>';
     }
 

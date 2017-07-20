@@ -43,32 +43,6 @@ if (tableName == 'ArticleResponses' || tableName == 'all') {
         });
 }
 
-// Spontaneous Responses Table
-if (tableName == 'SpontaneousResponses' || tableName == 'all') {
-    db.get().query('CREATE TABLE SpontaneousResponses(SRID INT NOT NULL AUTO_INCREMENT, SubjectID INT NOT NULL, Trial INT, ArticleID VARCHAR(255), ElementID VARCHAR(255), MoreBelievable TINYINT(1), PRIMARY KEY (SRID)) ENGINE = INNODB',
-        function(err, result) {
-            if (err) {
-                console.log('Error creating SpontaneousResponses table: ' + err);
-                if (tableName != 'all') process.exit();
-            }
-            console.log('SpontaneousResponses table created.');
-            if (tableName != 'all') process.exit();
-        });
-}
-
-// Narrative Responses Table
-if (tableName == 'NarrativeResponses' || tableName == 'all') {
-    db.get().query('CREATE TABLE NarrativeResponses(SRID INT NOT NULL, Response TEXT) ENGINE = INNODB',
-        function(err, result) {
-            if (err) {
-                console.log('Error creating NarrativeResponses table: ' + err);
-                if (tableName != 'all') process.exit();
-            }
-            console.log('NarrativeResponses table created.');
-            if (tableName != 'all') process.exit();
-        });
-}
-
 // Prize Drawing Participants Table
 if (tableName == 'PrizeDrawingParticipants' || tableName == 'all') {
     db.get().query('CREATE TABLE PrizeDrawingParticipants(EmailAddress VARCHAR(255), PRIMARY KEY (EmailAddress)) ENGINE = INNODB',
