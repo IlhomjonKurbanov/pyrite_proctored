@@ -12,12 +12,10 @@ angular.module('pyrite')
             $scope.showSpontaneousResponse = false; //hide response modal initially
             $scope.showNarrativeResponse = false; //hide narrative response modal initially
 
-            // demo section, initiates major page variables
-            doDemoLogic();
-
             // check if demo
             $scope.demo = ($routeParams.index == 'demo');
 
+            // either begin demo or set up for normal article
             if ($scope.demo) { //begin demo
                 setTimeout(function () {
                     $scope.demoStep = 1;
