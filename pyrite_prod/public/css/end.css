@@ -6,3 +6,15 @@
 #bootstrap-override .jumbotron {
     margin-top: 10%;
 }
+#restart {
+    font-weight: 500;
+    font-size: 55px;
+    color: #00907c;
+    width: 90px;
+    height: 90px;
+    padding-top: 7px;
+}
+.fa-repeat {
+    -webkit-transform: rotate(90deg) scaleX(-1);
+            transform: rotate(90deg) scaleX(-1);
+}

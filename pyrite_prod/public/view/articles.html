@@ -67,49 +67,9 @@
             </form>
         </div>
     </div>
-<!-- SpontaneousResponse -->
-<!--
-    ng-click statement 'stopPropagation' blocks the
-    page container's 'hideSpontaneousResponse' event
- -->
-    <div ng-show="showSpontaneousResponse">
-        <div id="highlight" ng-style="highlightStyle"></div>
-        <div id="response" ng-show="!showNarrativeResponse" ng-style="spontaneousResponseStyle" ng-click="$event.stopPropagation()">
-            <div id="response-prompt" class="col-xs-12">This element makes the article seem...</div>
-            <div class="text-center">
-                <button class="btn btn-default" id="more-believable" ng-click="submitSpontaneousResponse('more-believable')">
-                    <strong>more believable</strong>
-                </button>
-                <button class="btn btn-default" id="less-believable" ng-click="submitSpontaneousResponse('less-believable')">
-                    <strong>less believable</strong>
-                </button>
-            </div>
-            <a><i class="fa fa-times close-response" aria-hidden="true" ng-click="hideSpontaneousResponse()"></i></a>
-        </div>
-        <div id="narrative-response" class="response-modal"
-             ng-show="showNarrativeResponse"
-             ng-style="narrativeResponseStyle"
-             ng-click="$event.stopPropagation()">
-            <div class="well">
-                <div class="form-group col-xs-12">
-                    <label for="explanation"><span id="optional">(Optional)</span> Explain why this element makes the article <span ng-show="moreBelievable" class="more-believable">more believable</span><span ng-show="!moreBelievable" class="less-believable">less believable</span>:
-                    </label>
-                    <textarea ng-model="response" class="form-control" rows="5" id="comment"></textarea>
-                </div>
-                <div class="col-xs-12 text-right align-middle">
-                    <a class="cancel" href="" ng-click="cancelResponse()">Cancel Element Response</a>
-                    <button ng-click="submitNarrativeResponse(response)" class="btn btn-default">
-                        <span ng-show="response == undefined">Continue Without Responding</span><span ng-show="response != undefined">Submit</span> <i class="fa fa-play" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-            <a><i class="fa fa-times close-response" aria-hidden="true" ng-click="hideSpontaneousResponse()"></i></a>
-        </div>
-    </div>
 <!-- INSTRUCTIONS -->
     <div id="help" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -117,26 +77,30 @@
                 </div>
                 <div class="modal-body text-center">
                     <p>
-                        You will be shown a series of articles where words, images, and videos have been replaced by filler content -- it has no meaning, and <strong id="not-understand">you will not be able to understand it</strong>. Please respond to the following statement after each article, based on the presentation (look and feel) of each page:
+                        You will be shown a series of articles where words, images, and videos have been replaced by filler content -- it has no meaning, and <strong id="not-understand">you will not be able to understand it</strong>.
                     </p>
-                    <p id="likert-statement">
-                        <strong>“If it had real content, I would believe an article that looks like this.”</strong>
-                    </p>
+                    <img src="data/img/likert.png">
                     <p>
-                        As an <strong>optional</strong> second form of response, you can identify elements of the article that have a significant effect on how believable it looks. You can click on and respond to individual elements of the news article to indicate whether the elements make the article seem <strong>more or less believable:</strong>
+                        You will respond to each news article via a Likert scale, as seen above. Consider all aspects of the article's <strong>presentation</strong> when responding.
                     </p>
-                    <img src="data/img/element.png">
-                    <p>
-                        This includes providing a short text response explaining why you think the element makes the article seem more or less believable.
-                    </p>
-                    <img id="img-too-big" src="data/img/qualitative.png">
                 </div>
             </div>
         </div>
     </div>
-<!-- DEMO MODALS: src is only defined if in given demo phase -->
+<!-- HALFWAY POINT PROMPT -->
+    <div id="halfway" class="modal fade" role="dialog">
+        <div class="modal-dialog jumbotron text-center">
+            <h2>
+                You are halfway done with the experiment. We’d like to ask you a couple questions before you continue.
+            </h2>
+            <button data-dismiss="modal" class="btn btn-default">
+                Continue <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+<!-- DEMO MODALS: -->
     <div id="demo" ng-show="demo">
-        <div id="step1-1" class="modal fade" role="dialog">
+        <div id="step-1" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -154,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <div id="step1-2" class="modal fade" role="dialog">
+        <div id="step-2" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -172,10 +136,10 @@
                 </div>
             </div>
         </div>
-        <div id="hint1">
+        <div id="hint">
             <i class="fa fa-arrow-down" aria-hidden="true"></i>
         </div>
-        <div id="step1-3" class="modal fade" role="dialog">
+        <div id="step-3" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -190,86 +154,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" ng-click="highlightLikertScale()" data-dismiss="modal">Finish</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="step2-1" class="modal fade" role="dialog" ng-click="step2($event)">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button id="step2-1-close" type="button" class="close" data-dismiss="modal" ng-click="step2($event)">&times;</button>
-                        <h2 class="modal-title">Demo: Respond to Individual Elements</h4>
-                    </div>
-                    <div class="modal-body text-center">
-                        <p>
-                            If something makes you think the article seems more or less believable, you can identify it specifically. This is <strong>optional</strong>.
-                        </p>
-                        <img src="data/img/element.png">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="step2-1-start" class="btn btn-default" data-dismiss="modal" ng-click="step2($event)">Start</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="step2-2" class="modal fade" data-backdrop="false" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">As an example, click on this image and respond.</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="hint2">
-            <i class="fa fa-arrow-down" aria-hidden="true"></i>
-        </div>
-        <div id="step2-3" class="modal fade" role="dialog" ng-click="$event.stopPropagation()">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Demo: Respond to Individual Elements</h4>
-                    </div>
-                    <div class="modal-body text-center">
-                        <p>
-                            When you respond to an element, you have the option to provide a short text response explaining why you think the element makes the article seem more or less believable.
-                        </p>
-                        <img src="data/img/qualitative.png">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="step2-4" class="modal fade" data-backdrop="false" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Try it out: click on other elements. You can respond to font characteristics, layout, multimedia, and so on.</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="step2-5" class="modal fade" role="dialog" ng-click="endDemo()">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" ng-click="$event.stopPropagation()">
-                        <button id="step1-close" type="button" class="close" ng-click="endDemo()" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title" ng-click="$event.stopPropagation()">Begin Experiment</h4>
-                    </div>
-                    <div class="modal-body text-center" ng-click="$event.stopPropagation()">
-                        <p>
-                            Full instructions can be accessed at the top-right of every article in the experiment, if you need a reminder. Just look for the help icon:
-                        </p>
-                        <h1><i data-toggle="modal" data-target="#help" class="fa fa-question-circle" aria-hidden="true"></i></h1>
-                    </div>
-                    <div class="modal-footer" ng-click="$event.stopPropagation()">
-                        <button type="button" class="btn btn-default" ng-click="endDemo()" data-dismiss="modal">Begin Experiment</button>
                     </div>
                 </div>
             </div>

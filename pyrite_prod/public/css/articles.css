@@ -54,163 +54,36 @@
     padding-top: 8px;
 }
 
-/* == DYNAMIC PAGE CONTENT ================================================== */
-#highlight {
-    position: absolute;
-    background-color: rgba(255, 255, 0, 0.5);
-    border: 4px solid rgb(255, 217, 0);
-    border-radius: 7px;
-    z-index: 999;
-}
-/* -- Spontaneous Response Modal -- */
-/* -- The following CSS is borrowed from http://nicolasgallagher.com/pure-css-speech-bubbles/ -- */
-#response {
-    font-size: 16px;
-    z-index: 1;
-    position: absolute;
-    width: 316px;
-    padding: 10px;
-    padding-bottom: 15px;
-    position: absolute;
-    color: #000;
-    background: #d1d1d1;
-    border: 3px solid black;
-    border-radius: 10px;
-    display: inline-block;
-    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-}
-#response:after {
-    content: "";
-    position: absolute;
-    top: -15px; /* value = - border-top-width - border-bottom-width */
-    right: 141px; /* controls horizontal position */
-    bottom: auto;
-    left: auto;
-    border-width: 0 15px 15px; /* vary these values to change the angle of the vertex */
-    border-color: black transparent;
-    border-style: solid;
-    /* reduce the damage in FF3.0 */
-    display: block;
-    width: 0;
-}
-/* -- End of borrowed code -- */
-#bootstrap-override #response-prompt {
-    padding-left: 0px;
-    padding-bottom: 10px;
-}
-#bootstrap-override #more-believable {
-    color: #116600;
-    margin-right: 10px;
-}
-#bootstrap-override #less-believable {
-    color: #b70000;
-}
-#bootstrap-override #more-believable, #bootstrap-override #less-believable {
-    text-shadow: none !important;
-}
-i.close-response {
-    color: black;
-    position: absolute;
-}
-#response i.close-response {
-    top: 5px;
-    right: 7px;
-}
-#narrative-response i.close-response {
-    top: 7px;
-    right: 10px;
-}
-i.close-response:hover {
-    opacity: .5;
-}
-
-/* -- Narrative Response Modal -- */
-/* -- The following CSS is borrowed from http://nicolasgallagher.com/pure-css-speech-bubbles/ -- */
-#narrative-response {
-    font-size: 16px;
-    z-index: 999;
-    position: absolute;
-    width: 550px;
-    padding: 10px;
-    position: absolute;
-    padding: 5px;
-    color: #000;
-    background: black;
-    border-radius: 10px;
-    display: inline-block;
-    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-}
-#narrative-response:after {
-    content: "";
-    position: absolute;
-    top: -15px; /* value = - border-top-width - border-bottom-width */
-    right: 260px; /* controls horizontal position */
-    bottom: auto;
-    left: auto;
-    border-width: 0 15px 15px; /* vary these values to change the angle of the vertex */
-    border-color: black transparent;
-    border-style: solid;
-    /* reduce the damage in FF3.0 */
-    display: block;
-    width: 0;
-}
-/* -- End of borrowed code -- */
-#bootstrap-override #narrative-response .well {
-    border-radius: 7px;
-    padding: 10px;
-    margin-bottom:0px;
-}
-span#optional {
-    color: grey;
-    font-style: italic;
-}
-.more-believable {
-    color: #498a44;
-}
-.less-believable {
-    color: #c92d39;
-}
-#bootstrap-override .form-group {
-    margin-bottom: 10px;
-    padding: 0px;
-}
-#bootstrap-override textarea {
-    resize: vertical;
-}
-#bootstrap-override #narrative-response div {
-    padding-right: 0px;
-}
-.cancel {
-    text-decoration: underline;
-    font-size: 12px;
-    color: grey;
-    margin-right: 10px;
-}
-.cancel:hover {
-    color: #4c4c4c;
-}
-
 /* == INSTRUCTIONS CONTENT ================================================== */
-#bootstrap-override #not-understand {
-    font-size: 15px;
-}
-#bootstrap-override #likert-statement {
-    margin-bottom: 15px;
+#bootstrap-override #help {
     font-size: 18px;
 }
 #help img {
+    width: 90%;
     border: 2px solid black;
     border-radius: 10px;
     margin: 15px;
+    margin-bottom: 25px;
 }
-#img-too-big {
-    max-width: 400px;
+
+/* == HALFWAY POINT MODAL =================================================== */
+#bootstrap-override #halfway {
+    /*margin-top: 200px;*/
+}
+#halfway .modal-dialog {
+    width: 750px;
+}
+#halfway h2, #halfway button {
+    font-size: 40px;
+}
+#halfway button {
+    color: inherit;
+    font-weight: 500;
+    margin-top: 28px;
 }
 
 /* == DEMO CONTENT ========================================================== */
-#bootstrap-override .modal-dialog {
+#demo .modal-dialog {
     width: 650px;
     margin: 15px auto;
 }
@@ -224,7 +97,7 @@ span#optional {
 #bootstrap-override #demo .modal-dialog {
     margin: 7% auto !important;
 }
-#hint1, #hint2 {
+#hint {
     opacity: 0;
     -webkit-transition: opacity 1s ease;
     transition: opacity 1s ease;
@@ -253,22 +126,4 @@ span#optional {
     background-color: rgba(255, 255, 0, 0.5);
     border: 8px solid rgb(255, 217, 0);
     border-radius: 7px;
-}
-#step2-1 img {
-    margin: 15px;
-}
-#step2-2, #step2-4 {
-    overflow: visible !important;
-}
-#bootstrap-override #step2-2 .modal-dialog, #bootstrap-override #step2-4 .modal-dialog {
-    margin-top: 100px !important;
-}
-#step2-2 .modal-content, #step2-4 .modal-content {
-    border: 3px solid black !important;
-}
-#step2-2, #step2-4 {
-    height: 0px !important;
-}
-#step2-5 i {
-    color: #00907c;
 }
