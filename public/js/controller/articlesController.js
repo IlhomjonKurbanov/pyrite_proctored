@@ -34,8 +34,10 @@ angular.module('pyrite')
                 $scope.articleOrder = $rootScope.articleOrder || cookieService.getArticleOrder();
                 $scope.articlePath = $scope.articleOrder[$scope.index]; //get articlePath
                 $scope.articleID = $scope.articlePath.split('_')[1].split('.')[0];
-            }
 
+                //if at halfway point, show halfway modal
+                if ($scope.index == Math.round($scope.articleOrder.length / 2) - 1) $("#halfway").modal("show");
+            }
 
             //set page time variable
             $scope.pageTimeStart = Date.now(); //start response timer

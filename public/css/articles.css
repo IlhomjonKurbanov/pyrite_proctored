@@ -66,8 +66,24 @@
     margin-bottom: 25px;
 }
 
+/* == HALFWAY POINT MODAL =================================================== */
+#bootstrap-override #halfway {
+    /*margin-top: 200px;*/
+}
+#halfway .modal-dialog {
+    width: 750px;
+}
+#halfway h2, #halfway button {
+    font-size: 40px;
+}
+#halfway button {
+    color: inherit;
+    font-weight: 500;
+    margin-top: 28px;
+}
+
 /* == DEMO CONTENT ========================================================== */
-#bootstrap-override .modal-dialog {
+#demo .modal-dialog {
     width: 650px;
     margin: 15px auto;
 }
