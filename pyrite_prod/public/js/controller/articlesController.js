@@ -51,9 +51,9 @@ angular.module('pyrite')
             function doDemoLogic() {
                 var likertHighlightTriggered = false;
                 setTimeout(function () {
-                    var top1 = document.querySelector("#image_demo1_1").getBoundingClientRect().top;
-                    var top2 = document.querySelector("#paragraph_demo1_3").getBoundingClientRect().top;
-                    var topForArrow = document.querySelector("#paragraph_demo1_2").getBoundingClientRect().top;
+                    var top1 = document.querySelector("#image_demo_1").getBoundingClientRect().top;
+                    var top2 = document.querySelector("#paragraph_demo_3").getBoundingClientRect().top;
+                    var topForArrow = document.querySelector("#paragraph_demo_2").getBoundingClientRect().top;
                     var bottom = document.querySelector(".container").clientHeight - 130;
 
                     angular.element($window).bind("scroll", function() {
