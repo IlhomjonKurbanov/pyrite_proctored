@@ -112,7 +112,7 @@ angular.module('pyrite')
                 } else {
                     progressService.setStage('finished');
                     progressService.setArticleIndex(0);
-                    $location.path('/prize');
+                    $location.path('/end');
                 }
             }
         }

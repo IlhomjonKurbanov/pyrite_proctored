@@ -43,17 +43,4 @@ if (tableName == 'ArticleResponses' || tableName == 'all') {
         });
 }
 
-// Prize Drawing Participants Table
-if (tableName == 'PrizeDrawingParticipants' || tableName == 'all') {
-    db.get().query('CREATE TABLE PrizeDrawingParticipants(EmailAddress VARCHAR(255), PRIMARY KEY (EmailAddress)) ENGINE = INNODB',
-        function(err, result) {
-            if (err) {
-                console.log('Error creating PrizeDrawingParticipants table: ' + err);
-                if (tableName != 'all') process.exit();
-            }
-            console.log('PrizeDrawingParticipants table created.');
-            if (tableName != 'all') process.exit();
-        });
-}
-
 //add further table declarations here

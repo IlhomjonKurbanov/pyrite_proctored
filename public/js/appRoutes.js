@@ -30,12 +30,6 @@ angular.module('pyrite')
                 controller: 'articlesController'
             })
 
-            // prize drawing page
-            .when('/prize', {
-                templateUrl: 'view/prize.html',
-                controller: 'prizeController'
-            })
-
             // end page
             .when('/end', {
                 templateUrl: 'view/end.html',
@@ -86,7 +80,7 @@ angular.module('pyrite')
                             }
                             break;
                         case EXPERIMENT_STAGE.finished:
-                            if (path != '/prize' && path != '/end') $location.path('/end');
+                            if (path != '/end') $location.path('/end');
                             break;
                     }
                 }

@@ -50,21 +50,6 @@ module.exports = function(app, db) {
             });
     });
 
-    //register a new email address for the gift card drawing
-    app.post('/api/prize/register-new', function(req, res) {
-        var data = [
-            req.body.email
-        ];
-
-        //'insert ignore' to avoid duplicates
-        db.get().query('INSERT IGNORE INTO PrizeDrawingParticipants (EmailAddress) VALUES (?)',
-            data, function(err, result) {
-                if (err) throw err;
-                console.log('Registered new prize drawing participant.');
-                res.send('Prize drawing participant registered.');
-            });
-    })
-
     // frontend routes =========================================================
     //get files
     app.get('/app/data/:filename', function(req, res) {
