@@ -2,6 +2,8 @@
 A web-based test engine for research on visual presentation factors in online
 news articles.
 
+(This version of pyrite has many features removed, to convert it from a self-administered experiment to a proctored experiment. See the full set of features at https://github.com/marijnburger/pyrite_full_features)
+
 # local setup
 1. Download repository & [install Node.js](https://nodejs.org/en/download/)
 2. Install bower globally: `$ npm install -g bower`
