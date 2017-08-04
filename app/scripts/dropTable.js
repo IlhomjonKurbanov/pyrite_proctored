@@ -10,6 +10,7 @@ var tableName = process.argv[2];
 var tables = [
     'Subjects',
     'ArticleResponses',
+    'ArticleDetails'
 ]
 
 db.connect(function(err) {

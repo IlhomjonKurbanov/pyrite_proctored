@@ -21,3 +21,17 @@ CREATE TABLE ArticleResponses(
     SpontaneousResponseCount INT,
     MoreBelievableCount INT
 ) ENGINE = INNODB
+
+-- create ArticleDetails table
+CREATE TABLE ArticleDetails(
+    ID VARCHAR(255),
+    LinkDensity FLOAT(10, 8),
+    Video INT,
+    Images INT,
+    WordCount INT,
+    BodyFontSize INT,
+    TitleFontSize INT,
+    SerifP INT,
+    VideoLocation INT,
+    PRIMARY KEY (ID)
+) ENGINE = INNODB

@@ -43,4 +43,17 @@ if (tableName == 'ArticleResponses' || tableName == 'all') {
         });
 }
 
+// Article Details Table
+if (tableName == 'ArticleDetails' || tableName == 'all') {
+    db.get().query('CREATE TABLE ArticleDetails(ID VARCHAR(255), LinkDensity FLOAT(10, 8), Video INT, Images INT, WordCount INT, BodyFontSize INT, TitleFontSize INT, SerifP INT, VideoLocation INT, PRIMARY KEY (ID)) ENGINE = INNODB',
+        function(err, result) {
+            if (err) {
+                console.log('Error creating ArticleDetails table: ' + err);
+                if (tableName != 'all') process.exit();
+            }
+            console.log('ArticleDetails table created.');
+            if (tableName != 'all') process.exit();
+        });
+}
+
 //add further table declarations here

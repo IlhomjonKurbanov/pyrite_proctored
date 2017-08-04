@@ -5,6 +5,8 @@ const util       = require('./util');
 const loremipsum = require('lorem-ipsum');
 const fs         = require('fs');
 const mkdirp     = require('mkdirp');
+const db         = require('../../db');
+
 
 // == MAIN =====================================================================
 var arg = process.argv[2];
@@ -12,13 +14,74 @@ if (arg == 'all') {
     runAll();
 } else if (arg == 'buckets') {
     buildDirectories();
-} else if (arg == 'unit-test') { //'test' runs randomized article
-    //test code
+} else if (arg == 'details') {
+    writeArticleDetailsToTable();
 } else {
     run(arg);
 }
 
 // == FUNCTIONS ================================================================
+// write article details for each ArticleID to table
+function writeArticleDetailsToTable() {
+    var ID, articleDetails;
+    var i_linkDensity, i_video, i_images, i_wordCount, i_fontSize, i_serifP, i_navbarP;
+    var attr = values.attributeValues;
+
+    db.connect(function(err) {
+        if (err) {
+            console.log('Unable to connect to MySQL.');
+        } else {
+            console.log('Successfully connected to MySQL.');
+        }
+    });
+    var i = 1;
+    // == variable iteration loop ==============================================
+    //establish linkDensity
+    for (i_linkDensity = 0; i_linkDensity < attr.linkDensity.length; i_linkDensity++) {
+        //establish video
+        for (i_video = 0; i_video < attr.video.length; i_video++) {
+            //establish images
+            for (i_images = 0; i_images < attr.images.length; i_images++) {
+                //establish wordCount
+                for (i_wordCount = 0; i_wordCount < attr.wordCount.length; i_wordCount++) {
+                    //establish fontSize
+                    for (i_fontSize = 0; i_fontSize < attr.fontSize.length; i_fontSize++) {
+                        //establish serifP
+                        for (i_serifP = 0; i_serifP < attr.serifP.length; i_serifP++) {
+//establish navbarP (currently removed)
+// for (i_navbarP = 0; i_navbarP < attr.navbarP.length; i_navbarP++) {
+                            //establish videoLocation
+                            for (i_videoLocation = 0; i_videoLocation < attr.videoLocation.length; i_videoLocation++) {
+                                ID = i_linkDensity + '-' + i_video + '-' + i_images + '-' + i_wordCount + '-' + i_fontSize + '-' + i_serifP /*+ '-' + i_navbarP*/ + '-' + i_videoLocation; //navbar currently removed
+                                articleDetails = [
+                                    ID,
+                                    attr.linkDensity[i_linkDensity],
+                                    attr.video[i_video],
+                                    attr.images[i_images],
+                                    attr.wordCount[i_wordCount],
+                                    attr.fontSize[i_fontSize].article,
+                                    attr.fontSize[i_fontSize].title,
+                                    attr.serifP[i_serifP],
+                                    attr.videoLocation[i_videoLocation]
+                                ];
+
+                                db.get().query('INSERT INTO ArticleDetails (ID, LinkDensity, Video, Images, WordCount, BodyFontSize, TitleFontSize, SerifP, VideoLocation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                                    articleDetails, function(err, result) {
+                                        if (err) throw err;
+                                        console.log('Registered ArticleDetails for Article ' + i);
+                                        if (i == 864) process.exit();
+                                        i++;
+                                    });
+                            }
+// }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 //build directories for most important attributes
 function buildDirectories() {
     var i_linkDensity, i_video, i_images;
