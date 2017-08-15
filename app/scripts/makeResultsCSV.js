@@ -53,7 +53,7 @@ function convertToCSVString(data) {
         CSV += current.Likert + ',';
         CSV += current.PageTime + '\n';
     });
-    return CSV
+    return CSV;
 }
 
 function save(data, filename) {
